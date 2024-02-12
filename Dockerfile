@@ -3,11 +3,14 @@ ARG BUILD_ENVIRONMENT
 ARG IP_ADDRESS
 
 USER root
-RUN apt-get update && apt-get install -y ca-certificates curl gnupg
-RUN curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
-ENV NODE_MAJOR=18
-RUN echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
-RUN apt-get update && apt-get install nodejs -y
+RUN apt-get update && apt-get install -y ca-certificates curl gnupg software-properties-common npm
+# RUN curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+# ENV NODE_MAJOR=18
+# RUN echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
+# RUN apt-get update && apt-get install nodejs -y
+RUN npm install npm@latest -g && \
+    npm install n -g && \
+    n latest
 
 # Remove the default stuff from the filesystem
 RUN rm -rf /usr/share/nginx/html/*
