@@ -4,4 +4,4 @@ cp /secrets/certs/* nginx/filesystem/etc/nginx/certs
 docker build -t nullinside-ui:latest --build-arg BUILD_ENVIRONMENT=prod --build-arg IP_ADDRESS=$IP_ADDRESS .
 docker container stop nullinside-ui
 docker container prune -f
-docker run -d --name=nullinside-ui -p 80:80 -p 443:443 nullinside-ui:latest
+docker run -d --name=nullinside-ui -p 80:80 -p 443:443 --restart unless-stopped nullinside-ui:latest
