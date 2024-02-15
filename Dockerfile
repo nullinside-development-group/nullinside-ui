@@ -29,7 +29,7 @@ COPY src /tmp/build/angular
 RUN if [[ -z "$BUILD_ENVIRONMENT" ]] ; then npm run build_prod ; else npm run build_$BUILD_ENVIRONMENT ; fi
 
 # Copy the build to the folder the server serves from
-RUN cp -Rp dist/nullinside/* /usr/share/nginx/html
+RUN cp -Rp dist/nullinside-ui/browser/* /usr/share/nginx/html
 
 ###############
 # Common HTML #
