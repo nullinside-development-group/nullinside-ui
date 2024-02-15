@@ -20,12 +20,12 @@ RUN rm -rf /usr/share/nginx/html/*
 ###########
 
 # Copy the packages
-COPY nullinside/package.json /tmp/build/angular/package.json
+COPY src/package.json /tmp/build/angular/package.json
 WORKDIR /tmp/build/angular
 RUN npm install
 
 # Copy and code and build the software
-COPY nullinside /tmp/build/angular
+COPY src /tmp/build/angular
 RUN if [[ -z "$BUILD_ENVIRONMENT" ]] ; then npm run build_prod ; else npm run build_$BUILD_ENVIRONMENT ; fi
 
 # Copy the build to the folder the server serves from
