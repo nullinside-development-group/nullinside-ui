@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import {LogoComponent} from "../../common/logo/logo.component";
+import { Component, OnInit } from '@angular/core';
+import { LogoComponent } from "../../common/logo/logo.component";
+import { GoogleSignInResponse } from "../../common/interface/google-sign-in-response";
 
 @Component({
   selector: 'app-index',
@@ -10,6 +11,14 @@ import {LogoComponent} from "../../common/logo/logo.component";
   templateUrl: './index.component.html',
   styleUrl: './index.component.scss'
 })
-export class IndexComponent {
+export class IndexComponent implements OnInit {
+  ngOnInit(): void {
+    (window as any).handleGoogleLogin = (response: GoogleSignInResponse) => {
+      this.handleGoogleLogin(response);
+    }
+  }
 
+  handleGoogleLogin(args: GoogleSignInResponse) {
+    console.log(args);
+  }
 }

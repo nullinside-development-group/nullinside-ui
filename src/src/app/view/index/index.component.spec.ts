@@ -10,8 +10,8 @@ describe('IndexComponent', () => {
     await TestBed.configureTestingModule({
       imports: [IndexComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(IndexComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

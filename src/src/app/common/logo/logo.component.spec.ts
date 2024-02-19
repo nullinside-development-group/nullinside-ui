@@ -10,8 +10,8 @@ describe('LogoComponent', () => {
     await TestBed.configureTestingModule({
       imports: [LogoComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(LogoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
