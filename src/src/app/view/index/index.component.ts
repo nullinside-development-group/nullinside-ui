@@ -21,6 +21,4 @@ export class IndexComponent implements OnInit {
   ngOnInit(): void {
 
   }
-
-  protected readonly environment = environment;
 }
