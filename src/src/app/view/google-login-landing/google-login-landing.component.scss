@@ -1,0 +1,36 @@
+.logo-container {
+  height: 50px;
+  width: 335px;
+  padding-bottom: 10px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.index-container {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.loading-container {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.content-container {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.loading-text {
+  height: 100%;
+  display: inline-block;
+  font-size: 31px;
+  font-weight: 400;
+}
