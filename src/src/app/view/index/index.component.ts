@@ -12,10 +12,14 @@ import { environment } from "../../../environments/environment";
   styleUrl: './index.component.scss'
 })
 export class IndexComponent implements OnInit {
+  loginUrl: string;
+
   constructor() {
+    this.loginUrl = `${environment.apiUrl}/user/login`;
   }
 
   ngOnInit(): void {
+
   }
 
   protected readonly environment = environment;
