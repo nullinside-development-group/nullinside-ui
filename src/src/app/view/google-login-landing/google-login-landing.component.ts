@@ -31,7 +31,6 @@ export class GoogleLoginLandingComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.queryParamMap.subscribe({
       next: (params: ParamMap) => {
-        console.log(params.get('authToken'));
         this.api.validateToken(params.get('authToken') || '')
           .subscribe({
             next: valid => {
