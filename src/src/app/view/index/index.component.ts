@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LogoComponent } from "../../common/logo/logo.component";
-import { GoogleSignInResponse } from "../../common/interface/google-sign-in-response";
+import { environment } from "../../../environments/environment";
 
 @Component({
   selector: 'app-index',
@@ -12,13 +12,11 @@ import { GoogleSignInResponse } from "../../common/interface/google-sign-in-resp
   styleUrl: './index.component.scss'
 })
 export class IndexComponent implements OnInit {
-  ngOnInit(): void {
-    (window as any).handleGoogleLogin = (response: GoogleSignInResponse) => {
-      this.handleGoogleLogin(response);
-    }
+  constructor() {
   }
 
-  handleGoogleLogin(args: GoogleSignInResponse) {
-    console.log(args);
+  ngOnInit(): void {
   }
+
+  protected readonly environment = environment;
 }
