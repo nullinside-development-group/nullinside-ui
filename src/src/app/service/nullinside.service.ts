@@ -11,8 +11,7 @@ export class NullinsideService {
   constructor(private httpClient: HttpClient) {
   }
 
-  googleLogin(clientId: string, credential: string): Observable<string> {
-    const body = {clientId: clientId, credential: credential};
-    return this.httpClient.post<string>(`${environment.apiUrl}/user/login`, body);
+  validateToken(token: string): Observable<boolean> {
+    return this.httpClient.post<boolean>(`${environment.apiUrl}/user/token/validate`, {token: token});
   }
 }

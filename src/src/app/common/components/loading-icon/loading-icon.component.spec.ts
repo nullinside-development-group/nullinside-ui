@@ -10,8 +10,8 @@ describe('LoadingIconComponent', () => {
     await TestBed.configureTestingModule({
       imports: [LoadingIconComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(LoadingIconComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
