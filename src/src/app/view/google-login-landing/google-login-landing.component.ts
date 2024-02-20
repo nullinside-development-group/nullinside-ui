@@ -37,15 +37,21 @@ export class GoogleLoginLandingComponent implements OnInit, OnDestroy {
           return;
         }
 
-        this.api.validateToken(params.get('token') || '')
-          .subscribe({
-            next: _ => {
-              this.router.navigate(['/home']);
-            },
-            error: (_: any) => {
-              this.onLoginFailed();
-            }
-          });
+        const token = params.get('token');
+        if (!token) {
+          this.onLoginFailed();
+          return;
+        }
+
+        this.api.validateToken(token).subscribe({
+          next: _ => {
+            localStorage.setItem('auth-token', token);
+            this.router.navigate(['/home']);
+          },
+          error: (_: any) => {
+            this.onLoginFailed();
+          }
+        });
       },
       error: (_: any) => {
         this.onLoginFailed();
@@ -54,6 +60,7 @@ export class GoogleLoginLandingComponent implements OnInit, OnDestroy {
   }
 
   onLoginFailed(message = ':( Failed to login, please try again', redirect = true): void {
+    localStorage.removeItem('auth-token');
     this.error = message;
 
     if (redirect) {
