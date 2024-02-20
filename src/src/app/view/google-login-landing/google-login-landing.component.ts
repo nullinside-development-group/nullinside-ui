@@ -31,14 +31,16 @@ export class GoogleLoginLandingComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.queryParamMap.subscribe({
       next: (params: ParamMap) => {
-        this.api.validateToken(params.get('authToken') || '')
+        const error = params.get('error');
+        if (error) {
+          this.onLoginFailed();
+          return;
+        }
+
+        this.api.validateToken(params.get('token') || '')
           .subscribe({
-            next: valid => {
-              if (valid) {
-                this.router.navigate(['/home']);
-              } else {
-                this.onLoginFailed();
-              }
+            next: _ => {
+              this.router.navigate(['/home']);
             },
             error: (_: any) => {
               this.onLoginFailed();
@@ -51,14 +53,16 @@ export class GoogleLoginLandingComponent implements OnInit, OnDestroy {
     });
   }
 
-  onLoginFailed(): void {
-    this.error = ':( Failed to login, please try again';
+  onLoginFailed(message = ':( Failed to login, please try again', redirect = true): void {
+    this.error = message;
 
-    this.timerId = setTimeout(() => {
-      // Need to use window.location here instead of the router because otherwise the external javascript from Google
-      // doesn't reload on the index page, and you can't retry your login until you refresh.
-      // @ts-ignore
-      window.location = environment.siteUrl
-    }, 5000);
+    if (redirect) {
+      this.timerId = setTimeout(() => {
+        // Need to use window.location here instead of the router because otherwise the external javascript from Google
+        // doesn't reload on the index page, and you can't retry your login until you refresh.
+        // @ts-ignore
+        window.location = environment.siteUrl
+      }, 5000);
+    }
   }
 }
