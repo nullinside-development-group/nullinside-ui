@@ -24,7 +24,7 @@ export class IndexComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    var token = localStorage.getItem('auth-token');
+    const token = localStorage.getItem('auth-token');
     if (!token) {
       return;
     }

@@ -4,6 +4,7 @@ import { LogoComponent } from "../../common/components/logo/logo.component";
 import { LoadingIconComponent } from "../../common/components/loading-icon/loading-icon.component";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { environment } from "../../../environments/environment";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
   selector: 'app-google-login-landing',
@@ -48,12 +49,12 @@ export class GoogleLoginLandingComponent implements OnInit, OnDestroy {
             localStorage.setItem('auth-token', token);
             this.router.navigate(['/home']);
           },
-          error: (_: any) => {
+          error: (_: HttpErrorResponse) => {
             this.onLoginFailed();
           }
         });
       },
-      error: (_: any) => {
+      error: (_: HttpErrorResponse) => {
         this.onLoginFailed();
       }
     });
@@ -67,7 +68,9 @@ export class GoogleLoginLandingComponent implements OnInit, OnDestroy {
       this.timerId = setTimeout(() => {
         // Need to use window.location here instead of the router because otherwise the external javascript from Google
         // doesn't reload on the index page, and you can't retry your login until you refresh.
-        // @ts-ignore
+        //
+        // @ts-expect-error: The expected usage of window.location is to set it directly as a string but due to typing
+        // issues that have changed over time the linting complains about it.
         window.location = environment.siteUrl
       }, 5000);
     }
