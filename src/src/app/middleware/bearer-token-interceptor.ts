@@ -6,6 +6,7 @@ import { environment } from "../../environments/environment";
 
 @Injectable()
 export class BearerTokenInterceptor implements HttpInterceptor {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const url = req.url.toLowerCase().replace('https://www.', 'https://');
     if (!url.startsWith(`${environment.apiUrl}/`)) {
