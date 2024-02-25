@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IndexComponent } from './index.component';
+import { LoadingIconComponent } from './loading-icon.component';
 
-describe('IndexComponent', () => {
-  let component: IndexComponent;
-  let fixture: ComponentFixture<IndexComponent>;
+describe('LoadingIconComponent', () => {
+  let component: LoadingIconComponent;
+  let fixture: ComponentFixture<LoadingIconComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [IndexComponent]
+      imports: [LoadingIconComponent]
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(IndexComponent);
+    fixture = TestBed.createComponent(LoadingIconComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,1 +1,23 @@
-<app-logo />
+<div class="centered-box">
+  <div class="centered-box_logo-container">
+    <app-logo />
+  </div>
+  <div class="centered-box_content-container" [hidden]="checkingLogin">
+    <div id="g_id_onload"
+         data-client_id="820293845779-uf3ljlq8sr4fhhf3p1vj7ac9h6edqmt9.apps.googleusercontent.com"
+         [attr.data-login_uri]="loginUrl"
+         data-auto_prompt="false">
+    </div>
+    <div class="g_id_signin"
+         data-type="standard"
+         data-size="large"
+         data-theme="outline"
+         data-text="sign_in_with"
+         data-shape="rectangular"
+         data-logo_alignment="left">
+    </div>
+  </div>
+  <div class="centered-box_content-container" [hidden]="!checkingLogin">
+    <app-loading-icon fontSize="24px" height="35px" width="35px" marginHack="-25px">Logging in</app-loading-icon>
+  </div>
+</div>
