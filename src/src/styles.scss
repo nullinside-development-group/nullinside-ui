@@ -82,3 +82,24 @@ body {
   padding-top: 10px;
   padding-bottom: 15px;
 }
+
+.info-banner {
+  font-size: 30px;
+  font-weight: bolder;
+  text-align: center;
+  color: $background-color;
+  background: $font-color;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 15px;
+}
+
+.layout-logo-box {
+  height: 60px;
+  padding-top: 10px;
+  padding-left: 5px;
+}
+
+.layout-content {
+  padding-left: 5px;
+}
