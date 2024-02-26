@@ -71,7 +71,7 @@ export class GoogleLoginLandingComponent implements OnInit, OnDestroy {
         //
         // @ts-expect-error: The expected usage of window.location is to set it directly as a string but due to typing
         // issues that have changed over time the linting complains about it.
-        window.location = environment.siteUrl
+        window.location = environment.siteUrl;
       }, 5000);
     }
   }
