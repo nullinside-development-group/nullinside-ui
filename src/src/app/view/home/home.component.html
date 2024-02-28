@@ -1,8 +1,21 @@
 <div class="layout-logo-box">
   <app-logo />
 </div>
-<div class="layout-content bye">
-  <div class="info-banner">
-    Sorry, there are no applications available to you at this time.
+
+@if (-1 !== roles?.indexOf(VM_ADMIN)) {
+  <div class="layout-content flex-container">
+    @for (app of apps; track app.displayName) {
+      <div class="app hover-border-blink" (click)="onAppClicked(app.displayName)"
+           (keyup.enter)="onAppClicked(app.displayName)" tabindex="0">
+        <h1>{{ app.displayName }}</h1>
+        <p>{{ app.description }}</p>
+      </div>
+    }
   </div>
-</div>
+} @else {
+  <div class="layout-content bye">
+    <div class="info-banner">
+      Sorry, there are no applications available to you at this time.
+    </div>
+  </div>
+}

@@ -1,4 +1,5 @@
-<div style="position: relative" [style.font-size]="fontSize" [style.height]="height">
+<div class="outer-content" [style.font-size]="fontSize" [style.height]="height" (click)="sendToIndex()"
+     (keyup.enter)="sendToIndex()" tabindex="0">
   <div class="content">
     <div class="content__container">
       <p class="content__container__text">

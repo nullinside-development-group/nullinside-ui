@@ -1,3 +1,12 @@
+@import "../../common/constants";
+
 .bye {
   margin-top: 50px;
+}
+
+.app {
+  flex-grow: 1;
+  flex-basis: 0;
+  padding: 10px;
+  margin: 10px;
 }

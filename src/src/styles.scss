@@ -1,3 +1,7 @@
+/************************************************************/
+/* BOILERPLATE MATERIAL CODE                                */
+/************************************************************/
+
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
@@ -42,6 +46,11 @@ html, body {
   font-family: Roboto, sans-serif;
 }
 
+h1 {
+  font-weight: bold !important;
+  border-bottom: 1px solid $font-color;
+}
+
 .mat-body,
 .mat-body-2,
 .mat-typography .mat-body,
@@ -52,6 +61,37 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+/************************************************************/
+/* BANNERS                                                  */
+/* COMMON BANNERS YOU CAN USE THROUGHOUT                    */
+/************************************************************/
+
+.error-banner {
+  font-size: 30px;
+  font-weight: bolder;
+  text-align: center;
+  background: #5d0000;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 15px;
+}
+
+.info-banner {
+  font-size: 30px;
+  font-weight: bolder;
+  text-align: center;
+  color: $background-color;
+  background: $font-color;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 15px;
+}
+
+/************************************************************/
+/* CENTERED BOX                                             */
+/* A LAYOUT WHERE EVERYTHING IS IN THE CENTER OF THE SCREEN */
+/* FOR "MINIMAL" PAGES                                      */
+/************************************************************/
 .centered-box {
   position: absolute;
   width: 100%;
@@ -75,25 +115,10 @@ body {
   width: 100%;
 }
 
-.error-banner {
-  font-size: 30px;
-  background: #5d0000;
-  width: 100%;
-  padding-top: 10px;
-  padding-bottom: 15px;
-}
-
-.info-banner {
-  font-size: 30px;
-  font-weight: bolder;
-  text-align: center;
-  color: $background-color;
-  background: $font-color;
-  width: 100%;
-  padding-top: 10px;
-  padding-bottom: 15px;
-}
-
+/************************************************************/
+/* REGULAR LAYOUT                                           */
+/* A NORMAL, TITLE WITH CONTENT LAYOUT (NO MENU)            */
+/************************************************************/
 .layout-logo-box {
   height: 60px;
   padding-top: 10px;
@@ -101,5 +126,38 @@ body {
 }
 
 .layout-content {
-  padding-left: 5px;
+  left: 5px;
+  right: 5px;
+  width: 100%;
+}
+
+/************************************************************/
+/* MISC                                                     */
+/************************************************************/
+// A blinking border for on hover.
+.hover-border-blink:hover {
+  border: 1px $font-color solid;
+  animation: blink 1s;
+  animation-iteration-count: infinite;
+  cursor: pointer;
+}
+
+@keyframes blink {
+  50% {
+    border-color: $background-color;
+  }
+}
+
+// A common class fixure for starting a flex container.
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-3-column-even {
+  flex-grow: 1;
+  flex-basis: 0;
+  min-width: 300px;
+  padding: 10px;
+  margin: 10px;
 }
