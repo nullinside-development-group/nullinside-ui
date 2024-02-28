@@ -135,6 +135,11 @@ body {
 /* MISC                                                     */
 /************************************************************/
 // A blinking border for on hover.
+.hover-border-blink {
+  border: 1px $font-color solid;
+  cursor: pointer;
+}
+
 .hover-border-blink:hover {
   border: 1px $font-color solid;
   animation: blink 1s;
