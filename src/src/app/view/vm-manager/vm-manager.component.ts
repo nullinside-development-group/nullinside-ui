@@ -53,8 +53,18 @@ export class VmManagerComponent implements OnInit, OnDestroy {
         next: vms => {
           const actionableVms: ActionableDockerResource[] = [];
           vms.forEach(vms => {
-            actionableVms.push({isRunning: this.vms?.find(v => v.id === vms.id)?.isRunning ?? false, ...vms})
-          })
+            const existing = this.vms?.find(v => v.id === vms.id);
+            if (existing) {
+              let running = existing.isRunning;
+              if (existing.isRunning && existing.isOnline !== vms.isOnline) {
+                running = false;
+              }
+
+              actionableVms.push({isRunning: running, ...vms});
+            } else {
+              actionableVms.push({isRunning: false, ...vms});
+            }
+          });
 
           this.vms = actionableVms;
         },
