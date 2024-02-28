@@ -5,7 +5,8 @@
 @if (-1 !== roles?.indexOf(VM_ADMIN)) {
   <div class="layout-content flex-container">
     @for (app of apps; track app.displayName) {
-      <div class="app hover-border-blink" (click)="onAppClicked(app.displayName)">
+      <div class="app hover-border-blink" (click)="onAppClicked(app.displayName)"
+           (keyup.enter)="onAppClicked(app.displayName)" tabindex="0">
         <h1>{{ app.displayName }}</h1>
         <p>{{ app.description }}</p>
       </div>

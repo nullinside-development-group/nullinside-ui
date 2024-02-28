@@ -25,6 +25,8 @@
             <mat-icon aria-hidden="false"
                       aria-label="action"
                       (click)="onSwitchPower(vm.id, !vm.isOnline)"
+                      (keyup.enter)="onSwitchPower(vm.id, !vm.isOnline)"
+                      tabindex="0"
                       [style.cursor]="'pointer'"
                       [fontIcon]="vm.isOnline ? 'power_off' : 'power_settings_new'"
                       [matTooltip]="vm.isOnline ? 'Turn Off' : 'Turn On'" />
