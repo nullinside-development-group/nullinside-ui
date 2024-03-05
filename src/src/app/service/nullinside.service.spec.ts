@@ -1,12 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 
 import { NullinsideService } from './nullinside.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('NullinsideService', () => {
   let service: NullinsideService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule]
+    });
     service = TestBed.inject(NullinsideService);
   });
 

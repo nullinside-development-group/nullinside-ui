@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GoogleLoginLandingComponent } from './google-login-landing.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('GoogleSigninLandingComponent', () => {
   let component: GoogleLoginLandingComponent;
@@ -8,7 +10,7 @@ describe('GoogleSigninLandingComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GoogleLoginLandingComponent]
+      imports: [GoogleLoginLandingComponent, HttpClientTestingModule, RouterTestingModule]
     })
       .compileComponents();
 

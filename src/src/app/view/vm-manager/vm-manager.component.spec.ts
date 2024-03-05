@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { VmManagerComponent } from './vm-manager.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('VmManagerComponent', () => {
   let component: VmManagerComponent;
@@ -8,10 +9,10 @@ describe('VmManagerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VmManagerComponent]
+      imports: [VmManagerComponent, HttpClientTestingModule]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(VmManagerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
