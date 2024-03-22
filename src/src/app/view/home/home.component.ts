@@ -17,11 +17,13 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   public roles: string[] | null = null;
   public error: string | null = null;
-  public apps: WebsiteApp[] = [{
-    displayName: 'VM Admin',
-    description: 'Manage the virtual machines for various services.',
-    url: 'vm-admin'
-  }];
+  public apps: WebsiteApp[] = [
+    {
+      displayName: 'IMDB Search',
+      description: 'Search subset of IMDB database',
+      url: 'imdb-search'
+    },
+  ];
 
   constructor(private api: NullinsideService,
               private router: Router) {
@@ -32,6 +34,13 @@ export class HomeComponent implements OnInit {
       .subscribe({
         next: response => {
           this.roles = response.roles;
+          if (-1 !== this.roles?.indexOf(VM_ADMIN)) {
+            this.apps = [...this.apps, {
+              displayName: 'VM Admin',
+              description: 'Manage the virtual machines for various services.',
+              url: 'vm-admin'
+            }]
+          }
         },
         error: error => {
           this.error = error;

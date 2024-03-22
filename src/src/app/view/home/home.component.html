@@ -2,7 +2,7 @@
   <app-logo />
 </div>
 
-@if (-1 !== roles?.indexOf(VM_ADMIN)) {
+@if (apps.length > 0) {
   <div class="layout-content flex-container">
     @for (app of apps; track app.displayName) {
       <div class="app hover-border-blink" (click)="onAppClicked(app.displayName)"

@@ -5,11 +5,13 @@ import { GoogleLoginLandingComponent } from "./view/google-login-landing/google-
 import { HomeComponent } from "./view/home/home.component";
 import { authGuard } from "./middleware/auth.guard";
 import { VmManagerComponent } from './view/vm-manager/vm-manager.component';
+import { ImdbSearchComponent } from './view/imdb-search/imdb-search.component';
 
 export const routes: Routes = [
   {path: '', component: IndexComponent},
   {path: 'google/login', component: GoogleLoginLandingComponent},
   {path: 'home', component: HomeComponent, canActivate: [authGuard]},
   {path: 'vm-admin', component: VmManagerComponent, canActivate: [authGuard]},
+  {path: 'imdb-search', component: ImdbSearchComponent, canActivate: [authGuard]},
   {path: '**', component: NotFoundComponent},
 ];
