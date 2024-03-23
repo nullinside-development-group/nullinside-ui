@@ -33,8 +33,8 @@ export class LoginLandingComponent implements OnInit, OnDestroy {
     this.route.queryParamMap.subscribe({
       next: (params: ParamMap) => {
         const error = params.get('error');
-        if (error) {
-          '3' === error ? this.onLoginFailed() : this.onLoginFailed(':( Your Twitch account must have a valid e-mail address, please add one and try again', false);
+        if (null !== error) {
+          '4' === error ? this.onLoginFailed(':( Your Twitch account must have a valid e-mail address, please add one and try again', false) : this.onLoginFailed();
           return;
         }
 
