@@ -1,5 +1,8 @@
 <div class="layout-logo-box">
   <app-logo />
+  <div class="logout-button">
+    <button mat-stroked-button color="primary" (click)="onLogout()">Logout</button>
+  </div>
 </div>
 
 @if (-1 !== roles?.indexOf(VM_ADMIN)) {

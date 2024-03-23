@@ -7,16 +7,16 @@ import { environment } from "../../../environments/environment";
 import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
-  selector: 'app-google-login-landing',
+  selector: 'app-login-landing',
   standalone: true,
   imports: [
     LogoComponent,
     LoadingIconComponent
   ],
-  templateUrl: './google-login-landing.component.html',
-  styleUrl: './google-login-landing.component.scss'
+  templateUrl: './login-landing.component.html',
+  styleUrl: './login-landing.component.scss'
 })
-export class GoogleLoginLandingComponent implements OnInit, OnDestroy {
+export class LoginLandingComponent implements OnInit, OnDestroy {
   timerId: number = -1;
   error: string = '';
 
@@ -33,8 +33,8 @@ export class GoogleLoginLandingComponent implements OnInit, OnDestroy {
     this.route.queryParamMap.subscribe({
       next: (params: ParamMap) => {
         const error = params.get('error');
-        if (error) {
-          this.onLoginFailed();
+        if (null !== error) {
+          '4' === error ? this.onLoginFailed(':( Your Twitch account must have a valid e-mail address, please add one and try again', false) : this.onLoginFailed();
           return;
         }
 

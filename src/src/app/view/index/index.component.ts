@@ -4,13 +4,15 @@ import { environment } from "../../../environments/environment";
 import { NullinsideService } from "../../service/nullinside.service";
 import { Router } from "@angular/router";
 import { LoadingIconComponent } from "../../common/components/loading-icon/loading-icon.component";
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-index',
   standalone: true,
   imports: [
     LogoComponent,
-    LoadingIconComponent
+    LoadingIconComponent,
+    NgOptimizedImage
   ],
   templateUrl: './index.component.html',
   styleUrl: './index.component.scss'
@@ -39,5 +41,14 @@ export class IndexComponent implements OnInit {
           this.checkingLogin = false;
         }
       });
+  }
+
+  twitchLogin(): void {
+    const redirectUrl = `${environment.apiUrl}/user/twitch-login`;
+    window.location.href = `https://id.twitch.tv/oauth2/authorize?` +
+      encodeURI(`client_id=${environment.twitchClientId}&` +
+        `redirect_uri=${redirectUrl}&` +
+        `response_type=code&` +
+        `scope=${environment.twitchScopes.join(' ')}`);
   }
 }
