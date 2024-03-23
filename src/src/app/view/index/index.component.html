@@ -16,6 +16,10 @@
          data-shape="rectangular"
          data-logo_alignment="left">
     </div>
+    <div class="twitch-login-button" (click)="twitchLogin()">
+      <img class="side-by-side" ngSrc="assets/twitch-logo.png" alt="twitch-logo" height="25" width="25" />
+      <div class="side-by-side" style="margin-left: 5px">Login with Twitch</div>
+    </div>
   </div>
   <div class="centered-box_content-container" [hidden]="!checkingLogin">
     <app-loading-icon fontSize="24px" height="35px" width="35px" marginHack="-25px">Logging in</app-loading-icon>

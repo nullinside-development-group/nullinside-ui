@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GoogleLoginLandingComponent } from './google-login-landing.component';
+import { LoginLandingComponent } from './login-landing.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('GoogleSigninLandingComponent', () => {
-  let component: GoogleLoginLandingComponent;
-  let fixture: ComponentFixture<GoogleLoginLandingComponent>;
+  let component: LoginLandingComponent;
+  let fixture: ComponentFixture<LoginLandingComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GoogleLoginLandingComponent, HttpClientTestingModule, RouterTestingModule]
+      imports: [LoginLandingComponent, HttpClientTestingModule, RouterTestingModule]
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(GoogleLoginLandingComponent);
+    fixture = TestBed.createComponent(LoginLandingComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
