@@ -25,12 +25,18 @@ export class HomeComponent implements OnInit {
   public userIsLoggedIn: boolean = false;
 
   public apps: WebsiteApp[] = [
-/*    {
-      displayName: 'Twitch Bot',
-      description: 'The nullinside anti-bot Twitch bot.',
-      url: 'twitch-bot/index',
+    {
+      displayName: 'IMDB Search',
+      description: 'Search the public IMDB database using various search techniques',
+      url: 'imdb-search',
       params: undefined
-    },*/
+    }
+    /*    {
+          displayName: 'Twitch Bot',
+          description: 'The nullinside anti-bot Twitch bot.',
+          url: 'twitch-bot/index',
+          params: undefined
+        },*/
   ];
 
   constructor(private api: NullinsideService,

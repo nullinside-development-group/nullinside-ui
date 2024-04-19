@@ -10,8 +10,8 @@ describe('TwitchBotIndexComponent', () => {
     await TestBed.configureTestingModule({
       imports: [TwitchBotIndexComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(TwitchBotIndexComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

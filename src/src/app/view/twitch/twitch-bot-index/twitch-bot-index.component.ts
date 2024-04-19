@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
-import { environment } from '../../../../environments/environment';
 import { LogoComponent } from '../../../common/components/logo/logo.component';
 import { MatButton } from '@angular/material/button';
 import { StandardBannerComponent } from '../../../common/components/standard-banner/standard-banner.component';

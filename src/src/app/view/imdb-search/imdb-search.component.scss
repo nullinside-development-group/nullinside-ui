@@ -1,0 +1,20 @@
+@import "../../common/constants";
+
+:host::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: rgba($font-color, .5);
+}
+
+form {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+button,
+app-loading-icon {
+  margin-left: 10px;
+}
+
+mat-form-field {
+  width: 500px;
+}

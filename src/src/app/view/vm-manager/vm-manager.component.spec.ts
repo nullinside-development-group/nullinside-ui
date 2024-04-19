@@ -11,7 +11,7 @@ describe('VmManagerComponent', () => {
     await TestBed.configureTestingModule({
       imports: [VmManagerComponent, HttpClientTestingModule]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(VmManagerComponent);
     component = fixture.componentInstance;
