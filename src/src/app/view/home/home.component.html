@@ -1,11 +1,6 @@
-<div class="layout-logo-box">
-  <app-logo />
-  <div class="logout-button">
-    <button mat-stroked-button color="primary" (click)="onLogout()">Logout</button>
-  </div>
-</div>
+<app-standard-banner />
 
-@if (-1 !== roles?.indexOf(VM_ADMIN)) {
+@if (apps.length > 0) {
   <div class="layout-content flex-container">
     @for (app of apps; track app.displayName) {
       <div class="app hover-border-blink" (click)="onAppClicked(app.displayName)"

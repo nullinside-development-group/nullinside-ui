@@ -3,6 +3,14 @@ export const environment = {
   apiUrl: 'https://nullinside.com/api/v1',
   twitchClientId: 'gi1eu8xu9tl6vkjqz4tjqkdzfmcq5h',
   twitchScopes: [
-    'user:read:email'
+    // Default get email only! Used for login instead of Gmail.
+    [
+      'user:read:email'
+    ],
+    // "Twitch Bot" permissions.
+    [
+      'user:read:email',
+      'moderator:read:chatters'
+    ],
   ]
 };
