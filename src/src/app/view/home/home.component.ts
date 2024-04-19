@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {LogoComponent} from "../../common/components/logo/logo.component";
-import {NullinsideService} from "../../service/nullinside.service";
-import {VM_ADMIN} from "../../common/constants";
-import {WebsiteApp} from "../../common/interface/website-app";
-import {Router} from '@angular/router';
-import {MatAnchor, MatButton} from '@angular/material/button';
-import {StandardBannerComponent} from '../../common/components/standard-banner/standard-banner.component';
+import { Component, OnInit } from '@angular/core';
+import { LogoComponent } from "../../common/components/logo/logo.component";
+import { NullinsideService } from "../../service/nullinside.service";
+import { VM_ADMIN } from "../../common/constants";
+import { WebsiteApp } from "../../common/interface/website-app";
+import { Router } from '@angular/router';
+import { MatAnchor, MatButton } from '@angular/material/button';
+import { StandardBannerComponent } from '../../common/components/standard-banner/standard-banner.component';
 
 @Component({
   selector: 'app-home',

@@ -10,8 +10,8 @@ describe('TwitchLoginComponent', () => {
     await TestBed.configureTestingModule({
       imports: [TwitchLoginComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(TwitchLoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

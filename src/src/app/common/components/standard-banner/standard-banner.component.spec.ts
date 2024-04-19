@@ -10,8 +10,8 @@ describe('StandardBannerComponent', () => {
     await TestBed.configureTestingModule({
       imports: [StandardBannerComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(StandardBannerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

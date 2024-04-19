@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ImdbSearchComponent } from './imdb-search.component';
-import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 describe('ImdbSearchComponent', () => {
   let component: ImdbSearchComponent;
@@ -12,7 +12,7 @@ describe('ImdbSearchComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ImdbSearchComponent, HttpClientTestingModule, BrowserAnimationsModule]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(ImdbSearchComponent);
     component = fixture.componentInstance;
