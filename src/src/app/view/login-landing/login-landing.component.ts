@@ -67,7 +67,7 @@ export class LoginLandingComponent implements OnInit, OnDestroy {
     if (redirect) {
       this.timerId = setTimeout(() => {
         // Need to use window.location here instead of the router because otherwise the external javascript from Google
-        // doesn't reload on the index page, and you can't retry your login until you refresh.
+        // doesn't reload on the login page, and you can't retry your login until you refresh.
         //
         // @ts-expect-error: The expected usage of window.location is to set it directly as a string but due to typing
         // issues that have changed over time the linting complains about it.

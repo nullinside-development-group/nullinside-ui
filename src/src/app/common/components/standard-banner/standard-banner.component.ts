@@ -1,0 +1,37 @@
+import { Component, OnInit } from '@angular/core';
+import { LogoComponent } from '../logo/logo.component';
+import { environment } from '../../../../environments/environment';
+import { Router } from '@angular/router';
+import { MatButton } from '@angular/material/button';
+
+@Component({
+  selector: 'app-standard-banner',
+  standalone: true,
+  imports: [
+    LogoComponent,
+    MatButton
+  ],
+  templateUrl: './standard-banner.component.html',
+  styleUrl: './standard-banner.component.scss'
+})
+export class StandardBannerComponent implements OnInit {
+  public userIsLoggedIn: boolean = false;
+
+  constructor(private router: Router) {
+  }
+
+  ngOnInit(): void {
+    this.userIsLoggedIn = null !== localStorage.getItem('auth-token');
+  }
+
+  onLogout(): void {
+    localStorage.removeItem('auth-token');
+    this.router.navigate(['/']);
+  }
+
+  onLogin() {
+    // Need to use window.location here instead of the router because otherwise the external javascript from Google
+    // doesn't reload on the index page, and you can't retry your login until you refresh.
+    window.location.href = `${environment.siteUrl}/user/auth`;
+  }
+}

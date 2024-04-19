@@ -2,30 +2,47 @@ import { Component, OnInit } from '@angular/core';
 import { LogoComponent } from "../../common/components/logo/logo.component";
 import { environment } from "../../../environments/environment";
 import { NullinsideService } from "../../service/nullinside.service";
-import { Router } from "@angular/router";
+import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { LoadingIconComponent } from "../../common/components/loading-icon/loading-icon.component";
 import { NgOptimizedImage } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
+import { TwitchLoginComponent } from '../../common/components/twitch-login/twitch-login.component';
 
 @Component({
-  selector: 'app-index',
+  selector: 'app-login',
   standalone: true,
   imports: [
     LogoComponent,
     LoadingIconComponent,
-    NgOptimizedImage
+    NgOptimizedImage,
+    TwitchLoginComponent
   ],
-  templateUrl: './index.component.html',
-  styleUrl: './index.component.scss'
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.scss'
 })
-export class IndexComponent implements OnInit {
+export class LoginComponent implements OnInit {
   loginUrl: string;
   checkingLogin = false;
+  showGmail = true;
+  pageDestinations = [
+    '/home'
+  ];
 
-  constructor(private api: NullinsideService, private router: Router) {
+  constructor(private api: NullinsideService, private router: Router, private route: ActivatedRoute) {
     this.loginUrl = `${environment.apiUrl}/user/login`;
   }
 
   ngOnInit(): void {
+    this.route.queryParamMap.subscribe({
+      next: (params: ParamMap) => {
+        const showGmail = params.get('showGmail');
+        this.showGmail = null === showGmail || '1' === showGmail;
+      },
+      error: (err: HttpErrorResponse) => {
+        console.log(err);
+      }
+    });
+
     const token = localStorage.getItem('auth-token');
     if (!token) {
       return;
@@ -35,20 +52,11 @@ export class IndexComponent implements OnInit {
     this.api.validateToken(token || '')
       .subscribe({
         next: _ => {
-          this.router.navigate(['/home']);
+          this.router.navigate([this.pageDestinations[0]]);
         },
         error: _ => {
           this.checkingLogin = false;
         }
       });
-  }
-
-  twitchLogin(): void {
-    const redirectUrl = `${environment.apiUrl}/user/twitch-login`;
-    window.location.href = `https://id.twitch.tv/oauth2/authorize?` +
-      encodeURI(`client_id=${environment.twitchClientId}&` +
-        `redirect_uri=${redirectUrl}&` +
-        `response_type=code&` +
-        `scope=${environment.twitchScopes.join(' ')}`);
   }
 }
