@@ -26,7 +26,10 @@ export class StandardBannerComponent implements OnInit {
 
   onLogout(): void {
     localStorage.removeItem('auth-token');
-    this.router.navigate(['/']);
+
+    // Need to use window.location here instead of the router because if you're already on the home page and you
+    // router.navigate to it, it doesn't refresh the page and update the state.
+    window.location.href = `${environment.siteUrl}`;
   }
 
   onLogin() {
