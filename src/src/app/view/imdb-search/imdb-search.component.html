@@ -18,7 +18,7 @@
 <div>
   @for (row of rows; track row.id) {
     <div>
-      {{ row.imdbId }}: {{ row.primaryTitle }} ({{ row.startYear }})
+      <a href="https://www.imdb.com/title/{{row.imdbId}}">{{ row.imdbId }}</a>: {{ row.primaryTitle }} ({{ row.startYear }})
     </div>
   }
 </div>
