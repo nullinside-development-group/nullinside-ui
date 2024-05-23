@@ -199,3 +199,11 @@ body {
   padding: 10px;
   margin: 10px;
 }
+
+// Center content horizontally
+.center {
+  display: block;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}

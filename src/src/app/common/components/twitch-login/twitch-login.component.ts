@@ -17,9 +17,16 @@ export class TwitchLoginComponent {
    * 1 = Twitch Bot Login
    */
   @Input() twitchScopeIndex: number = 0;
+  @Input() redirectUrl: string | null = null;
 
   twitchLogin(): void {
-    const redirectUrl = `${environment.apiUrl}/user/twitch-login`;
+    let redirectUrl = null;
+    if (!this.redirectUrl) {
+      redirectUrl = `${environment.apiUrl}/user/twitch-login`;
+    } else {
+      redirectUrl = `${environment.apiUrl}/${this.redirectUrl}`;
+    }
+
     window.location.href = `https://id.twitch.tv/oauth2/authorize?` +
       encodeURI(`client_id=${environment.twitchClientId}&` +
         `redirect_uri=${redirectUrl}&` +
