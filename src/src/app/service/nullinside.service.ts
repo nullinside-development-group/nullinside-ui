@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { environment } from "../../environments/environment";
 import { UserRolesResponse } from "../common/interface/user-roles-response";
 import { DockerResource } from '../common/interface/docker-resource';
+import { FeatureToggleResponse } from "../common/interface/feature-toggle-response";
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +28,9 @@ export class NullinsideService {
 
   setVirtualMachinePowerState(id: number, turnOn: boolean): Observable<boolean> {
     return this.httpClient.post<boolean>(`${environment.apiUrl}/docker/${id}`, {turnOn: turnOn});
+  }
+
+  getFeatureToggles(): Observable<FeatureToggleResponse[]> {
+    return this.httpClient.get<FeatureToggleResponse[]>(`${environment.apiUrl}/featureToggle`);
   }
 }

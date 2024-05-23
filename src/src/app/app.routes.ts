@@ -16,7 +16,7 @@ export const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'vm-admin', component: VmManagerComponent, canActivate: [authGuard]},
   {path: 'twitch-bot/index', component: TwitchBotIndexComponent},
-  {path: 'twitch-bot/config', component: TwitchBotConfigComponent, canActivate: [authGuard]},
+  {path: 'twitch-bot/config', component: TwitchBotConfigComponent},
   {path: 'imdb-search', component: ImdbSearchComponent},
   {path: '**', component: NotFoundComponent},
 ];

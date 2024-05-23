@@ -6,6 +6,9 @@ import { WebsiteApp } from "../../common/interface/website-app";
 import { Router } from '@angular/router';
 import { MatAnchor, MatButton } from '@angular/material/button';
 import { StandardBannerComponent } from '../../common/components/standard-banner/standard-banner.component';
+import { LoadingIconComponent } from "../../common/components/loading-icon/loading-icon.component";
+import { catchError, forkJoin, Observable, of } from "rxjs";
+import { UserRolesResponse } from "../../common/interface/user-roles-response";
 
 @Component({
   selector: 'app-home',
@@ -14,7 +17,8 @@ import { StandardBannerComponent } from '../../common/components/standard-banner
     LogoComponent,
     MatButton,
     MatAnchor,
-    StandardBannerComponent
+    StandardBannerComponent,
+    LoadingIconComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
@@ -23,6 +27,7 @@ export class HomeComponent implements OnInit {
   public roles: string[] | null = null;
   public error: string | null = null;
   public userIsLoggedIn: boolean = false;
+  public loading: boolean = true;
 
   public apps: WebsiteApp[] = [
     {
@@ -30,13 +35,13 @@ export class HomeComponent implements OnInit {
       description: 'Search the public IMDB database using various search techniques',
       url: 'imdb-search',
       params: undefined
+    },
+    {
+      displayName: 'Twitch Bot',
+      description: 'The nullinside anti-bot Twitch bot.',
+      url: 'twitch-bot/index',
+      params: undefined
     }
-    /*    {
-          displayName: 'Twitch Bot',
-          description: 'The nullinside anti-bot Twitch bot.',
-          url: 'twitch-bot/index',
-          params: undefined
-        },*/
   ];
 
   constructor(private api: NullinsideService,
@@ -46,10 +51,14 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.userIsLoggedIn = null !== localStorage.getItem('auth-token');
 
-    this.api.getUserRoles()
+    forkJoin({
+      // We don't care if the roles don't exist. This is only for authed users. So catch the error if there is one.
+      user: this.api.getUserRoles().pipe(catchError(_ => of({roles: []}))) as Observable<UserRolesResponse>,
+      featureToggles: this.api.getFeatureToggles()
+    })
       .subscribe({
         next: response => {
-          this.roles = response.roles;
+          this.roles = response.user.roles;
           if (-1 !== this.roles?.indexOf(VM_ADMIN)) {
             this.apps = [...this.apps, {
               displayName: 'VM Admin',
@@ -58,11 +67,19 @@ export class HomeComponent implements OnInit {
               params: null
             }];
           }
+
+          const twitchBotFeatureToggle = response.featureToggles.find(f => 'Twitch Bot' === f.feature);
+          if (!twitchBotFeatureToggle || !twitchBotFeatureToggle.isEnabled) {
+            this.apps = [...this.apps.filter(f => 'Twitch Bot' !== f.displayName)]
+          }
+
+          this.loading = false;
         },
-        error: error => {
-          this.error = error;
+        error: _ => {
+          this.error = 'Failed to get list of apps from the server, please refresh to try again...';
+          this.loading = false;
         }
-      })
+      });
   }
 
   onAppClicked(displayName: string) {
