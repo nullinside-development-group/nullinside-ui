@@ -84,6 +84,10 @@ h1 {
   border-bottom: 1px solid $font-color;
 }
 
+.mdc-form-field {
+  color: $font-color !important;
+}
+
 .mat-body,
 .mat-body-2,
 .mat-typography .mat-body,
@@ -206,4 +210,20 @@ body {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+}
+
+.no-select {
+  user-select: none;
+}
+
+.snackbar-success {
+  --mdc-snackbar-container-color: rgba(0, 109, 0, 0.48);
+  --mat-mdc-snack-bar-button-color: $font-color;
+  --mdc-snackbar-supporting-text-color: $font-color;
+}
+
+.snackbar-failure {
+  --mdc-snackbar-container-color: rgba(109, 0, 0, 0.48);
+  --mat-mdc-snack-bar-button-color: $font-color;
+  --mdc-snackbar-supporting-text-color: $font-color;
 }

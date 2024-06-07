@@ -8,7 +8,9 @@ export const allEnvironments = {
     [
       'user:read:email', // Get their email address (they have to have one associated to the account)
       'moderator:read:chatters', // Reads your chat and the chats of those you moderate
-      'moderator:manage:banned_users' // Allow you to ban in your chat and those you moderate
+      'moderator:manage:banned_users', // Allow you to ban in your chat and those you moderate
+      'channel:manage:moderators', // Allows us to make the bot account a moderator for them
+      'moderation:read' // Allows us to check who is a moderator
     ]
   ]
 }

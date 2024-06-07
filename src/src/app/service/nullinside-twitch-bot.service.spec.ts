@@ -1,18 +1,18 @@
 import {TestBed} from '@angular/core/testing';
 
-import {NullinsideNullService} from './nullinside-null.service';
+import {NullinsideTwitchBotService} from './nullinside-twitch-bot.service';
 import {provideHttpClientTesting} from "@angular/common/http/testing";
 import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 
-describe('NullinsideNullService', () => {
-  let service: NullinsideNullService;
+describe('NullinsideTwitchBotService', () => {
+  let service: NullinsideTwitchBotService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [],
       providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
     });
-    service = TestBed.inject(NullinsideNullService);
+    service = TestBed.inject(NullinsideTwitchBotService);
   });
 
   it('should be created', () => {
