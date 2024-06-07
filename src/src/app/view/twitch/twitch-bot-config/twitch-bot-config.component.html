@@ -1,5 +1,46 @@
 <div class="layout-logo-box">
-  <app-logo />
+  <app-logo/>
 </div>
 
-<h1>IT FUCKING WORKED BECKY!</h1>
+@if (false === botIsMod) {
+  <div class="error-banner">nullinside is not a mod in your channel
+    @if (!waitingForModReply) {
+      <button mat-raised-button color="primary" (click)="modBot()" type="button">Mod Bot</button>
+    } @else {
+      <app-loading-icon fontSize="24px" height="30px" width="30px"></app-loading-icon>
+    }
+  </div>
+} @else if (null === botIsMod) {
+  <div class="center">
+    <app-loading-icon fontSize="24px" height="30px" width="30px">Checking nullinside mod status...</app-loading-icon>
+  </div>
+}
+
+<div class="text-box">
+  <h2>Twitch Bot</h2>
+
+  <div class="form">
+    <div class="no-select">
+      <mat-slide-toggle [disabled]="!botIsMod"
+                        [(ngModel)]="botEnabled"
+                        #enabled>
+        Enabled
+      </mat-slide-toggle>
+    </div>
+    <div class="no-select">
+      <mat-checkbox [disabled]="!botIsMod || !enabled.checked"
+                    [(ngModel)]="banKnownBots">
+        Ban Known Bots
+      </mat-checkbox>
+    </div>
+  </div>
+  <div class="save">
+    @if (!waitingForSave) {
+      <button mat-raised-button color="primary" (click)="saveConfig()" type="button">Save</button>
+    } @else {
+      <app-loading-icon fontSize="24px" height="30px" width="30px"></app-loading-icon>
+    }
+  </div>
+</div>
+
+<app-twitch-bot-faq/>
