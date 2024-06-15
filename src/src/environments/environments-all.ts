@@ -10,7 +10,8 @@ export const allEnvironments = {
       'moderator:read:chatters', // Reads your chat and the chats of those you moderate
       'moderator:manage:banned_users', // Allow you to ban in your chat and those you moderate
       'channel:manage:moderators', // Allows us to make the bot account a moderator for them
-      'moderation:read' // Allows us to check who is a moderator
+      'moderation:read', // Allows us to check who is a moderator
+      'user:read:moderated_channels' // Allows the bot to check what channels it moderates. Doesn't hurt to have this from the user.
     ]
   ]
 }
