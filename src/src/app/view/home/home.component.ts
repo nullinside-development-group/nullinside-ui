@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { LogoComponent } from "../../common/components/logo/logo.component";
-import { NullinsideService } from "../../service/nullinside.service";
-import { VM_ADMIN } from "../../common/constants";
-import { WebsiteApp } from "../../common/interface/website-app";
-import { Router } from '@angular/router';
-import { MatAnchor, MatButton } from '@angular/material/button';
-import { StandardBannerComponent } from '../../common/components/standard-banner/standard-banner.component';
-import { LoadingIconComponent } from "../../common/components/loading-icon/loading-icon.component";
-import { catchError, forkJoin, Observable, of } from "rxjs";
-import { UserRolesResponse } from "../../common/interface/user-roles-response";
+import {Component, OnInit} from '@angular/core';
+import {LogoComponent} from "../../common/components/logo/logo.component";
+import {NullinsideService} from "../../service/nullinside.service";
+import {VM_ADMIN} from "../../common/constants";
+import {WebsiteApp} from "../../common/interface/website-app";
+import {Router} from '@angular/router';
+import {MatAnchor, MatButton} from '@angular/material/button';
+import {StandardBannerComponent} from '../../common/components/standard-banner/standard-banner.component';
+import {LoadingIconComponent} from "../../common/components/loading-icon/loading-icon.component";
+import {catchError, forkJoin, Observable, of} from "rxjs";
+import {UserRolesResponse} from "../../common/interface/user-roles-response";
 
 @Component({
   selector: 'app-home',
@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
     {
       displayName: 'Twitch Bot',
       description: 'The nullinside anti-bot Twitch bot.',
-      url: 'twitch-bot/index',
+      url: 'twitch-bot',
       params: undefined
     }
   ];
