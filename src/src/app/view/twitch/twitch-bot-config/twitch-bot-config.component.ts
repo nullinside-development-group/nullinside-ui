@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {LogoComponent} from '../../../common/components/logo/logo.component';
 import {MatButton} from '@angular/material/button';
 import {NullinsideTwitchBotService} from "../../../service/nullinside-twitch-bot.service";
-import {ActivatedRoute, ParamMap} from "@angular/router";
+import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {Errors} from "../../login-landing/errors";
 import {HttpErrorResponse} from "@angular/common/http";
 import {NullinsideService} from "../../../service/nullinside.service";
@@ -13,6 +13,7 @@ import {MatCheckbox} from "@angular/material/checkbox";
 import {TwitchBotFaqComponent} from "../twitch-bot-faq/twitch-bot-faq.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {FormsModule} from "@angular/forms";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-twitch-bot-config',
@@ -41,6 +42,8 @@ export class TwitchBotConfigComponent implements OnInit, OnDestroy {
   constructor(private twitchBotApi: NullinsideTwitchBotService,
               private api: NullinsideService,
               private snackBar: MatSnackBar,
+              private location: Location,
+              private router: Router,
               private route: ActivatedRoute) {
   }
 
@@ -67,16 +70,30 @@ export class TwitchBotConfigComponent implements OnInit, OnDestroy {
           return;
         }
 
+        // Get the token, if there isn't one then they didn't get here by hitting the login button. Lets send them back
+        // to the login page if that's the case. It'll help us keep people synced on updates the permissions we request
+        // from their tokens.
         const token = params.get('token');
-        if (token) {
-          localStorage.setItem('auth-token', token);
-          this.api.validateToken(token).subscribe({
-            error: (_: HttpErrorResponse) => {
-              this.onLoginFailed();
-            }
-          });
+        if (!token) {
+          this.router.navigate(['twitch-bot']);
+          return;
         }
 
+        // Save the token and make sure its valid.
+        localStorage.setItem('auth-token', token);
+        this.api.validateToken(token).subscribe({
+          error: (_: HttpErrorResponse) => {
+            this.onLoginFailed();
+          }
+        });
+
+        // Kind of a workaround to remove the token from the query parameters in the url. The reason for this is
+        // if someone wants to bookmark the page we don't want to leave that in there. A different site layout will
+        // make this unnecessary.
+        const url = this.router.createUrlTree([], {relativeTo: this.route}).toString();
+        this.location.go(url);
+
+        // Check if the bot account is modded. If it isn't, we can offer to mod it.
         this.twitchBotApi.getIsMod().subscribe({
           next: response => {
             this.botIsMod = response.isMod;
@@ -88,6 +105,7 @@ export class TwitchBotConfigComponent implements OnInit, OnDestroy {
           }
         });
 
+        // Get the person's existing configuration.
         this.twitchBotApi.getConfig().subscribe({
           next: response => {
             this.botEnabled = response.isEnabled;
