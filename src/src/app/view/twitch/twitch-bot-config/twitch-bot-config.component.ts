@@ -73,9 +73,9 @@ export class TwitchBotConfigComponent implements OnInit, OnDestroy {
           return;
         }
 
-        // Get the token, if there isn't one then they didn't get here by hitting the login button. Lets send them back
-        // to the login page if that's the case. It'll help us keep people synced on updates the permissions we request
-        // from their tokens.
+        // Get the token, if there isn't one then they didn't get here by hitting the login button. Let's send them back
+        // to the login page if that's the case. It'll help us keep people synced on updates to the permissions we
+        // request from their tokens.
         const token = params.get('token');
         if (!token) {
           this.router.navigate(['twitch-bot']);

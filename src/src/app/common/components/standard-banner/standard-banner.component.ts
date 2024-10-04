@@ -17,7 +17,7 @@ import { MatButton } from '@angular/material/button';
 export class StandardBannerComponent implements OnInit {
   public userIsLoggedIn: boolean = false;
 
-  constructor(private router: Router) {
+  constructor() {
   }
 
   ngOnInit(): void {
