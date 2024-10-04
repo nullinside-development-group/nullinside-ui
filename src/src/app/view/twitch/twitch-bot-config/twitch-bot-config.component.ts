@@ -51,6 +51,9 @@ export class TwitchBotConfigComponent implements OnInit, OnDestroy {
     if (this.timerId !== -1) {
       clearTimeout(this.timerId);
     }
+
+    // Close any open notifications when we move to a different screen.
+    this.snackBar.dismiss();
   }
 
   ngOnInit(): void {
@@ -62,9 +65,9 @@ export class TwitchBotConfigComponent implements OnInit, OnDestroy {
           if (Errors.TwitchAccountHasNoEmail === errorNum) {
             this.onLoginFailed('Your Twitch account must have a valid e-mail address, please add one and try again', false)
           } else if (Errors.TwitchErrorWithToken === errorNum) {
-            this.onLoginFailed('Twitch failed to give us a valid token, please add one and try again', false)
+            this.onLoginFailed('Twitch failed to log you in successfully, please try again', false)
           } else {
-            this.onLoginFailed('Sorry we did something wrong trying to log you in, please add one and try again', false)
+            this.onLoginFailed('Sorry we did something wrong trying to log you in, please try again', false)
           }
 
           return;
@@ -167,7 +170,7 @@ export class TwitchBotConfigComponent implements OnInit, OnDestroy {
       },
       error: err => {
         console.error(err);
-        this.snackBar.open('Failed to save config, please try again...', undefined, {
+        this.snackBar.open('Failed to save, please try again', undefined, {
           panelClass: ['snackbar-failure']
         });
       }
