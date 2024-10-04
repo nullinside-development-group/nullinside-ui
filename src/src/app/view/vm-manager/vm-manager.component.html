@@ -31,7 +31,7 @@
                       [fontIcon]="vm.isOnline ? 'power_off' : 'power_settings_new'"
                       [matTooltip]="vm.isOnline ? 'Turn Off' : 'Turn On'" />
           } @else {
-            <app-loading-icon fontSize="24px" height="35px" width="35px" marginHack="-25px" />
+            <app-loading-icon fontSize="24px" height="35px" width="35px" />
           }
         </h1>
         <p>{{ vm.notes }}</p>
@@ -46,6 +46,6 @@
   </div>
 } @else if (!error) {
   <div class="layout-content" style="text-align: center">
-    <app-loading-icon fontSize="24px" height="35px" width="35px" marginHack="-25px">Getting VMs...</app-loading-icon>
+    <app-loading-icon fontSize="24px" height="35px" width="35px">Getting VMs...</app-loading-icon>
   </div>
 }
