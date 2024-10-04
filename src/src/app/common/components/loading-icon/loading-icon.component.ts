@@ -8,7 +8,6 @@ import { Component, Input } from '@angular/core';
   styleUrl: './loading-icon.component.scss'
 })
 export class LoadingIconComponent {
-  @Input() marginHack = '0px';
   @Input() width = '100%';
   @Input() height = '100%';
   @Input() fontSize = '14px';
