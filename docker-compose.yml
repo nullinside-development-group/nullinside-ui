@@ -1,0 +1,13 @@
+name: nullinside-ui
+services:
+    nullinside-ui:
+        logging:
+            driver: loki
+            options:
+                loki-url: 'http://192.168.1.4:3100/loki/api/v1/push'
+        container_name: nullinside-ui
+        ports:
+            - 80:80
+            - 443:443
+        restart: unless-stopped
+        image: nullinside-ui:latest
