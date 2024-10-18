@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LogoComponent } from '../logo/logo.component';
 import { environment } from '../../../../environments/environment';
-import { Router } from '@angular/router';
 import { MatButton } from '@angular/material/button';
 
 @Component({

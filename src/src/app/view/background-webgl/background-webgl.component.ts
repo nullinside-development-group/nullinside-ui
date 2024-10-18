@@ -36,6 +36,11 @@ void main() {
 }`;
   animate: () => void = () => {};
   dispose = false;
+  private disposableBuffers: WebGLBuffer[] = [];
+  private disposableArrayObjects: WebGLVertexArrayObject[] = [];
+  private disposablePrograms: WebGLProgram[] = [];
+  private disposableShaders: WebGLShader[] = [];
+  private gl: WebGL2RenderingContext | null = null;
 
   ngOnInit(): void {
     window.addEventListener('resize', this.resize.bind(this), false);
@@ -45,11 +50,27 @@ void main() {
   ngOnDestroy(): void {
     this.dispose = true;
     window.removeEventListener('resize', this.resize.bind(this));
+
+    // Release the OpenGL resources we allocated
+    if (null !== this.gl) {
+      for (let i = this.disposableBuffers.length - 1; i >= 0; i--) {
+        this.gl.deleteBuffer(this.disposableBuffers[i]);
+      }
+      for (let i = this.disposableArrayObjects.length - 1; i >= 0; i--) {
+        this.gl.deleteVertexArray(this.disposableArrayObjects[i]);
+      }
+      for (let i = this.disposablePrograms.length - 1; i >= 0; i--) {
+        this.gl.deleteProgram(this.disposablePrograms[i]);
+      }
+      for (let i = this.disposableShaders.length - 1; i >= 0; i--) {
+        this.gl.deleteShader(this.disposableShaders[i]);
+      }
+    }
   }
 
   ngAfterViewInit(): void {
-    const stuff = this.init();
-    if (!stuff) {
+    const init = this.init();
+    if (!init) {
       return;
     }
 
@@ -58,7 +79,7 @@ void main() {
         return;
       }
 
-      this.render(stuff[0], stuff[1]);
+      this.render(init[0], init[1]);
       requestAnimationFrame(this.animate);
     };
 
@@ -86,6 +107,7 @@ void main() {
     gl.compileShader(shader);
     const success = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
     if (success) {
+      this.disposableShaders.push(shader);
       return shader;
     }
 
@@ -105,6 +127,7 @@ void main() {
     gl.linkProgram(program);
     const success = gl.getProgramParameter(program, gl.LINK_STATUS);
     if (success) {
+      this.disposablePrograms.push(program);
       return program;
     }
 
@@ -139,6 +162,10 @@ void main() {
     if (!VAO || !VBO || !EBO) {
       return null;
     }
+
+    // Save for disposing of resources later
+    this.disposableArrayObjects.push(VAO)
+    this.disposableBuffers.push(...[VBO, EBO]);
 
     // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
     gl.bindVertexArray(VAO);
@@ -179,18 +206,21 @@ void main() {
       return;
     }
 
+    // Save the reference for when we dispose
+    this.gl = gl;
+
     // Tell WebGL how to convert from clip space to pixels
     gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
 
     // Clear the canvas
-    gl.clearColor(0.2, 0.3, 0.3, 1.0);
+    gl.clearColor(0.10, 0.09, 0.09, 1.0);
     gl.clear(gl.COLOR_BUFFER_BIT);
 
     // draw our first triangle
     gl.useProgram(program);
 
     const uniformLocation = gl.getUniformLocation(program, "ourColor");
-    gl.uniform4fv(uniformLocation, new Float32Array([1, 0.5, 0.2, 1]))
+    gl.uniform4fv(uniformLocation, new Float32Array([0.2, 0.18, 0.18, 1]))
 
     gl.bindVertexArray(VAO);
     gl.drawElements(gl.TRIANGLES, 6, gl.UNSIGNED_INT, 0);

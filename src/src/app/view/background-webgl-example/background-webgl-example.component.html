@@ -1,3 +1,14 @@
-<app-background-webgl></app-background-webgl>
+@if(enum === OpenGlBackgrounds.BOX) {
+  <app-background-webgl></app-background-webgl>
+} @else {
+
+}
 
 <app-standard-banner />
+<div class="floating-button">
+  <button mat-stroked-button color="primary" [matMenuTriggerFor]="menu">Menu</button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="this.enum = OpenGlBackgrounds.BOX">Box</button>
+    <button mat-menu-item (click)="this.enum = OpenGlBackgrounds.TEXTURE">Texture</button>
+  </mat-menu>
+</div>
