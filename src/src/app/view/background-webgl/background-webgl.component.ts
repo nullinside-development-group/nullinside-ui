@@ -36,10 +36,10 @@ void main() {
 }`;
   animate: () => void = () => {};
   dispose = false;
-  private disposableBuffers: WebGLBuffer[] = [];
-  private disposableArrayObjects: WebGLVertexArrayObject[] = [];
-  private disposablePrograms: WebGLProgram[] = [];
-  private disposableShaders: WebGLShader[] = [];
+  private buffers: WebGLBuffer[] = [];
+  private vertexArrays: WebGLVertexArrayObject[] = [];
+  private programs: WebGLProgram[] = [];
+  private shaders: WebGLShader[] = [];
   private gl: WebGL2RenderingContext | null = null;
 
   ngOnInit(): void {
@@ -53,17 +53,17 @@ void main() {
 
     // Release the OpenGL resources we allocated
     if (null !== this.gl) {
-      for (let i = this.disposableBuffers.length - 1; i >= 0; i--) {
-        this.gl.deleteBuffer(this.disposableBuffers[i]);
+      for (let i = this.buffers.length - 1; i >= 0; i--) {
+        this.gl.deleteBuffer(this.buffers[i]);
       }
-      for (let i = this.disposableArrayObjects.length - 1; i >= 0; i--) {
-        this.gl.deleteVertexArray(this.disposableArrayObjects[i]);
+      for (let i = this.vertexArrays.length - 1; i >= 0; i--) {
+        this.gl.deleteVertexArray(this.vertexArrays[i]);
       }
-      for (let i = this.disposablePrograms.length - 1; i >= 0; i--) {
-        this.gl.deleteProgram(this.disposablePrograms[i]);
+      for (let i = this.programs.length - 1; i >= 0; i--) {
+        this.gl.deleteProgram(this.programs[i]);
       }
-      for (let i = this.disposableShaders.length - 1; i >= 0; i--) {
-        this.gl.deleteShader(this.disposableShaders[i]);
+      for (let i = this.shaders.length - 1; i >= 0; i--) {
+        this.gl.deleteShader(this.shaders[i]);
       }
     }
   }
@@ -107,7 +107,7 @@ void main() {
     gl.compileShader(shader);
     const success = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
     if (success) {
-      this.disposableShaders.push(shader);
+      this.shaders.push(shader);
       return shader;
     }
 
@@ -127,7 +127,7 @@ void main() {
     gl.linkProgram(program);
     const success = gl.getProgramParameter(program, gl.LINK_STATUS);
     if (success) {
-      this.disposablePrograms.push(program);
+      this.programs.push(program);
       return program;
     }
 
@@ -164,8 +164,8 @@ void main() {
     }
 
     // Save for disposing of resources later
-    this.disposableArrayObjects.push(VAO)
-    this.disposableBuffers.push(...[VBO, EBO]);
+    this.vertexArrays.push(VAO)
+    this.buffers.push(...[VBO, EBO]);
 
     // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
     gl.bindVertexArray(VAO);
