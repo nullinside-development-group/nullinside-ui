@@ -5,6 +5,7 @@ import {MatButton} from '@angular/material/button';
 import {StandardBannerComponent} from '../../../common/components/standard-banner/standard-banner.component';
 import {TwitchLoginComponent} from '../../../common/components/twitch-login/twitch-login.component';
 import {TwitchBotFaqComponent} from "../twitch-bot-faq/twitch-bot-faq.component";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-twitch-bot-index',
@@ -21,4 +22,5 @@ import {TwitchBotFaqComponent} from "../twitch-bot-faq/twitch-bot-faq.component"
   styleUrl: './twitch-bot-index.component.scss'
 })
 export class TwitchBotIndexComponent {
+  protected readonly environment = environment;
 }
