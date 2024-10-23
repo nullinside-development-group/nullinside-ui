@@ -59,4 +59,6 @@ export class LoginComponent implements OnInit {
         }
       });
   }
+
+  protected readonly environment = environment;
 }

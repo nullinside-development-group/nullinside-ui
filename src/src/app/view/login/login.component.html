@@ -16,7 +16,7 @@
          data-shape="rectangular"
          data-logo_alignment="left">
     </div>
-    <app-twitch-login [twitchScopeIndex]="0" redirectUrl="user/twitch-login" />
+    <app-twitch-login [twitchScopeIndex]="0" [redirectUrl]="environment.apiUrl + '/user/twitch-login'" />
   </div>
   <div class="centered-box_content-container" [hidden]="!checkingLogin">
     <app-loading-icon fontSize="24px" height="35px" width="35px">

@@ -20,10 +20,9 @@ export class TwitchLoginComponent {
   @Input() redirectUrl: string | null = null;
 
   twitchLogin(): void {
-    const redirectUrl = `${environment.apiUrl}/${this.redirectUrl}`;
     window.location.href = `https://id.twitch.tv/oauth2/authorize?` +
       encodeURI(`client_id=${environment.twitchClientId}&` +
-        `redirect_uri=${redirectUrl}&` +
+        `redirect_uri=${this.redirectUrl}&` +
         `response_type=code&` +
         `scope=${environment.twitchScopes[this.twitchScopeIndex].join(' ')}`);
   }
