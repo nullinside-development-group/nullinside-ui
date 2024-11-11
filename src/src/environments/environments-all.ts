@@ -15,7 +15,9 @@ export const allEnvironments = {
       'chat:read', // Allows bot to connect to chat channel and receive messages
       'chat:edit', // Allows bot to connect to chat channel and send messages
       'channel:moderate', // Allows bot to connect to chat channel and perform moderator functions
-      'channel:bot' // Allows bot to connect to chat channel and perform bot actions
+      'channel:bot', // Allows bot to connect to chat channel and perform bot actions
+      'user:bot', // Allows bot to connect to chat channel and perform bot actions
+      'channel:read:subscriptions' // Allows us to use webhooks to read chat
     ]
   ]
 }
