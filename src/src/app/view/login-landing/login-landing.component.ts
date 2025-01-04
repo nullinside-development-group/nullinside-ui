@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {Component, NgZone, OnDestroy, OnInit} from '@angular/core';
 import { NullinsideService } from "../../service/nullinside.service";
 import { LogoComponent } from "../../common/components/logo/logo.component";
 import { LoadingIconComponent } from "../../common/components/loading-icon/loading-icon.component";
@@ -6,12 +6,16 @@ import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { environment } from "../../../environments/environment";
 import { HttpErrorResponse } from "@angular/common/http";
 import { Errors } from "./errors";
+import {Clipboard} from '@angular/cdk/clipboard';
+import {MatButton} from "@angular/material/button";
 
 @Component({
     selector: 'app-login-landing',
+  standalone: true,
     imports: [
         LogoComponent,
-        LoadingIconComponent
+    LoadingIconComponent,
+    MatButton
     ],
     templateUrl: './login-landing.component.html',
     styleUrl: './login-landing.component.scss'
@@ -19,8 +23,14 @@ import { Errors } from "./errors";
 export class LoginLandingComponent implements OnInit, OnDestroy {
   timerId: number = -1;
   error: string = '';
+  displayToken = false;
+  desktopFormatConfig: string = '';
 
-  constructor(private api: NullinsideService, private route: ActivatedRoute, private router: Router) {
+  constructor(private clipboard: Clipboard,
+              private ngZone: NgZone,
+              private api: NullinsideService,
+              private route: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnDestroy(): void {
@@ -52,15 +62,24 @@ export class LoginLandingComponent implements OnInit, OnDestroy {
           return;
         }
 
-        this.api.validateToken(token).subscribe({
-          next: _ => {
-            localStorage.setItem('auth-token', token);
-            this.router.navigate(['/home']);
-          },
-          error: (_: HttpErrorResponse) => {
-            this.onLoginFailed();
-          }
-        });
+        this.displayToken = params.get('desktop') === 'true';
+        if (!this.displayToken) {
+          this.api.validateToken(token).subscribe({
+            next: _ => {
+              localStorage.setItem('auth-token', token);
+              this.router.navigate(['/home']);
+            },
+            error: (_: HttpErrorResponse) => {
+              this.onLoginFailed();
+            }
+          });
+        } else {
+          this.desktopFormatConfig = JSON.stringify({
+            bearer: token,
+            refresh: params.get('refresh'),
+            expiresUtc: params.get('expiresUtc')
+          })
+        }
       },
       error: (_: HttpErrorResponse) => {
         this.onLoginFailed();
@@ -81,6 +100,12 @@ export class LoginLandingComponent implements OnInit, OnDestroy {
         // issues that have changed over time the linting complains about it.
         window.location = environment.siteUrl;
       }, 5000);
+    }
+  }
+
+  onSendToClipboard() {
+    if (this.clipboard.copy(this.desktopFormatConfig)) {
+      window.close();
     }
   }
 }
