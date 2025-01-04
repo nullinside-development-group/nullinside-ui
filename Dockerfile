@@ -2,15 +2,29 @@ FROM nginx:latest
 ARG BUILD_ENVIRONMENT
 ARG IP_ADDRESS
 
+# Switch to root to do installs and such
 USER root
-RUN apt-get update && apt-get install -y ca-certificates curl gnupg software-properties-common npm
-# RUN curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
-# ENV NODE_MAJOR=18
-# RUN echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
-# RUN apt-get update && apt-get install nodejs -y
-RUN npm install npm@latest -g && \
-    npm install n -g && \
-    n latest
+
+# Use the bash shell, this is required to get a good install of nvm
+SHELL ["/bin/bash", "--login", "-c"]
+
+# Update the software
+RUN apt-get update && apt-get install -y ca-certificates curl gnupg software-properties-common
+
+# Setup the NVM variables
+ENV NVM_DIR=/usr/local/nvm
+ENV NODE_VERSION=22.11.0
+ENV NODE_PATH=$NVM_DIR/v$NODE_VERSION/lib/node_modules
+ENV PATH=$NVM_DIR/v$NODE_VERSION/bin:$PATH
+
+# Create the install directory for NVM
+RUN mkdir /usr/local/nvm
+
+# Download and install NVM
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash \
+    && . $NVM_DIR/nvm.sh \
+    && nvm install $NODE_VERSION \
+    && nvm use $NODE_VERSION
 
 # Remove the default stuff from the filesystem
 RUN rm -rf /usr/share/nginx/html/*
