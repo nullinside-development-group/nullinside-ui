@@ -4,14 +4,13 @@ import { environment } from '../../../../environments/environment';
 import { MatButton } from '@angular/material/button';
 
 @Component({
-  selector: 'app-standard-banner',
-  standalone: true,
-  imports: [
-    LogoComponent,
-    MatButton
-  ],
-  templateUrl: './standard-banner.component.html',
-  styleUrl: './standard-banner.component.scss'
+    selector: 'app-standard-banner',
+    imports: [
+        LogoComponent,
+        MatButton
+    ],
+    templateUrl: './standard-banner.component.html',
+    styleUrl: './standard-banner.component.scss'
 })
 export class StandardBannerComponent implements OnInit {
   public userIsLoggedIn: boolean = false;

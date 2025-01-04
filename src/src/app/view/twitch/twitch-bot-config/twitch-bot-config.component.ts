@@ -16,19 +16,18 @@ import {FormsModule} from "@angular/forms";
 import {Location} from "@angular/common";
 
 @Component({
-  selector: 'app-twitch-bot-config',
-  standalone: true,
-  imports: [
-    LogoComponent,
-    MatButton,
-    LoadingIconComponent,
-    MatSlideToggle,
-    MatCheckbox,
-    TwitchBotFaqComponent,
-    FormsModule
-  ],
-  templateUrl: './twitch-bot-config.component.html',
-  styleUrl: './twitch-bot-config.component.scss'
+    selector: 'app-twitch-bot-config',
+    imports: [
+        LogoComponent,
+        MatButton,
+        LoadingIconComponent,
+        MatSlideToggle,
+        MatCheckbox,
+        TwitchBotFaqComponent,
+        FormsModule
+    ],
+    templateUrl: './twitch-bot-config.component.html',
+    styleUrl: './twitch-bot-config.component.scss'
 })
 export class TwitchBotConfigComponent implements OnInit, OnDestroy {
   public botIsMod: boolean | null = null;

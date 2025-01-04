@@ -2,13 +2,12 @@ import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from
 import {StandardBannerComponent} from "../../common/components/standard-banner/standard-banner.component";
 
 @Component({
-  selector: 'app-background-webgl',
-  standalone: true,
-  imports: [
-    StandardBannerComponent
-  ],
-  templateUrl: './background-webgl.component.html',
-  styleUrl: './background-webgl.component.scss'
+    selector: 'app-background-webgl',
+    imports: [
+        StandardBannerComponent
+    ],
+    templateUrl: './background-webgl.component.html',
+    styleUrl: './background-webgl.component.scss'
 })
 export class BackgroundWebglComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild("canvas")

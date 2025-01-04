@@ -8,14 +8,13 @@ import { HttpErrorResponse } from "@angular/common/http";
 import { Errors } from "./errors";
 
 @Component({
-  selector: 'app-login-landing',
-  standalone: true,
-  imports: [
-    LogoComponent,
-    LoadingIconComponent
-  ],
-  templateUrl: './login-landing.component.html',
-  styleUrl: './login-landing.component.scss'
+    selector: 'app-login-landing',
+    imports: [
+        LogoComponent,
+        LoadingIconComponent
+    ],
+    templateUrl: './login-landing.component.html',
+    styleUrl: './login-landing.component.scss'
 })
 export class LoginLandingComponent implements OnInit, OnDestroy {
   timerId: number = -1;

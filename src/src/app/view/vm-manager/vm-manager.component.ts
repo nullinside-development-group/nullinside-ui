@@ -8,16 +8,15 @@ import { interval, Subscription } from 'rxjs';
 import { ActionableDockerResource } from './interface/ActionableDockerResource';
 
 @Component({
-  selector: 'app-vm-manager',
-  standalone: true,
-  imports: [
-    LogoComponent,
-    MatIcon,
-    MatTooltip,
-    LoadingIconComponent
-  ],
-  templateUrl: './vm-manager.component.html',
-  styleUrl: './vm-manager.component.scss'
+    selector: 'app-vm-manager',
+    imports: [
+        LogoComponent,
+        MatIcon,
+        MatTooltip,
+        LoadingIconComponent
+    ],
+    templateUrl: './vm-manager.component.html',
+    styleUrl: './vm-manager.component.scss'
 })
 export class VmManagerComponent implements OnInit, OnDestroy {
   public vms: ActionableDockerResource[] | null = null;
