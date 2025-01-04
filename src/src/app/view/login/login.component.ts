@@ -9,16 +9,15 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { TwitchLoginComponent } from '../../common/components/twitch-login/twitch-login.component';
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [
-    LogoComponent,
-    LoadingIconComponent,
-    NgOptimizedImage,
-    TwitchLoginComponent
-  ],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+    selector: 'app-login',
+    imports: [
+        LogoComponent,
+        LoadingIconComponent,
+        NgOptimizedImage,
+        TwitchLoginComponent
+    ],
+    templateUrl: './login.component.html',
+    styleUrl: './login.component.scss'
 })
 export class LoginComponent implements OnInit {
   loginUrl: string;

@@ -9,17 +9,16 @@ import { Subscription } from 'rxjs';
 import { ImdbSearchItems } from '../../common/interface/imdb-search';
 
 @Component({
-  selector: 'app-imdb-search',
-  standalone: true,
-  imports: [
-    LogoComponent,
-    MatFormFieldModule,
-    MatInput,
-    MatButton,
-    LoadingIconComponent
-  ],
-  templateUrl: './imdb-search.component.html',
-  styleUrl: './imdb-search.component.scss'
+    selector: 'app-imdb-search',
+    imports: [
+        LogoComponent,
+        MatFormFieldModule,
+        MatInput,
+        MatButton,
+        LoadingIconComponent
+    ],
+    templateUrl: './imdb-search.component.html',
+    styleUrl: './imdb-search.component.scss'
 })
 export class ImdbSearchComponent implements OnDestroy {
   searching: boolean = false;

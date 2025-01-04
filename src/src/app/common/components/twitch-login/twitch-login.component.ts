@@ -3,13 +3,12 @@ import { environment } from '../../../../environments/environment';
 import { NgOptimizedImage } from '@angular/common';
 
 @Component({
-  selector: 'app-twitch-login',
-  standalone: true,
-  imports: [
-    NgOptimizedImage
-  ],
-  templateUrl: './twitch-login.component.html',
-  styleUrl: './twitch-login.component.scss'
+    selector: 'app-twitch-login',
+    imports: [
+        NgOptimizedImage
+    ],
+    templateUrl: './twitch-login.component.html',
+    styleUrl: './twitch-login.component.scss'
 })
 export class TwitchLoginComponent {
   /**
