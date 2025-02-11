@@ -4,7 +4,6 @@ import { environment } from "../../../environments/environment";
 import { NullinsideService } from "../../service/nullinside.service";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { LoadingIconComponent } from "../../common/components/loading-icon/loading-icon.component";
-import { NgOptimizedImage } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { TwitchLoginComponent } from '../../common/components/twitch-login/twitch-login.component';
 
@@ -13,7 +12,6 @@ import { TwitchLoginComponent } from '../../common/components/twitch-login/twitc
     imports: [
         LogoComponent,
         LoadingIconComponent,
-        NgOptimizedImage,
         TwitchLoginComponent
     ],
     templateUrl: './login.component.html',

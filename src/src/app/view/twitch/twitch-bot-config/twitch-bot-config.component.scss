@@ -1,4 +1,4 @@
-@import "../../../common/constants";
+@use "../../../common/constants" as *;
 
 .text-box {
   max-width: 300px;

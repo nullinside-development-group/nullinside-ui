@@ -1,4 +1,4 @@
-@import "../../common/constants";
+@use "../../common/constants" as *;
 
 :host::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   background-color: rgba($font-color, .5);

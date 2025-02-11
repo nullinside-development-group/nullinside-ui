@@ -1,11 +1,7 @@
 import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {StandardBannerComponent} from "../../common/components/standard-banner/standard-banner.component";
 
 @Component({
     selector: 'app-background-webgl',
-    imports: [
-        StandardBannerComponent
-    ],
     templateUrl: './background-webgl.component.html',
     styleUrl: './background-webgl.component.scss'
 })
