@@ -1,4 +1,4 @@
-@import "../../../common/constants";
+@use "../../../common/constants" as *;
 
 .twitch-login-button {
   text-align: center;
