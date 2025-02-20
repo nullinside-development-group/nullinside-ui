@@ -38,9 +38,9 @@ export class LoginLandingComponent implements OnInit, OnDestroy {
           if (Errors.TwitchAccountHasNoEmail === errorNum) {
             this.onLoginFailed('Your Twitch account must have a valid e-mail address, please add one and try again', false)
           } else if (Errors.TwitchErrorWithToken === errorNum) {
-            this.onLoginFailed('Twitch failed to give us a valid token, please add one and try again', false)
+            this.onLoginFailed('Twitch failed to give us a valid token, please try again', false)
           } else {
-            this.onLoginFailed('Sorry we did something wrong trying to log you in, please add one and try again', false)
+            this.onLoginFailed('Sorry we did something wrong trying to log you in, please try again', false)
           }
 
           return;
