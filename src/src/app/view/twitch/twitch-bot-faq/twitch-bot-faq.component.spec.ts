@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { TwitchBotFaqComponent } from './twitch-bot-faq.component';
+import {TwitchBotFaqComponent} from './twitch-bot-faq.component';
 
 describe('TwitchBotFaqComponent', () => {
   let component: TwitchBotFaqComponent;
@@ -10,8 +10,8 @@ describe('TwitchBotFaqComponent', () => {
     await TestBed.configureTestingModule({
       imports: [TwitchBotFaqComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(TwitchBotFaqComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

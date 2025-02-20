@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { environment } from "../../environments/environment";
-import { UserRolesResponse } from "../common/interface/user-roles-response";
-import { DockerResource } from '../common/interface/docker-resource';
-import { FeatureToggleResponse } from "../common/interface/feature-toggle-response";
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {environment} from "../../environments/environment";
+import {UserRolesResponse} from "../common/interface/user-roles-response";
+import {DockerResource} from '../common/interface/docker-resource';
+import {FeatureToggleResponse} from "../common/interface/feature-toggle-response";
 
 @Injectable({
   providedIn: 'root'

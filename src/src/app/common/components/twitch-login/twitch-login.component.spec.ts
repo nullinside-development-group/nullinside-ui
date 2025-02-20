@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { TwitchLoginComponent } from './twitch-login.component';
+import {TwitchLoginComponent} from './twitch-login.component';
 
 describe('TwitchLoginComponent', () => {
   let component: TwitchLoginComponent;

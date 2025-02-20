@@ -1,9 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { LoginLandingComponent } from './login-landing.component';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { RouterModule } from '@angular/router';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import {LoginLandingComponent} from './login-landing.component';
+import {provideHttpClientTesting} from '@angular/common/http/testing';
+import {RouterModule} from '@angular/router';
+import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 
 describe('GoogleSigninLandingComponent', () => {
   let component: LoginLandingComponent;
@@ -11,9 +11,9 @@ describe('GoogleSigninLandingComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [LoginLandingComponent, RouterModule.forRoot([])],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-})
+      imports: [LoginLandingComponent, RouterModule.forRoot([])],
+      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+    })
       .compileComponents();
 
     fixture = TestBed.createComponent(LoginLandingComponent);

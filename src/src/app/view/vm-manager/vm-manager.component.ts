@@ -1,22 +1,22 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { LogoComponent } from '../../common/components/logo/logo.component';
-import { NullinsideService } from '../../service/nullinside.service';
-import { MatIcon } from '@angular/material/icon';
-import { MatTooltip } from '@angular/material/tooltip';
-import { LoadingIconComponent } from '../../common/components/loading-icon/loading-icon.component';
-import { interval, Subscription } from 'rxjs';
-import { ActionableDockerResource } from './interface/ActionableDockerResource';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {LogoComponent} from '../../common/components/logo/logo.component';
+import {NullinsideService} from '../../service/nullinside.service';
+import {MatIcon} from '@angular/material/icon';
+import {MatTooltip} from '@angular/material/tooltip';
+import {LoadingIconComponent} from '../../common/components/loading-icon/loading-icon.component';
+import {interval, Subscription} from 'rxjs';
+import {ActionableDockerResource} from './interface/ActionableDockerResource';
 
 @Component({
-    selector: 'app-vm-manager',
-    imports: [
-        LogoComponent,
-        MatIcon,
-        MatTooltip,
-        LoadingIconComponent
-    ],
-    templateUrl: './vm-manager.component.html',
-    styleUrl: './vm-manager.component.scss'
+  selector: 'app-vm-manager',
+  imports: [
+    LogoComponent,
+    MatIcon,
+    MatTooltip,
+    LoadingIconComponent
+  ],
+  templateUrl: './vm-manager.component.html',
+  styleUrl: './vm-manager.component.scss'
 })
 export class VmManagerComponent implements OnInit, OnDestroy {
   public vms: ActionableDockerResource[] | null = null;

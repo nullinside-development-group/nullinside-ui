@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { TwitchBotIndexComponent } from './twitch-bot-index.component';
+import {TwitchBotIndexComponent} from './twitch-bot-index.component';
 
 describe('TwitchBotIndexComponent', () => {
   let component: TwitchBotIndexComponent;

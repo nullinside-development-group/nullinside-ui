@@ -9,13 +9,13 @@ import {catchError, forkJoin, Observable, of} from "rxjs";
 import {UserRolesResponse} from "../../common/interface/user-roles-response";
 
 @Component({
-    selector: 'app-home',
-    imports: [
-        StandardBannerComponent,
-        LoadingIconComponent
-    ],
-    templateUrl: './home.component.html',
-    styleUrl: './home.component.scss'
+  selector: 'app-home',
+  imports: [
+    StandardBannerComponent,
+    LoadingIconComponent
+  ],
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
   public roles: string[] | null = null;

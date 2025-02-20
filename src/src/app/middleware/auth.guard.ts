@@ -1,8 +1,8 @@
-import { CanActivateFn } from '@angular/router';
-import { environment } from "../../environments/environment";
-import { inject } from "@angular/core";
-import { NullinsideService } from "../service/nullinside.service";
-import { of, tap } from "rxjs";
+import {CanActivateFn} from '@angular/router';
+import {environment} from "../../environments/environment";
+import {inject} from "@angular/core";
+import {NullinsideService} from "../service/nullinside.service";
+import {of, tap} from "rxjs";
 
 export const authGuard: CanActivateFn = (_, __) => {
   // TODO: Hook up the "returnUrl" in the rest of the application. GitHub issue #

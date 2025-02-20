@@ -1,24 +1,24 @@
-import { Component, OnDestroy } from '@angular/core';
-import { LogoComponent } from '../../common/components/logo/logo.component';
-import { NullinsideNullService } from '../../service/nullinside-null.service';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
-import { MatButton } from '@angular/material/button';
-import { LoadingIconComponent } from '../../common/components/loading-icon/loading-icon.component';
-import { Subscription } from 'rxjs';
-import { ImdbSearchItems } from '../../common/interface/imdb-search';
+import {Component, OnDestroy} from '@angular/core';
+import {LogoComponent} from '../../common/components/logo/logo.component';
+import {NullinsideNullService} from '../../service/nullinside-null.service';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInput} from '@angular/material/input';
+import {MatButton} from '@angular/material/button';
+import {LoadingIconComponent} from '../../common/components/loading-icon/loading-icon.component';
+import {Subscription} from 'rxjs';
+import {ImdbSearchItems} from '../../common/interface/imdb-search';
 
 @Component({
-    selector: 'app-imdb-search',
-    imports: [
-        LogoComponent,
-        MatFormFieldModule,
-        MatInput,
-        MatButton,
-        LoadingIconComponent
-    ],
-    templateUrl: './imdb-search.component.html',
-    styleUrl: './imdb-search.component.scss'
+  selector: 'app-imdb-search',
+  imports: [
+    LogoComponent,
+    MatFormFieldModule,
+    MatInput,
+    MatButton,
+    LoadingIconComponent
+  ],
+  templateUrl: './imdb-search.component.html',
+  styleUrl: './imdb-search.component.scss'
 })
 export class ImdbSearchComponent implements OnDestroy {
   searching: boolean = false;
