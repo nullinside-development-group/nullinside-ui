@@ -1,9 +1,9 @@
 import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 
 @Component({
-    selector: 'app-background-webgl',
-    templateUrl: './background-webgl.component.html',
-    styleUrl: './background-webgl.component.scss'
+  selector: 'app-background-webgl',
+  templateUrl: './background-webgl.component.html',
+  styleUrl: './background-webgl.component.scss'
 })
 export class BackgroundWebglComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild("canvas")
@@ -29,7 +29,8 @@ void main() {
     gl_Position = vec4(aPos, 1.0); // we give a vec3 to vec4’s constructor
     vertexColor = vec4(0.5, 0.0, 0.0, 1.0); // output variable to dark-red
 }`;
-  animate: () => void = () => {};
+  animate: () => void = () => {
+  };
   dispose = false;
   private buffers: WebGLBuffer[] = [];
   private vertexArrays: WebGLVertexArrayObject[] = [];

@@ -10,71 +10,71 @@ import {MatButton} from "@angular/material/button";
 import {CdkCopyToClipboard} from "@angular/cdk/clipboard";
 
 @Component({
-  selector: 'app-login-landing-desktop',
-  imports: [
-    LoadingIconComponent,
-    LogoComponent,
-    MatButton,
-    CdkCopyToClipboard
-  ],
-  templateUrl: './login-landing-desktop.component.html',
-  styleUrl: './login-landing-desktop.component.scss'
+    selector: 'app-login-landing-desktop',
+    imports: [
+        LoadingIconComponent,
+        LogoComponent,
+        MatButton,
+        CdkCopyToClipboard
+    ],
+    templateUrl: './login-landing-desktop.component.html',
+    styleUrl: './login-landing-desktop.component.scss'
 })
 export class LoginLandingDesktopComponent implements OnInit {
-  error: string = '';
-  oAuth: OAuth | null = null;
-  loading: boolean = true;
+    error: string = '';
+    oAuth: OAuth | null = null;
+    loading: boolean = true;
 
-  constructor(private api: NullinsideService, private route: ActivatedRoute) {
-  }
+    constructor(private api: NullinsideService, private route: ActivatedRoute) {
+    }
 
-  ngOnInit(): void {
-    this.route.queryParamMap.subscribe({
-      next: (params: ParamMap) => {
-        const error = params.get('error');
-        if (null !== error) {
-          const errorNum = +error;
-          if (Errors.TwitchAccountHasNoEmail === errorNum) {
-            this.onLoginFailed('Your Twitch account must have a valid e-mail address, please add one and try again')
-          } else if (Errors.TwitchErrorWithToken === errorNum) {
-            this.onLoginFailed('Twitch failed to give us a valid token, please try again')
-          } else {
-            this.onLoginFailed('Sorry we did something wrong trying to log you in, please try again')
-          }
+    ngOnInit(): void {
+        this.route.queryParamMap.subscribe({
+            next: (params: ParamMap) => {
+                const error = params.get('error');
+                if (null !== error) {
+                    const errorNum = +error;
+                    if (Errors.TwitchAccountHasNoEmail === errorNum) {
+                        this.onLoginFailed('Your Twitch account must have a valid e-mail address, please add one and try again')
+                    } else if (Errors.TwitchErrorWithToken === errorNum) {
+                        this.onLoginFailed('Twitch failed to give us a valid token, please try again')
+                    } else {
+                        this.onLoginFailed('Sorry we did something wrong trying to log you in, please try again')
+                    }
 
-          return;
-        }
+                    return;
+                }
 
-        const oAuth = {
-          bearer: params.get('bearer'),
-          refresh: params.get('refresh'),
-          expiresUtc: params.get('expiresUtc'),
-        };
+                const oAuth = {
+                    bearer: params.get('bearer'),
+                    refresh: params.get('refresh'),
+                    expiresUtc: params.get('expiresUtc'),
+                };
 
-        if (null === oAuth.bearer || null === oAuth.refresh || null === oAuth.expiresUtc) {
-          this.onLoginFailed();
-          return;
-        }
+                if (null === oAuth.bearer || null === oAuth.refresh || null === oAuth.expiresUtc) {
+                    this.onLoginFailed();
+                    return;
+                }
 
-        this.oAuth = {
-          bearer: oAuth.bearer,
-          refresh: oAuth.refresh,
-          expiresUtc: oAuth.expiresUtc
-        };
+                this.oAuth = {
+                    bearer: oAuth.bearer,
+                    refresh: oAuth.refresh,
+                    expiresUtc: oAuth.expiresUtc
+                };
 
-        navigator.clipboard.writeText(JSON.stringify(oAuth));
+                navigator.clipboard.writeText(JSON.stringify(oAuth));
+                this.loading = false;
+            },
+            error: (_: HttpErrorResponse) => {
+                this.onLoginFailed();
+            }
+        });
+    }
+
+    onLoginFailed(message = ':( Failed to login, please try again'): void {
+        this.error = message;
         this.loading = false;
-      },
-      error: (_: HttpErrorResponse) => {
-        this.onLoginFailed();
-      }
-    });
-  }
+    }
 
-  onLoginFailed(message = ':( Failed to login, please try again'): void {
-    this.error = message;
-    this.loading = false;
-  }
-
-  protected readonly JSON = JSON;
+    protected readonly JSON = JSON;
 }

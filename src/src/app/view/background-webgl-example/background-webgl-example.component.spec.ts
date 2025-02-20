@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { BackgroundWebglExampleComponent } from './background-webgl-example.component';
+import {BackgroundWebglExampleComponent} from './background-webgl-example.component';
 
 describe('BackgroundWebglExampleComponent', () => {
   let component: BackgroundWebglExampleComponent;
@@ -10,7 +10,7 @@ describe('BackgroundWebglExampleComponent', () => {
     await TestBed.configureTestingModule({
       imports: [BackgroundWebglExampleComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(BackgroundWebglExampleComponent);
     component = fixture.componentInstance;

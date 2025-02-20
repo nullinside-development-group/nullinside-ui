@@ -5,14 +5,14 @@ import {TwitchBotFaqComponent} from "../twitch-bot-faq/twitch-bot-faq.component"
 import {environment} from "../../../../environments/environment";
 
 @Component({
-    selector: 'app-twitch-bot-index',
-    imports: [
-        StandardBannerComponent,
-        TwitchLoginComponent,
-        TwitchBotFaqComponent
-    ],
-    templateUrl: './twitch-bot-index.component.html',
-    styleUrl: './twitch-bot-index.component.scss'
+  selector: 'app-twitch-bot-index',
+  imports: [
+    StandardBannerComponent,
+    TwitchLoginComponent,
+    TwitchBotFaqComponent
+  ],
+  templateUrl: './twitch-bot-index.component.html',
+  styleUrl: './twitch-bot-index.component.scss'
 })
 export class TwitchBotIndexComponent {
   protected readonly environment = environment;

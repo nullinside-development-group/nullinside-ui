@@ -1,5 +1,5 @@
 <div class="layout-logo-box">
-  <app-logo />
+  <app-logo/>
 </div>
 
 @if (error) {
@@ -21,7 +21,7 @@
                       aria-label="status"
                       [style.color]="vm.isOnline ? 'green' : 'grey'"
                       [fontIcon]="vm.isOnline ? 'radio_button_checked' : 'radio_button_unchecked'"
-                      [matTooltip]="vm.isOnline ? 'Online' : 'Offline'" />
+                      [matTooltip]="vm.isOnline ? 'Online' : 'Offline'"/>
             <mat-icon aria-hidden="false"
                       aria-label="action"
                       (click)="onSwitchPower(vm.id, !vm.isOnline)"
@@ -29,9 +29,9 @@
                       tabindex="0"
                       [style.cursor]="'pointer'"
                       [fontIcon]="vm.isOnline ? 'power_off' : 'power_settings_new'"
-                      [matTooltip]="vm.isOnline ? 'Turn Off' : 'Turn On'" />
+                      [matTooltip]="vm.isOnline ? 'Turn Off' : 'Turn On'"/>
           } @else {
-            <app-loading-icon fontSize="24px" height="35px" width="35px" />
+            <app-loading-icon fontSize="24px" height="35px" width="35px"/>
           }
         </h1>
         <p>{{ vm.notes }}</p>

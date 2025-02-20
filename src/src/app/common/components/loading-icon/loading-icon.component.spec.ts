@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { LoadingIconComponent } from './loading-icon.component';
+import {LoadingIconComponent} from './loading-icon.component';
 
 describe('LoadingIconComponent', () => {
   let component: LoadingIconComponent;

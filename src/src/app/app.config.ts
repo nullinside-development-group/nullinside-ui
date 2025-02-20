@@ -1,10 +1,10 @@
-import { ApplicationConfig, Provider } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import {ApplicationConfig, Provider} from '@angular/core';
+import {provideRouter} from '@angular/router';
 
-import { routes } from './app.routes';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
-import { BearerTokenInterceptor } from "./middleware/bearer-token-interceptor";
+import {routes} from './app.routes';
+import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
+import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi} from "@angular/common/http";
+import {BearerTokenInterceptor} from "./middleware/bearer-token-interceptor";
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS} from "@angular/material/snack-bar";
 
 export const noopInterceptorProvider: Provider =
