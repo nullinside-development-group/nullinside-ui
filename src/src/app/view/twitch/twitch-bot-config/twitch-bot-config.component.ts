@@ -128,6 +128,8 @@ export class TwitchBotConfigComponent implements OnInit, OnDestroy {
 
     if (redirect) {
       this.timerId = setTimeout(() => {
+        clearTimeout(this.timerId);
+
         // Need to use window.location here instead of the router because otherwise the external javascript from Google
         // doesn't reload on the login page, and you can't retry your login until you refresh.
         //
