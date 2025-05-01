@@ -1,6 +1,12 @@
 name: nullinside-ui
 services:
     nullinside-ui:
+        build:
+            context: .
+            args:
+                - BUILD_ENVIRONMENT=prod
+            tags:
+                - "nullinside-ui:latest"
         logging:
             driver: loki
             options:
