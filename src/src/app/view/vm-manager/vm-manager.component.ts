@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import {LogoComponent} from '../../common/components/logo/logo.component';
 import {NullinsideService} from '../../service/nullinside.service';
 import {MatIcon} from '@angular/material/icon';
@@ -19,12 +19,11 @@ import {ActionableDockerResource} from './interface/ActionableDockerResource';
   styleUrl: './vm-manager.component.scss'
 })
 export class VmManagerComponent implements OnInit, OnDestroy {
+  private api = inject(NullinsideService);
+
   public vms: ActionableDockerResource[] | null = null;
   public error: string | null = null;
   private timer: Subscription | null = null;
-
-  constructor(private api: NullinsideService) {
-  }
 
   ngOnInit(): void {
     this.getVms();

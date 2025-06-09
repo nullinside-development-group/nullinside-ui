@@ -1,4 +1,4 @@
-import {Component, OnDestroy} from '@angular/core';
+import { Component, OnDestroy, inject } from '@angular/core';
 import {LogoComponent} from '../../common/components/logo/logo.component';
 import {NullinsideNullService} from '../../service/nullinside-null.service';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -21,14 +21,12 @@ import {ImdbSearchItems} from '../../common/interface/imdb-search';
   styleUrl: './imdb-search.component.scss'
 })
 export class ImdbSearchComponent implements OnDestroy {
+  private api = inject(NullinsideNullService);
+
   searching: boolean = false;
   quickSubscription: Subscription | null = null;
   longSubscription: Subscription | null = null;
   public rows: ImdbSearchItems[] = [];
-
-  constructor(private api: NullinsideNullService) {
-
-  }
 
   ngOnDestroy(): void {
     if (this.quickSubscription) {

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {NullinsideService} from "../../service/nullinside.service";
 import {VM_ADMIN} from "../../common/constants";
 import {WebsiteApp} from "../../common/interface/website-app";
@@ -18,6 +18,9 @@ import {UserRolesResponse} from "../../common/interface/user-roles-response";
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
+  private api = inject(NullinsideService);
+  private router = inject(Router);
+
   public roles: string[] | null = null;
   public error: string | null = null;
   public userIsLoggedIn: boolean = false;
@@ -37,10 +40,6 @@ export class HomeComponent implements OnInit {
       params: undefined
     }
   ];
-
-  constructor(private api: NullinsideService,
-              private router: Router) {
-  }
 
   ngOnInit(): void {
     this.userIsLoggedIn = null !== localStorage.getItem('auth-token');

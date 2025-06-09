@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import {LogoComponent} from '../../../common/components/logo/logo.component';
 import {MatButton} from '@angular/material/button';
 import {NullinsideTwitchBotService} from "../../../service/nullinside-twitch-bot.service";
@@ -30,6 +30,13 @@ import {Location} from "@angular/common";
   styleUrl: './twitch-bot-config.component.scss'
 })
 export class TwitchBotConfigComponent implements OnInit, OnDestroy {
+  private twitchBotApi = inject(NullinsideTwitchBotService);
+  private api = inject(NullinsideService);
+  private snackBar = inject(MatSnackBar);
+  private location = inject(Location);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+
   public botIsMod: boolean | null = null;
   public timerId: number = -1;
   public error: string = '';
@@ -37,14 +44,6 @@ export class TwitchBotConfigComponent implements OnInit, OnDestroy {
   public botEnabled = true;
   public banKnownBots = true;
   public waitingForSave = false;
-
-  constructor(private twitchBotApi: NullinsideTwitchBotService,
-              private api: NullinsideService,
-              private snackBar: MatSnackBar,
-              private location: Location,
-              private router: Router,
-              private route: ActivatedRoute) {
-  }
 
   ngOnDestroy(): void {
     if (this.timerId !== -1) {

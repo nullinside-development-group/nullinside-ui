@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import {Router} from '@angular/router';
 
 @Component({
@@ -8,12 +8,11 @@ import {Router} from '@angular/router';
   styleUrl: './logo.component.scss'
 })
 export class LogoComponent {
+  private router = inject(Router);
+
   @Input() height: number = 50;
   @Input() fontSize: number = 35;
   @Input() words: string[] = ['inside ;', 'tests ;', 'inside  ;', 'quality ;'];
-
-  constructor(private router: Router) {
-  }
 
   sendToIndex() {
     this.router.navigate(['/']);

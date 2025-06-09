@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {NullinsideService} from "../../service/nullinside.service";
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {Errors} from "../login-landing/errors";
@@ -21,12 +21,12 @@ import {CdkCopyToClipboard} from "@angular/cdk/clipboard";
     styleUrl: './login-landing-desktop.component.scss'
 })
 export class LoginLandingDesktopComponent implements OnInit {
+    private api = inject(NullinsideService);
+    private route = inject(ActivatedRoute);
+
     error: string = '';
     oAuth: OAuth | null = null;
     loading: boolean = true;
-
-    constructor(private api: NullinsideService, private route: ActivatedRoute) {
-    }
 
     ngOnInit(): void {
         this.route.queryParamMap.subscribe({

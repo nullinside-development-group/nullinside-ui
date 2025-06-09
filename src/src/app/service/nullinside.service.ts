@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
@@ -10,9 +10,8 @@ import {FeatureToggleResponse} from "../common/interface/feature-toggle-response
   providedIn: 'root'
 })
 export class NullinsideService {
+  private httpClient = inject(HttpClient);
 
-  constructor(private httpClient: HttpClient) {
-  }
 
   validateToken(token: string): Observable<boolean> {
     return this.httpClient.post<boolean>(`${environment.apiUrl}/user/token/validate`, {token: token});

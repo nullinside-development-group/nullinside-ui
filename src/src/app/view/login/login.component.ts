@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {LogoComponent} from "../../common/components/logo/logo.component";
 import {environment} from "../../../environments/environment";
 import {NullinsideService} from "../../service/nullinside.service";
@@ -18,6 +18,10 @@ import {TwitchLoginComponent} from '../../common/components/twitch-login/twitch-
   styleUrl: './login.component.scss'
 })
 export class LoginComponent implements OnInit {
+  private api = inject(NullinsideService);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+
   loginUrl: string;
   checkingLogin = false;
   showGmail = true;
@@ -25,7 +29,7 @@ export class LoginComponent implements OnInit {
     '/home'
   ];
 
-  constructor(private api: NullinsideService, private router: Router, private route: ActivatedRoute) {
+  constructor() {
     this.loginUrl = `${environment.apiUrl}/user/login`;
   }
 
