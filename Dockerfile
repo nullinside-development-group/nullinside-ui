@@ -24,7 +24,7 @@ RUN mkdir /usr/local/nvm
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash \
     && . $NVM_DIR/nvm.sh \
     && nvm install $NODE_VERSION \
-    && nvm use $NODE_VERSION
+    && nvm use $NODE_VERSION \
 	&& npm install -g npm@latest
 
 # Remove the default stuff from the filesystem
