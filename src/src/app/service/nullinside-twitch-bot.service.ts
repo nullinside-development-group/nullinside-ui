@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
@@ -9,8 +9,8 @@ import {TwitchBotConfig} from "../common/interface/twitch-bot-config";
   providedIn: 'root'
 })
 export class NullinsideTwitchBotService {
-  constructor(private httpClient: HttpClient) {
-  }
+  private httpClient = inject(HttpClient);
+
 
   getIsMod(): Observable<TwitchBotIsModResponse> {
     return this.httpClient.get<TwitchBotIsModResponse>(`${environment.twitchBotApiUrl}/bot/mod`);

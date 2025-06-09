@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import {NullinsideService} from "../../service/nullinside.service";
 import {LogoComponent} from "../../common/components/logo/logo.component";
 import {LoadingIconComponent} from "../../common/components/loading-icon/loading-icon.component";
@@ -17,11 +17,12 @@ import {Errors} from "./errors";
   styleUrl: './login-landing.component.scss'
 })
 export class LoginLandingComponent implements OnInit, OnDestroy {
+  private api = inject(NullinsideService);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+
   timerId: number = -1;
   error: string = '';
-
-  constructor(private api: NullinsideService, private route: ActivatedRoute, private router: Router) {
-  }
 
   ngOnDestroy(): void {
     if (this.timerId !== -1) {
