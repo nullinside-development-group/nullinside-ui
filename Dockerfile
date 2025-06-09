@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y ca-certificates curl gnupg software-pro
 
 # Setup the NVM variables
 ENV NVM_DIR=/usr/local/nvm
-ENV NODE_VERSION=22.11.0
+ENV NODE_VERSION=22.16.0
 ENV NODE_PATH=$NVM_DIR/v$NODE_VERSION/lib/node_modules
 ENV PATH=$NVM_DIR/v$NODE_VERSION/bin:$PATH
 
