@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {NullinsideService} from "../../service/nullinside.service";
 import {LogoComponent} from "../../common/components/logo/logo.component";
 import {LoadingIconComponent} from "../../common/components/loading-icon/loading-icon.component";

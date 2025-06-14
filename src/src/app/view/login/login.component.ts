@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {LogoComponent} from "../../common/components/logo/logo.component";
 import {environment} from "../../../environments/environment";
 import {NullinsideService} from "../../service/nullinside.service";

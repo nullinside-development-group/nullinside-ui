@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {NullinsideService} from "../../service/nullinside.service";
 import {VM_ADMIN} from "../../common/constants";
 import {WebsiteApp} from "../../common/interface/website-app";
