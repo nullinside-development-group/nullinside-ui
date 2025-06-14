@@ -64,11 +64,13 @@ export class LoginLandingDesktopComponent implements OnInit {
                     expiresUtc: oAuth.expiresUtc
                 };
 
-                this.desktopData = JSON.stringify(oAuth);
-                navigator.clipboard.writeText(this.desktopData);
-                this.loading = false;
-                this.timer?.unsubscribe();
+                // DO NOT assign this.desktopData until AFTER you update the clipboard successfully.
+                // The absence of a value on this.desktopData is what tells the application we haven't logged in yet.
+                const json = JSON.stringify(oAuth);
+                navigator.clipboard.writeText(json);
+                this.desktopData = json;
 
+                this.loading = false;
                 this.timer = interval(1000)
                   .subscribe({
                     next: _ => {
@@ -89,7 +91,7 @@ export class LoginLandingDesktopComponent implements OnInit {
       try {
         navigator.clipboard.readText().then(text => {
           // If the text matches what we put on the clipboard then we aren't signed in yet.
-          if (text === this.desktopData) {
+          if (undefined === this.desktopData || text === this.desktopData) {
             return;
           }
 
