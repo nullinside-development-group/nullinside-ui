@@ -60,9 +60,9 @@ export class TwitchBotConfigComponent implements OnInit, OnDestroy {
         const error = params.get('error');
         if (null !== error) {
           const errorNum = +error;
-          if (Errors.TwitchAccountHasNoEmail === errorNum) {
+          if (Errors.TWITCH_ACCOUNT_HAS_NO_EMAIL === errorNum) {
             this.onLoginFailed('Your Twitch account must have a valid e-mail address, please add one and try again', false)
-          } else if (Errors.TwitchErrorWithToken === errorNum) {
+          } else if (Errors.TWITCH_ERROR_WITH_TOKEN === errorNum) {
             this.onLoginFailed('Twitch failed to log you in successfully, please try again', false)
           } else {
             this.onLoginFailed('Sorry we did something wrong trying to log you in, please try again', false)

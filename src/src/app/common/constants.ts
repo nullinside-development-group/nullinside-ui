@@ -1,1 +1,1 @@
-export const VM_ADMIN = "VmAdmin";
+export const VM_ADMIN = "VM_ADMIN";

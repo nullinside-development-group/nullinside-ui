@@ -1,5 +1,5 @@
 export enum Errors {
-  TwitchErrorWithToken,
-  TwitchAccountHasNoEmail,
-  InternalError
+  TWITCH_ERROR_WITH_TOKEN,
+  TWITCH_ACCOUNT_HAS_NO_EMAIL,
+  INTERNAL_ERROR
 }

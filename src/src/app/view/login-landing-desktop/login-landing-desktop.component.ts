@@ -34,9 +34,9 @@ export class LoginLandingDesktopComponent implements OnInit {
                 const error = params.get('error');
                 if (null !== error) {
                     const errorNum = +error;
-                    if (Errors.TwitchAccountHasNoEmail === errorNum) {
+                    if (Errors.TWITCH_ACCOUNT_HAS_NO_EMAIL === errorNum) {
                         this.onLoginFailed('Your Twitch account must have a valid e-mail address, please add one and try again')
-                    } else if (Errors.TwitchErrorWithToken === errorNum) {
+                    } else if (Errors.TWITCH_ERROR_WITH_TOKEN === errorNum) {
                         this.onLoginFailed('Twitch failed to give us a valid token, please try again')
                     } else {
                         this.onLoginFailed('Sorry we did something wrong trying to log you in, please try again')
