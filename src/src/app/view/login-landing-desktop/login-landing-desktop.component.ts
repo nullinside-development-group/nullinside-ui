@@ -111,4 +111,5 @@ export class LoginLandingDesktopComponent implements OnInit {
     }
 
     protected readonly JSON = JSON;
+    protected readonly window = window;
 }

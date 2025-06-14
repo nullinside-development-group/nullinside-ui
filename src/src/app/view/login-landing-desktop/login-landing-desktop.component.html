@@ -6,6 +6,9 @@
     @if (loggedIn) {
       <h2>LOGGED IN SUCCESSFULLY!</h2>
       <p>Please return to the desktop application...</p>
+      <button mat-stroked-button color="primary" (click)="window.close()">
+        Close
+      </button>
     } @else if (loading) {
       <app-loading-icon fontSize="24px" height="35px" width="35px">Logging in</app-loading-icon>
     } @else {
