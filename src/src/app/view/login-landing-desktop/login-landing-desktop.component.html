@@ -1,23 +1,26 @@
 <div class="centered-box">
-    <div class="centered-box_logo-container">
-        <app-logo/>
-    </div>
-    <div class="centered-box_content-container">
-        @if (loading) {
-            <app-loading-icon fontSize="24px" height="35px" width="35px">Logging in</app-loading-icon>
+  <div class="centered-box_logo-container">
+    <app-logo/>
+  </div>
+  <div class="centered-box_content-container">
+    @if (loggedIn) {
+      <h2>LOGGED IN SUCCESSFULLY!</h2>
+      <p>Please return to the desktop application...</p>
+    } @else if (loading) {
+      <app-loading-icon fontSize="24px" height="35px" width="35px">Logging in</app-loading-icon>
+    } @else {
+      @if (error !== '') {
+        <div class="error-banner">{{ error }}</div>
+      } @else {
+        @if (null !== oAuth) {
+          <h2>DO NOT SHOW ON STREAM</h2>
+          <button mat-stroked-button color="primary" [cdkCopyToClipboard]="JSON.stringify(oAuth)">Copy to
+            Clipboard
+          </button>
         } @else {
-            @if (error !== '') {
-                <div class="error-banner">{{ error }}</div>
-            } @else {
-                @if (null !== oAuth) {
-                    <h2>DO NOT SHOW ON STREAM</h2>
-                    <button mat-stroked-button color="primary" [cdkCopyToClipboard]="JSON.stringify(oAuth)">Copy to
-                        Clipboard
-                    </button>
-                } @else {
-                    <div class="error-banner">Failed to get you authenticated, please try again</div>
-                }
-            }
+          <div class="error-banner">Failed to get you authenticated, please try again</div>
         }
-    </div>
+      }
+    }
+  </div>
 </div>

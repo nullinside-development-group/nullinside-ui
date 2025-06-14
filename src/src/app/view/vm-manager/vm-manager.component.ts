@@ -36,7 +36,7 @@ export class VmManagerComponent implements OnInit, OnDestroy {
         error: _ => {
           this.error = "Failed to refresh the list, the server may be down...";
         }
-      })
+      });
   }
 
   ngOnDestroy(): void {
