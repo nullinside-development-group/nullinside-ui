@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {LogoComponent} from '../../../common/components/logo/logo.component';
 import {MatButton} from '@angular/material/button';
 import {NullinsideTwitchBotService} from "../../../service/nullinside-twitch-bot.service";

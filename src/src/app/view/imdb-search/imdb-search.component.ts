@@ -1,4 +1,4 @@
-import { Component, OnDestroy, inject } from '@angular/core';
+import {Component, inject, OnDestroy} from '@angular/core';
 import {LogoComponent} from '../../common/components/logo/logo.component';
 import {NullinsideNullService} from '../../service/nullinside-null.service';
 import {MatFormFieldModule} from '@angular/material/form-field';
