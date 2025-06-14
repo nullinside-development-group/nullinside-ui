@@ -1,5 +1,4 @@
 import { Component, OnInit, inject } from '@angular/core';
-import {NullinsideService} from "../../service/nullinside.service";
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {Errors} from "../login-landing/errors";
 import {HttpErrorResponse} from "@angular/common/http";
@@ -8,6 +7,7 @@ import {LogoComponent} from "../../common/components/logo/logo.component";
 import {OAuth} from "../../common/interface/oauth";
 import {MatButton} from "@angular/material/button";
 import {CdkCopyToClipboard} from "@angular/cdk/clipboard";
+import {interval, Subscription} from "rxjs";
 
 @Component({
     selector: 'app-login-landing-desktop',
@@ -21,9 +21,11 @@ import {CdkCopyToClipboard} from "@angular/cdk/clipboard";
     styleUrl: './login-landing-desktop.component.scss'
 })
 export class LoginLandingDesktopComponent implements OnInit {
-    private api = inject(NullinsideService);
     private route = inject(ActivatedRoute);
+    private timer: Subscription | undefined;
+    private desktopData: string | undefined;
 
+    loggedIn: boolean = false;
     error: string = '';
     oAuth: OAuth | null = null;
     loading: boolean = true;
@@ -62,13 +64,43 @@ export class LoginLandingDesktopComponent implements OnInit {
                     expiresUtc: oAuth.expiresUtc
                 };
 
-                navigator.clipboard.writeText(JSON.stringify(oAuth));
+                this.desktopData = JSON.stringify(oAuth);
+                navigator.clipboard.writeText(this.desktopData);
                 this.loading = false;
+                this.timer?.unsubscribe();
+
+                this.timer = interval(1000)
+                  .subscribe({
+                    next: _ => {
+                      this.runCheckForLogin();
+                    },
+                    error: e => {
+                      console.error(e);
+                    }
+                  });
             },
             error: (_: HttpErrorResponse) => {
                 this.onLoginFailed();
             }
         });
+    }
+
+    private runCheckForLogin() {
+      try {
+        navigator.clipboard.readText().then(text => {
+          // If the text matches what we put on the clipboard then we aren't signed in yet.
+          if (text === this.desktopData) {
+            return;
+          }
+
+          // If the text does match, we are signed in on the desktop app. Maybe...kinda....might be...you never know...
+          // Don't judge me. -.-
+          this.timer?.unsubscribe();
+          this.loggedIn = true;
+        })
+      } catch {
+        // Do nothing, just don't crash.
+      }
     }
 
     onLoginFailed(message = ':( Failed to login, please try again'): void {
