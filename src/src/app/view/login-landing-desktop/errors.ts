@@ -1,0 +1,5 @@
+export enum Errors {
+  NO_ERROR,
+  INTERNAL_ERROR,
+  TWITCH_FAILED_TO_GENERATE_TOKEN
+}
