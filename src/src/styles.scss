@@ -80,6 +80,23 @@ html, body {
   font-family: Roboto, sans-serif;
 }
 
+a:link {
+  color: $font-color;
+  font-weight: bolder;
+}
+
+a:visited {
+  color: #A5A18DFF;
+}
+
+a:hover {
+  color: #EAE5C8FF;
+}
+
+a:active {
+  color: $font-color;
+}
+
 h1 {
   font-weight: bold !important;
   border-bottom: 1px solid $font-color;
