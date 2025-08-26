@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
     {
       displayName: 'Twitch Bot',
       description: 'The nullinside anti-bot Twitch bot.',
-      url: 'twitch-bot',
+      url: 'twitch/bot',
       params: undefined
     }
   ];

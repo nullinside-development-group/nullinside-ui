@@ -17,9 +17,10 @@ export const routes: Routes = [
   {path: 'user/auth', component: LoginComponent},
   {path: 'user/login', component: LoginLandingComponent},
   {path: 'user/login/desktop', component: LoginLandingDesktopComponent},
+  {path: 'home', component: HomeComponent}, // For google redirect
   {path: 'vm-admin', component: VmManagerComponent, canActivate: [authGuard]},
-  {path: 'twitch-bot', component: TwitchBotIndexComponent},
-  {path: 'twitch-bot/config', component: TwitchBotConfigComponent},
+  {path: 'twitch/bot', component: TwitchBotIndexComponent},
+  {path: 'twitch/bot/config', component: TwitchBotConfigComponent},
   {path: 'imdb-search', component: ImdbSearchComponent},
   {path: '**', component: NotFoundComponent},
 ];

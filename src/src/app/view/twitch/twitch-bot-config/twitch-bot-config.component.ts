@@ -76,7 +76,7 @@ export class TwitchBotConfigComponent implements OnInit, OnDestroy {
         // request from their tokens.
         const token = params.get('token');
         if (!token) {
-          this.router.navigate(['twitch-bot']);
+          this.router.navigate(['twitch/bot']);
           return;
         }
 
