@@ -6,6 +6,7 @@ import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {environment} from "../../../environments/environment";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Errors} from "./errors";
+import {AuthService} from "../../service/auth.service";
 
 @Component({
   selector: 'app-login-landing',
@@ -17,6 +18,7 @@ import {Errors} from "./errors";
   styleUrl: './login-landing.component.scss'
 })
 export class LoginLandingComponent implements OnInit, OnDestroy {
+  private auth = inject(AuthService);
   private api = inject(NullinsideService);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
@@ -53,9 +55,10 @@ export class LoginLandingComponent implements OnInit, OnDestroy {
           return;
         }
 
-        this.api.validateToken(token).subscribe({
+        const oauth = JSON.parse(atob(token));
+        this.auth.validateToken(oauth.AccessToken).subscribe({
           next: _ => {
-            localStorage.setItem('auth-token', token);
+            this.auth.setToken(oauth);
             this.router.navigate(['/home']);
           },
           error: (_: HttpErrorResponse) => {
@@ -70,7 +73,7 @@ export class LoginLandingComponent implements OnInit, OnDestroy {
   }
 
   onLoginFailed(message = ':( Failed to login, please try again', redirect = true): void {
-    localStorage.removeItem('auth-token');
+    this.auth.clearToken();
     this.error = message;
 
     if (redirect) {

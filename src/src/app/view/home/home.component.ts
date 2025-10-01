@@ -1,5 +1,4 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {NullinsideService} from "../../service/nullinside.service";
 import {VM_ADMIN} from "../../common/constants";
 import {WebsiteApp} from "../../common/interface/website-app";
 import {Router} from '@angular/router';
@@ -7,6 +6,7 @@ import {StandardBannerComponent} from '../../common/components/standard-banner/s
 import {LoadingIconComponent} from "../../common/components/loading-icon/loading-icon.component";
 import {catchError, forkJoin, Observable, of} from "rxjs";
 import {UserRolesResponse} from "../../common/interface/user-roles-response";
+import {AuthService} from "../../service/auth.service";
 
 @Component({
   selector: 'app-home',
@@ -18,7 +18,7 @@ import {UserRolesResponse} from "../../common/interface/user-roles-response";
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
-  private api = inject(NullinsideService);
+  private auth = inject(AuthService);
   private router = inject(Router);
 
   public roles: string[] | null = null;
@@ -42,12 +42,12 @@ export class HomeComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    this.userIsLoggedIn = null !== localStorage.getItem('auth-token');
+    this.userIsLoggedIn = null !== this.auth.getToken();
 
     forkJoin({
       // We don't care if the roles don't exist. This is only for authed users. So catch the error if there is one.
-      user: this.api.getUserRoles().pipe(catchError(_ => of({roles: []}))) as Observable<UserRolesResponse>,
-      featureToggles: this.api.getFeatureToggles()
+      user: this.auth.getUserRoles().pipe(catchError(_ => of({roles: []}))) as Observable<UserRolesResponse>,
+      featureToggles: this.auth.getFeatureToggles()
     })
       .subscribe({
         next: response => {

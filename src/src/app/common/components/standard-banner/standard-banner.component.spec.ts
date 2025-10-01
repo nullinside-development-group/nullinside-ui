@@ -1,6 +1,8 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {StandardBannerComponent} from './standard-banner.component';
+import {provideHttpClientTesting} from '@angular/common/http/testing';
+import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 
 describe('StandardBannerComponent', () => {
   let component: StandardBannerComponent;
@@ -8,7 +10,8 @@ describe('StandardBannerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [StandardBannerComponent]
+      imports: [StandardBannerComponent],
+      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
     })
       .compileComponents();
 

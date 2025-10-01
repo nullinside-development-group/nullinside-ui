@@ -1,6 +1,8 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {BackgroundWebglExampleComponent} from './background-webgl-example.component';
+import {provideHttpClientTesting} from '@angular/common/http/testing';
+import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 
 describe('BackgroundWebglExampleComponent', () => {
   let component: BackgroundWebglExampleComponent;
@@ -8,7 +10,8 @@ describe('BackgroundWebglExampleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BackgroundWebglExampleComponent]
+      imports: [BackgroundWebglExampleComponent],
+      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
     })
       .compileComponents();
 

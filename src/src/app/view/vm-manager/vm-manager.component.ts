@@ -49,6 +49,7 @@ export class VmManagerComponent implements OnInit, OnDestroy {
     this.api.getVirtualMachines()
       .subscribe({
         next: vms => {
+          this.error = null;
           const actionableVms: ActionableDockerResource[] = [];
           vms.forEach(vms => {
             const existing = this.vms?.find(v => v.id === vms.id);
