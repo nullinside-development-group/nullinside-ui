@@ -86,6 +86,27 @@ export class TwitchBotConfigComponent implements OnInit, OnDestroy {
         this.auth.validateToken(oauth.AccessToken).subscribe({
           next: _ => {
             this.auth.setToken(oauth);
+
+            // Check if the bot account is modded. If it isn't, we can offer to mod it.
+            this.twitchBotApi.getIsMod().subscribe({
+              next: response => {
+                this.botIsMod = response.isMod;
+              },
+              error: err => {
+                this.botIsMod = false;
+                this.error = 'Unable to determine if nullinside is a mod in your channel';
+                console.log(err);
+              }
+            });
+
+            // Get the person's existing configuration.
+            this.twitchBotApi.getConfig().subscribe({
+              next: response => {
+                this.botEnabled = response.isEnabled;
+                this.banKnownBots = response.banKnownBots;
+              },
+              error: err => console.error(err)
+            });
           },
           error: (_: HttpErrorResponse) => {
             this.onLoginFailed();
@@ -97,27 +118,6 @@ export class TwitchBotConfigComponent implements OnInit, OnDestroy {
         // make this unnecessary.
         const url = this.router.createUrlTree([], {relativeTo: this.route}).toString();
         this.location.go(url);
-
-        // Check if the bot account is modded. If it isn't, we can offer to mod it.
-        this.twitchBotApi.getIsMod().subscribe({
-          next: response => {
-            this.botIsMod = response.isMod;
-          },
-          error: err => {
-            this.botIsMod = false;
-            this.error = 'Unable to determine if nullinside is a mod in your channel';
-            console.log(err);
-          }
-        });
-
-        // Get the person's existing configuration.
-        this.twitchBotApi.getConfig().subscribe({
-          next: response => {
-            this.botEnabled = response.isEnabled;
-            this.banKnownBots = response.banKnownBots;
-          },
-          error: err => console.error(err)
-        });
       },
       error: (_: HttpErrorResponse) => {
         this.onLoginFailed();
