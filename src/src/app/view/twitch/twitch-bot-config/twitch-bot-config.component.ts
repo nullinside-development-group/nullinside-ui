@@ -14,6 +14,7 @@ import {TwitchBotFaqComponent} from "../twitch-bot-faq/twitch-bot-faq.component"
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {FormsModule} from "@angular/forms";
 import {Location} from "@angular/common";
+import {AuthService} from "../../../service/auth.service";
 
 @Component({
   selector: 'app-twitch-bot-config',
@@ -31,6 +32,7 @@ import {Location} from "@angular/common";
 })
 export class TwitchBotConfigComponent implements OnInit, OnDestroy {
   private twitchBotApi = inject(NullinsideTwitchBotService);
+  private auth = inject(AuthService);
   private api = inject(NullinsideService);
   private snackBar = inject(MatSnackBar);
   private location = inject(Location);
@@ -80,9 +82,11 @@ export class TwitchBotConfigComponent implements OnInit, OnDestroy {
           return;
         }
 
-        // Save the token and make sure its valid.
-        localStorage.setItem('auth-token', token);
-        this.api.validateToken(token).subscribe({
+        const oauth = JSON.parse(atob(token));
+        this.auth.validateToken(oauth.AccessToken).subscribe({
+          next: _ => {
+            this.auth.setToken(oauth);
+          },
           error: (_: HttpErrorResponse) => {
             this.onLoginFailed();
           }
@@ -122,7 +126,7 @@ export class TwitchBotConfigComponent implements OnInit, OnDestroy {
   }
 
   onLoginFailed(message = ':( Failed to login, please try again', redirect = true): void {
-    localStorage.removeItem('auth-token');
+    this.auth.clearToken();
     this.error = message;
 
     if (redirect) {

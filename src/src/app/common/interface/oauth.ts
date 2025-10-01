@@ -1,5 +1,5 @@
 export interface OAuth {
-  bearer: string,
-  refresh: string,
-  expiresUtc: string
+  AccessToken: string,
+  RefreshToken: string,
+  ExpiresUtc: string
 }
