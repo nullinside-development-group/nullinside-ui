@@ -9,7 +9,7 @@ USER root
 SHELL ["/bin/bash", "--login", "-c"]
 
 # Update the software
-RUN apt-get update && apt-get install -y ca-certificates curl gnupg software-properties-common
+RUN apt-get update && apt-get install -y ca-certificates curl gnupg
 
 # Setup the NVM variables
 ENV NVM_DIR=/usr/local/nvm
