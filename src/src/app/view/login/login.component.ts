@@ -7,6 +7,7 @@ import {LoadingIconComponent} from "../../common/components/loading-icon/loading
 import {HttpErrorResponse} from '@angular/common/http';
 import {TwitchLoginComponent} from '../../common/components/twitch-login/twitch-login.component';
 import {AuthService} from "../../service/auth.service";
+import {Meta, Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-login',
@@ -23,6 +24,8 @@ export class LoginComponent implements OnInit {
   private api = inject(NullinsideService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
+  private metaService: Meta = inject(Meta);
+  private titleService: Title = inject(Title);
 
   loginUrl: string;
   checkingLogin = false;
@@ -33,6 +36,8 @@ export class LoginComponent implements OnInit {
 
   constructor() {
     this.loginUrl = `${environment.apiUrl}/user/login`;
+    this.metaService.updateTag({name: 'description', content: 'Login for access'});
+    this.titleService.setTitle("Login");
   }
 
   ngOnInit(): void {

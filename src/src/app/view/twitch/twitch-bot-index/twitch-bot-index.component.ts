@@ -1,8 +1,9 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {StandardBannerComponent} from '../../../common/components/standard-banner/standard-banner.component';
 import {TwitchLoginComponent} from '../../../common/components/twitch-login/twitch-login.component';
 import {TwitchBotFaqComponent} from "../twitch-bot-faq/twitch-bot-faq.component";
 import {environment} from "../../../../environments/environment";
+import {Meta, Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-twitch-bot-index',
@@ -16,4 +17,14 @@ import {environment} from "../../../../environments/environment";
 })
 export class TwitchBotIndexComponent {
   protected readonly environment = environment;
+  private metaService: Meta = inject(Meta);
+  private titleService: Title = inject(Title);
+
+  constructor() {
+    this.metaService.updateTag({
+      name: 'description',
+      content: 'Login with your twitch account to get started with the nullinside bot!'
+    });
+    this.titleService.setTitle("nullinside Twitch Bot");
+  }
 }
