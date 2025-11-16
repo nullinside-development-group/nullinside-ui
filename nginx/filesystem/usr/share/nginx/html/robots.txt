@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /null/*
+Disallow: /twitch-bot/*
+Disallow: /imdb-search/*
+
+Sitemap: https://nullinside.com/sitemap.xml
