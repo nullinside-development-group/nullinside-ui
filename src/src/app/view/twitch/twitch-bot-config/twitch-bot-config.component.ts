@@ -157,10 +157,6 @@ export class TwitchBotConfigComponent implements OnInit, OnDestroy {
 
   saveConfig() {
     this.waitingForSave = true;
-    console.log({
-      isEnabled: this.botEnabled,
-      banKnownBots: this.banKnownBots
-    })
     this.twitchBotApi.setConfig({
       isEnabled: this.botEnabled,
       banKnownBots: this.banKnownBots

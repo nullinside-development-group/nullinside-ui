@@ -26,7 +26,6 @@ export class AuthService {
   }
 
   setToken(token: OAuth): void {
-    console.log('Setting token', token);
     this.oauth = token;
     localStorage.setItem('auth-AccessToken', token.AccessToken);
     localStorage.setItem('auth-RefreshToken', token.RefreshToken);
@@ -34,13 +33,10 @@ export class AuthService {
   }
 
   getToken(): string | null {
-    console.log('Getting token', this.oauth);
-    console.log('Getting token', this.oauth?.AccessToken);
     return this.oauth?.AccessToken ?? null;
   }
 
   clearToken(): void {
-    console.log('Clearing token');
     this.oauth = null;
     localStorage.removeItem('auth-AccessToken');
     localStorage.removeItem('auth-RefreshToken');
