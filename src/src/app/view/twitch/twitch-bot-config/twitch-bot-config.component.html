@@ -5,7 +5,7 @@
 @if (false === botIsMod) {
   <div class="error-banner">nullinside is not a mod in your channel
     @if (!waitingForModReply) {
-      <button mat-raised-button color="primary" (click)="modBot()" type="button">Mod Bot</button>
+      <button mat-stroked-button color="primary" (click)="modBot()" type="button">Mod Bot</button>
     } @else {
       <app-loading-icon fontSize="24px" height="30px" width="30px"></app-loading-icon>
     }
@@ -36,7 +36,7 @@
   </div>
   <div class="save">
     @if (!waitingForSave) {
-      <button mat-raised-button color="primary" (click)="saveConfig()" type="button">Save</button>
+      <button mat-stroked-button color="primary" (click)="saveConfig()" type="button">Save</button>
     } @else {
       <app-loading-icon fontSize="24px" height="30px" width="30px"></app-loading-icon>
     }

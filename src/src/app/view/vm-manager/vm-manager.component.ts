@@ -1,7 +1,7 @@
 import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {LogoComponent} from '../../common/components/logo/logo.component';
 import {NullinsideService} from '../../service/nullinside.service';
-import {MatIcon} from '@angular/material/icon';
+import {MatIconModule} from '@angular/material/icon';
 import {MatTooltip} from '@angular/material/tooltip';
 import {LoadingIconComponent} from '../../common/components/loading-icon/loading-icon.component';
 import {interval, Subscription} from 'rxjs';
@@ -11,7 +11,7 @@ import {ActionableDockerResource} from './interface/ActionableDockerResource';
   selector: 'app-vm-manager',
   imports: [
     LogoComponent,
-    MatIcon,
+    MatIconModule,
     MatTooltip,
     LoadingIconComponent
   ],
