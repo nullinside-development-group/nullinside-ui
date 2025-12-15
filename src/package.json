@@ -38,8 +38,8 @@
     "@angular/cli": "^21.0.3",
     "@angular/compiler-cli": "^21.0.5",
     "@types/jasmine": "~5.1.13",
-    "@typescript-eslint/eslint-plugin": "^8.49.0",
-    "@typescript-eslint/parser": "^8.49.0",
+    "@typescript-eslint/eslint-plugin": "^8.50.0",
+    "@typescript-eslint/parser": "^8.50.0",
     "eslint": "^9.39.2",
     "jasmine-core": "~5.13.0",
     "karma": "~6.4.4",
@@ -51,6 +51,6 @@
     "webpack-dev-middleware": ">=7.4.5"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "^4.53.3"
+    "@rollup/rollup-linux-x64-gnu": "^4.53.4"
   }
 }
