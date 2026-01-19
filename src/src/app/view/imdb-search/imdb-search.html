@@ -1,0 +1,25 @@
+<div class="layout-logo-box">
+  <app-logo/>
+</div>
+
+<form>
+  <mat-form-field>
+    <mat-label>Type Movie or Series Title</mat-label>
+    <input (keydown.enter)="$event.preventDefault(); onSearch(input.value)" matInput placeholder="Ex. Mean Girls"
+           #input>
+  </mat-form-field>
+  @if (!searching()) {
+    <button mat-stroked-button color="primary" (click)="onSearch(input.value)" type="button">Search</button>
+  } @else {
+    <app-loading-icon fontSize="24px" height="30px" width="30px"></app-loading-icon>
+  }
+</form>
+
+<div>
+  @for (row of rows(); track row.id) {
+    <div>
+      <a href="https://www.imdb.com/title/{{row.imdbId}}">{{ row.imdbId }}</a>: {{ row.primaryTitle }}
+      ({{ row.startYear }})
+    </div>
+  }
+</div>

@@ -1,0 +1,12 @@
+<div class="layout-logo-box">
+  <app-logo/>
+  @if (userIsLoggedIn()) {
+    <div class="logout-button">
+      <button mat-stroked-button color="primary" (click)="onLogout()">Logout</button>
+    </div>
+  } @else {
+    <div class="logout-button">
+      <button mat-stroked-button color="primary" (click)="onLogin()">Login</button>
+    </div>
+  }
+</div>
