@@ -5,6 +5,7 @@ import {OAuth} from "../common/interface/oauth";
 import {environment} from "../../environments/environment";
 import {UserRolesResponse} from "../common/interface/user-roles-response";
 import {FeatureToggleResponse} from "../common/interface/feature-toggle-response";
+import {CookieService} from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,24 +13,23 @@ import {FeatureToggleResponse} from "../common/interface/feature-toggle-response
 export class Auth {
   private httpClient = inject(HttpClient);
   private oauth: OAuth | null = null;
+  private cookieService = inject(CookieService);
 
   constructor() {
-    this.oauth = {
-      AccessToken: localStorage.getItem('auth-AccessToken') ?? '',
-      RefreshToken: localStorage.getItem('auth-RefreshToken') ?? '',
-      ExpiresUtc: localStorage.getItem('auth-ExpiresUtc') ?? ''
-    };
+    const rawCookie = this.cookieService.get('token');
+    if (rawCookie) {
+      this.oauth = JSON.parse(rawCookie);
+    }
 
-    if (!this.oauth.AccessToken) {
+    if (!this.oauth?.AccessToken) {
       this.oauth = null;
     }
   }
 
   setToken(token: OAuth): void {
     this.oauth = token;
-    localStorage.setItem('auth-AccessToken', token.AccessToken);
-    localStorage.setItem('auth-RefreshToken', token.RefreshToken);
-    localStorage.setItem('auth-ExpiresUtc', token.ExpiresUtc);
+
+    this.cookieService.set('token', JSON.stringify(token), {secure: true, sameSite: 'Strict'});
   }
 
   getToken(): string | null {
@@ -38,9 +38,7 @@ export class Auth {
 
   clearToken(): void {
     this.oauth = null;
-    localStorage.removeItem('auth-AccessToken');
-    localStorage.removeItem('auth-RefreshToken');
-    localStorage.removeItem('auth-ExpiresUtc');
+    this.cookieService.delete('token');
   }
 
   getOAuth(): OAuth | null {
