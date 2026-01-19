@@ -24,7 +24,7 @@ export class LoginLanding implements OnInit, OnDestroy {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
 
-  timerId: number = -1;
+  timerId = -1;
   error: WritableSignal<string> = signal('');
 
   ngOnDestroy(): void {

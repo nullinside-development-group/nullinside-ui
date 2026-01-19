@@ -1,12 +1,10 @@
-import {inject, Injectable} from '@angular/core';
-import {HttpEvent, HttpHandler, HttpInterceptorFn, HttpRequest} from '@angular/common/http';
+import {inject} from '@angular/core';
+import {HttpInterceptorFn} from '@angular/common/http';
 
-import {Observable} from 'rxjs';
 import {environment} from "../../environments/environment";
 import {Auth} from "../service/auth";
 
 export const bearerTokenInterceptor: HttpInterceptorFn = (req, next) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const url = req.url.toLowerCase().replace('https://www.', 'https://');
   const authService: Auth = inject(Auth);
 

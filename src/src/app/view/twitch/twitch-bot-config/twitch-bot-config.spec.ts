@@ -1,7 +1,7 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {TwitchBotConfig} from './twitch-bot-config';
-import {provideRouter, Router} from '@angular/router';
+import {provideRouter} from '@angular/router';
 
 describe('TwitchBotConfig', () => {
   let component: TwitchBotConfig;

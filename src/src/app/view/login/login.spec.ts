@@ -1,7 +1,7 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {Login} from './login';
-import {provideRouter, Router} from '@angular/router';
+import {provideRouter} from '@angular/router';
 
 describe('Login', () => {
   let component: Login;
