@@ -16,7 +16,8 @@ export class Auth {
   private cookieService = inject(CookieService);
 
   constructor() {
-    const rawCookie = this.cookieService.get('token');
+    const rawCookie = this.cookieService.get('nullinside-token');
+    console.log("Cookie: " + rawCookie);
     if (rawCookie) {
       this.oauth = JSON.parse(rawCookie);
     }
@@ -28,8 +29,7 @@ export class Auth {
 
   setToken(token: OAuth): void {
     this.oauth = token;
-
-    this.cookieService.set('token', JSON.stringify(token), {secure: true, sameSite: 'Strict'});
+    this.cookieService.set('nullinside-token', JSON.stringify(token), {expires: 365, path: '/'});
   }
 
   getToken(): string | null {
@@ -38,7 +38,7 @@ export class Auth {
 
   clearToken(): void {
     this.oauth = null;
-    this.cookieService.delete('token');
+    this.cookieService.delete('nullinside-token');
   }
 
   getOAuth(): OAuth | null {
