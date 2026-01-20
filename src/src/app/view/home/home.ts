@@ -70,6 +70,7 @@ export class Home implements OnInit {
           this.loading.set(false);
         },
         error: _ => {
+          console.log(_);
           this.error.set('Failed to get list of apps from the server, please refresh to try again...');
           this.loading.set(false);
         }
