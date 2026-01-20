@@ -8,7 +8,7 @@ import {bearerTokenInterceptor} from "./middleware/bearer-token-interceptor";
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS} from "@angular/material/snack-bar";
 
 export const noopInterceptorProvider: Provider =
-  {provide: HTTP_INTERCEPTORS, useFactory: bearerTokenInterceptor, multi: true};
+  {provide: HTTP_INTERCEPTORS, useExisting: bearerTokenInterceptor, multi: true};
 
 export const materialSnackbarDefaults: Provider =
   {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 5 * 1000}};
