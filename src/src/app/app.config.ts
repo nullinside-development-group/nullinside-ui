@@ -2,7 +2,6 @@ import {ApplicationConfig, provideBrowserGlobalErrorListeners, Provider} from '@
 import {provideRouter} from '@angular/router';
 
 import {routes} from './app.routes';
-import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 import {provideHttpClient, withInterceptors} from "@angular/common/http";
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS} from "@angular/material/snack-bar";
 import {bearerTokenInterceptor} from './middleware/bearer-token-interceptor';
@@ -13,7 +12,6 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-    provideAnimationsAsync(),
     provideHttpClient(withInterceptors([bearerTokenInterceptor])),
     materialSnackbarDefaults
   ]
