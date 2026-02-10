@@ -27,9 +27,7 @@ jobs:
       - name: Install NodeJS
         uses: actions/setup-node@v4
         with:
-          node-version: 'lts/iron'
-      - name: Install Chrome
-        uses: browser-actions/setup-chrome@v1
+          node-version: 'lts/krypton'
 
       # Checkout the code
       - name: Checkout repository
@@ -51,7 +49,7 @@ jobs:
       - name: Install NodeJS
         uses: actions/setup-node@v4
         with:
-          node-version: 'lts/iron'
+          node-version: 'lts/krypton'
 
       # Checkout the code
       - name: Checkout repository
@@ -96,7 +94,7 @@ jobs:
     - name: Install NodeJS
       uses: actions/setup-node@v4
       with:
-        node-version: 'lts/iron'
+        node-version: 'lts/krypton'
 
     # Checkout the code
     - name: Checkout repository
