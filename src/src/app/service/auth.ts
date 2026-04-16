@@ -29,7 +29,7 @@ export class Auth {
 
   setToken(token: OAuth): void {
     this.oauth = token;
-    this.cookieService.set('nullinside-token', JSON.stringify(token), {expires: 365, path: '/'});
+    this.cookieService.set('nullinside-token', JSON.stringify(token), {expires: 365, path: '/', sameSite: 'Strict'});
   }
 
   getToken(): string | null {
