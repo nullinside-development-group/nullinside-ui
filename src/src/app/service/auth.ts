@@ -17,7 +17,6 @@ export class Auth {
 
   constructor() {
     const rawCookie = this.cookieService.get('nullinside-token');
-    console.log("Cookie: " + rawCookie);
     if (rawCookie) {
       this.oauth = JSON.parse(rawCookie);
     }

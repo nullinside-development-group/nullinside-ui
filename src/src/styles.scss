@@ -40,6 +40,18 @@ body {
 
   // Reset the user agent margin.
   margin: 0;
+
+  // The styles when hovering or when certain controls have focus are white, without this.
+  --mat-sys-on-surface-variant: $font-color;
+  --mat-sys-on-surface: $font-color;
+  --mat-sys-primary: $font-color;
+  --mdc-outlined-text-field-focus-label-text-color: $font-color;
+  --mdc-outlined-text-field-focus-outline-color: $font-color;
+  --mdc-outlined-text-field-hover-label-text-color: $font-color;
+  --mdc-outlined-text-field-hover-outline-color: $font-color;
+  --mdc-outlined-text-field-input-text-color: $font-color;
+  --mdc-outlined-text-field-hover-input-text-color: $font-color;
+  --mat-button-tonal-disabled-container-color: #4a4a4a;
 }
 
 /************************************************************/
@@ -222,3 +234,4 @@ body {
   --mat-mdc-snack-bar-button-color: $font-color;
   --mdc-snackbar-supporting-text-color: $font-color;
 }
+
