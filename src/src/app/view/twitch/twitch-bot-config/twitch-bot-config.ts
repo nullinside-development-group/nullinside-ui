@@ -19,7 +19,6 @@ import {Auth} from "../../../service/auth";
 @Component({
   selector: 'app-twitch-bot-config',
   imports: [
-    Logo,
     MatButton,
     LoadingIcon,
     MatSlideToggle,

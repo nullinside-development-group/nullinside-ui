@@ -1,7 +1,4 @@
 <div class="centered-box">
-  <div class="centered-box_logo-container">
-    <app-logo/>
-  </div>
   <div class="centered-box_content-container" [hidden]="checkingLogin() || !showGmail()">
     <!-- data-login_uri: Below needs to be hard coded due to how the injection of the Google javascript works.
                          If you attach it to a backing field the data doesn't correctly propagate to the inner iframe

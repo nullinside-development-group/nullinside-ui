@@ -11,7 +11,6 @@ import {Auth} from "../../service/auth";
 @Component({
   selector: 'app-login-landing',
   imports: [
-    Logo,
     LoadingIcon
   ],
   templateUrl: './login-landing.html',

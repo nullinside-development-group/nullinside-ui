@@ -17,6 +17,7 @@ html {
   @include mat.theme((
     color: (
       primary: theme.$primary-palette,
+      secondary: theme.$secondary-palette,
       tertiary: theme.$tertiary-palette,
     ),
     typography: Roboto,
@@ -150,6 +151,7 @@ body {
 /* A NORMAL, TITLE WITH CONTENT LAYOUT (NO MENU)            */
 /************************************************************/
 .layout-logo-box {
+  text-align: right;
   height: 60px;
   padding-top: 10px;
   padding-left: 5px;

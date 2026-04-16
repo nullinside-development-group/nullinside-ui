@@ -26,22 +26,22 @@ $_palettes: (
     100: #414039,
   ),
   secondary: (
-    0: #000000,
-    10: #1f1731,
-    20: #342c47,
-    25: #403753,
-    30: #4b425f,
-    35: #574e6b,
-    40: #635978,
-    50: #7d7292,
-    60: #978bac,
-    70: #b2a6c8,
-    80: #cdc1e4,
-    90: #eaddff,
-    95: #f6edff,
-    98: #fef7ff,
-    99: #fffbff,
-    100: #ffffff,
+    0: #ffffff,
+    10: #ffffff,
+    20: #e8eaf6,
+    25: #fdf9da,
+    30: #f1edcf,
+    35: #dedabf,
+    40: #dad6bc,
+    50: $font-color,
+    60: #a9a692,
+    70: #a9a692,
+    80: #a9a692,
+    90: #2c2b26,
+    95: #2c2b26,
+    98: #2c2b26,
+    99: #2c2b26,
+    100: #2c2b26,
   ),
   tertiary: (
     0: #000000,
@@ -135,4 +135,5 @@ $_rest: (
 );
 
 $primary-palette: map.merge(map.get($_palettes, primary), $_rest);
+$secondary-palette: map.merge(map.get($_palettes, secondary), $_rest);
 $tertiary-palette: map.merge(map.get($_palettes, tertiary), $_rest);

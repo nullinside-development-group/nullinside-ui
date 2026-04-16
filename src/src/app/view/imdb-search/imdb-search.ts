@@ -11,7 +11,6 @@ import {ImdbSearchItems} from '../../common/interface/imdb-search';
 @Component({
   selector: 'app-imdb-search',
   imports: [
-    Logo,
     MatFormFieldModule,
     MatInput,
     MatButton,

@@ -9,7 +9,6 @@ import {OpenGlBackgrounds} from "./backgrounds";
   selector: 'app-background-webgl-example',
   imports: [
     BackgroundWebgl,
-    StandardBanner,
     MatButton,
     MatMenu,
     MatMenuItem,

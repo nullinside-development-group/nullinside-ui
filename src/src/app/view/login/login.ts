@@ -12,7 +12,6 @@ import {Meta, Title} from "@angular/platform-browser";
 @Component({
   selector: 'app-login',
   imports: [
-    Logo,
     LoadingIcon,
     TwitchLogin
   ],

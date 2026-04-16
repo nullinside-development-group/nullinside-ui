@@ -11,7 +11,6 @@ import {Auth} from "../../service/auth";
 @Component({
   selector: 'app-home',
   imports: [
-    StandardBanner,
     LoadingIcon
   ],
   templateUrl: './home.html',

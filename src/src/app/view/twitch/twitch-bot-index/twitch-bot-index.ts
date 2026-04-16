@@ -8,7 +8,6 @@ import {Meta, Title} from '@angular/platform-browser';
 @Component({
   selector: 'app-twitch-bot-index',
   imports: [
-    StandardBanner,
     TwitchLogin,
     TwitchBotFaq
   ],

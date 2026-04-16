@@ -10,7 +10,6 @@ import {ActionableDockerResource} from '../../common/interface/actionable-docker
 @Component({
   selector: 'app-vm-manager',
   imports: [
-    Logo,
     MatIconModule,
     MatTooltip,
     LoadingIcon
