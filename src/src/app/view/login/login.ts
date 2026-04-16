@@ -22,18 +22,15 @@ import {Meta, Title} from "@angular/platform-browser";
 })
 export class Login implements OnInit {
   private auth = inject(Auth);
-  private api = inject(Nullinside);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
   private metaService: Meta = inject(Meta);
   private titleService: Title = inject(Title);
 
-  checkingLogin = signal(false);
-  showGmail = signal(true);
-  loginUrl: string;
-  pageDestinations = [
-    '/home'
-  ];
+  public checkingLogin = signal(false);
+  public showGmail = signal(true);
+  public loginUrl: string;
+  private redirect: string | null = null;
 
   constructor() {
     this.loginUrl = `${environment.apiUrl}/user/login`;
@@ -46,6 +43,12 @@ export class Login implements OnInit {
       next: (params: ParamMap) => {
         const showGmail = params.get('showGmail');
         this.showGmail.set(null === showGmail || '1' === showGmail);
+        this.redirect = params.get('redirect');
+        if (null !== this.redirect) {
+          window.localStorage.setItem('login-redirect', this.redirect || '');
+        } else {
+          window.localStorage.removeItem('login-redirect');
+        }
       },
       error: (err: HttpErrorResponse) => {
         console.log(err);
@@ -61,7 +64,7 @@ export class Login implements OnInit {
     this.auth.validateToken(token || '')
       .subscribe({
         next: _ => {
-          this.router.navigate([this.pageDestinations[0]]);
+          this.router.navigate([null !== this.redirect ? this.redirect : '/home']);
         },
         error: _ => {
           this.checkingLogin.set(false);

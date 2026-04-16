@@ -60,7 +60,10 @@ export class LoginLanding implements OnInit, OnDestroy {
         this.auth.validateToken(oauth.AccessToken).subscribe({
           next: _ => {
             this.auth.setToken(oauth);
-            this.router.navigate(['/home']);
+
+            const redirect = window.localStorage.getItem('login-redirect');
+            window.localStorage.removeItem('login-redirect');
+            this.router.navigate([null !== redirect ? redirect : '/home']);
           },
           error: (_: HttpErrorResponse) => {
             this.onLoginFailed();
