@@ -11,6 +11,7 @@ import {ImdbSearch} from './view/imdb-search/imdb-search';
 import {BackgroundWebglExample} from "./view/background-webgl-example/background-webgl-example";
 import {LoginLandingDesktop} from "./view/login-landing-desktop/login-landing-desktop";
 import {ContactUs} from './view/contact-us/contact-us';
+import {ContactUsNewFeedback} from './view/contact-us-new-feedback/contact-us-new-feedback';
 
 export const routes: Routes = [
   {path: '', component: Home},
@@ -21,6 +22,7 @@ export const routes: Routes = [
   {path: 'home', component: Home}, // For google redirect
   {path: 'vm-admin', component: VmManager, canActivate: [authGuard]},
   {path: 'contact-us', component: ContactUs, canActivate: [authGuard]},
+  {path: 'contact-us/feedback', component: ContactUsNewFeedback, canActivate: [authGuard]},
   {path: 'twitch/bot', component: TwitchBotIndex},
   {path: 'twitch/bot/config', component: TwitchBotConfig},
   {path: 'imdb-search', component: ImdbSearch},
