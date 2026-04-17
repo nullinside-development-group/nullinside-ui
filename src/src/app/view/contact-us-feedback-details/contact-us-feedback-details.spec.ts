@@ -1,6 +1,8 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {ContactUsFeedbackDetails} from './contact-us-feedback-details';
+import {ActivatedRoute} from '@angular/router';
+import {of} from 'rxjs';
 
 describe('ContactUsFeedbackDetails', () => {
   let component: ContactUsFeedbackDetails;
@@ -8,7 +10,20 @@ describe('ContactUsFeedbackDetails', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ContactUsFeedbackDetails]
+      imports: [ContactUsFeedbackDetails],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            queryParams: of({}),
+            snapshot: {
+              paramMap: {
+                get: (_: string) => null
+              }
+            }
+          }
+        }
+      ]
     })
       .compileComponents();
 
