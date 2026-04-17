@@ -1,0 +1,39 @@
+.container {
+  min-width: 500px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header {
+  padding: 0 10px;
+  text-align: justify;
+}
+
+.header > h2 {
+  text-align: center;
+}
+
+.form {
+  padding: 10px;
+}
+
+.fillable {
+  width: 100%;
+}
+
+.message {
+  height: 100%;
+}
+
+.text-area {
+  min-height: 300px;
+  max-height: 300px;
+}
+
+.error-banner {
+  border-radius: 5px;
+  margin: 0 10px;
+  width: auto;
+  font-size: 20px;
+}

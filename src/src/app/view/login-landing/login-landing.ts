@@ -1,6 +1,5 @@
 import {Component, inject, OnDestroy, OnInit, signal, WritableSignal} from '@angular/core';
 import {Nullinside} from "../../service/nullinside";
-import {Logo} from "../../common/components/logo/logo";
 import {LoadingIcon} from "../../common/components/loading-icon/loading-icon";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {environment} from "../../../environments/environment";
@@ -11,7 +10,6 @@ import {Auth} from "../../service/auth";
 @Component({
   selector: 'app-login-landing',
   imports: [
-    Logo,
     LoadingIcon
   ],
   templateUrl: './login-landing.html',
@@ -60,7 +58,10 @@ export class LoginLanding implements OnInit, OnDestroy {
         this.auth.validateToken(oauth.AccessToken).subscribe({
           next: _ => {
             this.auth.setToken(oauth);
-            this.router.navigate(['/home']);
+
+            const redirect = window.localStorage.getItem('login-redirect');
+            window.localStorage.removeItem('login-redirect');
+            this.router.navigate([null !== redirect ? redirect : '/home']);
           },
           error: (_: HttpErrorResponse) => {
             this.onLoginFailed();

@@ -1,12 +1,15 @@
 <div class="layout-logo-box">
   <app-logo/>
+  <div class="buttons">
+    <button mat-stroked-button color="primary" (click)="onContactUs()">Contact Us</button>
+  </div>
   @if (userIsLoggedIn()) {
-    <div class="logout-button">
-      <button mat-stroked-button color="primary" (click)="onLogout()">Logout</button>
+    <div class="buttons">
+      <button matButton="tonal" (click)="onLogout()">Logout</button>
     </div>
   } @else {
-    <div class="logout-button">
-      <button mat-stroked-button color="primary" (click)="onLogin()">Login</button>
+    <div class="buttons">
+      <button matButton="tonal" (click)="onLogin()">Login</button>
     </div>
   }
 </div>

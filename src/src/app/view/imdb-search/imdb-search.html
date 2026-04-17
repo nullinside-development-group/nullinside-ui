@@ -1,9 +1,5 @@
-<div class="layout-logo-box">
-  <app-logo/>
-</div>
-
 <form>
-  <mat-form-field>
+  <mat-form-field appearance="outline">
     <mat-label>Type Movie or Series Title</mat-label>
     <input (keydown.enter)="$event.preventDefault(); onSearch(input.value)" matInput placeholder="Ex. Mean Girls"
            #input>

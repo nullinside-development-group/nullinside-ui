@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="header">
+    <h2>Feedback Details</h2>
+  </div>
+
+  @if (feedback(); as f) {
+    <div class="feedback-card">
+      <div class="feedback-header">
+        <span class="product-tag">{{ f.product }}</span>
+        <span class="timestamp">{{
+            `${f.timestamp.toLocaleDateString()} ${f.timestamp.toLocaleTimeString([], {
+              hour: '2-digit',
+              minute: '2-digit'
+            })}`
+          }}</span>
+      </div>
+      <div class="feedback-message">
+        {{ f.message }}
+      </div>
+    </div>
+
+    <div class="comments-section">
+      <h3>Comments</h3>
+      @for (comment of f.comments; track comment.id) {
+        <div class="comment-card">
+          <div class="comment-header">
+            <span class="comment-user">From: {{ comment.user }}</span>
+            <span class="comment-timestamp">{{
+                `${comment.timestamp.toLocaleDateString()} ${comment.timestamp.toLocaleTimeString([], {
+                  hour: '2-digit',
+                  minute: '2-digit'
+                })}`
+              }}</span>
+          </div>
+          <div class="comment-message">
+            {{ comment.message }}
+          </div>
+        </div>
+      } @empty {
+        <p>No comments.</p>
+      }
+    </div>
+
+    <div class="new-comment-section">
+      @if (error() !== '') {
+        <div class="error-banner">{{ error() }}</div>
+      }
+      
+      <h3>Add a Comment</h3>
+      <form [formGroup]="commentForm" (ngSubmit)="onSubmitComment()" class="form">
+        <div>
+          <mat-form-field appearance="outline" class="fillable">
+            <mat-label>Comment</mat-label>
+            <textarea class="text-area" matInput formControlName="message" cdkTextareaAutosize required></textarea>
+            @if (commentForm.get('message')?.hasError('required')) {
+              <mat-error>Please enter a comment</mat-error>
+            }
+          </mat-form-field>
+        </div>
+        <div class="center">
+          <button matButton="tonal" type="submit" [disabled]="!commentForm.valid">Post Comment</button>
+        </div>
+      </form>
+    </div>
+  } @else if (error() === '') {
+    <div class="loading">Loading feedback details...</div>
+  }
+</div>

@@ -3,14 +3,12 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatTooltip} from '@angular/material/tooltip';
 import {interval, Subscription} from 'rxjs';
 import {LoadingIcon} from '../../common/components/loading-icon/loading-icon';
-import {Logo} from '../../common/components/logo/logo';
 import {Nullinside} from '../../service/nullinside';
 import {ActionableDockerResource} from '../../common/interface/actionable-docker-resource';
 
 @Component({
   selector: 'app-vm-manager',
   imports: [
-    Logo,
     MatIconModule,
     MatTooltip,
     LoadingIcon

@@ -1,5 +1,4 @@
 import {Component, inject} from '@angular/core';
-import {StandardBanner} from '../../../common/components/standard-banner/standard-banner';
 import {TwitchLogin} from '../../../common/components/twitch-login/twitch-login';
 import {TwitchBotFaq} from "../twitch-bot-faq/twitch-bot-faq";
 import {environment} from "../../../../environments/environment";
@@ -8,7 +7,6 @@ import {Meta, Title} from '@angular/platform-browser';
 @Component({
   selector: 'app-twitch-bot-index',
   imports: [
-    StandardBanner,
     TwitchLogin,
     TwitchBotFaq
   ],

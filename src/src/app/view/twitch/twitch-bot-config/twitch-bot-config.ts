@@ -1,5 +1,4 @@
 import {Component, inject, OnDestroy, OnInit, signal, WritableSignal} from '@angular/core';
-import {Logo} from '../../../common/components/logo/logo';
 import {MatButton} from '@angular/material/button';
 import {NullinsideTwitchBot} from "../../../service/nullinside-twitch-bot";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
@@ -19,7 +18,6 @@ import {Auth} from "../../../service/auth";
 @Component({
   selector: 'app-twitch-bot-config',
   imports: [
-    Logo,
     MatButton,
     LoadingIcon,
     MatSlideToggle,

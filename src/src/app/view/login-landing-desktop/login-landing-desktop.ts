@@ -2,13 +2,9 @@ import {Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {Errors} from "./errors";
 import {HttpErrorResponse} from "@angular/common/http";
-import {Logo} from "../../common/components/logo/logo";
 
 @Component({
   selector: 'app-login-landing-desktop',
-  imports: [
-    Logo
-  ],
   templateUrl: './login-landing-desktop.html',
   styleUrl: './login-landing-desktop.scss',
   standalone: true

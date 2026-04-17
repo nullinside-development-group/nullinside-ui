@@ -17,6 +17,7 @@ html {
   @include mat.theme((
     color: (
       primary: theme.$primary-palette,
+      secondary: theme.$secondary-palette,
       tertiary: theme.$tertiary-palette,
     ),
     typography: Roboto,
@@ -39,6 +40,18 @@ body {
 
   // Reset the user agent margin.
   margin: 0;
+
+  // The styles when hovering or when certain controls have focus are white, without this.
+  --mat-sys-on-surface-variant: $font-color;
+  --mat-sys-on-surface: $font-color;
+  --mat-sys-primary: $font-color;
+  --mdc-outlined-text-field-focus-label-text-color: $font-color;
+  --mdc-outlined-text-field-focus-outline-color: $font-color;
+  --mdc-outlined-text-field-hover-label-text-color: $font-color;
+  --mdc-outlined-text-field-hover-outline-color: $font-color;
+  --mdc-outlined-text-field-input-text-color: $font-color;
+  --mdc-outlined-text-field-hover-input-text-color: $font-color;
+  --mat-button-tonal-disabled-container-color: #4a4a4a;
 }
 
 /************************************************************/
@@ -117,6 +130,17 @@ body {
   padding-bottom: 15px;
 }
 
+.success-banner {
+  font-size: 30px;
+  font-weight: bolder;
+  text-align: center;
+  color: $background-color;
+  background: #72ff72;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 15px;
+}
+
 /************************************************************/
 /* CENTERED BOX                                             */
 /* A LAYOUT WHERE EVERYTHING IS IN THE CENTER OF THE SCREEN */
@@ -150,6 +174,7 @@ body {
 /* A NORMAL, TITLE WITH CONTENT LAYOUT (NO MENU)            */
 /************************************************************/
 .layout-logo-box {
+  text-align: right;
   height: 60px;
   padding-top: 10px;
   padding-left: 5px;
@@ -220,3 +245,4 @@ body {
   --mat-mdc-snack-bar-button-color: $font-color;
   --mdc-snackbar-supporting-text-color: $font-color;
 }
+

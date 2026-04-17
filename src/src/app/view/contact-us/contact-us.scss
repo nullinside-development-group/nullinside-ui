@@ -1,0 +1,101 @@
+@use "../../common/constants" as *;
+
+.page-container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 30px;
+  padding-right: 30px;
+  max-width: 700px;
+}
+
+.page-container > h2 {
+  text-align: center;
+}
+
+.button-wrapper {
+  padding: 10px;
+  background-color: #434239;
+  text-align: right;
+  border-radius: 5px 5px 0 0;
+  border-color: $font-color;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.button-wrapper > button {
+  margin-left: 10px;
+}
+
+.feedback-wrapper {
+  margin-top: -1px;
+  padding: 10px;
+  border-radius: 0 0 5px 5px;
+  border-color: $font-color;
+  border-width: 1px;
+  border-style: solid;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.feedback-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba($font-color, 0.2);
+  border-radius: 4px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.feedback-card:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.feedback-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.1em;
+  color: $font-color;
+  padding: 0;
+  margin: 0;
+}
+
+.feedback-header > p {
+  margin: 0;
+  padding: 0;
+}
+
+.feedback-message {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: rgba($font-color, 0.8);
+}
+
+.feedback-comments {
+  text-align: right;
+}
+
+.no-feedback {
+  text-align: center;
+  color: rgba($font-color, 0.6);
+  font-style: italic;
+  margin-top: 20px;
+}
+
+.info {
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: justify;
+}
+
+.success-banner {
+  font-size: 20px;
+  margin: 10px 0;
+  border-radius: 5px;
+}
