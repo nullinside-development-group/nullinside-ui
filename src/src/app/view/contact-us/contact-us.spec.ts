@@ -1,4 +1,6 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {ActivatedRoute} from '@angular/router';
+import {of} from 'rxjs';
 
 import {ContactUs} from './contact-us';
 
@@ -8,7 +10,13 @@ describe('ContactUs', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ContactUs]
+      imports: [ContactUs],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {queryParams: of({})}
+        }
+      ]
     })
       .compileComponents();
 

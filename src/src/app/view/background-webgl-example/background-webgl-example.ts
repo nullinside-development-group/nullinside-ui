@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {BackgroundWebgl} from "../background-webgl/background-webgl";
-import {StandardBanner} from "../../common/components/standard-banner/standard-banner";
 import {MatButton} from "@angular/material/button";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 import {OpenGlBackgrounds} from "./backgrounds";

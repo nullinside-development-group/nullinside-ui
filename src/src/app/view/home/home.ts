@@ -2,7 +2,6 @@ import {Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
 import {VM_ADMIN} from "../../common/constants";
 import {WebsiteApp} from "../../common/interface/website-app";
 import {Router} from '@angular/router';
-import {StandardBanner} from '../../common/components/standard-banner/standard-banner';
 import {LoadingIcon} from "../../common/components/loading-icon/loading-icon";
 import {catchError, forkJoin, Observable, of} from "rxjs";
 import {UserRolesResponse} from "../../common/interface/user-roles-response";

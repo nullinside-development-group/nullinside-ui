@@ -1,7 +1,5 @@
 import {Component, inject, OnInit, signal} from '@angular/core';
-import {Logo} from "../../common/components/logo/logo";
 import {environment} from "../../../environments/environment";
-import {Nullinside} from "../../service/nullinside";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {LoadingIcon} from "../../common/components/loading-icon/loading-icon";
 import {HttpErrorResponse} from '@angular/common/http';

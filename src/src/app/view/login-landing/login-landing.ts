@@ -1,6 +1,5 @@
 import {Component, inject, OnDestroy, OnInit, signal, WritableSignal} from '@angular/core';
 import {Nullinside} from "../../service/nullinside";
-import {Logo} from "../../common/components/logo/logo";
 import {LoadingIcon} from "../../common/components/loading-icon/loading-icon";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {environment} from "../../../environments/environment";
