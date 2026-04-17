@@ -39,7 +39,7 @@ export class StandardBanner implements OnInit {
 
   onContactUs(): void {
     if (this.userIsLoggedIn()) {
-        this.router.navigate(['/contact-us']);
+      this.router.navigate(['/contact-us']);
     } else {
       // Need to use window.location here instead of the router because otherwise the external javascript from Google
       // doesn't reload on the index page, and you can't retry your login until you refresh.
