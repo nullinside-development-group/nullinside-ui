@@ -12,6 +12,7 @@ import {BackgroundWebglExample} from "./view/background-webgl-example/background
 import {LoginLandingDesktop} from "./view/login-landing-desktop/login-landing-desktop";
 import {ContactUs} from './view/contact-us/contact-us';
 import {ContactUsNewFeedback} from './view/contact-us-new-feedback/contact-us-new-feedback';
+import {ContactUsFeedbackDetails} from './view/contact-us-feedback-details/contact-us-feedback-details';
 
 export const routes: Routes = [
   {path: '', component: Home},
@@ -23,6 +24,7 @@ export const routes: Routes = [
   {path: 'vm-admin', component: VmManager, canActivate: [authGuard]},
   {path: 'contact-us', component: ContactUs, canActivate: [authGuard]},
   {path: 'contact-us/feedback', component: ContactUsNewFeedback, canActivate: [authGuard]},
+  {path: 'contact-us/feedback/:id', component: ContactUsFeedbackDetails, canActivate: [authGuard]},
   {path: 'twitch/bot', component: TwitchBotIndex},
   {path: 'twitch/bot/config', component: TwitchBotConfig},
   {path: 'imdb-search', component: ImdbSearch},

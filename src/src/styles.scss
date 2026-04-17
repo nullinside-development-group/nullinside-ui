@@ -130,6 +130,17 @@ body {
   padding-bottom: 15px;
 }
 
+.success-banner {
+  font-size: 30px;
+  font-weight: bolder;
+  text-align: center;
+  color: $background-color;
+  background: #72ff72;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 15px;
+}
+
 /************************************************************/
 /* CENTERED BOX                                             */
 /* A LAYOUT WHERE EVERYTHING IS IN THE CENTER OF THE SCREEN */

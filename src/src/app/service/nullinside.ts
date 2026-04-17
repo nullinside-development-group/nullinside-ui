@@ -1,8 +1,10 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {map, Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 import {DockerResource} from '../common/interface/docker-resource';
+import {ContactUsSubmitFeedback} from '../common/interface/contact-us-submit-feedback';
+import {ContactUsFeedback} from '../common/interface/contact-us-feedback';
 
 @Injectable({
   providedIn: 'root',
@@ -16,5 +18,18 @@ export class Nullinside {
 
   setVirtualMachinePowerState(id: number, turnOn: boolean): Observable<boolean> {
     return this.httpClient.post<boolean>(`${environment.apiUrl}/docker/${id}`, {turnOn: turnOn});
+  }
+
+  getSubmittedContactUsFeedback(): Observable<ContactUsFeedback[]> {
+    return this.httpClient.get<ContactUsFeedback[]>(`${environment.apiUrl}/contactus`).pipe(
+      map(feedback => feedback.map(item => ({
+        ...item,
+        timestamp: new Date(`${item.timestamp}z`)
+      })))
+    );
+  }
+
+  addNewContactUsFeedback(feedback: ContactUsSubmitFeedback): Observable<boolean> {
+    return this.httpClient.post<boolean>(`${environment.apiUrl}/contactus`, feedback);
   }
 }

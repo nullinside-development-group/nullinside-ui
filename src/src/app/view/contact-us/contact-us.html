@@ -9,10 +9,28 @@
     <p>Feedback may be submitted for this website as well as any nullinside desktop applications.</p>
     <p>Thank you for all your support!</p>
   </div>
+  @if (submittedFeedback()) {
+    <div class="success-banner">Feedback Received! Thank you for your feedback!</div>
+  }
   <div class="button-wrapper">
     <button class="buttons" matButton="tonal" (click)="onCreateFeedback()">Send Feedback</button>
   </div>
   <div class="feedback-wrapper">
-
+    @for (feedback of feedbackSubmitted(); track feedback.id) {
+      <div class="feedback-card" (click)="onFeedbackClicked(feedback.id)">
+        <div class="feedback-header">
+          <span>{{ feedback.product }}</span>
+          <p>{{ `${feedback.timestamp.toLocaleDateString()} ${feedback.timestamp.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}` }}</p>
+        </div>
+        <div class="feedback-message" [title]="feedback.message">
+          {{ feedback.message }}
+        </div>
+        <div class="feedback-comments">
+          {{ `Comments: ${feedback.comments.length}` }}
+        </div>
+      </div>
+    } @empty {
+      <p class="no-feedback">No feedback submitted yet.</p>
+    }
   </div>
 </div>

@@ -1,39 +1,47 @@
-<div class="header">
-  <h2>Submit Feedback</h2>
-  <p>We’d love to hear from you! Use the form below to send us your questions, comments, or concerns. If you’re reporting a problem, please be as specific as possible with what you did and how you did it so our team can quickly investigate, reproduce, and fix the issue.</p>
+<div class="container">
+  <div class="header">
+    <h2>Submit Feedback</h2>
+    <p>We’d love to hear from you! Use the form below to send us your questions, comments, or concerns. If you’re
+      reporting a problem, please be as specific as possible with what you did and how you did it so our team can
+      quickly investigate, reproduce, and fix the issue.</p>
+  </div>
+
+  @if (error() !== '') {
+    <div class="error-banner">{{ error() }}</div>
+  }
+
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="form">
+    <div>
+      <mat-form-field appearance="outline" class="fillable">
+        <mat-label>Select a Product</mat-label>
+        <mat-select formControlName="product" required>
+          <mat-option value="website">Website</mat-option>
+          <mat-option value="twitch-streaming-tools">Twitch Streaming Tools</mat-option>
+          <mat-option value="other">Other</mat-option>
+        </mat-select>
+        @if (formGroup.get('product')?.hasError('required')) {
+          <mat-error>
+            Please select a product
+          </mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline" class="fillable message">
+        <mat-label>Message</mat-label>
+        <textarea class="text-area" matInput formControlName="message" cdkTextareaAutosize required></textarea>
+
+        @if (formGroup.get('message')?.hasError('required')) {
+          <mat-error>
+            Please enter your feedback
+          </mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <div class="center">
+      <button matButton="tonal" type="submit">Send Feedback</button>
+    </div>
+  </form>
 </div>
-
-<form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="form">
-  <div>
-    <mat-form-field appearance="outline" class="fillable">
-      <mat-label>Select a Product</mat-label>
-      <mat-select formControlName="product" required>
-        <mat-option value="website">Website</mat-option>
-        <mat-option value="twitch-streaming-tools">Twitch Streaming Tools</mat-option>
-        <mat-option value="other">Other</mat-option>
-      </mat-select>
-      @if (formGroup.get('product')?.hasError('required')) {
-        <mat-error>
-          Please select a product
-        </mat-error>
-      }
-    </mat-form-field>
-  </div>
-
-  <div>
-    <mat-form-field appearance="outline" class="fillable message">
-      <mat-label>Message</mat-label>
-      <textarea class="text-area" matInput formControlName="message" cdkTextareaAutosize required></textarea>
-
-      @if (formGroup.get('message')?.hasError('required')) {
-        <mat-error>
-          Please enter your feedback
-        </mat-error>
-      }
-    </mat-form-field>
-  </div>
-
-  <div class="center">
-    <button matButton="tonal" type="submit">Send Feedback</button>
-  </div>
-</form>
