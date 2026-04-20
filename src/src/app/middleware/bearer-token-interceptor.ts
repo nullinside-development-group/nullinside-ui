@@ -22,7 +22,7 @@ export const bearerTokenInterceptor: HttpInterceptorFn = (req, next) => {
   }
 
   const oAuth = authService.getOAuth();
-  if (!oAuth) {
+  if (!oAuth || !authService.userIsLoggedIn()) {
     return next(req);
   }
 
