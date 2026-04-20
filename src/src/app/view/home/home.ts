@@ -20,14 +20,7 @@ import {toObservable} from '@angular/core/rxjs-interop';
 export class Home implements OnInit {
   private auth = inject(Auth);
   private router = inject(Router);
-
-  private userLoginHasChanged = toObservable(this.auth.userIsLoggedIn)
-
-  public roles: WritableSignal<string[] | null> = signal(null);
-  public error: WritableSignal<string | null> = signal(null);
-  public loading: WritableSignal<boolean> = signal(true);
-
-  public apps: WritableSignal<WebsiteApp[]> = signal([
+  private appTemplate = [
     {
       displayName: 'IMDB Search',
       description: 'Search the public IMDB database using various search techniques',
@@ -40,7 +33,15 @@ export class Home implements OnInit {
       url: 'twitch/bot',
       params: undefined
     }
-  ]);
+  ];
+
+  private userLoginHasChanged = toObservable(this.auth.userIsLoggedIn)
+
+  public roles: WritableSignal<string[] | null> = signal(null);
+  public error: WritableSignal<string | null> = signal(null);
+  public loading: WritableSignal<boolean> = signal(true);
+
+  public apps: WritableSignal<WebsiteApp[]> = signal(this.appTemplate);
 
   ngOnInit(): void {
     this.userLoginHasChanged.subscribe(_ => this.checkRoles());
@@ -63,7 +64,7 @@ export class Home implements OnInit {
         next: response => {
           this.roles.set(response.user.roles);
           if (-1 !== this.roles()?.indexOf(VM_ADMIN)) {
-            this.apps.set([...this.apps(), {
+            this.apps.set([...this.appTemplate, {
               displayName: 'VM Admin',
               description: 'Manage the virtual machines for various services.',
               url: 'vm-admin',
