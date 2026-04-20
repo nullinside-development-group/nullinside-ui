@@ -6,6 +6,7 @@ import {LoadingIcon} from "../../common/components/loading-icon/loading-icon";
 import {catchError, forkJoin, Observable, of} from "rxjs";
 import {UserRolesResponse} from "../../common/interface/user-roles-response";
 import {Auth} from "../../service/auth";
+import {toObservable} from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-home',
@@ -19,6 +20,8 @@ import {Auth} from "../../service/auth";
 export class Home implements OnInit {
   private auth = inject(Auth);
   private router = inject(Router);
+
+  private userLoginHasChanged = toObservable(this.auth.userIsLoggedIn)
 
   public roles: WritableSignal<string[] | null> = signal(null);
   public error: WritableSignal<string | null> = signal(null);
@@ -40,6 +43,11 @@ export class Home implements OnInit {
   ]);
 
   ngOnInit(): void {
+    this.userLoginHasChanged.subscribe(_ => this.checkRoles());
+    this.checkRoles();
+  }
+
+  private checkRoles() {
     // No need to check roles if the user isn't logged in
     if (!this.auth.userIsLoggedIn()) {
       this.loading.set(false);
