@@ -34,6 +34,7 @@ export const bearerTokenInterceptor: HttpInterceptorFn = (req, next) => {
       },
       error: err => {
         console.error(err);
+        authService.userIsLoggedIn.set(false);
       }
     });
   }

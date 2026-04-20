@@ -3,7 +3,7 @@
   <div class="buttons">
     <button mat-stroked-button color="primary" (click)="onContactUs()">Contact Us</button>
   </div>
-  @if (userIsLoggedIn()) {
+  @if (auth.userIsLoggedIn()) {
     <div class="buttons">
       <button matButton="tonal" (click)="onLogout()">Logout</button>
     </div>
