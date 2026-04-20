@@ -60,10 +60,15 @@ export class Login implements OnInit {
     this.checkingLogin.set(true);
     this.auth.validateToken(token || '')
       .subscribe({
-        next: _ => {
-          this.router.navigate([null !== this.redirect ? this.redirect : '/home']);
+        next: tokenIsValid => {
+          if (tokenIsValid) {
+            this.router.navigate([null !== this.redirect ? this.redirect : '/home']);
+          }
         },
-        error: _ => {
+        error: err => {
+          console.error(err);
+        },
+        complete: () => {
           this.checkingLogin.set(false);
         }
       });
