@@ -13,12 +13,12 @@ export const authGuard: CanActivateFn = (_, __) => {
 
   return inject(Auth).validateToken(token).pipe(
     tap({
-        next: success => {
-          if (!success) {
+        next: tokenIsValid => {
+          if (!tokenIsValid) {
             window.location.href = `${environment.siteUrl}`;
           }
 
-          return success;
+          return tokenIsValid;
         },
         error: _ => {
           window.location.href = `${environment.siteUrl}`;

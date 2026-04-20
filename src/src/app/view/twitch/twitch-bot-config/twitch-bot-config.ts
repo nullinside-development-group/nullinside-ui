@@ -83,7 +83,11 @@ export class TwitchBotConfig implements OnInit, OnDestroy {
 
         const oauth = JSON.parse(atob(token));
         this.auth.validateToken(oauth.AccessToken).subscribe({
-          next: _ => {
+          next: tokenIsValid => {
+            if (!tokenIsValid) {
+              this.onLoginFailed();
+            }
+
             this.auth.setToken(oauth);
 
             // Check if the bot account is modded. If it isn't, we can offer to mod it.

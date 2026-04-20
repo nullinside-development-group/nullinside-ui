@@ -22,7 +22,6 @@ export class Home implements OnInit {
 
   public roles: WritableSignal<string[] | null> = signal(null);
   public error: WritableSignal<string | null> = signal(null);
-  public userIsLoggedIn: WritableSignal<boolean> = signal(false);
   public loading: WritableSignal<boolean> = signal(true);
 
   public apps: WritableSignal<WebsiteApp[]> = signal([
@@ -41,7 +40,11 @@ export class Home implements OnInit {
   ]);
 
   ngOnInit(): void {
-    this.userIsLoggedIn.set(null !== this.auth.getToken());
+    // No need to check roles if the user isn't logged in
+    if (!this.auth.userIsLoggedIn()) {
+      this.loading.set(false);
+      return;
+    }
 
     forkJoin({
       // We don't care if the roles don't exist. This is only for authed users. So catch the error if there is one.
@@ -64,12 +67,12 @@ export class Home implements OnInit {
           if (!twitchBotFeatureToggle || !twitchBotFeatureToggle.isEnabled) {
             this.apps.set([...this.apps().filter(f => 'Twitch Bot' !== f.displayName)])
           }
-
-          this.loading.set(false);
         },
-        error: _ => {
-          console.log(_);
+        error: err => {
+          console.log(err);
           this.error.set('Failed to get list of apps from the server, please refresh to try again...');
+        },
+        complete: () => {
           this.loading.set(false);
         }
       });

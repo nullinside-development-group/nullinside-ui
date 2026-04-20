@@ -56,7 +56,12 @@ export class LoginLanding implements OnInit, OnDestroy {
 
         const oauth = JSON.parse(atob(token));
         this.auth.validateToken(oauth.AccessToken).subscribe({
-          next: _ => {
+          next: tokenIsValid => {
+            if (!tokenIsValid) {
+              this.onLoginFailed();
+              return;
+            }
+
             this.auth.setToken(oauth);
 
             const redirect = window.localStorage.getItem('login-redirect');
