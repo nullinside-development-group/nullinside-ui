@@ -6,6 +6,7 @@ import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatError, MatFormField, MatInput, MatLabel} from '@angular/material/input';
 import {CdkTextareaAutosize} from '@angular/cdk/text-field';
 import {MatButton} from '@angular/material/button';
+import {TimestampPipe} from '../../common/pipe/timestamp.pipe';
 
 @Component({
   selector: 'app-contact-us-feedback-details',
@@ -16,7 +17,8 @@ import {MatButton} from '@angular/material/button';
     MatError,
     MatInput,
     CdkTextareaAutosize,
-    MatButton
+    MatButton,
+    TimestampPipe
   ],
   templateUrl: './contact-us-feedback-details.html',
   styleUrl: './contact-us-feedback-details.scss',

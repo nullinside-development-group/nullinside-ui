@@ -7,12 +7,7 @@
     <div class="feedback-card">
       <div class="feedback-header">
         <span class="product-tag">{{ f.product }}</span>
-        <span class="timestamp">{{
-            `${f.timestamp.toLocaleDateString()} ${f.timestamp.toLocaleTimeString([], {
-              hour: '2-digit',
-              minute: '2-digit'
-            })}`
-          }}</span>
+        <span class="timestamp">{{ f.timestamp | timestamp }}</span>
       </div>
       <div class="feedback-message">
         {{ f.message }}
@@ -25,12 +20,7 @@
         <div class="comment-card">
           <div class="comment-header">
             <span class="comment-user">From: {{ comment.user }}</span>
-            <span class="comment-timestamp">{{
-                `${comment.timestamp.toLocaleDateString()} ${comment.timestamp.toLocaleTimeString([], {
-                  hour: '2-digit',
-                  minute: '2-digit'
-                })}`
-              }}</span>
+            <span class="comment-timestamp">{{ comment.timestamp | timestamp }}</span>
           </div>
           <div class="comment-message">
             {{ comment.message }}
@@ -45,7 +35,7 @@
       @if (error() !== '') {
         <div class="error-banner">{{ error() }}</div>
       }
-      
+
       <h3>Add a Comment</h3>
       <form [formGroup]="commentForm" (ngSubmit)="onSubmitComment()" class="form">
         <div>
