@@ -5,7 +5,6 @@ import {of, tap} from "rxjs";
 import {Auth} from "../service/auth";
 
 export const authGuard: CanActivateFn = (_, __) => {
-  // TODO: Hook up the "returnUrl" in the rest of the application. GitHub issue #
   const token = inject(Auth).getToken();
   if (!token) {
     window.location.href = `${environment.siteUrl}`;

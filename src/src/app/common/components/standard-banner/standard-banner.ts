@@ -1,4 +1,4 @@
-import {Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {Logo} from '../logo/logo';
 import {environment} from '../../../../environments/environment';
 import {MatButton} from '@angular/material/button';
@@ -16,11 +16,10 @@ import {Router} from '@angular/router';
 })
 export class StandardBanner implements OnInit {
   private router = inject(Router);
-  private auth = inject(Auth);
-  public userIsLoggedIn: WritableSignal<boolean> = signal(false);
+  protected auth = inject(Auth);
 
   ngOnInit(): void {
-    this.userIsLoggedIn.set(null !== this.auth.getToken());
+    this.auth.validateToken(this.auth.getToken() || '').subscribe({});
   }
 
   onLogout(): void {
@@ -38,7 +37,7 @@ export class StandardBanner implements OnInit {
   }
 
   onContactUs(): void {
-    if (this.userIsLoggedIn()) {
+    if (this.auth.userIsLoggedIn()) {
       this.router.navigate(['/contact-us']);
     } else {
       // Need to use window.location here instead of the router because otherwise the external javascript from Google

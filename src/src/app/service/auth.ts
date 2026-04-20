@@ -1,6 +1,6 @@
-import {inject, Injectable} from '@angular/core';
+import {inject, Injectable, signal, WritableSignal} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {Observable, tap} from "rxjs";
 import {OAuth} from "../common/interface/oauth";
 import {environment} from "../../environments/environment";
 import {UserRolesResponse} from "../common/interface/user-roles-response";
@@ -14,6 +14,7 @@ export class Auth {
   private httpClient = inject(HttpClient);
   private oauth: OAuth | null = null;
   private cookieService = inject(CookieService);
+  public userIsLoggedIn: WritableSignal<boolean> = signal(false);
 
   constructor() {
     const rawCookie = this.cookieService.get('nullinside-token');
@@ -29,6 +30,7 @@ export class Auth {
   setToken(token: OAuth): void {
     this.oauth = token;
     this.cookieService.set('nullinside-token', JSON.stringify(token), {expires: 365, path: '/', sameSite: 'Strict'});
+    this.userIsLoggedIn.set(true);
   }
 
   getToken(): string | null {
@@ -36,8 +38,10 @@ export class Auth {
   }
 
   clearToken(): void {
+    console.log('Clearing token');
     this.oauth = null;
-    this.cookieService.delete('nullinside-token');
+    this.cookieService.delete('nullinside-token', '/', undefined, true, 'Strict');
+    this.userIsLoggedIn.set(false);
   }
 
   getOAuth(): OAuth | null {
@@ -45,11 +49,29 @@ export class Auth {
   }
 
   refreshToken(token: string): Observable<OAuth> {
-    return this.httpClient.post<OAuth>(`${environment.apiUrl}/user/token/refresh`, {token: token});
+    return this.httpClient.post<OAuth>(`${environment.apiUrl}/user/token/refresh`, {token: token}).pipe(
+      tap({
+        next: token => {
+          this.setToken(token);
+        },
+        error: _ => {
+          this.userIsLoggedIn.set(false);
+        }
+      })
+    )
   }
 
   validateToken(token: string): Observable<boolean> {
-    return this.httpClient.post<boolean>(`${environment.apiUrl}/user/token/validate`, {token: token});
+    return this.httpClient.post<boolean>(`${environment.apiUrl}/user/token/validate`, {token: token}).pipe(
+      tap({
+        next: success => {
+          this.userIsLoggedIn.set(success);
+        },
+        error: _ => {
+          this.userIsLoggedIn.set(false);
+        }
+      })
+    )
   }
 
   getUserRoles(): Observable<UserRolesResponse> {
