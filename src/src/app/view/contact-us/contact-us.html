@@ -25,12 +25,7 @@
            role="button">
         <div class="feedback-header">
           <span>{{ feedback.product }}</span>
-          <p>{{
-              `${feedback.timestamp.toLocaleDateString()} ${feedback.timestamp.toLocaleTimeString([], {
-                hour: '2-digit',
-                minute: '2-digit'
-              })}`
-            }}</p>
+          <p>{{ feedback.timestamp | timestamp }}</p>
         </div>
         <div class="feedback-message" [title]="feedback.message">
           {{ feedback.message }}

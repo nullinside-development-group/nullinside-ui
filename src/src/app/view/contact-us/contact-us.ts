@@ -3,11 +3,13 @@ import {MatButton} from '@angular/material/button';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Nullinside} from '../../service/nullinside';
 import {ContactUsFeedback} from '../../common/interface/contact-us-feedback';
+import {TimestampPipe} from '../../common/pipe/timestamp.pipe';
 
 @Component({
   selector: 'app-contact-us',
   imports: [
-    MatButton
+    MatButton,
+    TimestampPipe
   ],
   templateUrl: './contact-us.html',
   styleUrl: './contact-us.scss',
