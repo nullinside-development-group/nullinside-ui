@@ -43,7 +43,7 @@ export class ContactUsFeedbackDetails implements OnInit {
     this.api.getSubmittedContactUsFeedback(id).subscribe({
       next: feedback => {
         if (feedback) {
-          feedback.comments.sort((a, b) => a.timestamp.getUTCSeconds() - b.timestamp.getUTCSeconds());
+          feedback.comments.sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime());
           this.feedback.set(feedback);
         } else {
           this.error.set('Feedback not found');

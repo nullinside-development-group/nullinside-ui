@@ -28,7 +28,7 @@ export class ContactUs implements OnInit {
 
     this.api.getAllSubmittedContactUsFeedback().subscribe({
       next: feedback => {
-        feedback.sort((a, b) => a.timestamp.getUTCSeconds() - b.timestamp.getUTCSeconds());
+        feedback.sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
         this.feedbackSubmitted.set(feedback);
       },
       error: err => {
