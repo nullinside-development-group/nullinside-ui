@@ -1,6 +1,7 @@
 import {allEnvironments} from "./environments-all"
 
 export const environment = {
+  domain: 'nullinside.com',
   siteUrl: 'https://nullinside.com',
   apiUrl: 'https://nullinside.com/api/v1',
   nullApiUrl: 'https://nullinside.com/null/v1',

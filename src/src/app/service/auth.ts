@@ -32,7 +32,7 @@ export class Auth {
     this.cookieService.set('nullinside-token', JSON.stringify(token), {
       expires: 365,
       path: '/',
-      domain: 'nullinside.com',
+      domain: environment.domain,
       secure: true,
       sameSite: 'Strict'
     });
@@ -44,9 +44,8 @@ export class Auth {
   }
 
   clearToken(): void {
-    console.log('Clearing token');
     this.oauth = null;
-    this.cookieService.delete('nullinside-token', '/', 'nullinside.com', true, 'Strict');
+    this.cookieService.delete('nullinside-token', '/', environment.domain, true, 'Strict');
     this.userIsLoggedIn.set(false);
   }
 

@@ -19,6 +19,7 @@ export class StandardBanner implements OnInit {
   protected auth = inject(Auth);
 
   ngOnInit(): void {
+    // We don't care about the result, we'll get the updated information from the signal auth.userIsLoggedIn regardless.
     this.auth.validateToken(this.auth.getToken() || '').subscribe({});
   }
 
