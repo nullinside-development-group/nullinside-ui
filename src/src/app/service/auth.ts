@@ -29,7 +29,13 @@ export class Auth {
 
   setToken(token: OAuth): void {
     this.oauth = token;
-    this.cookieService.set('nullinside-token', JSON.stringify(token), {expires: 365, path: '/', sameSite: 'Strict'});
+    this.cookieService.set('nullinside-token', JSON.stringify(token), {
+      expires: 365,
+      path: '/',
+      domain: 'nullinside.com',
+      secure: true,
+      sameSite: 'Strict'
+    });
     this.userIsLoggedIn.set(true);
   }
 
@@ -40,7 +46,7 @@ export class Auth {
   clearToken(): void {
     console.log('Clearing token');
     this.oauth = null;
-    this.cookieService.delete('nullinside-token', '/', undefined, true, 'Strict');
+    this.cookieService.delete('nullinside-token', '/', 'nullinside.com', true, 'Strict');
     this.userIsLoggedIn.set(false);
   }
 
