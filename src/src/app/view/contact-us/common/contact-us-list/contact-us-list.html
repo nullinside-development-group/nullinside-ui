@@ -13,8 +13,11 @@
       <div class="feedback-message" [title]="feedback.message">
         {{ feedback.message }}
       </div>
-      <div class="feedback-comments">
-        {{ `Comments: ${feedback.comments.length}` }}
+      <div class="feedback-footer">
+        <span class="feedback-userid">{{ feedback.email ? feedback.email : feedback.userId }}</span>
+        <span class="feedback-comments">
+          {{ `Comments: ${feedback.comments.length}` }}
+        </span>
       </div>
     </div>
   } @empty {
