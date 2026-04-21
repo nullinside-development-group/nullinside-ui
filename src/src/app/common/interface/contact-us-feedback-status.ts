@@ -1,5 +1,5 @@
 export enum ContactUsFeedbackStatus {
-  Open,
-  Completed,
-  Closed
+  Open = 'Open',
+  Completed = 'Completed',
+  Closed = 'Closed'
 }

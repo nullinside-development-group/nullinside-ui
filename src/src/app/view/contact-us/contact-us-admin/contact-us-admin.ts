@@ -30,7 +30,7 @@ export class ContactUsAdmin {
   });
   public filterUserId = signal(-1);
   public filterProduct = signal('');
-  public filterStatus = signal(-1);
+  public filterStatus = signal('');
 
   protected onFeedbackListUpdate(feedback: ContactUsFeedback[] | null) {
     this.feedbackList.set(feedback);
@@ -44,7 +44,7 @@ export class ContactUsAdmin {
     this.filterProduct.set(value.value);
   }
 
-  protected onStatusFilterChange(value: MatSelectChange<number>) {
+  protected onStatusFilterChange(value: MatSelectChange<string>) {
     this.filterStatus.set(value.value);
   }
 }

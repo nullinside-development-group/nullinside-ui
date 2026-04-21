@@ -30,7 +30,7 @@ export class ContactUsList implements OnInit {
   public admin = input(false);
   public filterByUserId = input(-1);
   public filterByProduct = input('');
-  public filterByStatus = input(-1);
+  public filterByStatus = input('');
   public filterEffect = effect(() => {
     // Subscribe to changes of all three inputs
     this.filterByUserId();
@@ -84,12 +84,14 @@ export class ContactUsList implements OnInit {
       filteredFeedback = filteredFeedback.filter(feedback => feedback.product === this.filterByProduct());
     }
 
-    if (-1 !== this.filterByStatus()) {
-      filteredFeedback = filteredFeedback.filter(feedback => feedback.status.toString() === ContactUsFeedbackStatus[this.filterByStatus()]);
+    if (this.filterByStatus()) {
+      filteredFeedback = filteredFeedback.filter(feedback => feedback.status === this.filterByStatus());
     }
 
     this.feedbackSubmitted.set(filteredFeedback);
     this.feedbackList.emit(this.allFeedback);
     this.feedbackSubmittedFiltered.set(filteredFeedback);
   }
+
+  protected readonly ContactUsFeedbackStatus = ContactUsFeedbackStatus;
 }

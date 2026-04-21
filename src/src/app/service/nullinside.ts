@@ -5,7 +5,6 @@ import {environment} from "../../environments/environment";
 import {DockerResource} from '../common/interface/docker-resource';
 import {ContactUsSubmitFeedback} from '../common/interface/contact-us-submit-feedback';
 import {ContactUsFeedback} from '../common/interface/contact-us-feedback';
-import {ContactUsFeedbackStatus} from '../common/interface/contact-us-feedback-status';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +24,7 @@ export class Nullinside {
     return this.httpClient.get<ContactUsFeedback[]>(`${environment.apiUrl}/contactus`).pipe(
       map(feedback => feedback.map(item => ({
         ...item,
-        status: item.status as ContactUsFeedbackStatus,
+        status: item.status,
         timestamp: new Date(`${item.timestamp}z`),
         comments: item.comments.map(comment => ({
           ...comment,
@@ -39,7 +38,7 @@ export class Nullinside {
     return this.httpClient.get<ContactUsFeedback[]>(`${environment.apiUrl}/contactus/admin`).pipe(
       map(feedback => feedback.map(item => ({
         ...item,
-        status: item.status as ContactUsFeedbackStatus,
+        status: item.status,
         timestamp: new Date(`${item.timestamp}z`),
         comments: item.comments.map(comment => ({
           ...comment,
@@ -53,7 +52,7 @@ export class Nullinside {
     return this.httpClient.get<ContactUsFeedback>(`${environment.apiUrl}/contactus/${id}`).pipe(
       map(feedback => ({
         ...feedback,
-        status: feedback.status as ContactUsFeedbackStatus,
+        status: feedback.status,
         timestamp: new Date(`${feedback.timestamp}z`),
         comments: feedback.comments.map(comment => ({
           ...comment,
