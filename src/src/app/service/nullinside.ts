@@ -5,6 +5,7 @@ import {environment} from "../../environments/environment";
 import {DockerResource} from '../common/interface/docker-resource';
 import {ContactUsSubmitFeedback} from '../common/interface/contact-us-submit-feedback';
 import {ContactUsFeedback} from '../common/interface/contact-us-feedback';
+import {ContactUsFeedbackStatus} from '../common/interface/contact-us-feedback-status';
 
 @Injectable({
   providedIn: 'root',
@@ -68,5 +69,9 @@ export class Nullinside {
 
   addContactUsFeedbackComment(id: number, comment: string): Observable<boolean> {
     return this.httpClient.post<boolean>(`${environment.apiUrl}/contactus/${id}/comment`, {comment: comment});
+  }
+
+  updateContactUsFeedbackStatus(id: number, status: ContactUsFeedbackStatus): Observable<boolean> {
+    return this.httpClient.post<boolean>(`${environment.apiUrl}/contactus/${id}/status`, {status: status});
   }
 }
