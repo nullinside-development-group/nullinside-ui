@@ -1,11 +1,12 @@
 <div class="feedback-wrapper">
   @for (feedback of feedbackSubmitted(); track feedback.id) {
-    <div class="feedback-card"
-         (click)="onFeedbackClicked(feedback.id)"
-         (keydown.enter)="onFeedbackClicked(feedback.id)"
-         (keydown.space)="onFeedbackClicked(feedback.id)"
-         tabindex="0"
-         role="button">
+    <div
+      [class]="`feedback-card ${ContactUsFeedbackStatus.Completed.toString() === feedback.status ? 'completed' : ContactUsFeedbackStatus.Closed.toString() === feedback.status ? 'closed' : ''}`"
+      (click)="onFeedbackClicked(feedback.id)"
+      (keydown.enter)="onFeedbackClicked(feedback.id)"
+      (keydown.space)="onFeedbackClicked(feedback.id)"
+      tabindex="0"
+      role="button">
       <div class="feedback-header">
         <span>{{ feedback.product }}</span>
         <p>{{ feedback.timestamp | timestamp }}</p>
@@ -14,6 +15,7 @@
         {{ feedback.message }}
       </div>
       <div class="feedback-footer">
+        <!-- Email is only available to the ADMIN role, otherwise only user id will be filled out -->
         <span class="feedback-userid">{{ feedback.email ? feedback.email : feedback.userId }}</span>
         <span class="feedback-comments">
           {{ `Comments: ${feedback.comments.length}` }}
