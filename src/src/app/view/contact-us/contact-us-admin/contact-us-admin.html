@@ -1,6 +1,40 @@
 <div class="page-container">
   <h2>Contact Us - Admin</h2>
   <div class="filter-wrapper">
+    <mat-form-field appearance="outline">
+      <mat-label>Filter by User</mat-label>
+      <mat-select (selectionChange)="onUserFilterChange($event)">
+        <mat-option [value]="-1">All Users</mat-option>
+        @for (u of uniqueUsers(); track u.userId) {
+          <mat-option [value]="u.userId">{{ u.userId }} - {{ u.email }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Filter by Product</mat-label>
+      <mat-select (selectionChange)="onUserProductFilterChange($event)">
+        <mat-option value="">All Products</mat-option>
+        <mat-option value="website">Website</mat-option>
+        <mat-option value="twitch-streaming-tools">Twitch Streaming Tools</mat-option>
+        <mat-option value="other">Other</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Filter by State</mat-label>
+      <mat-select (selectionChange)="onStatusFilterChange($event)">
+        <mat-option [value]="-1">All Statuses</mat-option>
+        <mat-option [value]="0">Open</mat-option>
+        <mat-option [value]="1">Completed</mat-option>
+        <mat-option [value]="2">Closed</mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
-  <app-contact-us-list [admin]="true"></app-contact-us-list>
+  <app-contact-us-list [admin]="true"
+                       [filterByUserId]="filterUserId()"
+                       [filterByProduct]="filterProduct()"
+                       [filterByStatus]="filterStatus()"
+                       (feedbackList)="onFeedbackListUpdate($event)">
+  </app-contact-us-list>
 </div>

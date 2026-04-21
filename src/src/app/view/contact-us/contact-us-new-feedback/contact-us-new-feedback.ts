@@ -64,4 +64,8 @@ export class ContactUsNewFeedback {
       }
     });
   }
+
+  protected onBackButton() {
+    this.router.navigate(['/contact-us']);
+  }
 }

@@ -1,5 +1,5 @@
 import {Component, inject, OnInit, signal, viewChild} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Nullinside} from '../../../service/nullinside';
 import {ContactUsFeedback} from '../../../common/interface/contact-us-feedback';
 import {FormBuilder, FormGroupDirective, ReactiveFormsModule, Validators} from '@angular/forms';
@@ -8,6 +8,7 @@ import {CdkTextareaAutosize} from '@angular/cdk/text-field';
 import {MatButton} from '@angular/material/button';
 import {TimestampPipe} from '../../../common/pipe/timestamp.pipe';
 import {LoadingIcon} from '../../../common/components/loading-icon/loading-icon';
+import {Auth} from '../../../service/auth';
 
 @Component({
   selector: 'app-contact-us-feedback-details',
@@ -27,9 +28,12 @@ import {LoadingIcon} from '../../../common/components/loading-icon/loading-icon'
 })
 export class ContactUsFeedbackDetails implements OnInit {
   private route = inject(ActivatedRoute);
+  private router = inject(Router);
   private api = inject(Nullinside);
+  private auth = inject(Auth);
   private formBuilder = inject(FormBuilder);
   private commentFormDirective = viewChild(FormGroupDirective);
+  private isAdmin = false;
 
   public loading = signal(false);
   public feedback = signal<ContactUsFeedback | null>(null);
@@ -43,6 +47,15 @@ export class ContactUsFeedbackDetails implements OnInit {
     if (id) {
       this.loadFeedback(Number(id));
     }
+
+    this.auth.getUserRoles().subscribe({
+      next: roles => {
+        this.isAdmin = -1 !== roles.roles.indexOf('ADMIN');
+      },
+      error: err => {
+        console.error('Failed to load user roles', err);
+      }
+    });
   }
 
   private loadFeedback(id: number) {
@@ -86,5 +99,13 @@ export class ContactUsFeedbackDetails implements OnInit {
         this.loading.set(false);
       }
     });
+  }
+
+  protected onBackButton() {
+    if (this.isAdmin) {
+      this.router.navigate(['/contact-us/admin']);
+    } else {
+      this.router.navigate(['/contact-us']);
+    }
   }
 }

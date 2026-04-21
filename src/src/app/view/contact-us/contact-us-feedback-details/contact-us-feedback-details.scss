@@ -6,8 +6,21 @@
   padding: 20px;
 }
 
+.header {
+  margin-bottom: 10px;
+}
+
 .header h2 {
+  display: inline-block;
   text-align: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  align-self: center;
+}
+
+.back-button {
+  display: inline-block;
 }
 
 .feedback-card {

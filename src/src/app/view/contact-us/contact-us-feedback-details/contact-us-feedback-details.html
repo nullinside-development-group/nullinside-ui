@@ -1,5 +1,8 @@
 <div class="container">
   <div class="header">
+    <div class="back-button">
+      <button mat-stroked-button color="primary" (click)="onBackButton()">< Back</button>
+    </div>
     <h2>Feedback Details</h2>
   </div>
 
@@ -57,7 +60,8 @@
       </form>
     </div>
   } @else if (error() === '') {
-    <app-loading-icon class="center" fontSize="16px" height="30px" width="30px">Loading feedback details...
+    <app-loading-icon class="center" fontSize="16px" height="30px" width="30px">
+      Loading feedback details...
     </app-loading-icon>
   }
 </div>

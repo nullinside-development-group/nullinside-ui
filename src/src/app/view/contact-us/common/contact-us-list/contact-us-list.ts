@@ -1,8 +1,19 @@
-import {Component, inject, input, OnInit, signal, WritableSignal} from '@angular/core';
+import {
+  Component,
+  effect,
+  inject,
+  input,
+  OnInit,
+  output,
+  OutputEmitterRef,
+  signal,
+  WritableSignal
+} from '@angular/core';
 import {TimestampPipe} from '../../../../common/pipe/timestamp.pipe';
 import {Router} from '@angular/router';
 import {Nullinside} from '../../../../service/nullinside';
 import {ContactUsFeedback} from '../../../../common/interface/contact-us-feedback';
+import {ContactUsFeedbackStatus} from '../../../../common/interface/contact-us-feedback-status';
 
 @Component({
   selector: 'app-contact-us-list',
@@ -15,15 +26,31 @@ import {ContactUsFeedback} from '../../../../common/interface/contact-us-feedbac
 export class ContactUsList implements OnInit {
   private router = inject(Router);
   private api = inject(Nullinside);
+  private allFeedback: ContactUsFeedback[] = [];
   public admin = input(false);
+  public filterByUserId = input(-1);
+  public filterByProduct = input('');
+  public filterByStatus = input(-1);
+  public filterEffect = effect(() => {
+    // Subscribe to changes of all three inputs
+    this.filterByUserId();
+    this.filterByProduct();
+    this.filterByStatus();
+
+    // Re-filter when any input changes
+    this.onFilterFeedback();
+  });
+  public feedbackList: OutputEmitterRef<ContactUsFeedback[] | null> = output()
   public feedbackSubmitted: WritableSignal<ContactUsFeedback[] | null> = signal(null);
+  public feedbackSubmittedFiltered: WritableSignal<ContactUsFeedback[] | null> = signal(null);
 
   ngOnInit(): void {
     if (this.admin()) {
       this.api.getAllSubmittedContactUsFeedbackAdmin().subscribe({
         next: feedback => {
           feedback.sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
-          this.feedbackSubmitted.set(feedback);
+          this.allFeedback = [...feedback];
+          this.onFilterFeedback();
         },
         error: err => {
           console.error(err);
@@ -33,7 +60,8 @@ export class ContactUsList implements OnInit {
       this.api.getAllSubmittedContactUsFeedback().subscribe({
         next: feedback => {
           feedback.sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
-          this.feedbackSubmitted.set(feedback);
+          this.allFeedback = [...feedback];
+          this.onFilterFeedback();
         },
         error: err => {
           console.error(err);
@@ -44,5 +72,24 @@ export class ContactUsList implements OnInit {
 
   onFeedbackClicked(id: number) {
     this.router.navigate(['/contact-us/feedback/' + id]);
+  }
+
+  onFilterFeedback() {
+    let filteredFeedback = [...this.allFeedback];
+    if (-1 !== this.filterByUserId()) {
+      filteredFeedback = filteredFeedback.filter(feedback => feedback.userId === this.filterByUserId());
+    }
+
+    if (this.filterByProduct()) {
+      filteredFeedback = filteredFeedback.filter(feedback => feedback.product === this.filterByProduct());
+    }
+
+    if (-1 !== this.filterByStatus()) {
+      filteredFeedback = filteredFeedback.filter(feedback => feedback.status.toString() === ContactUsFeedbackStatus[this.filterByStatus()]);
+    }
+
+    this.feedbackSubmitted.set(filteredFeedback);
+    this.feedbackList.emit(this.allFeedback);
+    this.feedbackSubmittedFiltered.set(filteredFeedback);
   }
 }
