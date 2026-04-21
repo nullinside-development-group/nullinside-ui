@@ -16,7 +16,7 @@
       </div>
       <div class="feedback-footer">
         <!-- Email is only available to the ADMIN role, otherwise only user id will be filled out -->
-        <span class="feedback-userid">{{ feedback.email ? feedback.email : feedback.userId }}</span>
+        <span class="feedback-userid">{{ isAdmin() ? feedback.email ? feedback.email : feedback.userId : '' }}</span>
         <span class="feedback-comments">
           {{ `Comments: ${feedback.comments.length}` }}
         </span>

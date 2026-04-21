@@ -27,7 +27,7 @@ export class ContactUsList implements OnInit {
   private router = inject(Router);
   private api = inject(Nullinside);
   private allFeedback: ContactUsFeedback[] = [];
-  public admin = input(false);
+  public isAdmin = input(false);
   public filterByUserId = input(-1);
   public filterByProduct = input('');
   public filterByStatus = input('');
@@ -45,7 +45,7 @@ export class ContactUsList implements OnInit {
   public feedbackSubmittedFiltered: WritableSignal<ContactUsFeedback[] | null> = signal(null);
 
   ngOnInit(): void {
-    if (this.admin()) {
+    if (this.isAdmin()) {
       this.api.getAllSubmittedContactUsFeedbackAdmin().subscribe({
         next: feedback => {
           feedback.sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
