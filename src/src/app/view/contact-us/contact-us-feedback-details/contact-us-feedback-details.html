@@ -4,6 +4,30 @@
       <button mat-stroked-button color="primary" (click)="onBackButton()">< Back</button>
     </div>
     <h2>Feedback Details</h2>
+    <div class="status-button-container">
+      @if (isAdmin() && feedback(); as f) {
+        @if (f.status === ContactUsFeedbackStatus.Open) {
+          <button mat-stroked-button
+                  color="primary"
+                  class="completed"
+                  (click)="onUpdateFeedback(f, ContactUsFeedbackStatus.Completed)">
+            Complete
+          </button>
+          <button mat-stroked-button
+                  color="primary"
+                  class="closed"
+                  (click)="onUpdateFeedback(f, ContactUsFeedbackStatus.Closed)">
+            Close
+          </button>
+        } @else {
+          <button mat-stroked-button
+                  color="primary"
+                  (click)="onUpdateFeedback(f, ContactUsFeedbackStatus.Open)">
+            Re-open
+          </button>
+        }
+      }
+    </div>
   </div>
 
   @if (feedback(); as f) {
@@ -11,6 +35,9 @@
       <div class="feedback-header">
         <span class="product-tag">Product: {{ f.product }}</span>
         <span class="timestamp">{{ f.timestamp | timestamp }}</span>
+      </div>
+      <div class="feedback-status">
+        <span class="status">Status: {{ f.status }}</span>
       </div>
       <div class="feedback-message">
         <span>{{ f.message }}</span>

@@ -10,6 +10,8 @@ import {TimestampPipe} from '../../../common/pipe/timestamp.pipe';
 import {LoadingIcon} from '../../../common/components/loading-icon/loading-icon';
 import {Auth} from '../../../service/auth';
 
+import {ContactUsFeedbackStatus} from '../../../common/interface/contact-us-feedback-status';
+
 @Component({
   selector: 'app-contact-us-feedback-details',
   imports: [
@@ -33,7 +35,8 @@ export class ContactUsFeedbackDetails implements OnInit {
   private auth = inject(Auth);
   private formBuilder = inject(FormBuilder);
   private commentFormDirective = viewChild(FormGroupDirective);
-  private isAdmin = false;
+  protected isAdmin = signal(false);
+  protected readonly ContactUsFeedbackStatus = ContactUsFeedbackStatus;
 
   public loading = signal(false);
   public feedback = signal<ContactUsFeedback | null>(null);
@@ -50,7 +53,7 @@ export class ContactUsFeedbackDetails implements OnInit {
 
     this.auth.getUserRoles().subscribe({
       next: roles => {
-        this.isAdmin = -1 !== roles.roles.indexOf('ADMIN');
+        this.isAdmin.set(-1 !== roles.roles.indexOf('ADMIN'));
       },
       error: err => {
         console.error('Failed to load user roles', err);
@@ -102,10 +105,26 @@ export class ContactUsFeedbackDetails implements OnInit {
   }
 
   protected onBackButton() {
-    if (this.isAdmin) {
+    if (this.isAdmin()) {
       this.router.navigate(['/contact-us/admin']);
     } else {
       this.router.navigate(['/contact-us']);
     }
+  }
+
+  protected onUpdateFeedback(feedback: ContactUsFeedback, status: ContactUsFeedbackStatus) {
+    this.loading.set(true);
+    this.api.updateContactUsFeedbackStatus(feedback.id, status).subscribe({
+      next: () => {
+        this.loadFeedback(feedback.id);
+      },
+      error: err => {
+        console.error('Failed to complete feedback:', err);
+        this.error.set('Failed to complete feedback, please try again');
+      },
+      complete: () => {
+        this.loading.set(false);
+      }
+    })
   }
 }
