@@ -1,11 +1,13 @@
-import {ContactUsFeedbackComment} from './ContactUsFeedbackComment';
+import {ContactUsFeedbackComment} from './contact-us-feedback-comment';
+import {ContactUsFeedbackStatus} from './contact-us-feedback-status';
 
 export interface ContactUsFeedback {
-  id: number
-  userId: number
-  product: string
-  message: string
-  status: number
-  timestamp: Date
-  comments: ContactUsFeedbackComment[]
+  id: number;
+  email: string | null;
+  userId: number;
+  product: string;
+  message: string;
+  status: ContactUsFeedbackStatus;
+  timestamp: Date;
+  comments: ContactUsFeedbackComment[];
 }

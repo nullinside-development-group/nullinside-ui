@@ -15,9 +15,15 @@
 .filter-wrapper {
   padding: 10px;
   background-color: #434239;
-  text-align: right;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
   border-radius: 5px 5px 0 0;
   border-color: $font-color;
   border-width: 1px;
   border-style: solid;
+}
+
+.filter-wrapper > mat-form-field {
+  flex: 1;
 }
