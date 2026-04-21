@@ -33,6 +33,19 @@ export class Nullinside {
     );
   }
 
+  getAllSubmittedContactUsFeedbackAdmin(): Observable<ContactUsFeedback[]> {
+    return this.httpClient.get<ContactUsFeedback[]>(`${environment.apiUrl}/contactus/admin`).pipe(
+      map(feedback => feedback.map(item => ({
+        ...item,
+        timestamp: new Date(`${item.timestamp}z`),
+        comments: item.comments.map(comment => ({
+          ...comment,
+          timestamp: new Date(`${comment.timestamp}z`)
+        }))
+      })))
+    );
+  }
+
   getSubmittedContactUsFeedback(id: number): Observable<ContactUsFeedback> {
     return this.httpClient.get<ContactUsFeedback>(`${environment.apiUrl}/contactus/${id}`).pipe(
       map(feedback => ({

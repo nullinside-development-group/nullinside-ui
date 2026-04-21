@@ -1,5 +1,5 @@
 import {Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
-import {VM_ADMIN} from "../../common/constants";
+import {ADMIN, VM_ADMIN} from "../../common/constants";
 import {WebsiteApp} from "../../common/interface/website-app";
 import {Router} from '@angular/router';
 import {LoadingIcon} from "../../common/components/loading-icon/loading-icon";
@@ -55,6 +55,7 @@ export class Home implements OnInit {
       return;
     }
 
+    this.loading.set(true);
     forkJoin({
       // We don't care if the roles don't exist. This is only for authed users. So catch the error if there is one.
       user: this.auth.getUserRoles().pipe(catchError(_ => of({roles: []}))) as Observable<UserRolesResponse>,
@@ -62,12 +63,22 @@ export class Home implements OnInit {
     })
       .subscribe({
         next: response => {
+          this.apps.set([...this.appTemplate]);
           this.roles.set(response.user.roles);
-          if (-1 !== this.roles()?.indexOf(VM_ADMIN)) {
-            this.apps.set([...this.appTemplate, {
+          if (-1 !== this.roles()?.indexOf(VM_ADMIN) || -1 !== this.roles()?.indexOf(ADMIN)) {
+            this.apps.set([...this.apps(), {
               displayName: 'VM Admin',
               description: 'Manage the virtual machines for various services.',
               url: 'vm-admin',
+              params: null
+            }]);
+          }
+
+          if (-1 !== this.roles()?.indexOf(ADMIN)) {
+            this.apps.set([...this.apps(), {
+              displayName: 'Contact Us Admin',
+              description: 'View and reply to all submitted contact us feedback.',
+              url: 'contact-us/admin',
               params: null
             }]);
           }

@@ -4,10 +4,10 @@ import {MatError, MatFormField, MatInput, MatLabel} from '@angular/material/inpu
 import {MatOption, MatSelect} from '@angular/material/select';
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {CdkTextareaAutosize} from '@angular/cdk/text-field';
-import {Nullinside} from '../../service/nullinside';
-import {ContactUsSubmitFeedback} from '../../common/interface/contact-us-submit-feedback';
+import {Nullinside} from '../../../service/nullinside';
+import {ContactUsSubmitFeedback} from '../../../common/interface/contact-us-submit-feedback';
 import {Router} from '@angular/router';
-import {LoadingIcon} from '../../common/components/loading-icon/loading-icon';
+import {LoadingIcon} from '../../../common/components/loading-icon/loading-icon';
 
 @Component({
   selector: 'app-contact-us-new-feedback',

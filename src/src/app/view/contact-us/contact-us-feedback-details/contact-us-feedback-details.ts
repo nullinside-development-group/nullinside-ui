@@ -1,13 +1,13 @@
 import {Component, inject, OnInit, signal, viewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Nullinside} from '../../service/nullinside';
-import {ContactUsFeedback} from '../../common/interface/contact-us-feedback';
+import {Nullinside} from '../../../service/nullinside';
+import {ContactUsFeedback} from '../../../common/interface/contact-us-feedback';
 import {FormBuilder, FormGroupDirective, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatError, MatFormField, MatInput, MatLabel} from '@angular/material/input';
 import {CdkTextareaAutosize} from '@angular/cdk/text-field';
 import {MatButton} from '@angular/material/button';
-import {TimestampPipe} from '../../common/pipe/timestamp.pipe';
-import {LoadingIcon} from '../../common/components/loading-icon/loading-icon';
+import {TimestampPipe} from '../../../common/pipe/timestamp.pipe';
+import {LoadingIcon} from '../../../common/components/loading-icon/loading-icon';
 
 @Component({
   selector: 'app-contact-us-feedback-details',
