@@ -51,6 +51,11 @@
   color: rgba($font-color, 0.8);
 }
 
+.feedback-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
 .feedback-comments {
   text-align: right;
 }
