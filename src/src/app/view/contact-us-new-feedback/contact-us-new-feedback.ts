@@ -7,6 +7,7 @@ import {CdkTextareaAutosize} from '@angular/cdk/text-field';
 import {Nullinside} from '../../service/nullinside';
 import {ContactUsSubmitFeedback} from '../../common/interface/contact-us-submit-feedback';
 import {Router} from '@angular/router';
+import {LoadingIcon} from '../../common/components/loading-icon/loading-icon';
 
 @Component({
   selector: 'app-contact-us-new-feedback',
@@ -19,7 +20,8 @@ import {Router} from '@angular/router';
     MatOption,
     ReactiveFormsModule,
     CdkTextareaAutosize,
-    MatError
+    MatError,
+    LoadingIcon
   ],
   templateUrl: './contact-us-new-feedback.html',
   styleUrl: './contact-us-new-feedback.scss',
@@ -33,6 +35,7 @@ export class ContactUsNewFeedback {
     'message': [null, [Validators.required, Validators.maxLength(10000)]],
   });
   public error = signal('');
+  public loading = signal(false);
 
   protected onSubmit() {
     if (!this.formGroup.valid) {
@@ -44,6 +47,7 @@ export class ContactUsNewFeedback {
       message: `${this.formGroup.value.message}`
     };
 
+    this.loading.set(true);
     this.api.addNewContactUsFeedback(feedback).subscribe({
       next: success => {
         if (success) {
@@ -54,6 +58,9 @@ export class ContactUsNewFeedback {
       },
       error: err => {
         console.error(err);
+      },
+      complete: () => {
+        this.loading.set(false);
       }
     });
   }

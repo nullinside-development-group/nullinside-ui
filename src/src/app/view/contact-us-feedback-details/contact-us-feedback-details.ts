@@ -1,12 +1,13 @@
-import {Component, inject, OnInit, signal} from '@angular/core';
+import {Component, inject, OnInit, signal, viewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Nullinside} from '../../service/nullinside';
 import {ContactUsFeedback} from '../../common/interface/contact-us-feedback';
-import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FormBuilder, FormGroupDirective, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatError, MatFormField, MatInput, MatLabel} from '@angular/material/input';
 import {CdkTextareaAutosize} from '@angular/cdk/text-field';
 import {MatButton} from '@angular/material/button';
 import {TimestampPipe} from '../../common/pipe/timestamp.pipe';
+import {LoadingIcon} from '../../common/components/loading-icon/loading-icon';
 
 @Component({
   selector: 'app-contact-us-feedback-details',
@@ -18,7 +19,8 @@ import {TimestampPipe} from '../../common/pipe/timestamp.pipe';
     MatInput,
     CdkTextareaAutosize,
     MatButton,
-    TimestampPipe
+    TimestampPipe,
+    LoadingIcon
   ],
   templateUrl: './contact-us-feedback-details.html',
   styleUrl: './contact-us-feedback-details.scss',
@@ -27,7 +29,9 @@ export class ContactUsFeedbackDetails implements OnInit {
   private route = inject(ActivatedRoute);
   private api = inject(Nullinside);
   private formBuilder = inject(FormBuilder);
+  private commentFormDirective = viewChild(FormGroupDirective);
 
+  public loading = signal(false);
   public feedback = signal<ContactUsFeedback | null>(null);
   public error = signal('');
   public commentForm = this.formBuilder.group({
@@ -63,11 +67,12 @@ export class ContactUsFeedbackDetails implements OnInit {
       return;
     }
 
+    this.loading.set(true);
     const message = this.commentForm.value.message!;
     this.api.addContactUsFeedbackComment(this.feedback()!.id, message).subscribe({
       next: success => {
         if (success) {
-          this.commentForm.reset();
+          this.commentFormDirective()?.resetForm();
           this.loadFeedback(this.feedback()!.id);
         } else {
           this.error.set('Failed to add comment, please try again');
@@ -76,6 +81,9 @@ export class ContactUsFeedbackDetails implements OnInit {
       error: err => {
         console.error(err);
         this.error.set('An error occurred while adding the comment');
+      },
+      complete: () => {
+        this.loading.set(false);
       }
     });
   }

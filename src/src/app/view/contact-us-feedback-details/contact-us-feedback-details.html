@@ -6,11 +6,11 @@
   @if (feedback(); as f) {
     <div class="feedback-card">
       <div class="feedback-header">
-        <span class="product-tag">{{ f.product }}</span>
+        <span class="product-tag">Product: {{ f.product }}</span>
         <span class="timestamp">{{ f.timestamp | timestamp }}</span>
       </div>
       <div class="feedback-message">
-        {{ f.message }}
+        <span>{{ f.message }}</span>
       </div>
     </div>
 
@@ -23,7 +23,7 @@
             <span class="comment-timestamp">{{ comment.timestamp | timestamp }}</span>
           </div>
           <div class="comment-message">
-            {{ comment.message }}
+            <span>{{ comment.message }}</span>
           </div>
         </div>
       } @empty {
@@ -47,12 +47,17 @@
             }
           </mat-form-field>
         </div>
-        <div class="center">
-          <button matButton="tonal" type="submit" [disabled]="!commentForm.valid">Post Comment</button>
-        </div>
+        @if (loading()) {
+          <app-loading-icon class="center" fontSize="16px" height="30px" width="30px"></app-loading-icon>
+        } @else {
+          <div class="center">
+            <button matButton="tonal" type="submit" [disabled]="!commentForm.valid">Post Comment</button>
+          </div>
+        }
       </form>
     </div>
   } @else if (error() === '') {
-    <div class="loading">Loading feedback details...</div>
+    <app-loading-icon class="center" fontSize="16px" height="30px" width="30px">Loading feedback details...
+    </app-loading-icon>
   }
 </div>
