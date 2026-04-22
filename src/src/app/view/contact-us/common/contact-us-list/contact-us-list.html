@@ -1,7 +1,8 @@
 <div class="feedback-wrapper">
   @for (feedback of feedbackSubmitted(); track feedback.id) {
     <div
-      [class]="`feedback-card ${ContactUsFeedbackStatus.Completed.toString() === feedback.status ? 'completed' : ContactUsFeedbackStatus.Closed.toString() === feedback.status ? 'closed' : ''}`"
+      class="feedback-card"
+      [class]="getFeedbackClass(feedback)"
       (click)="onFeedbackClicked(feedback.id)"
       (keydown.enter)="onFeedbackClicked(feedback.id)"
       (keydown.space)="onFeedbackClicked(feedback.id)"
@@ -16,7 +17,7 @@
       </div>
       <div class="feedback-footer">
         <!-- Email is only available to the ADMIN role, otherwise only user id will be filled out -->
-        <span class="feedback-userid">{{ isAdmin() ? feedback.email ? feedback.email : feedback.userId : '' }}</span>
+        <span class="feedback-userid">{{ getFeedbackUserIdentifier(feedback) }}</span>
         <span class="feedback-comments">
           {{ `Comments: ${feedback.comments.length}` }}
         </span>

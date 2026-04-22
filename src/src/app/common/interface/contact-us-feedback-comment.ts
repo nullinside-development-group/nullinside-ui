@@ -4,5 +4,6 @@ export interface ContactUsFeedbackComment {
   email: string | null;
   user: string;
   message: string;
-  timestamp: Date
+  isRead: boolean;
+  timestamp: Date;
 }
