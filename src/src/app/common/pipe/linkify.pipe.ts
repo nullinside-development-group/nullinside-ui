@@ -1,5 +1,7 @@
 import {inject, Pipe, PipeTransform} from '@angular/core';
 import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
+import DOMPurify from 'dompurify';
+import linkifyHtml from 'linkify-html';
 
 @Pipe({
   name: 'linkify',
@@ -12,19 +14,9 @@ export class LinkifyPipe implements PipeTransform {
       return null;
     }
 
-    // Escape any existing HTML in the input string
-    const escaped = value
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#039;');
-
-    const urlRegex = /(https?:\/\/[^\s]+)/g;
-    const linkified = escaped.replace(urlRegex, (url) => {
-      return `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+    const linkified = linkifyHtml(value, {
+      defaultProtocol: 'https',
     });
-
-    return this.sanitizer.bypassSecurityTrustHtml(linkified);
+    return DOMPurify.sanitize(linkified);
   }
 }
