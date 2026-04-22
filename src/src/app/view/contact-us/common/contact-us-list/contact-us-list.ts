@@ -14,6 +14,7 @@ import {Router} from '@angular/router';
 import {Nullinside} from '../../../../service/nullinside';
 import {ContactUsFeedback} from '../../../../common/interface/contact-us-feedback';
 import {ContactUsFeedbackStatus} from '../../../../common/interface/contact-us-feedback-status';
+import {environment} from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-contact-us-list',
@@ -91,6 +92,34 @@ export class ContactUsList implements OnInit {
     this.feedbackSubmitted.set(filteredFeedback);
     this.feedbackList.emit(this.allFeedback);
     this.feedbackSubmittedFiltered.set(filteredFeedback);
+  }
+
+  getFeedbackClass(feedback: ContactUsFeedback): string {
+    if (!feedback) {
+      return '';
+    }
+
+    if (!feedback.isRead || feedback.comments.some(comment => !comment.isRead)) {
+      return 'unread';
+    }
+
+    if (ContactUsFeedbackStatus.Completed.toString() === status) {
+      return 'completed';
+    }
+
+    if (ContactUsFeedbackStatus.Closed.toString() === status) {
+      return 'closed';
+    }
+
+    return '';
+  }
+
+  getFeedbackUserIdentifier(feedback: ContactUsFeedback): string {
+    if (!environment.showEmailForAdmins || !this.isAdmin()) {
+      return '';
+    }
+
+    return feedback.email ? feedback.email : feedback.userId.toString();
   }
 
   protected readonly ContactUsFeedbackStatus = ContactUsFeedbackStatus;

@@ -1,6 +1,7 @@
 import {allEnvironments} from "./environments-all";
 
 export const environment = {
+  showEmailForAdmins: false,
   domain: 'localhost',
   siteUrl: 'http://localhost:4200',
   apiUrl: 'http://localhost:5036/api/v1',

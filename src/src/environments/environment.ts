@@ -1,6 +1,7 @@
 import {allEnvironments} from "./environments-all"
 
 export const environment = {
+  showEmailForAdmins: true,
   domain: 'nullinside.com',
   siteUrl: 'https://nullinside.com',
   apiUrl: 'https://nullinside.com/api/v1',

@@ -9,5 +9,6 @@ export interface ContactUsFeedback {
   message: string;
   status: ContactUsFeedbackStatus;
   timestamp: Date;
+  isRead: boolean;
   comments: ContactUsFeedbackComment[];
 }
