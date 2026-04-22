@@ -74,4 +74,12 @@ export class Nullinside {
   updateContactUsFeedbackStatus(id: number, status: ContactUsFeedbackStatus): Observable<boolean> {
     return this.httpClient.post<boolean>(`${environment.apiUrl}/contactus/${id}/status`, {status: status});
   }
+
+  readFeedback(id: number): Observable<boolean> {
+    return this.httpClient.post<boolean>(`${environment.apiUrl}/contactus/${id}/read`, {});
+  }
+
+  readFeedbackComment(id: number): Observable<boolean> {
+    return this.httpClient.post<boolean>(`${environment.apiUrl}/contactus/${id}/comment/read`, {});
+  }
 }

@@ -11,6 +11,7 @@ import {LoadingIcon} from '../../../common/components/loading-icon/loading-icon'
 import {Auth} from '../../../service/auth';
 
 import {ContactUsFeedbackStatus} from '../../../common/interface/contact-us-feedback-status';
+import {forkJoin} from 'rxjs';
 
 @Component({
   selector: 'app-contact-us-feedback-details',
@@ -70,10 +71,27 @@ export class ContactUsFeedbackDetails implements OnInit {
         } else {
           this.error.set('Feedback not found');
         }
+
+        this.sendReadReceipts(feedback);
       },
       error: err => {
         console.error(err);
         this.error.set('Failed to load feedback details');
+      }
+    });
+  }
+
+  private sendReadReceipts(feedback: ContactUsFeedback) {
+    const readTasks = [];
+    readTasks.push(this.api.readFeedback(feedback.id));
+    feedback.comments.forEach(c => {
+      readTasks.push(this.api.readFeedbackComment(c.id));
+    });
+
+    forkJoin(readTasks).subscribe({
+      error: err => {
+        console.error(err);
+        this.error.set('Failed to send read receipts');
       }
     });
   }
