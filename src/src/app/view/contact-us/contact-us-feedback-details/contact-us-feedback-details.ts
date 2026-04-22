@@ -14,6 +14,8 @@ import {ContactUsFeedbackStatus} from '../../../common/interface/contact-us-feed
 import {forkJoin} from 'rxjs';
 import {environment} from '../../../../environments/environment';
 
+import {LinkifyPipe} from '../../../common/pipe/linkify.pipe';
+
 @Component({
   selector: 'app-contact-us-feedback-details',
   imports: [
@@ -25,7 +27,8 @@ import {environment} from '../../../../environments/environment';
     CdkTextareaAutosize,
     MatButton,
     TimestampPipe,
-    LoadingIcon
+    LoadingIcon,
+    LinkifyPipe
   ],
   templateUrl: './contact-us-feedback-details.html',
   styleUrl: './contact-us-feedback-details.scss',

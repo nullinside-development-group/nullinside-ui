@@ -40,7 +40,7 @@
         <span class="status">Status: {{ f.status }}</span>
       </div>
       <div class="feedback-message">
-        <span>{{ f.message }}</span>
+        <span [innerHTML]="f.message | linkify"></span>
       </div>
     </div>
 
@@ -54,7 +54,7 @@
             <span class="comment-timestamp">{{ comment.timestamp | timestamp }}</span>
           </div>
           <div class="comment-message">
-            <span>{{ comment.message }}</span>
+            <span [innerHTML]="comment.message | linkify"></span>
           </div>
         </div>
       } @empty {
