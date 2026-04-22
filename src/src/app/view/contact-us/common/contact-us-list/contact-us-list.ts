@@ -49,7 +49,7 @@ export class ContactUsList implements OnInit {
     if (this.isAdmin()) {
       this.api.getAllSubmittedContactUsFeedbackAdmin().subscribe({
         next: feedback => {
-          feedback.sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
+          feedback = this.sortFeedback(feedback);
           this.allFeedback = [...feedback];
           this.onFilterFeedback();
         },
@@ -60,7 +60,7 @@ export class ContactUsList implements OnInit {
     } else {
       this.api.getAllSubmittedContactUsFeedback().subscribe({
         next: feedback => {
-          feedback.sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
+          feedback = this.sortFeedback(feedback);
           this.allFeedback = [...feedback];
           this.onFilterFeedback();
         },
@@ -69,6 +69,31 @@ export class ContactUsList implements OnInit {
         }
       });
     }
+  }
+
+  private sortFeedback(feedback: ContactUsFeedback[]): ContactUsFeedback[] {
+    // First, go through each piece of feedback and determine the latest timestamp for action taken. This can either
+    // be just a posting with no comments (in which case we take the posting timestamp) or it can be a posting with
+    // comments in which case we take the timestamp of the soonest comment.
+    //
+    // This will ensure what has been updated most recently trickles to the top of the list regardless of original
+    // submission date.
+    const allFeedback = feedback.map(f => {
+      let compareStamp = f.timestamp;
+      f.comments.forEach(comment => {
+        if (comment.timestamp > compareStamp) {
+          compareStamp = comment.timestamp;
+        }
+      });
+
+      return {
+        ...f,
+        compareStamp
+      };
+    });
+
+    allFeedback.sort((a, b) => b.compareStamp.getTime() - a.compareStamp.getTime());
+    return allFeedback;
   }
 
   onFeedbackClicked(id: number) {
@@ -103,11 +128,11 @@ export class ContactUsList implements OnInit {
       return 'unread';
     }
 
-    if (ContactUsFeedbackStatus.Completed.toString() === status) {
+    if (ContactUsFeedbackStatus.Completed.toString() === feedback.status.toString()) {
       return 'completed';
     }
 
-    if (ContactUsFeedbackStatus.Closed.toString() === status) {
+    if (ContactUsFeedbackStatus.Closed.toString() === feedback.status.toString()) {
       return 'closed';
     }
 

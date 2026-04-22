@@ -12,6 +12,7 @@ import {Auth} from '../../../service/auth';
 
 import {ContactUsFeedbackStatus} from '../../../common/interface/contact-us-feedback-status';
 import {forkJoin} from 'rxjs';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-contact-us-feedback-details',
@@ -145,4 +146,6 @@ export class ContactUsFeedbackDetails implements OnInit {
       }
     })
   }
+
+  protected readonly environment = environment;
 }
