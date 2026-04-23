@@ -43,6 +43,7 @@ export class Home implements OnInit {
 
   private userLoginHasChanged = toObservable(this.auth.userIsLoggedIn)
 
+  public carouselEnabled = signal(false);
   public roles: WritableSignal<string[] | null> = signal(null);
   public error: WritableSignal<string | null> = signal(null);
   public loading: WritableSignal<boolean> = signal(true);

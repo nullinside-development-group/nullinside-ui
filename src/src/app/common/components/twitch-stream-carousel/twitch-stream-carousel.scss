@@ -8,7 +8,7 @@
 .carousel-container {
   overflow: hidden;
   flex: 1;
-  padding: 1rem;
+  padding: 16px;
 }
 
 .nav-button {
@@ -67,13 +67,21 @@
 
 .stream-box {
   position: relative;
-  flex: 0 0 200px;
-  height: 112px;
+  flex-shrink: 0;
   background: #2c2c2e;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+
+  .preview-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    flex-shrink: 0;
+  }
 
   img {
     width: 100%;
@@ -89,7 +97,7 @@
     color: white;
     padding: 2px 8px;
     border-radius: 4px;
-    font-size: 0.8rem;
+    font-size: 13px;
     font-weight: bold;
     pointer-events: none;
   }
@@ -102,7 +110,7 @@
     color: white;
     padding: 2px 8px;
     border-radius: 4px;
-    font-size: 0.8rem;
+    font-size: 13px;
     font-weight: bold;
     pointer-events: none;
   }
@@ -115,8 +123,24 @@
     color: white;
     padding: 2px 8px;
     border-radius: 4px;
-    font-size: 0.8rem;
+    font-size: 13px;
     font-weight: bold;
     pointer-events: none;
+  }
+
+  .stream-info {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+  }
+
+  .stream-info > .title {
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
