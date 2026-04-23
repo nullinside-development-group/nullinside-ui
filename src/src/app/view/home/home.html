@@ -1,7 +1,10 @@
 @if (!loading()) {
   @if (!error()) {
-    @if (false && liveStreams().length > 0) {
-      <app-twitch-stream-carousel [streams]="liveStreams()"></app-twitch-stream-carousel>
+    @if (carouselEnabled() && liveStreams().length > 0) {
+      <app-twitch-stream-carousel [streamWidth]="320"
+                                  [streamHeight]="180"
+                                  [streams]="liveStreams()">
+      </app-twitch-stream-carousel>
     }
 
     @if (apps().length > 0) {

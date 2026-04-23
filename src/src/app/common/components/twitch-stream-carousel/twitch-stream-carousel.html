@@ -5,17 +5,28 @@
     </button>
   }
   <div class="carousel-container">
-    <div class="carousel-track" [style.transform]="'translateX(' + (currentIndex() * -220) + 'px)'">
+    <div class="carousel-track" [style.transform]="'translateX(' + (currentIndex() * -(streamWidth() + 20)) + 'px)'">
       @for (stream of visibleStreams(); track stream.twitchId; let i = $index) {
-        <div class="stream-box" (click)="onStreamClicked(stream)" (keydown)="onStreamClicked(stream)" tabindex="0">
-          <div class="live">LIVE</div>
-          <div class="uptime">{{ stream.goneLiveTime | timespanDiff }}</div>
-          <img [ngSrc]="stream.thumbnailUrl.replace('{width}', '640').replace('{height}', '360')"
-               [alt]="stream.username + ' preview'"
-               width="200"
-               height="112"
-               priority>
-          <div class="view-count">{{ stream.viewerCount }} viewers</div>
+        <div class="stream-box" [style.width.px]="streamWidth()"
+             (click)="onStreamClicked(stream)"
+             (keydown)="onStreamClicked(stream)" 
+			 tabindex="0">
+          <div class="preview-container" [style.height.px]="streamHeight()" [style.width.px]="streamWidth()">
+            <div class="live">LIVE</div>
+            <div class="uptime">{{ stream.goneLiveTime | timespanDiff }}</div>
+            <img
+              [ngSrc]="stream.thumbnailUrl.replace('{width}', `${streamWidth()}`).replace('{height}', `${streamHeight()}`)"
+              [alt]="stream.username + ' preview'"
+              [width]="streamWidth()"
+              [height]="streamHeight()"
+              priority>
+            <div class="view-count">{{ stream.viewerCount }} viewers</div>
+          </div>
+          <div class="stream-info">
+            <span class="title" [title]="stream.streamTitle">{{ stream.streamTitle }}</span>
+            <span>{{ stream.username }}</span>
+            <span>{{ stream.gameName }}</span>
+          </div>
         </div>
       }
     </div>

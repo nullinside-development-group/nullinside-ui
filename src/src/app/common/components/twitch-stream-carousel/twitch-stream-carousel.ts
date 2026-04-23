@@ -25,13 +25,15 @@ export class TwitchStreamCarousel {
   rotationInterval = input(5000);
   direction = signal(1); // 1 for forward, -1 for backward
   skipCalls = signal(0);
+  streamWidth = input(640)
+  streamHeight = input(360)
 
   maxIndex = computed(() => {
     const count = this.streams().length;
     if (count === 0) return 0;
 
     const containerWidth = this.elementRef.nativeElement.querySelector('.carousel-container')?.clientWidth || 0;
-    const itemWidth = 200;
+    const itemWidth = this.streamWidth();
     const gap = 20;
     const fullItemWidth = itemWidth + gap;
 
