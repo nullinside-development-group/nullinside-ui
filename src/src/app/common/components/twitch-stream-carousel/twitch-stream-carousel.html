@@ -1,0 +1,28 @@
+<div class="carousel-wrapper">
+  @if (currentIndex() > 0) {
+    <button class="nav-button prev" (click)="scrollLeft()" aria-label="Previous streams">
+      <span class="arrow-left"></span>
+    </button>
+  }
+  <div class="carousel-container">
+    <div class="carousel-track" [style.transform]="'translateX(' + (currentIndex() * -220) + 'px)'">
+      @for (stream of visibleStreams(); track stream.twitchId; let i = $index) {
+        <div class="stream-box" (click)="onStreamClicked(stream)" (keydown)="onStreamClicked(stream)" tabindex="0">
+          <div class="live">LIVE</div>
+          <div class="uptime">{{ stream.goneLiveTime | timespanDiff }}</div>
+          <img [ngSrc]="stream.thumbnailUrl.replace('{width}', '640').replace('{height}', '360')"
+               [alt]="stream.username + ' preview'"
+               width="200"
+               height="112"
+               priority>
+          <div class="view-count">{{ stream.viewerCount }} viewers</div>
+        </div>
+      }
+    </div>
+  </div>
+  @if (currentIndex() < maxIndex()) {
+    <button class="nav-button next" (click)="scrollRight()" aria-label="Next streams">
+      <span class="arrow-right"></span>
+    </button>
+  }
+</div>

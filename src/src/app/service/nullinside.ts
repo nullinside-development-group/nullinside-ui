@@ -6,6 +6,7 @@ import {DockerResource} from '../common/interface/docker-resource';
 import {ContactUsSubmitFeedback} from '../common/interface/contact-us-submit-feedback';
 import {ContactUsFeedback} from '../common/interface/contact-us-feedback';
 import {ContactUsFeedbackStatus} from '../common/interface/contact-us-feedback-status';
+import {TwitchLiveBotUsers} from '../common/interface/twitch-live-bot-users';
 
 @Injectable({
   providedIn: 'root',
@@ -81,5 +82,14 @@ export class Nullinside {
 
   readFeedbackComment(id: number): Observable<boolean> {
     return this.httpClient.post<boolean>(`${environment.apiUrl}/contactus/${id}/comment/read`, {});
+  }
+
+  getAllLiveTwitchBotUsers(): Observable<TwitchLiveBotUsers[]> {
+    return this.httpClient.get<TwitchLiveBotUsers[]>(`${environment.apiUrl}/twitch/live`).pipe(
+      map(users => users.map(user => ({
+        ...user,
+        goneLiveTime: new Date(`${user.goneLiveTime}`)
+      })))
+    );
   }
 }

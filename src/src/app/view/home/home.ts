@@ -7,17 +7,23 @@ import {catchError, forkJoin, Observable, of} from "rxjs";
 import {UserRolesResponse} from "../../common/interface/user-roles-response";
 import {Auth} from "../../service/auth";
 import {toObservable} from '@angular/core/rxjs-interop';
+import {TwitchStreamCarousel} from '../../common/components/twitch-stream-carousel/twitch-stream-carousel';
+import {TwitchLiveBotUsers} from '../../common/interface/twitch-live-bot-users';
+import {Nullinside} from '../../service/nullinside';
 
 @Component({
   selector: 'app-home',
   imports: [
-    LoadingIcon
+    LoadingIcon,
+    TwitchStreamCarousel
   ],
   templateUrl: './home.html',
   styleUrl: './home.scss',
   standalone: true
 })
 export class Home implements OnInit {
+  private api = inject(Nullinside);
+
   private auth = inject(Auth);
   private router = inject(Router);
   private appTemplate = [
@@ -42,9 +48,11 @@ export class Home implements OnInit {
   public loading: WritableSignal<boolean> = signal(true);
 
   public apps: WritableSignal<WebsiteApp[]> = signal(this.appTemplate);
+  protected liveStreams: WritableSignal<TwitchLiveBotUsers[]> = signal([]);
 
   ngOnInit(): void {
     this.userLoginHasChanged.subscribe(_ => this.checkRoles());
+    this.api.getAllLiveTwitchBotUsers().subscribe(response => this.liveStreams.set(response));
     this.checkRoles();
   }
 
@@ -87,7 +95,7 @@ export class Home implements OnInit {
           if (!twitchBotFeatureToggle || !twitchBotFeatureToggle.isEnabled) {
             this.apps.set([...this.apps().filter(f => 'Twitch Bot' !== f.displayName)])
           }
-          
+
           this.loading.set(false);
         },
         error: err => {
