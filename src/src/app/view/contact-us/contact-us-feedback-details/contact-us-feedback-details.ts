@@ -115,12 +115,12 @@ export class ContactUsFeedbackDetails implements OnInit {
         } else {
           this.error.set('Failed to add comment, please try again');
         }
+	
+	this.loading.set(false);
       },
       error: err => {
         console.error(err);
         this.error.set('An error occurred while adding the comment');
-      },
-      complete: () => {
         this.loading.set(false);
       }
     });
@@ -139,12 +139,11 @@ export class ContactUsFeedbackDetails implements OnInit {
     this.api.updateContactUsFeedbackStatus(feedback.id, status).subscribe({
       next: () => {
         this.loadFeedback(feedback.id);
+        this.loading.set(false);
       },
       error: err => {
         console.error('Failed to complete feedback:', err);
         this.error.set('Failed to complete feedback, please try again');
-      },
-      complete: () => {
         this.loading.set(false);
       }
     })

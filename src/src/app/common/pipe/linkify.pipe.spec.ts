@@ -9,12 +9,7 @@ describe('LinkifyPipe', () => {
     TestBed.configureTestingModule({
       providers: [
         LinkifyPipe,
-        {
-          provide: DomSanitizer,
-          useValue: {
-            bypassSecurityTrustHtml: (val: string) => val,
-          },
-        },
+        DomSanitizer
       ],
     });
     pipe = TestBed.inject(LinkifyPipe);

@@ -66,11 +66,10 @@ export class VmManager implements OnInit, OnDestroy {
           });
 
           this.vms.set(actionableVms);
+          this.loading.set(false);
         },
         error: _ => {
           this.error.set("Failed to reach out to get the virtual machines, please try again...");
-        },
-        complete: () => {
           this.loading.set(false);
         }
       })
