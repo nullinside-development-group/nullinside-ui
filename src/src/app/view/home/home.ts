@@ -87,12 +87,12 @@ export class Home implements OnInit {
           if (!twitchBotFeatureToggle || !twitchBotFeatureToggle.isEnabled) {
             this.apps.set([...this.apps().filter(f => 'Twitch Bot' !== f.displayName)])
           }
+          
+          this.loading.set(false);
         },
         error: err => {
           console.log(err);
           this.error.set('Failed to get list of apps from the server, please refresh to try again...');
-        },
-        complete: () => {
           this.loading.set(false);
         }
       });

@@ -64,11 +64,12 @@ export class Login implements OnInit {
           if (tokenIsValid) {
             this.router.navigate([null !== this.redirect ? this.redirect : '/home']);
           }
+
+          this.checkingLogin.set(false);
         },
         error: err => {
+          console.log("here")
           console.error(err);
-        },
-        complete: () => {
           this.checkingLogin.set(false);
         }
       });

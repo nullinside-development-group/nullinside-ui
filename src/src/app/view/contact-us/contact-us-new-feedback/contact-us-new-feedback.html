@@ -18,8 +18,9 @@
       <mat-form-field appearance="outline" class="fillable">
         <mat-label>Select a Product</mat-label>
         <mat-select formControlName="product" required>
+          <mat-option value="twitch-bot">Twitch Bot</mat-option>
           <mat-option value="website">Website</mat-option>
-          <mat-option value="twitch-streaming-tools">Twitch Streaming Tools</mat-option>
+          <mat-option value="twitch-streaming-tools">Twitch Streaming Tools (Desktop App)</mat-option>
           <mat-option value="other">Other</mat-option>
         </mat-select>
         @if (formGroup.get('product')?.hasError('required')) {
