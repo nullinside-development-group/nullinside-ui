@@ -9,7 +9,8 @@
       @for (stream of visibleStreams(); track stream.twitchId; let i = $index) {
         <div class="stream-box" [style.width.px]="streamWidth()"
              (click)="onStreamClicked(stream)"
-             (keydown)="onStreamClicked(stream)" 
+             (auxclick)="onStreamClicked(stream)"
+             (keydown)="onStreamClicked(stream)"
 			 tabindex="0">
           <div class="preview-container" [style.height.px]="streamHeight()" [style.width.px]="streamWidth()">
             <div class="live">LIVE</div>
