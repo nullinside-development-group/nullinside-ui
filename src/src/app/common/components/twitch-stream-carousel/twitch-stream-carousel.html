@@ -1,7 +1,7 @@
 <div class="carousel-wrapper">
-    <button class="nav-button prev" (click)="scrollLeft()" aria-label="Previous streams">
-      <span class="arrow-left"></span>
-    </button>
+  <button class="nav-button prev" (click)="scrollLeft()" aria-label="Previous streams">
+    <span class="arrow-left"></span>
+  </button>
   <div class="carousel-container" #container>
     <div class="carousel-track" [style.transform]="'translateX(' + (currentIndex() * -(streamWidth() + gap())) + 'px)'">
       @for (stream of visibleStreams(); track stream.twitchId) {
@@ -18,7 +18,7 @@
               [alt]="stream.username + ' preview'"
               [width]="streamWidth()"
               [height]="streamHeight()"
-              priority>
+              [priority]="$index < 6">
             <div class="view-count">{{ stream.viewerCount }} viewers</div>
           </div>
           <div class="stream-info">
@@ -30,7 +30,7 @@
       }
     </div>
   </div>
-    <button class="nav-button next" (click)="scrollRight()" aria-label="Next streams">
-      <span class="arrow-right"></span>
-    </button>
+  <button class="nav-button next" (click)="scrollRight()" aria-label="Next streams">
+    <span class="arrow-right"></span>
+  </button>
 </div>
