@@ -11,7 +11,7 @@ export const authGuard: CanActivateFn = (_, __) => {
     return of(false);
   }
 
-  return inject(Auth).validateToken(token).pipe(
+  return inject(Auth).validateToken().pipe(
     tap({
         next: tokenIsValid => {
           if (!tokenIsValid) {

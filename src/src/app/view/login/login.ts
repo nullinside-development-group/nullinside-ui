@@ -58,7 +58,7 @@ export class Login implements OnInit {
     }
 
     this.checkingLogin.set(true);
-    this.auth.validateToken(token || '')
+    this.auth.validateToken()
       .subscribe({
         next: tokenIsValid => {
           if (tokenIsValid) {
@@ -68,7 +68,6 @@ export class Login implements OnInit {
           this.checkingLogin.set(false);
         },
         error: err => {
-          console.log("here")
           console.error(err);
           this.checkingLogin.set(false);
         }

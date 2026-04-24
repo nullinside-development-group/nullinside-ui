@@ -3,6 +3,7 @@ import {HttpInterceptorFn} from '@angular/common/http';
 
 import {environment} from "../../environments/environment";
 import {Auth} from "../service/auth";
+import {of, switchMap} from "rxjs";
 
 export const bearerTokenInterceptor: HttpInterceptorFn = (req, next) => {
   const url = req.url.toLowerCase().replace('https://www.', 'https://');
@@ -22,26 +23,33 @@ export const bearerTokenInterceptor: HttpInterceptorFn = (req, next) => {
   }
 
   const oAuth = authService.getOAuth();
-  if (!oAuth || !authService.userIsLoggedIn()) {
+  if (!oAuth) {
     return next(req);
   }
 
-  if (new Date(oAuth.ExpiresUtc) < new Date()) {
-    authService.clearToken();
-    authService.refreshToken(oAuth.RefreshToken).subscribe({
-      next: oAuth => {
-        authService.setToken(oAuth);
-      },
-      error: err => {
-        console.error(err);
-        authService.userIsLoggedIn.set(false);
+  const refreshOAuthTokenIfExpired = (new Date(oAuth.expiresUtc) < new Date())
+    ? authService.refreshToken(oAuth.refreshToken)
+    : of(oAuth);
+
+  return refreshOAuthTokenIfExpired.pipe(
+    switchMap(token => {
+      const authReq = req.clone({
+        setHeaders: {Authorization: `Bearer ${token.accessToken}`}
+      });
+
+      // If we are validating the token, we should also update the token in the body if it matches the old one.
+      // This is because the validate endpoint often takes the token in the body as well, and if we just
+      // refreshed it, the body would still have the old one.
+      if (authReq.url.toLowerCase().endsWith('/user/token/validate') && authReq.body && typeof authReq.body === 'object') {
+        const body = authReq.body as { token?: string };
+        if (body.token === oAuth.accessToken) {
+          return next(authReq.clone({
+            body: {...body, token: token.accessToken}
+          }));
+        }
       }
-    });
-  }
 
-  req = req.clone({
-    setHeaders: {Authorization: `Bearer ${authService.getToken()}`}
-  });
-
-  return next(req);
+      return next(authReq);
+    })
+  );
 }
