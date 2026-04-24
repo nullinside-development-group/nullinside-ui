@@ -4,14 +4,14 @@
       <span class="arrow-left"></span>
     </button>
   }
-  <div class="carousel-container">
-    <div class="carousel-track" [style.transform]="'translateX(' + (currentIndex() * -(streamWidth() + 20)) + 'px)'">
-      @for (stream of visibleStreams(); track stream.twitchId; let i = $index) {
+  <div class="carousel-container" #container>
+    <div class="carousel-track" [style.transform]="'translateX(' + (currentIndex() * -(streamWidth() + gap())) + 'px)'">
+      @for (stream of visibleStreams(); track stream.twitchId) {
         <div class="stream-box" [style.width.px]="streamWidth()"
              (click)="onStreamClicked(stream)"
              (auxclick)="onStreamClicked(stream)"
              (keydown)="onStreamClicked(stream)"
-			 tabindex="0">
+             tabindex="0">
           <div class="preview-container" [style.height.px]="streamHeight()" [style.width.px]="streamWidth()">
             <div class="live">LIVE</div>
             <div class="uptime">{{ stream.goneLiveTime | timespanDiff }}</div>
