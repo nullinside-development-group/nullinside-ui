@@ -1,4 +1,14 @@
-import {ChangeDetectionStrategy, Component, computed, effect, ElementRef, inject, input, signal} from '@angular/core';
+import {
+  afterNextRender,
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  ElementRef,
+  input,
+  signal,
+  viewChild
+} from '@angular/core';
 import {NgOptimizedImage} from '@angular/common';
 import {TwitchLiveBotUsers} from '../../interface/twitch-live-bot-users';
 import {TimespanDiffPipe} from '../../pipe/timespan-diff-pipe';
@@ -19,8 +29,10 @@ export interface TwitchStream {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TwitchStreamCarousel {
-  private elementRef = inject(ElementRef);
+  private container = viewChild<ElementRef<HTMLDivElement>>('container');
+  private containerWidth = signal(0);
   streams = input<TwitchLiveBotUsers[]>([]);
+  gap = input(20)
   currentIndex = signal(0);
   rotationInterval = input(5000);
   direction = signal(1); // 1 for forward, -1 for backward
@@ -30,16 +42,19 @@ export class TwitchStreamCarousel {
 
   maxIndex = computed(() => {
     const count = this.streams().length;
-    if (count === 0) return 0;
+    if (count === 0) {
+      return 0;
+    }
 
-    const containerWidth = this.elementRef.nativeElement.querySelector('.carousel-container')?.clientWidth || 0;
+    const containerWidth = this.containerWidth();
     const itemWidth = this.streamWidth();
-    const gap = 20;
-    const fullItemWidth = itemWidth + gap;
+    const fullItemWidth = itemWidth + this.gap();
 
-    if (containerWidth === 0) return Math.max(0, count - 1);
+    if (containerWidth === 0) {
+      return Math.max(0, count - 1);
+    }
 
-    const visibleItems = Math.floor((containerWidth + gap) / fullItemWidth);
+    const visibleItems = Math.floor((containerWidth + this.gap()) / fullItemWidth);
     return Math.max(0, count - visibleItems);
   });
 
@@ -48,6 +63,13 @@ export class TwitchStreamCarousel {
   });
 
   constructor() {
+    afterNextRender(() => {
+      const width = this.container()?.nativeElement.clientWidth || 0;
+      if (width !== this.containerWidth()) {
+        this.containerWidth.set(width);
+      }
+    });
+
     effect((onCleanup) => {
       const interval = setInterval(() => {
         if (this.skipCalls() > 0) {

@@ -33,23 +33,23 @@ export const bearerTokenInterceptor: HttpInterceptorFn = (req, next) => {
 
   return refreshOAuthTokenIfExpired.pipe(
     switchMap(token => {
-      const authReq = req.clone({
+      const request = req.clone({
         setHeaders: {Authorization: `Bearer ${token.accessToken}`}
       });
 
       // If we are validating the token, we should also update the token in the body if it matches the old one.
-      // This is because the validate endpoint often takes the token in the body as well, and if we just
+      // This is because the validate endpoint takes the token in the body as well and if we just
       // refreshed it, the body would still have the old one.
-      if (authReq.url.toLowerCase().endsWith('/user/token/validate') && authReq.body && typeof authReq.body === 'object') {
-        const body = authReq.body as { token?: string };
+      if (request.url.toLowerCase().endsWith('/user/token/validate') && request.body && typeof request.body === 'object') {
+        const body = request.body as { token?: string };
         if (body.token === oAuth.accessToken) {
-          return next(authReq.clone({
+          return next(request.clone({
             body: {...body, token: token.accessToken}
           }));
         }
       }
 
-      return next(authReq);
+      return next(request);
     })
   );
 }
