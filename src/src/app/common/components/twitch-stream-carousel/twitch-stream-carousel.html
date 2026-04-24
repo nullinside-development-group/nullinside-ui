@@ -1,9 +1,7 @@
 <div class="carousel-wrapper">
-  @if (currentIndex() > 0) {
     <button class="nav-button prev" (click)="scrollLeft()" aria-label="Previous streams">
       <span class="arrow-left"></span>
     </button>
-  }
   <div class="carousel-container" #container>
     <div class="carousel-track" [style.transform]="'translateX(' + (currentIndex() * -(streamWidth() + gap())) + 'px)'">
       @for (stream of visibleStreams(); track stream.twitchId) {
@@ -32,9 +30,7 @@
       }
     </div>
   </div>
-  @if (currentIndex() < maxIndex()) {
     <button class="nav-button next" (click)="scrollRight()" aria-label="Next streams">
       <span class="arrow-right"></span>
     </button>
-  }
 </div>
