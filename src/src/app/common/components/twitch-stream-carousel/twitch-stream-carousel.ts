@@ -100,6 +100,6 @@ export class TwitchStreamCarousel {
   protected readonly Date = Date;
 
   protected onStreamClicked(stream: TwitchLiveBotUsers) {
-    window.location.href = `https://twitch.tv/${stream.username}`;
+    window.open(`https://twitch.tv/${stream.username}`, '_blank');
   }
 }

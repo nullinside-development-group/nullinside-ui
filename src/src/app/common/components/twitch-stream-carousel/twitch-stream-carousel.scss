@@ -1,3 +1,5 @@
+@use '../../../common/constants' as *;
+
 .carousel-wrapper {
   position: relative;
   display: flex;
@@ -24,7 +26,7 @@
   justify-content: center;
   transition: background-color 0.3s ease;
   padding: 0;
-  color: white;
+  color: $font-color;
   flex-shrink: 0;
 
   &:hover {
@@ -40,7 +42,7 @@
   }
 
   .arrow-left, .arrow-right {
-    border: solid white;
+    border: solid $font-color;
     border-width: 0 3px 3px 0;
     display: inline-block;
     padding: 3px;
@@ -94,7 +96,7 @@
     bottom: 8px;
     left: 8px;
     background: rgba(0, 0, 0, 0.5);
-    color: white;
+    color: $font-color;
     padding: 2px 8px;
     border-radius: 4px;
     font-size: 13px;
@@ -107,7 +109,7 @@
     top: 8px;
     left: 8px;
     background: red;
-    color: white;
+    color: $font-color;
     padding: 2px 8px;
     border-radius: 4px;
     font-size: 13px;
@@ -120,7 +122,7 @@
     top: 8px;
     right: 8px;
     background: rgba(0, 0, 0, 0.5);
-    color: white;
+    color: $font-color;
     padding: 2px 8px;
     border-radius: 4px;
     font-size: 13px;
