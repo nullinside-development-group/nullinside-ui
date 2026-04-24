@@ -40,7 +40,7 @@ export const bearerTokenInterceptor: HttpInterceptorFn = (req, next) => {
       // If we are validating the token, we should also update the token in the body if it matches the old one.
       // This is because the validate endpoint takes the token in the body as well and if we just
       // refreshed it, the body would still have the old one.
-      if (request.url.toLowerCase().endsWith('/user/token/validate') && request.body && typeof request.body === 'object') {
+      if (request.url.toLowerCase().endsWith('/user/token/validate')) {
         const body = request.body as { token?: string };
         if (body.token === oAuth.accessToken) {
           return next(request.clone({
