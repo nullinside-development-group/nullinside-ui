@@ -82,7 +82,7 @@ export class TwitchBotConfig implements OnInit, OnDestroy {
         }
 
         const oauth = JSON.parse(atob(token));
-        this.auth.validateToken(oauth.AccessToken).subscribe({
+        this.auth.validateToken(oauth.accessToken).subscribe({
           next: tokenIsValid => {
             if (!tokenIsValid) {
               this.onLoginFailed();
