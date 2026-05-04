@@ -5,7 +5,7 @@
            #input>
   </mat-form-field>
   @if (!searching()) {
-    <button mat-stroked-button color="primary" (click)="onSearch(input.value)" type="button">Search</button>
+    <button matButton="outlined" color="primary" (click)="onSearch(input.value)" type="button">Search</button>
   } @else {
     <app-loading-icon fontSize="24px" height="30px" width="30px"></app-loading-icon>
   }
