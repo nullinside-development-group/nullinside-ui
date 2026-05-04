@@ -31,7 +31,7 @@
           @if (vm.isRunning) {
             <app-loading-icon fontSize="20px" height="30px" width="30px"/>
           } @else {
-            <button mat-stroked-button color="primary"
+            <button matButton="outlined" color="primary"
                     [color]="vm.isOnline ? 'warn' : 'primary'"
                     (click)="onSwitchPower(vm.id, !vm.isOnline)"
                     [aria-label]="vm.isOnline ? 'Turn Off ' + vm.name : 'Turn On ' + vm.name">

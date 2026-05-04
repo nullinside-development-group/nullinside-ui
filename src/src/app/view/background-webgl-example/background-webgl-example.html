@@ -5,7 +5,7 @@
 }
 
 <div class="floating-button">
-  <button mat-stroked-button color="primary" [matMenuTriggerFor]="menu">Menu</button>
+  <button matButton="outlined" color="primary" [matMenuTriggerFor]="menu">Menu</button>
   <mat-menu #menu="matMenu">
     <button mat-menu-item (click)="this.enum = OpenGlBackgrounds.BOX">Box</button>
     <button mat-menu-item (click)="this.enum = OpenGlBackgrounds.TEXTURE">Texture</button>
