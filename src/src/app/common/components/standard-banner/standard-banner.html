@@ -9,7 +9,7 @@
     </div>
   } @else {
     <div class="buttons">
-      <button matButton="tonal" (click)="onLogin()">Login</button>
+      <button [matButton]="!auth.userIsLoggedIn() ? `tonal` : `outlined`" (click)="onLogin()">Login</button>
     </div>
   }
 </div>
