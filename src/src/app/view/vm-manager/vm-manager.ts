@@ -1,6 +1,7 @@
 import {Component, inject, OnDestroy, OnInit, signal, WritableSignal} from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
-import {MatTooltip} from '@angular/material/tooltip';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
 import {interval, Subscription} from 'rxjs';
 import {LoadingIcon} from '../../common/components/loading-icon/loading-icon';
 import {Nullinside} from '../../service/nullinside';
@@ -10,7 +11,8 @@ import {ActionableDockerResource} from '../../common/interface/actionable-docker
   selector: 'app-vm-manager',
   imports: [
     MatIconModule,
-    MatTooltip,
+    MatCardModule,
+    MatButtonModule,
     LoadingIcon
   ],
   templateUrl: './vm-manager.html',

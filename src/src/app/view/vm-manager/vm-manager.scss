@@ -1,7 +1,31 @@
-h1 {
-  font-size: 18px;
+@use '@angular/material' as mat;
+@use '../../common/constants' as *;
+
+.vm-card {
+  margin: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.mat-icon {
-  vertical-align: middle;
+.status-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.status-text {
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 2px;
+  color: $font-color;
+}
+
+.vm-description {
+  margin-top: 16px;
+}
+
+.mat-mdc-card-content {
+  margin: 10px 0;
 }

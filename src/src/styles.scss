@@ -244,3 +244,10 @@ body {
   --mdc-snackbar-supporting-text-color: $font-color;
 }
 
+// Customize the entire app. Change :root to your selector if you want to scope the styles.
+:root {
+  @include mat.card-overrides((
+    elevated-container-color: #2e2929,
+    elevated-container-elevation: #2e2929,
+  ));
+}
