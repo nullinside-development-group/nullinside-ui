@@ -2,7 +2,7 @@ import {Component, inject, OnDestroy, OnInit, signal, WritableSignal} from '@ang
 import {MatButton} from '@angular/material/button';
 import {NullinsideTwitchBot} from "../../../service/nullinside-twitch-bot";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
-import {Errors} from "../../login-landing/errors";
+import {Errors} from "../../login/login-landing-web/errors";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Nullinside} from "../../../service/nullinside";
 import {environment} from "../../../../environments/environment";

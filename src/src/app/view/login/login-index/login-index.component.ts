@@ -1,10 +1,10 @@
 import {Component, inject, OnInit, signal} from '@angular/core';
-import {environment} from "../../../environments/environment";
+import {environment} from "../../../../environments/environment";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
-import {LoadingIcon} from "../../common/components/loading-icon/loading-icon";
+import {LoadingIcon} from "../../../common/components/loading-icon/loading-icon";
 import {HttpErrorResponse} from '@angular/common/http';
-import {TwitchLogin} from '../../common/components/twitch-login/twitch-login';
-import {Auth} from "../../service/auth";
+import {TwitchLogin} from '../../../common/components/twitch-login/twitch-login';
+import {Auth} from "../../../service/auth";
 import {Meta, Title} from "@angular/platform-browser";
 
 @Component({
@@ -13,11 +13,11 @@ import {Meta, Title} from "@angular/platform-browser";
     LoadingIcon,
     TwitchLogin
   ],
-  templateUrl: './login.html',
-  styleUrl: './login.scss',
+  templateUrl: './login-index.component.html',
+  styleUrl: './login-index.component.scss',
   standalone: true
 })
-export class Login implements OnInit {
+export class LoginIndex implements OnInit {
   private auth = inject(Auth);
   private router = inject(Router);
   private route = inject(ActivatedRoute);

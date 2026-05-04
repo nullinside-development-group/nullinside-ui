@@ -1,22 +1,21 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {Login} from './login';
+import {LoginLandingWeb} from './login-landing-web.component';
 import {provideRouter} from '@angular/router';
 
-describe('Login', () => {
-  let component: Login;
-  let fixture: ComponentFixture<Login>;
+describe('LoginLanding', () => {
+  let component: LoginLandingWeb;
+  let fixture: ComponentFixture<LoginLandingWeb>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Login],
+      imports: [LoginLandingWeb],
       providers: [provideRouter([])]
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(Login);
+    fixture = TestBed.createComponent(LoginLandingWeb);
     component = fixture.componentInstance;
-
     await fixture.whenStable();
   });
 

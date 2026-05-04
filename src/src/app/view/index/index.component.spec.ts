@@ -1,5 +1,5 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {Home} from './home';
+import {Index} from './index.component';
 import {provideHttpClient} from '@angular/common/http';
 import {provideHttpClientTesting} from '@angular/common/http/testing';
 import {Auth} from '../../service/auth';
@@ -8,8 +8,8 @@ import {Nullinside} from '../../service/nullinside';
 import {signal} from '@angular/core';
 
 describe('Home', () => {
-  let component: Home;
-  let fixture: ComponentFixture<Home>;
+  let component: Index;
+  let fixture: ComponentFixture<Index>;
   let authMock: Partial<Auth>;
   let nullinsideMock: Partial<Nullinside>;
 
@@ -25,7 +25,7 @@ describe('Home', () => {
     };
 
     await TestBed.configureTestingModule({
-      imports: [Home],
+      imports: [Index],
       providers: [
         provideHttpClient(),
         provideHttpClientTesting(),
@@ -35,7 +35,7 @@ describe('Home', () => {
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(Home);
+    fixture = TestBed.createComponent(Index);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
