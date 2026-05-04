@@ -4,7 +4,7 @@ import {LoginLanding} from "./view/login-landing/login-landing";
 import {Home} from "./view/home/home";
 import {authGuard} from "./middleware/auth-guard";
 import {VmManager} from './view/vm-manager/vm-manager';
-import {Login} from './view/login/login';
+import {Login} from './view/login-index/login';
 import {TwitchBotIndex} from './view/twitch/twitch-bot-index/twitch-bot-index';
 import {TwitchBotConfig} from './view/twitch/twitch-bot-config/twitch-bot-config';
 import {ImdbSearch} from './view/imdb-search/imdb-search';
