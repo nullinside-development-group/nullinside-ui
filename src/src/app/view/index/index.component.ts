@@ -1,5 +1,4 @@
 import {Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
-import {ADMIN, VM_ADMIN} from "../../common/constants";
 import {WebsiteApp} from "../../common/interface/website-app";
 import {Router} from '@angular/router';
 import {LoadingIcon} from "../../common/components/loading-icon/loading-icon";
@@ -23,23 +22,38 @@ import {Nullinside} from '../../service/nullinside';
 })
 export class Index implements OnInit {
   private api = inject(Nullinside);
-
   private auth = inject(Auth);
   private router = inject(Router);
-  private appTemplate = [
+
+  private publicApps: WebsiteApp[] = [
     {
       displayName: 'IMDB Search',
       description: 'Search the public IMDB database using various search techniques',
-      url: 'imdb-search',
-      params: undefined
+      url: 'imdb-search'
     },
     {
       displayName: 'Twitch Bot',
       description: 'The nullinside anti-bot Twitch bot.',
-      url: 'twitch/bot',
-      params: undefined
+      url: 'twitch/bot'
     }
   ];
+
+  private roleToAppPermissions: Record<string, WebsiteApp[]> = {
+    'VM_ADMIN': [
+      {
+        displayName: 'VM Admin',
+        description: 'Manage the virtual machines for various services.',
+        url: 'vm-admin'
+      }
+    ],
+    'ADMIN': [
+      {
+        displayName: 'Contact Us Admin',
+        description: 'View and reply to all submitted contact us feedback.',
+        url: 'contact-us/admin'
+      }
+    ]
+  };
 
   private userLoginHasChanged = toObservable(this.auth.userIsLoggedIn)
 
@@ -48,7 +62,7 @@ export class Index implements OnInit {
   public error: WritableSignal<string | null> = signal(null);
   public loading: WritableSignal<boolean> = signal(true);
 
-  public apps: WritableSignal<WebsiteApp[]> = signal(this.appTemplate);
+  public apps: WritableSignal<WebsiteApp[]> = signal(this.publicApps);
   protected liveStreams: WritableSignal<TwitchLiveBotUsers[]> = signal([]);
 
   ngOnInit(): void {
@@ -72,24 +86,19 @@ export class Index implements OnInit {
     })
       .subscribe({
         next: response => {
-          this.apps.set([...this.appTemplate]);
+          this.apps.set([...this.publicApps]);
           this.roles.set(response.user.roles);
-          if (-1 !== this.roles()?.indexOf(VM_ADMIN) || -1 !== this.roles()?.indexOf(ADMIN)) {
-            this.apps.set([...this.apps(), {
-              displayName: 'VM Admin',
-              description: 'Manage the virtual machines for various services.',
-              url: 'vm-admin',
-              params: null
-            }]);
-          }
 
-          if (-1 !== this.roles()?.indexOf(ADMIN)) {
-            this.apps.set([...this.apps(), {
-              displayName: 'Contact Us Admin',
-              description: 'View and reply to all submitted contact us feedback.',
-              url: 'contact-us/admin',
-              params: null
-            }]);
+          if (this.roles()?.includes('ADMIN')) {
+            for (const role in this.roleToAppPermissions) {
+              this.apps.set([...this.apps(), ...this.roleToAppPermissions[role]]);
+            }
+          } else {
+            this.roles()?.forEach(role => {
+              if (role in this.roleToAppPermissions) {
+                this.apps.set([...this.apps(), ...this.roleToAppPermissions[role]]);
+              }
+            });
           }
 
           const twitchBotFeatureToggle = response.featureToggles.find(f => 'Twitch Bot' === f.feature);
@@ -113,8 +122,6 @@ export class Index implements OnInit {
       return;
     }
 
-    this.router.navigate([existing.url], null !== existing.params ? {
-      queryParams: existing.params
-    } : undefined);
+    this.router.navigate([existing.url]);
   }
 }
