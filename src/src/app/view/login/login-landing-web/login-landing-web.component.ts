@@ -1,22 +1,22 @@
 import {Component, inject, OnDestroy, OnInit, signal, WritableSignal} from '@angular/core';
-import {Nullinside} from "../../service/nullinside";
-import {LoadingIcon} from "../../common/components/loading-icon/loading-icon";
+import {Nullinside} from "../../../service/nullinside";
+import {LoadingIcon} from "../../../common/components/loading-icon/loading-icon";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
-import {environment} from "../../../environments/environment";
+import {environment} from "../../../../environments/environment";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Errors} from "./errors";
-import {Auth} from "../../service/auth";
+import {Auth} from "../../../service/auth";
 
 @Component({
   selector: 'app-login-landing',
   imports: [
     LoadingIcon
   ],
-  templateUrl: './login-landing.html',
-  styleUrl: './login-landing.scss',
+  templateUrl: './login-landing-web.component.html',
+  styleUrl: './login-landing-web.component.scss',
   standalone: true
 })
-export class LoginLanding implements OnInit, OnDestroy {
+export class LoginLandingWeb implements OnInit, OnDestroy {
   private auth = inject(Auth);
   private api = inject(Nullinside);
   private route = inject(ActivatedRoute);

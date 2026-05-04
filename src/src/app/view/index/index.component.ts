@@ -17,11 +17,11 @@ import {Nullinside} from '../../service/nullinside';
     LoadingIcon,
     TwitchStreamCarousel
   ],
-  templateUrl: './home.html',
-  styleUrl: './home.scss',
+  templateUrl: './index.component.html',
+  styleUrl: './index.component.scss',
   standalone: true
 })
-export class Home implements OnInit {
+export class Index implements OnInit {
   private api = inject(Nullinside);
 
   private auth = inject(Auth);
