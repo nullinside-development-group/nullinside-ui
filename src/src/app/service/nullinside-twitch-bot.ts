@@ -1,9 +1,10 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {map, Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 import {TwitchBotIsModResponse} from "../common/interface/twitch-bot-is-mod-response";
 import {TwitchBotConfig} from "../common/interface/twitch-bot-config";
+import {TwitchLiveBotUsers} from '../common/interface/twitch-live-bot-users';
 
 @Injectable({
   providedIn: 'root',
@@ -26,5 +27,14 @@ export class NullinsideTwitchBot {
 
   setConfig(config: TwitchBotConfig): Observable<TwitchBotConfig> {
     return this.httpClient.post<TwitchBotConfig>(`${environment.twitchBotApiUrl}/bot/config`, config);
+  }
+
+  getAllLiveTwitchBotUsers(): Observable<TwitchLiveBotUsers[]> {
+    return this.httpClient.get<TwitchLiveBotUsers[]>(`${environment.twitchBotApiUrl}/bot/live`).pipe(
+      map(users => users.map(user => ({
+        ...user,
+        goneLiveTime: new Date(`${user.goneLiveTime}z`)
+      })))
+    );
   }
 }

@@ -5,8 +5,8 @@ import {environment} from "../../../../environments/environment";
 import {Meta, Title} from '@angular/platform-browser';
 import {TwitchStreamCarousel} from '../../../common/components/twitch-stream-carousel/twitch-stream-carousel';
 import {TwitchLiveBotUsers} from '../../../common/interface/twitch-live-bot-users';
-import {Nullinside} from '../../../service/nullinside';
 import {LoadingIcon} from '../../../common/components/loading-icon/loading-icon';
+import {NullinsideTwitchBot} from '../../../service/nullinside-twitch-bot';
 
 @Component({
   selector: 'app-twitch-bot-index',
@@ -24,7 +24,7 @@ export class TwitchBotIndex implements OnInit {
   protected readonly environment = environment;
   private metaService: Meta = inject(Meta);
   private titleService: Title = inject(Title);
-  private api: Nullinside = inject(Nullinside);
+  private api: NullinsideTwitchBot = inject(NullinsideTwitchBot);
   protected streams = signal<TwitchLiveBotUsers[]>([]);
   protected loading = signal(true);
 

@@ -1,11 +1,10 @@
 import {Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
 import {Router} from '@angular/router';
 import {LoadingIcon} from "../../common/components/loading-icon/loading-icon";
-import {Auth} from "../../service/auth";
 import {TwitchStreamCarousel} from '../../common/components/twitch-stream-carousel/twitch-stream-carousel';
 import {TwitchLiveBotUsers} from '../../common/interface/twitch-live-bot-users';
-import {Nullinside} from '../../service/nullinside';
 import {App} from '../../service/app';
+import {NullinsideTwitchBot} from '../../service/nullinside-twitch-bot';
 
 @Component({
   selector: 'app-home',
@@ -18,8 +17,7 @@ import {App} from '../../service/app';
   standalone: true
 })
 export class Index implements OnInit {
-  private api = inject(Nullinside);
-  private auth = inject(Auth);
+  private api = inject(NullinsideTwitchBot);
   private router = inject(Router);
   protected appService = inject(App);
 

@@ -4,14 +4,14 @@ import {provideHttpClient} from '@angular/common/http';
 import {provideHttpClientTesting} from '@angular/common/http/testing';
 import {Auth} from '../../service/auth';
 import {of} from 'rxjs';
-import {Nullinside} from '../../service/nullinside';
+import {NullinsideTwitchBot} from '../../service/nullinside-twitch-bot';
 import {signal} from '@angular/core';
 
 describe('Home', () => {
   let component: Index;
   let fixture: ComponentFixture<Index>;
   let authMock: Partial<Auth>;
-  let nullinsideMock: Partial<Nullinside>;
+  let twitchBotMock: Partial<NullinsideTwitchBot>;
 
   beforeEach(async () => {
     authMock = {
@@ -20,7 +20,7 @@ describe('Home', () => {
       getFeatureToggles: () => of([])
     };
 
-    nullinsideMock = {
+    twitchBotMock = {
       getAllLiveTwitchBotUsers: () => of([])
     };
 
@@ -30,7 +30,7 @@ describe('Home', () => {
         provideHttpClient(),
         provideHttpClientTesting(),
         {provide: Auth, useValue: authMock},
-        {provide: Nullinside, useValue: nullinsideMock}
+        {provide: NullinsideTwitchBot, useValue: twitchBotMock}
       ]
     })
       .compileComponents();
@@ -45,7 +45,7 @@ describe('Home', () => {
   });
 
   // it('should show the carousel when there are live streams', () => {
-  //   nullinsideMock.getAllLiveTwitchBotUsers = () => of([
+  //   twitchBotMock.getAllLiveTwitchBotUsers = () => of([
   //     {
   //       id: '1',
   //       username: 'user1',
