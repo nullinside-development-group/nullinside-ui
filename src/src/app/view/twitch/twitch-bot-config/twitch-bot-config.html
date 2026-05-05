@@ -16,17 +16,24 @@
   <h2>Twitch Bot</h2>
 
   <div class="form">
-    <div class="no-select">
+    <div class="no-select item">
       <mat-slide-toggle [disabled]="!botIsMod()"
                         [(ngModel)]="botEnabled"
                         #enabled>
         Enabled
       </mat-slide-toggle>
     </div>
-    <div class="no-select">
+    <div class="no-select item">
       <mat-checkbox [disabled]="!botIsMod() || !enabled.checked"
                     [(ngModel)]="banKnownBots">
         Ban Known Bots
+      </mat-checkbox>
+    </div>
+    <mat-divider class="mat-divider"></mat-divider>
+    <div class="no-select item">
+      <mat-checkbox [disabled]="!botIsMod() || !enabled.checked"
+                    [(ngModel)]="showOnHomePage">
+        Show Stream on Homepage
       </mat-checkbox>
     </div>
   </div>

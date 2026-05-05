@@ -14,6 +14,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {FormsModule} from "@angular/forms";
 import {Location} from "@angular/common";
 import {Auth} from "../../../service/auth";
+import {MatDivider} from '@angular/material/list';
 
 @Component({
   selector: 'app-twitch-bot-config',
@@ -23,7 +24,8 @@ import {Auth} from "../../../service/auth";
     MatSlideToggle,
     MatCheckbox,
     TwitchBotFaq,
-    FormsModule
+    FormsModule,
+    MatDivider
   ],
   templateUrl: './twitch-bot-config.html',
   styleUrl: './twitch-bot-config.scss',
@@ -44,6 +46,7 @@ export class TwitchBotConfig implements OnInit, OnDestroy {
   public waitingForModReply: WritableSignal<boolean> = signal(false);
   public botEnabled: WritableSignal<boolean> = signal(true);
   public banKnownBots: WritableSignal<boolean> = signal(true);
+  public showOnHomePage: WritableSignal<boolean> = signal(true);
   public waitingForSave: WritableSignal<boolean> = signal(false);
 
   ngOnDestroy(): void {
@@ -107,6 +110,7 @@ export class TwitchBotConfig implements OnInit, OnDestroy {
               next: response => {
                 this.botEnabled.set(response.isEnabled);
                 this.banKnownBots.set(response.banKnownBots);
+                this.showOnHomePage.set(response.showOnHomePage);
               },
               error: err => console.error(err)
             });
@@ -162,11 +166,13 @@ export class TwitchBotConfig implements OnInit, OnDestroy {
     this.waitingForSave.set(true);
     this.twitchBotApi.setConfig({
       isEnabled: this.botEnabled(),
-      banKnownBots: this.banKnownBots()
+      banKnownBots: this.banKnownBots(),
+      showOnHomePage: this.showOnHomePage(),
     }).subscribe({
       next: config => {
         this.botEnabled.set(config.isEnabled);
         this.banKnownBots.set(config.banKnownBots);
+        this.showOnHomePage.set(config.showOnHomePage);
         this.snackBar.open('Save successful', undefined, {
           panelClass: ['snackbar-success']
         });
