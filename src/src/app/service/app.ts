@@ -11,30 +11,38 @@ import {toObservable} from "@angular/core/rxjs-interop";
 export class App {
   private publicApps: WebsiteApp[] = [
     {
+      isDefault: true,
       displayName: 'Twitch Bot',
       description: 'The nullinside anti-bot Twitch bot.',
-      url: 'twitch/bot'
+      url: 'twitch/bot',
+      highlightedUrls: ['/twitch/bot', '/home']
     }
   ];
 
   private roleToAppPermissions: Record<string, WebsiteApp[]> = {
     'VM_ADMIN': [
       {
+        isDefault: false,
         displayName: 'VM Admin',
         description: 'Manage the virtual machines for various services.',
-        url: 'vm-admin'
+        url: 'vm-admin',
+        highlightedUrls: ['/vm-admin']
       }
     ],
     'ADMIN': [
       {
+        isDefault: false,
         displayName: 'Contact Us Admin',
         description: 'View and reply to all submitted contact us feedback.',
-        url: 'contact-us/admin'
+        url: 'contact-us-admin',
+        highlightedUrls: ['/contact-us-admin']
       },
       {
+        isDefault: false,
         displayName: 'IMDB Search',
         description: 'Search the public IMDB database using various search techniques',
-        url: 'imdb-search'
+        url: 'imdb-search',
+        highlightedUrls: ['/imdb-search']
       }
     ]
   };

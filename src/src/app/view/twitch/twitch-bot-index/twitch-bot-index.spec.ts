@@ -1,4 +1,6 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {provideHttpClient} from '@angular/common/http';
+import {provideHttpClientTesting} from '@angular/common/http/testing';
 
 import {TwitchBotIndex} from './twitch-bot-index';
 
@@ -8,7 +10,11 @@ describe('TwitchBotIndex', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TwitchBotIndex]
+      imports: [TwitchBotIndex],
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
+      ]
     })
       .compileComponents();
 

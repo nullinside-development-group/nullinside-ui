@@ -23,7 +23,7 @@ export const routes: Routes = [
   {path: 'user/login/desktop', component: LoginLandingDesktop},
   {path: 'vm-admin', component: VmManager, canActivate: [authGuard]},
   {path: 'contact-us', component: ContactUs, canActivate: [authGuard]},
-  {path: 'contact-us/admin', component: ContactUsAdmin, canActivate: [authGuard]},
+  {path: 'contact-us-admin', component: ContactUsAdmin, canActivate: [authGuard]},
   {path: 'contact-us/feedback', component: ContactUsNewFeedback, canActivate: [authGuard]},
   {path: 'contact-us/feedback/:id', component: ContactUsFeedbackDetails, canActivate: [authGuard]},
   {path: 'twitch/bot', component: TwitchBotIndex},

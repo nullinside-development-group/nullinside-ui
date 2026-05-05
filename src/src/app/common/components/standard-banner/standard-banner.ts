@@ -1,11 +1,13 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit, signal} from '@angular/core';
 import {Logo} from '../logo/logo';
 import {environment} from '../../../../environments/environment';
 import {MatButton} from '@angular/material/button';
 import {Auth} from "../../../service/auth";
-import {Router} from '@angular/router';
+import {NavigationEnd, Router} from '@angular/router';
 import {App} from '../../../service/app';
 import {WebsiteApp} from '../../interface/website-app';
+import {filter} from 'rxjs';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-standard-banner',
@@ -20,6 +22,14 @@ export class StandardBanner implements OnInit {
   private router = inject(Router);
   protected auth = inject(Auth);
   protected appService = inject(App);
+  protected url = signal('');
+
+  constructor() {
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd),
+      takeUntilDestroyed()
+    ).subscribe(() => this.url.set(this.router.url));
+  }
 
   ngOnInit(): void {
     // We don't care about the result, we'll get the updated information from the signal auth.userIsLoggedIn regardless.

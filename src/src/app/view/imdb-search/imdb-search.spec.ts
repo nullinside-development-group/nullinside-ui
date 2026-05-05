@@ -1,4 +1,6 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {provideHttpClient} from '@angular/common/http';
+import {provideHttpClientTesting} from '@angular/common/http/testing';
 
 import {ImdbSearch} from './imdb-search';
 
@@ -8,7 +10,11 @@ describe('ImdbSearch', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ImdbSearch]
+      imports: [ImdbSearch],
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
+      ]
     })
       .compileComponents();
 

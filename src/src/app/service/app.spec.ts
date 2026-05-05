@@ -1,12 +1,18 @@
 import {TestBed} from '@angular/core/testing';
 import {App} from './app';
 import {Auth} from './auth';
-import {of} from 'rxjs';
-import {signal} from '@angular/core';
+import {Observable, of} from 'rxjs';
+import {signal, WritableSignal} from '@angular/core';
+
+interface AuthMock {
+  userIsLoggedIn: WritableSignal<boolean>;
+  getUserRoles: () => Observable<{ roles: string[] }>;
+  getFeatureToggles: () => Observable<{ feature: string; isEnabled: boolean }[]>;
+}
 
 describe('App', () => {
   let service: App;
-  let authMock: any;
+  let authMock: AuthMock;
 
   beforeEach(() => {
     authMock = {
@@ -39,7 +45,7 @@ describe('App', () => {
 
     // Trigger the checkRoles method which is normally triggered by the observable in constructor
     // Since it's private, we use array notation to access it for testing purposes.
-    (service as any).checkRoles();
+    (service as unknown as { checkRoles: () => void }).checkRoles();
 
     const appNames = service.apps().map(a => a.displayName);
     expect(appNames).toContain('Twitch Bot');
@@ -51,7 +57,7 @@ describe('App', () => {
     authMock.userIsLoggedIn.set(true);
     authMock.getUserRoles = () => of({roles: ['ADMIN']});
 
-    (service as any).checkRoles();
+    (service as unknown as { checkRoles: () => void }).checkRoles();
 
     const appNames = service.apps().map(a => a.displayName);
     expect(appNames).toContain('Twitch Bot');
@@ -66,7 +72,7 @@ describe('App', () => {
     authMock.getUserRoles = () => of({roles: []});
     authMock.getFeatureToggles = () => of([{feature: 'Twitch Bot', isEnabled: false}]);
 
-    (service as any).checkRoles();
+    (service as unknown as { checkRoles: () => void }).checkRoles();
 
     const appNames = service.apps().map(a => a.displayName);
     expect(appNames).not.toContain('Twitch Bot');

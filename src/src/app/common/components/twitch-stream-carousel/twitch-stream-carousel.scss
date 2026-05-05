@@ -141,6 +141,9 @@
 
   .stream-info > .title {
     font-weight: bold;
+  }
+
+  .stream-info > span {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

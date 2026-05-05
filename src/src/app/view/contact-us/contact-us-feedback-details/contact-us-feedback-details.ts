@@ -128,7 +128,7 @@ export class ContactUsFeedbackDetails implements OnInit {
 
   protected onBackButton() {
     if (this.isAdmin()) {
-      this.router.navigate(['/contact-us/admin']);
+      this.router.navigate(['/contact-us-admin']);
     } else {
       this.router.navigate(['/contact-us']);
     }
