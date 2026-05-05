@@ -14,7 +14,9 @@ describe('StandardBanner', () => {
     authMock = {
       userIsLoggedIn: signal(true),
       validateToken: () => of(true),
-      getToken: () => 'token'
+      getToken: () => 'token',
+      getUserRoles: () => of({roles: []}),
+      getFeatureToggles: () => of([])
     };
 
     await TestBed.configureTestingModule({

@@ -1,7 +1,6 @@
 import {Routes} from '@angular/router';
 import {NotFound} from "./view/not-found/not-found";
 import {LoginLandingWeb} from "./view/login/login-landing-web/login-landing-web.component";
-import {Index} from "./view/index/index.component";
 import {authGuard} from "./middleware/auth-guard";
 import {VmManager} from './view/vm-manager/vm-manager';
 import {LoginIndex} from './view/login/login-index/login-index.component';
@@ -16,12 +15,12 @@ import {ContactUsFeedbackDetails} from './view/contact-us/contact-us-feedback-de
 import {ContactUsAdmin} from './view/contact-us/contact-us-admin/contact-us-admin';
 
 export const routes: Routes = [
-  {path: '', component: Index},
+  {path: '', component: TwitchBotIndex},
+  {path: 'home', component: TwitchBotIndex}, // For google redirect
   {path: 'background', component: BackgroundWebglExample},
   {path: 'user/auth', component: LoginIndex},
   {path: 'user/login', component: LoginLandingWeb},
   {path: 'user/login/desktop', component: LoginLandingDesktop},
-  {path: 'home', component: Index}, // For google redirect
   {path: 'vm-admin', component: VmManager, canActivate: [authGuard]},
   {path: 'contact-us', component: ContactUs, canActivate: [authGuard]},
   {path: 'contact-us/admin', component: ContactUsAdmin, canActivate: [authGuard]},

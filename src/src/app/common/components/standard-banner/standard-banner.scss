@@ -1,4 +1,28 @@
-.buttons {
-  display: inline;
-  margin-right: 10px;
+.layout-logo-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 10px;
+}
+
+app-logo {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.menu-bar {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }

@@ -4,6 +4,8 @@ import {environment} from '../../../../environments/environment';
 import {MatButton} from '@angular/material/button';
 import {Auth} from "../../../service/auth";
 import {Router} from '@angular/router';
+import {App} from '../../../service/app';
+import {WebsiteApp} from '../../interface/website-app';
 
 @Component({
   selector: 'app-standard-banner',
@@ -17,6 +19,7 @@ import {Router} from '@angular/router';
 export class StandardBanner implements OnInit {
   private router = inject(Router);
   protected auth = inject(Auth);
+  protected appService = inject(App);
 
   ngOnInit(): void {
     // We don't care about the result, we'll get the updated information from the signal auth.userIsLoggedIn regardless.
@@ -45,5 +48,9 @@ export class StandardBanner implements OnInit {
       // doesn't reload on the index page, and you can't retry your login until you refresh.
       window.location.href = `${environment.siteUrl}/user/auth?redirect=/contact-us`;
     }
+  }
+
+  onAppClicked(app: WebsiteApp) {
+    this.router.navigate([app.url]);
   }
 }

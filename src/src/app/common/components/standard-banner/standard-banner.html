@@ -1,15 +1,18 @@
 <div class="layout-logo-box">
   <app-logo/>
-  <div class="buttons">
-    <button matButton="outlined" color="primary" (click)="onContactUs()">Contact Us</button>
+
+  <div class="menu-bar">
+    @for (app of appService.apps(); track app.displayName) {
+      <button matButton="outlined" (click)="onAppClicked(app)">{{ app.displayName }}</button>
+    }
   </div>
-  @if (auth.userIsLoggedIn()) {
-    <div class="buttons">
+
+  <div class="right-section">
+    <button matButton="outlined" (click)="onContactUs()">Contact Us</button>
+    @if (auth.userIsLoggedIn()) {
       <button matButton="outlined" (click)="onLogout()">Logout</button>
-    </div>
-  } @else {
-    <div class="buttons">
+    } @else {
       <button matButton="tonal" (click)="onLogin()">Login</button>
-    </div>
-  }
+    }
+  </div>
 </div>
