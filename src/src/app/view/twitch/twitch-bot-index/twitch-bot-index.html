@@ -1,3 +1,11 @@
+<div class="center title-live">Creators Using the Bot</div>
+
+@if (loading()) {
+  <app-loading-icon class="center" height="180px" width="80px"></app-loading-icon>
+} @else if (streams().length > 0) {
+  <app-twitch-stream-carousel [streamWidth]="240" [streamHeight]="135" [streams]="streams()"/>
+}
+
 <app-twitch-login [twitchScopeIndex]="1" [redirectUrl]="environment.twitchBotApiUrl + '/login'"/>
 
 <app-twitch-bot-faq/>

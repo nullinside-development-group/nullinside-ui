@@ -31,7 +31,8 @@ void main() {
     vertexColor = vec4(0.5, 0.0, 0.0, 1.0); // output variable to dark-red
 }`;
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  animate: () => void = () => {};
+  animate: () => void = () => {
+  };
   dispose = false;
   private buffers: WebGLBuffer[] = [];
   private vertexArrays: WebGLVertexArrayObject[] = [];
