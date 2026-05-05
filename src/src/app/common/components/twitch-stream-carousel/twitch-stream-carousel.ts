@@ -13,14 +13,6 @@ import {NgOptimizedImage} from '@angular/common';
 import {TwitchLiveBotUsers} from '../../interface/twitch-live-bot-users';
 import {TimespanDiffPipe} from '../../pipe/timespan-diff-pipe';
 
-export interface TwitchStream {
-  id: string;
-  userName: string;
-  title: string;
-  thumbnailUrl: string;
-  viewerCount: number;
-}
-
 @Component({
   selector: 'app-twitch-stream-carousel',
   imports: [NgOptimizedImage, TimespanDiffPipe],

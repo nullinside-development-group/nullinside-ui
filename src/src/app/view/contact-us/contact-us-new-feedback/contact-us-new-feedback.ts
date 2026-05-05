@@ -55,7 +55,7 @@ export class ContactUsNewFeedback {
         } else {
           this.error.set('Failed to submit your feedback, please try again');
         }
-        
+
         this.loading.set(false);
       },
       error: err => {

@@ -3,15 +3,15 @@
 .outer-content {
   position: relative;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
 }
 
 .content {
-  position: absolute;
-  // top: 50%;
-  // left: 50%;
-  // transform: translate(-50%, -50%);
   height: 50px;
+  width: auto;
   overflow: hidden;
+  text-wrap: nowrap;
 
   // font-family: 'Lato', sans-serif;
   font-size: 35px;

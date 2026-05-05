@@ -1,5 +1,5 @@
-@if (!loading()) {
-  @if (!error()) {
+@if (!appService.loading()) {
+  @if (!appService.error()) {
     @if (carouselEnabled() && liveStreams().length > 0) {
       <app-twitch-stream-carousel [streamWidth]="320"
                                   [streamHeight]="180"
@@ -7,9 +7,9 @@
       </app-twitch-stream-carousel>
     }
 
-    @if (apps().length > 0) {
+    @if (appService.apps().length > 0) {
       <div class="layout-content flex-container">
-        @for (app of apps(); track app.displayName) {
+        @for (app of appService.apps(); track app.displayName) {
           <div class="app hover-border-blink" (click)="onAppClicked(app.displayName)"
                (keyup.enter)="onAppClicked(app.displayName)" tabindex="0">
             <h1>{{ app.displayName }}</h1>
@@ -26,7 +26,7 @@
     }
   } @else {
     <div class="error-banner">
-      {{ error() }}
+      {{ appService.error() }}
     </div>
   }
 } @else {

@@ -1,4 +1,4 @@
-import { TimespanDiffPipe } from './timespan-diff-pipe';
+import {TimespanDiffPipe} from './timespan-diff-pipe';
 
 describe('TimespanDiffPipe', () => {
   it('create an instance', () => {

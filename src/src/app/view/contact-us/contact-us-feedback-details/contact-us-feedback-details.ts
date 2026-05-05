@@ -115,8 +115,8 @@ export class ContactUsFeedbackDetails implements OnInit {
         } else {
           this.error.set('Failed to add comment, please try again');
         }
-	
-	this.loading.set(false);
+
+        this.loading.set(false);
       },
       error: err => {
         console.error(err);
@@ -128,7 +128,7 @@ export class ContactUsFeedbackDetails implements OnInit {
 
   protected onBackButton() {
     if (this.isAdmin()) {
-      this.router.navigate(['/contact-us/admin']);
+      this.router.navigate(['/contact-us-admin']);
     } else {
       this.router.navigate(['/contact-us']);
     }

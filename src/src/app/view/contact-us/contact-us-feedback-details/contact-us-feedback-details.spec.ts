@@ -1,4 +1,6 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {provideHttpClient} from '@angular/common/http';
+import {provideHttpClientTesting} from '@angular/common/http/testing';
 
 import {ContactUsFeedbackDetails} from './contact-us-feedback-details';
 import {ActivatedRoute} from '@angular/router';
@@ -12,6 +14,8 @@ describe('ContactUsFeedbackDetails', () => {
     await TestBed.configureTestingModule({
       imports: [ContactUsFeedbackDetails],
       providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
         {
           provide: ActivatedRoute,
           useValue: {
