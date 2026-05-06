@@ -5,13 +5,24 @@
   margin-right: auto;
 }
 
-.header {
+.back-button, .spacer {
+  min-width: 120px;
+  flex: 1;
+}
+
+.explanation {
   padding: 0 10px;
   text-align: justify;
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .header > h2 {
-  text-align: center;
+  text-align: left;
 }
 
 .form {
