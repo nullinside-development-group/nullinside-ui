@@ -247,4 +247,40 @@ body {
     elevated-container-color: #2e2929,
     elevated-container-elevation: #2e2929,
   ));
+
+  @include mat.checkbox-overrides((
+    selected-icon-color: #453e3d,
+    selected-focus-icon-color: #453e3d,
+    selected-hover-icon-color: #5c5252,
+    selected-pressed-icon-color: #453e3d,
+    unselected-focus-icon-color: #453e3d,
+    unselected-hover-icon-color: #5c5252,
+    unselected-icon-color: #453e3d,
+    label-text-color: $font-color
+  ));
+
+  @include mat.slide-toggle-overrides((
+    selected-icon-color: $background-color,
+    unselected-icon-color: $background-color,
+    disabled-selected-track-color:#453e3d,
+    disabled-unselected-track-color:#453e3d,
+    selected-focus-track-color:#453e3d,
+    selected-hover-track-color:#453e3d,
+    selected-pressed-track-color:#453e3d,
+    selected-track-color:#453e3d,
+    unselected-focus-track-color:#453e3d,
+    unselected-hover-track-color:#453e3d,
+    unselected-pressed-track-color:#453e3d,
+    unselected-track-color:#453e3d,
+    disabled-selected-handle-color: $font-color,
+    disabled-unselected-handle-color: $font-color,
+    selected-focus-handle-color: $font-color,
+    selected-handle-color: $font-color,
+    selected-hover-handle-color: $font-color,
+    selected-pressed-handle-color: $font-color,
+    unselected-focus-handle-color: $font-color,
+    unselected-handle-color: $font-color,
+    unselected-hover-handle-color: $font-color,
+    unselected-pressed-handle-color: $font-color
+  ));
 }
