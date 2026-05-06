@@ -1,13 +1,13 @@
-<div class="name-list-container">
-  <div class="name-list-title">{{ title() }}</div>
-  <div class="name-list">
-    @for (name of list(); track name) {
-      <div animate.enter="name-enter"
-           animate.leave="name-leave"
-           class="name-item"
-           [matTooltip]="name"
+<div class="list-container">
+  <div class="list-title">{{ title() }}</div>
+  <div class="list">
+    @for (item of list(); track item) {
+      <div animate.enter="enter"
+           animate.leave="leave"
+           class="item"
+           [matTooltip]="item.tooltip"
            matTooltipPosition="left">
-        {{ name }}
+        {{ item.text }}
       </div>
     }
   </div>

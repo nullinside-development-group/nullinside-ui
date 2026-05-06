@@ -1,14 +1,14 @@
-.name-list-container {
+.list-container {
   width: 100%;
+  height: 100%;
   padding: 10px;
   background: rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  max-height: 400px;
-  overflow-y: hidden;
-  overflow-x: hidden;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
-.name-list-title {
+.list-title {
   font-weight: bold;
   margin-bottom: 10px;
   text-align: center;
@@ -16,34 +16,37 @@
   padding-bottom: 5px;
 }
 
-.name-list {
+.list {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
-.name-item {
+.item {
   padding: 8px;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 4px;
-  text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
 }
 
-.name-enter {
+.enter {
   animation: enter-animation 300ms ease-out forwards;
   opacity: 0;
 }
 
 @for $i from 1 through 10 {
-  .name-item:nth-child(#{$i}) {
-    &.name-enter {
+  .item:nth-child(#{$i}) {
+    &.enter {
       animation-delay: #{$i * 100}ms;
     }
   }
 }
 
-.name-leave {
+.leave {
   animation: leave-animation 300ms ease-in forwards;
 }
 

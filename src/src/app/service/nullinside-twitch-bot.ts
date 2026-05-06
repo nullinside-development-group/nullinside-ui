@@ -43,7 +43,11 @@ export class NullinsideTwitchBot {
     return this.httpClient.get<TwitchRecentBans[]>(`${environment.twitchBotApiUrl}/bot/bans`).pipe(
       map(bans => bans.map(ban => ({
         ...ban,
-        timestamp: new Date(`${ban.timestamp}z`)
+        timestamp: new Date(`${ban.timestamp}z`),
+        chatLogs: ban.chatLogs.map(log => ({
+          ...log,
+          timestamp: new Date(`${log.timestamp}z`)
+        }))
       })))
     );
   }

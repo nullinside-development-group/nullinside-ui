@@ -1,5 +1,6 @@
 import {Component, input} from '@angular/core';
 import {MatTooltip} from '@angular/material/tooltip';
+import {AnimateListItem} from '../../interface/animate-list-item';
 
 @Component({
   selector: 'app-animated-list',
@@ -11,6 +12,6 @@ import {MatTooltip} from '@angular/material/tooltip';
   standalone: true,
 })
 export class AnimatedList {
-  list = input<string[]>([]);
+  list = input<AnimateListItem[]>([]);
   title = input('');
 }
