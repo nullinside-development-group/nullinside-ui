@@ -18,7 +18,7 @@
 
     @if (!loading() && recentlyBannedForDisplay().length > 0) {
       <div class="right-content">
-        <app-animated-list title="Protect Your Community From These Bots" [list]="recentlyBannedForDisplay()"/>
+        <app-animated-list listTitle="Protect Your Community From These Bots" [list]="recentlyBannedForDisplay()"/>
       </div>
     } @else {
       <div class="spacer"></div>

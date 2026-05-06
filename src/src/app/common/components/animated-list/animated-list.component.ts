@@ -13,5 +13,5 @@ import {AnimateListItem} from '../../interface/animate-list-item';
 })
 export class AnimatedList {
   list = input<AnimateListItem[]>([]);
-  title = input('');
+  listTitle = input('');
 }
