@@ -71,7 +71,7 @@ export class TwitchBotIndex implements OnInit, OnDestroy {
     this.api.getRecentBotBans().subscribe(bans => {
       this.botUserNames.update(_ => {
         const newNames = [...bans];
-        newNames.sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime());
+        newNames.sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
         return newNames.map(ban => ban.twitchUsername);
       });
     });
