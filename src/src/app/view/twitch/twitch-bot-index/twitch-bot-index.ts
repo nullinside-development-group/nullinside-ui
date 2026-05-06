@@ -1,4 +1,4 @@
-import {Component, inject, OnDestroy, OnInit, signal} from '@angular/core';
+import {Component, computed, inject, OnDestroy, OnInit, signal} from '@angular/core';
 import {TwitchLogin} from '../../../common/components/twitch-login/twitch-login';
 import {TwitchBotFaq} from "../twitch-bot-faq/twitch-bot-faq";
 import {environment} from "../../../../environments/environment";
@@ -9,6 +9,7 @@ import {LoadingIcon} from '../../../common/components/loading-icon/loading-icon'
 import {NullinsideTwitchBot} from '../../../service/nullinside-twitch-bot';
 import {AnimatedList} from '../../../common/components/animated-list/animated-list.component';
 import {interval, Subscription} from 'rxjs';
+import {AnimateListItem} from '../../../common/interface/animate-list-item';
 
 @Component({
   selector: 'app-twitch-bot-index',
@@ -29,9 +30,11 @@ export class TwitchBotIndex implements OnInit, OnDestroy {
   private titleService: Title = inject(Title);
   private api: NullinsideTwitchBot = inject(NullinsideTwitchBot);
   private timer: Subscription | null = null;
+
   protected streams = signal<TwitchLiveBotUsers[]>([]);
   protected loading = signal(true);
-  protected botUserNames = signal<string[]>([]);
+  protected recentlyBanned = signal<Record<string, AnimateListItem>>({});
+  protected recentlyBannedForDisplay = computed(() => Object.values(this.recentlyBanned()));
 
   constructor() {
     this.metaService.updateTag({
@@ -54,25 +57,53 @@ export class TwitchBotIndex implements OnInit, OnDestroy {
       this.loading.set(false);
     });
 
-    this.timer = interval(5000)
-      .subscribe({
-        next: _ => {
-          this.getRecentBotBans();
-        },
-        error: err => {
-          console.error(err);
-        }
-      });
+    this.timer = interval(5000).subscribe({
+      next: () => {
+        this.getRecentBotBans()
+      },
+      error: err => {
+        console.error(err)
+      }
+    });
 
     this.getRecentBotBans();
   }
 
   getRecentBotBans(): void {
     this.api.getRecentBotBans().subscribe(bans => {
-      this.botUserNames.update(_ => {
-        const newNames = [...bans];
-        newNames.sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
-        return newNames.map(ban => ban.twitchUsername);
+      // Sort by timestamp descending
+      const sortedBans = bans.slice().sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
+
+      this.recentlyBanned.update(currentMap => {
+        // Since this is a complex type and TypeScript compares them by reference, we need to check if the array has
+        // actually changed before interacting with the recentlyBanned collection. If we just update the array with the
+        // intended new values, the same exact rows will be considered different (by reference) and force an update
+        // every single cycle.
+        const updatedMap: Record<string, AnimateListItem> = {...currentMap};
+
+        sortedBans.forEach(ban => {
+          const key = ban.twitchUsername;
+          const newItem: AnimateListItem = {
+            text: ban.chatLogs.length > 0 ? `${key}: ${ban.chatLogs[0].message}` : key,
+            tooltip: ban.chatLogs.map(c => c.message).join('\n')
+          };
+
+          const existingItem = updatedMap[key];
+
+          // Only update if content changed
+          if (!existingItem || existingItem.text !== newItem.text || existingItem.tooltip !== newItem.tooltip) {
+            updatedMap[key] = newItem;
+          }
+        });
+
+        // Remove keys that are no longer in the latest bans
+        Object.keys(updatedMap).forEach(key => {
+          if (!sortedBans.find(b => b.twitchUsername === key)) {
+            delete updatedMap[key];
+          }
+        });
+
+        return updatedMap;
       });
     });
   }

@@ -8,6 +8,12 @@
   box-sizing: border-box;
 }
 
+app-animated-list {
+  display: block;
+  max-height: 420px;
+  overflow: hidden;
+}
+
 .top-section {
   width: 100%;
   max-width: 100vw;
@@ -16,7 +22,7 @@
 
 .bottom-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
   width: 100%;
   align-items: flex-start;

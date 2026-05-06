@@ -1,4 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
+import {convertForDisplay} from '../constants';
 
 @Pipe({
   name: 'timestamp',
@@ -9,9 +10,6 @@ export class TimestampPipe implements PipeTransform {
       return null;
     }
 
-    return `${value.toLocaleDateString()} ${value.toLocaleTimeString([], {
-      hour: '2-digit',
-      minute: '2-digit'
-    })}`;
+    return convertForDisplay(value);
   }
 }
