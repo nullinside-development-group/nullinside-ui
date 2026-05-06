@@ -1,6 +1,5 @@
 import {
   afterNextRender,
-  ChangeDetectionStrategy,
   Component,
   computed,
   effect,
@@ -11,15 +10,14 @@ import {
   viewChild
 } from '@angular/core';
 import {NgOptimizedImage} from '@angular/common';
-import {TwitchLiveBotUsers} from '../../interface/twitch-live-bot-users';
-import {TimespanDiffPipe} from '../../pipe/timespan-diff-pipe';
+import {TwitchLiveBotUsers} from '../../../../common/interface/twitch-live-bot-users';
+import {TimespanDiffPipe} from '../../../../common/pipe/timespan-diff-pipe';
 
 @Component({
   selector: 'app-twitch-stream-carousel',
   imports: [NgOptimizedImage, TimespanDiffPipe],
   templateUrl: './twitch-stream-carousel.html',
-  styleUrl: './twitch-stream-carousel.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrl: './twitch-stream-carousel.scss'
 })
 export class TwitchStreamCarousel {
   private container = viewChild<ElementRef<HTMLDivElement>>('container');

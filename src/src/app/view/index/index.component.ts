@@ -1,7 +1,7 @@
 import {Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
 import {Router} from '@angular/router';
 import {LoadingIcon} from "../../common/components/loading-icon/loading-icon";
-import {TwitchStreamCarousel} from '../../common/components/twitch-stream-carousel/twitch-stream-carousel';
+import {TwitchStreamCarousel} from '../twitch/components/twitch-stream-carousel/twitch-stream-carousel';
 import {TwitchLiveBotUsers} from '../../common/interface/twitch-live-bot-users';
 import {App} from '../../service/app';
 import {NullinsideTwitchBot} from '../../service/nullinside-twitch-bot';

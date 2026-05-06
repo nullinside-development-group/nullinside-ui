@@ -2,15 +2,15 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {ActivatedRoute} from '@angular/router';
 import {of} from 'rxjs';
 
-import {ContactUs} from './contact-us';
+import {ContactUsIndex} from './contact-us-index.component';
 
 describe('ContactUs', () => {
-  let component: ContactUs;
-  let fixture: ComponentFixture<ContactUs>;
+  let component: ContactUsIndex;
+  let fixture: ComponentFixture<ContactUsIndex>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ContactUs],
+      imports: [ContactUsIndex],
       providers: [
         {
           provide: ActivatedRoute,
@@ -20,7 +20,7 @@ describe('ContactUs', () => {
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(ContactUs);
+    fixture = TestBed.createComponent(ContactUsIndex);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
