@@ -5,6 +5,7 @@ import {environment} from "../../environments/environment";
 import {TwitchBotIsModResponse} from "../common/interface/twitch-bot-is-mod-response";
 import {TwitchBotConfig} from "../common/interface/twitch-bot-config";
 import {TwitchLiveBotUsers} from '../common/interface/twitch-live-bot-users';
+import {TwitchRecentBans} from '../common/interface/twitch-recent-bans';
 
 @Injectable({
   providedIn: 'root',
@@ -34,6 +35,15 @@ export class NullinsideTwitchBot {
       map(users => users.map(user => ({
         ...user,
         goneLiveTime: new Date(`${user.goneLiveTime}z`)
+      })))
+    );
+  }
+
+  getRecentBotBans(): Observable<TwitchRecentBans[]> {
+    return this.httpClient.get<TwitchRecentBans[]>(`${environment.twitchBotApiUrl}/bot/bans`).pipe(
+      map(bans => bans.map(ban => ({
+        ...ban,
+        timestamp: new Date(`${ban.timestamp}z`)
       })))
     );
   }

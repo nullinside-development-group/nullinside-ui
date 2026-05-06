@@ -1,5 +1,5 @@
 import {Component, computed, Signal, signal, WritableSignal} from '@angular/core';
-import {ContactUsList} from '../common/contact-us-list/contact-us-list';
+import {ContactUsList} from '../components/contact-us-list/contact-us-list';
 import {MatFormField, MatLabel} from '@angular/material/input';
 import {MatOption, MatSelect, MatSelectChange} from '@angular/material/select';
 import {ContactUsFeedback} from '../../../common/interface/contact-us-feedback';

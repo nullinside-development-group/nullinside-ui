@@ -1,11 +1,27 @@
-<div class="center title-live">Checkout Creators Using the Bot</div>
+<div class="twitch-bot-index-container">
+  <div class="top-section">
+    <div class="center title-live">Checkout Creators Using the Bot</div>
 
-@if (loading()) {
-  <app-loading-icon class="center" height="180px" width="80px"></app-loading-icon>
-} @else if (streams().length > 0) {
-  <app-twitch-stream-carousel [streamWidth]="240" [streamHeight]="135" [streams]="streams()"/>
-}
+    @if (loading()) {
+      <app-loading-icon class="center" height="180px" width="80px"></app-loading-icon>
+    } @else if (streams().length > 0) {
+      <app-twitch-stream-carousel [streamWidth]="240" [streamHeight]="135" [streams]="streams()"/>
+    }
+  </div>
 
-<app-twitch-login [twitchScopeIndex]="1" [redirectUrl]="environment.twitchBotApiUrl + '/login'"/>
+  <div class="bottom-layout">
+    <div class="spacer"></div>
+    <div class="middle-content">
+      <app-twitch-login [twitchScopeIndex]="1" [redirectUrl]="environment.twitchBotApiUrl + '/login'"/>
+      <app-twitch-bot-faq/>
+    </div>
 
-<app-twitch-bot-faq/>
+    @if (!loading() && botUserNames().length > 0) {
+      <div class="right-content">
+        <app-animated-list title="Protect Your Community From These Bots" [list]="botUserNames()"/>
+      </div>
+    } @else {
+      <div class="spacer"></div>
+    }
+  </div>
+</div>

@@ -1,24 +1,23 @@
 import {
   afterNextRender,
-  ChangeDetectionStrategy,
   Component,
   computed,
   effect,
   ElementRef,
+  HostListener,
   input,
   signal,
   viewChild
 } from '@angular/core';
 import {NgOptimizedImage} from '@angular/common';
-import {TwitchLiveBotUsers} from '../../interface/twitch-live-bot-users';
-import {TimespanDiffPipe} from '../../pipe/timespan-diff-pipe';
+import {TwitchLiveBotUsers} from '../../../../common/interface/twitch-live-bot-users';
+import {TimespanDiffPipe} from '../../../../common/pipe/timespan-diff-pipe';
 
 @Component({
   selector: 'app-twitch-stream-carousel',
   imports: [NgOptimizedImage, TimespanDiffPipe],
   templateUrl: './twitch-stream-carousel.html',
-  styleUrl: './twitch-stream-carousel.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrl: './twitch-stream-carousel.scss'
 })
 export class TwitchStreamCarousel {
   private container = viewChild<ElementRef<HTMLDivElement>>('container');
@@ -33,6 +32,9 @@ export class TwitchStreamCarousel {
   streamHeight = input(360)
 
   maxIndex = computed(() => {
+    // The maximum index is actually the number of streams minus the number of streams we can show in a single row.
+    // Think about it from the carousel perspective: if we have 10 streams and can show 3 at a time, the max index is 7.
+    // If we went higher than 7 then there would be blank space to the right of the carousel.
     const count = this.streams().length;
     if (count === 0) {
       return 0;
@@ -42,10 +44,13 @@ export class TwitchStreamCarousel {
     const itemWidth = this.streamWidth();
     const fullItemWidth = itemWidth + this.gap();
 
+    // If we can't figure out the container width, just use the maximum number of items, it'll allow people to scroll
+    // past the end but at least it will function.
     if (containerWidth === 0) {
       return Math.max(0, count - 1);
     }
 
+    // The visible items is the total number of things we have minus the number of things we can show in a single row.
     const visibleItems = Math.floor((containerWidth + this.gap()) / fullItemWidth);
     return Math.max(0, count - visibleItems);
   });
@@ -56,10 +61,7 @@ export class TwitchStreamCarousel {
 
   constructor() {
     afterNextRender(() => {
-      const width = this.container()?.nativeElement.clientWidth || 0;
-      if (width !== this.containerWidth()) {
-        this.containerWidth.set(width);
-      }
+      this.onResize();
     });
 
     effect((onCleanup) => {
@@ -76,6 +78,21 @@ export class TwitchStreamCarousel {
         clearInterval(interval);
       });
     });
+  }
+
+  @HostListener('window:resize')
+  onResize() {
+    const width = this.container()?.nativeElement.clientWidth || 0;
+    if (width !== this.containerWidth()) {
+      this.containerWidth.set(width);
+    }
+
+    // If the window is now larger and showing blank space on the right side, reset the index so everything
+    // scrolls back into view correctly.
+    if (this.maxIndex() < this.currentIndex()) {
+      this.currentIndex.set(this.maxIndex());
+      return;
+    }
   }
 
   rotate() {

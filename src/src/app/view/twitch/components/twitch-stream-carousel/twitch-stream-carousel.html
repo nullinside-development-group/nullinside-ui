@@ -8,7 +8,7 @@
         <div class="stream-box" [style.width.px]="streamWidth()"
              (click)="onStreamClicked(stream)"
              (auxclick)="onStreamClicked(stream)"
-             (keydown)="onStreamClicked(stream)"
+             (keydown.enter)="onStreamClicked(stream)"
              tabindex="0">
           <div class="preview-container" [style.height.px]="streamHeight()" [style.width.px]="streamWidth()">
             <div class="live">LIVE</div>
