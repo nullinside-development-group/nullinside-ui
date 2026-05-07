@@ -13,6 +13,8 @@ app-animated-list {
   max-height: 385px;
   overflow: hidden;
   width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .top-section {
@@ -36,22 +38,25 @@ app-animated-list {
 
 .content-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
   gap: 10px;
   width: 100%;
   align-items: flex-start;
   justify-items: start;
+  min-width: 0;
 }
 
 .faq-section {
   width: fit-content;
   margin-left: auto;
+  min-width: 0;
 }
 
 .list-section {
   display: flex;
   justify-content: flex-start;
   width: 100%;
+  min-width: 0;
 }
 
 .spacer {
@@ -71,7 +76,7 @@ app-loading-icon {
 
 @media (max-width: 1000px) {
   .content-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     justify-items: stretch;
   }
 
