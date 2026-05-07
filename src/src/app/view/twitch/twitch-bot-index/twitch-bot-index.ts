@@ -84,7 +84,8 @@ export class TwitchBotIndex implements OnInit, OnDestroy {
         sortedBans.forEach(ban => {
           const key = ban.twitchUsername;
           const newItem: AnimateListItem = {
-            text: ban.chatLogs.length > 0 ? `${key}: ${ban.chatLogs[0].message}` : key,
+            title: key,
+            text: ban.chatLogs.length > 0 ? `: ${ban.chatLogs[0].message}` : '',
             tooltip: ban.chatLogs.map(c => c.message).join('\n')
           };
 
