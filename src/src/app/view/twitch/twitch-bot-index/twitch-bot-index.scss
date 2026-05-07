@@ -10,8 +10,9 @@
 
 app-animated-list {
   display: block;
-  max-height: 420px;
+  max-height: 385px;
   overflow: hidden;
+  width: 100%;
 }
 
 .top-section {
@@ -21,18 +22,35 @@ app-animated-list {
 }
 
 .bottom-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.content-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
+  grid-template-columns: 2fr 1fr;
+  gap: 10px;
   width: 100%;
   align-items: flex-start;
+  justify-items: start;
 }
 
-.middle-content {
-  width: 100%;
+.faq-section {
+  width: fit-content;
+  margin-left: auto;
 }
 
-.right-content {
+.list-section {
+  display: flex;
+  justify-content: flex-start;
   width: 100%;
 }
 
@@ -52,8 +70,9 @@ app-loading-icon {
 }
 
 @media (max-width: 1000px) {
-  .bottom-layout {
+  .content-grid {
     grid-template-columns: 1fr;
+    justify-items: stretch;
   }
 
   .spacer {
