@@ -7,7 +7,14 @@
            class="item"
            [matTooltip]="item.tooltip"
            matTooltipPosition="left">
-        {{ item.text }}
+        @if (!item.title) {
+          {{ item.text }}
+        } @else {
+          <div class="side-by-side">
+            <div class="item-title">{{ item.title }}</div>
+            <div>{{ item.text }}</div>
+          </div>
+        }
       </div>
     }
   </div>

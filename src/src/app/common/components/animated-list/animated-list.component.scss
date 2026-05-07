@@ -71,3 +71,11 @@
     transform: translateX(50px);
   }
 }
+
+.side-by-side {
+  display: flex;
+}
+
+.item-title {
+  font-weight: bold;
+}
