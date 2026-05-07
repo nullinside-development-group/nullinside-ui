@@ -64,7 +64,7 @@
 .product-tag {
   padding: 4px 12px;
   border-radius: 16px;
-  font-weight: bold;
+  font-weight: 900;
   text-transform: capitalize;
 }
 
@@ -101,7 +101,7 @@
 }
 
 .comment-user {
-  font-weight: bold;
+  font-weight: 900;
 }
 
 .comment-timestamp {
@@ -147,7 +147,7 @@
 
 .feedback-status {
   text-align: right;
-  font-weight: bold;
+  font-weight: 900;
   color: $font-color;
 }
 
