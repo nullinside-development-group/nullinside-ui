@@ -26,10 +26,10 @@ export class Nullinside {
       map(feedback => feedback.map(item => ({
         ...item,
         status: item.status,
-        timestamp: new Date(`${item.timestamp}z`),
+        timestamp: new Date(`${item.timestamp}Z`),
         comments: item.comments.map(comment => ({
           ...comment,
-          timestamp: new Date(`${comment.timestamp}z`)
+          timestamp: new Date(`${comment.timestamp}Z`)
         }))
       })))
     );
@@ -40,10 +40,10 @@ export class Nullinside {
       map(feedback => feedback.map(item => ({
         ...item,
         status: item.status,
-        timestamp: new Date(`${item.timestamp}z`),
+        timestamp: new Date(`${item.timestamp}Z`),
         comments: item.comments.map(comment => ({
           ...comment,
-          timestamp: new Date(`${comment.timestamp}z`)
+          timestamp: new Date(`${comment.timestamp}Z`)
         }))
       })))
     );
@@ -54,10 +54,10 @@ export class Nullinside {
       map(feedback => ({
         ...feedback,
         status: feedback.status,
-        timestamp: new Date(`${feedback.timestamp}z`),
+        timestamp: new Date(`${feedback.timestamp}Z`),
         comments: feedback.comments.map(comment => ({
           ...comment,
-          timestamp: new Date(`${comment.timestamp}z`)
+          timestamp: new Date(`${comment.timestamp}Z`)
         }))
       }))
     );
