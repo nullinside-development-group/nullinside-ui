@@ -34,7 +34,7 @@ export class NullinsideTwitchBot {
     return this.httpClient.get<TwitchLiveBotUsers[]>(`${environment.twitchBotApiUrl}/bot/live`).pipe(
       map(users => users.map(user => ({
         ...user,
-        goneLiveTime: new Date(`${user.goneLiveTime}z`)
+        goneLiveTime: new Date(`${user.goneLiveTime}Z`)
       })))
     );
   }
@@ -43,10 +43,10 @@ export class NullinsideTwitchBot {
     return this.httpClient.get<TwitchRecentBans[]>(`${environment.twitchBotApiUrl}/bot/bans`).pipe(
       map(bans => bans.map(ban => ({
         ...ban,
-        timestamp: new Date(`${ban.timestamp}z`),
+        timestamp: new Date(`${ban.timestamp}Z`),
         chatLogs: ban.chatLogs.map(log => ({
           ...log,
-          timestamp: new Date(`${log.timestamp}z`)
+          timestamp: new Date(`${log.timestamp}Z`)
         }))
       })))
     );
