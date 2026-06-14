@@ -1,4 +1,4 @@
-import {Component, inject, OnInit, signal, WritableSignal, ChangeDetectionStrategy} from '@angular/core';
+import {Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {Errors} from "./errors";
 import {HttpErrorResponse} from "@angular/common/http";
@@ -7,7 +7,6 @@ import {HttpErrorResponse} from "@angular/common/http";
   selector: 'app-login-landing-desktop',
   templateUrl: './login-landing-desktop.html',
   styleUrl: './login-landing-desktop.scss',
-  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true
 })
 export class LoginLandingDesktop implements OnInit {

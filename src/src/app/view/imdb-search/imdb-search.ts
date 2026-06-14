@@ -1,4 +1,4 @@
-import {Component, inject, OnDestroy, signal, WritableSignal, ChangeDetectionStrategy} from '@angular/core';
+import {Component, inject, OnDestroy, signal, WritableSignal} from '@angular/core';
 import {NullinsideNull} from '../../service/nullinside-null';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInput} from '@angular/material/input';
@@ -17,7 +17,6 @@ import {ImdbSearchItems} from '../../common/interface/imdb-search';
   ],
   templateUrl: './imdb-search.html',
   styleUrl: './imdb-search.scss',
-  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true
 })
 export class ImdbSearch implements OnDestroy {

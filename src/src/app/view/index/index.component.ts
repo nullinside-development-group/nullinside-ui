@@ -1,4 +1,4 @@
-import {Component, inject, OnInit, signal, WritableSignal, ChangeDetectionStrategy} from '@angular/core';
+import {Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
 import {Router} from '@angular/router';
 import {LoadingIcon} from "../../common/components/loading-icon/loading-icon";
 import {TwitchStreamCarousel} from '../twitch/components/twitch-stream-carousel/twitch-stream-carousel';
@@ -14,7 +14,6 @@ import {NullinsideTwitchBot} from '../../service/nullinside-twitch-bot';
   ],
   templateUrl: './index.component.html',
   styleUrl: './index.component.scss',
-  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true
 })
 export class Index implements OnInit {

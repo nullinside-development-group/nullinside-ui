@@ -1,4 +1,4 @@
-import {Component, inject, OnInit, signal, ChangeDetectionStrategy} from '@angular/core';
+import {Component, inject, OnInit, signal} from '@angular/core';
 import {environment} from "../../../../environments/environment";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {LoadingIcon} from "../../../common/components/loading-icon/loading-icon";
@@ -15,7 +15,6 @@ import {Meta, Title} from "@angular/platform-browser";
   ],
   templateUrl: './login-index.component.html',
   styleUrl: './login-index.component.scss',
-  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true
 })
 export class LoginIndex implements OnInit {

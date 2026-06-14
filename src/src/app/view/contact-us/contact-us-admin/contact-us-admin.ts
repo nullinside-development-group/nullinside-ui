@@ -1,4 +1,4 @@
-import {Component, computed, Signal, signal, WritableSignal, ChangeDetectionStrategy} from '@angular/core';
+import {Component, computed, Signal, signal, WritableSignal} from '@angular/core';
 import {ContactUsList} from '../components/contact-us-list/contact-us-list';
 import {MatFormField, MatLabel} from '@angular/material/input';
 import {MatOption, MatSelect, MatSelectChange} from '@angular/material/select';
@@ -14,7 +14,6 @@ import {ContactUsFeedback} from '../../../common/interface/contact-us-feedback';
     MatOption
   ],
   templateUrl: './contact-us-admin.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './contact-us-admin.scss',
 })
 export class ContactUsAdmin {

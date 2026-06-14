@@ -1,4 +1,4 @@
-import {Component, inject, signal, ChangeDetectionStrategy} from '@angular/core';
+import {Component, inject, signal} from '@angular/core';
 import {MatButton} from '@angular/material/button';
 import {MatError, MatFormField, MatInput, MatLabel} from '@angular/material/input';
 import {MatOption, MatSelect} from '@angular/material/select';
@@ -24,7 +24,6 @@ import {LoadingIcon} from '../../../common/components/loading-icon/loading-icon'
     LoadingIcon
   ],
   templateUrl: './contact-us-new-feedback.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './contact-us-new-feedback.scss',
 })
 export class ContactUsNewFeedback {

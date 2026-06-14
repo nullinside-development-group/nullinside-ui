@@ -1,4 +1,4 @@
-import {Component, Input, ChangeDetectionStrategy} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {environment} from '../../../../environments/environment';
 import {NgOptimizedImage} from '@angular/common';
 
@@ -9,7 +9,6 @@ import {NgOptimizedImage} from '@angular/common';
   ],
   templateUrl: './twitch-login.html',
   styleUrl: './twitch-login.scss',
-  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true
 })
 export class TwitchLogin {

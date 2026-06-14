@@ -1,4 +1,4 @@
-import {Component, ChangeDetectionStrategy} from '@angular/core';
+import {Component} from '@angular/core';
 import {BackgroundWebgl} from "../background-webgl/background-webgl";
 import {MatButton} from "@angular/material/button";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
@@ -15,7 +15,6 @@ import {OpenGlBackgrounds} from "./backgrounds";
   ],
   templateUrl: './background-webgl-example.html',
   styleUrl: './background-webgl-example.scss',
-  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true
 })
 export class BackgroundWebglExample {

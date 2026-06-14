@@ -1,4 +1,4 @@
-import {Component, inject, OnDestroy, OnInit, signal, WritableSignal, ChangeDetectionStrategy} from '@angular/core';
+import {Component, inject, OnDestroy, OnInit, signal, WritableSignal} from '@angular/core';
 import {MatButton} from '@angular/material/button';
 import {NullinsideTwitchBot} from "../../../service/nullinside-twitch-bot";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
@@ -29,7 +29,6 @@ import {MatDivider} from '@angular/material/list';
   ],
   templateUrl: './twitch-bot-config.html',
   styleUrl: './twitch-bot-config.scss',
-  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true
 })
 export class TwitchBotConfig implements OnInit, OnDestroy {

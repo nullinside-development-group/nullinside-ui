@@ -1,4 +1,4 @@
-import {Component, computed, inject, OnDestroy, OnInit, signal, ChangeDetectionStrategy} from '@angular/core';
+import {Component, computed, inject, OnDestroy, OnInit, signal} from '@angular/core';
 import {TwitchLogin} from '../../../common/components/twitch-login/twitch-login';
 import {TwitchBotFaq} from "../twitch-bot-faq/twitch-bot-faq";
 import {environment} from "../../../../environments/environment";
@@ -22,7 +22,6 @@ import {AnimateListItem} from '../../../common/interface/animate-list-item';
   ],
   templateUrl: './twitch-bot-index.html',
   styleUrl: './twitch-bot-index.scss',
-  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true
 })
 export class TwitchBotIndex implements OnInit, OnDestroy {

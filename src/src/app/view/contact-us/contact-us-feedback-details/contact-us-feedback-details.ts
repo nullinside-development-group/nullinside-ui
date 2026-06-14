@@ -1,4 +1,4 @@
-import {Component, inject, OnInit, signal, viewChild, ChangeDetectionStrategy} from '@angular/core';
+import {Component, inject, OnInit, signal, viewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Nullinside} from '../../../service/nullinside';
 import {ContactUsFeedback} from '../../../common/interface/contact-us-feedback';
@@ -31,7 +31,6 @@ import {LinkifyPipe} from '../../../common/pipe/linkify.pipe';
     LinkifyPipe
   ],
   templateUrl: './contact-us-feedback-details.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './contact-us-feedback-details.scss',
 })
 export class ContactUsFeedbackDetails implements OnInit {
