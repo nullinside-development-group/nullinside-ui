@@ -1,4 +1,4 @@
-import {Component, inject, OnDestroy, OnInit, signal, WritableSignal} from '@angular/core';
+import {Component, inject, OnDestroy, OnInit, signal, WritableSignal, ChangeDetectionStrategy} from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
@@ -17,6 +17,7 @@ import {ActionableDockerResource} from '../../common/interface/actionable-docker
   ],
   templateUrl: './vm-manager.html',
   styleUrl: './vm-manager.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true
 })
 export class VmManager implements OnInit, OnDestroy {

@@ -1,4 +1,4 @@
-import {Component, signal} from '@angular/core';
+import {Component, signal, ChangeDetectionStrategy} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {StandardBanner} from './common/components/standard-banner/standard-banner';
 
@@ -6,6 +6,7 @@ import {StandardBanner} from './common/components/standard-banner/standard-banne
   selector: 'app-root',
   imports: [RouterOutlet, StandardBanner],
   templateUrl: './app.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './app.scss'
 })
 export class App {

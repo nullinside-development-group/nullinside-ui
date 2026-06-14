@@ -1,4 +1,4 @@
-import {Component, inject, Input} from '@angular/core';
+import {Component, inject, Input, ChangeDetectionStrategy} from '@angular/core';
 import {Router} from '@angular/router';
 
 @Component({
@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
   imports: [],
   templateUrl: './logo.html',
   styleUrl: './logo.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true
 })
 export class Logo {

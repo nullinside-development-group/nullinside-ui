@@ -1,4 +1,4 @@
-import {Component, input} from '@angular/core';
+import {Component, input, ChangeDetectionStrategy} from '@angular/core';
 import {MatTooltip} from '@angular/material/tooltip';
 import {AnimateListItem} from '../../interface/animate-list-item';
 
@@ -9,6 +9,7 @@ import {AnimateListItem} from '../../interface/animate-list-item';
   ],
   templateUrl: './animated-list.component.html',
   styleUrl: './animated-list.component.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true,
 })
 export class AnimatedList {

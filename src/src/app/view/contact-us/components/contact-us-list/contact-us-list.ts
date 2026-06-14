@@ -7,7 +7,8 @@ import {
   output,
   OutputEmitterRef,
   signal,
-  WritableSignal
+  WritableSignal,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {TimestampPipe} from '../../../../common/pipe/timestamp.pipe';
 import {Router} from '@angular/router';
@@ -22,6 +23,7 @@ import {environment} from '../../../../../environments/environment';
     TimestampPipe
   ],
   templateUrl: './contact-us-list.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './contact-us-list.scss',
 })
 export class ContactUsList implements OnInit {

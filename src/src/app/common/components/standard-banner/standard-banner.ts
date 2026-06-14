@@ -1,4 +1,4 @@
-import {Component, inject, OnInit, signal} from '@angular/core';
+import {Component, inject, OnInit, signal, ChangeDetectionStrategy} from '@angular/core';
 import {Logo} from '../logo/logo';
 import {environment} from '../../../../environments/environment';
 import {MatButton} from '@angular/material/button';
@@ -16,6 +16,7 @@ import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
     MatButton
   ],
   templateUrl: './standard-banner.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './standard-banner.scss'
 })
 export class StandardBanner implements OnInit {

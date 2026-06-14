@@ -1,4 +1,4 @@
-import {Component, inject, OnDestroy, OnInit, signal, WritableSignal} from '@angular/core';
+import {Component, inject, OnDestroy, OnInit, signal, WritableSignal, ChangeDetectionStrategy} from '@angular/core';
 import {Nullinside} from "../../../service/nullinside";
 import {LoadingIcon} from "../../../common/components/loading-icon/loading-icon";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
@@ -14,6 +14,7 @@ import {Auth} from "../../../service/auth";
   ],
   templateUrl: './login-landing-web.component.html',
   styleUrl: './login-landing-web.component.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true
 })
 export class LoginLandingWeb implements OnInit, OnDestroy {

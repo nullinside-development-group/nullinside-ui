@@ -7,7 +7,8 @@ import {
   HostListener,
   input,
   signal,
-  viewChild
+  viewChild,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {NgOptimizedImage} from '@angular/common';
 import {TwitchLiveBotUsers} from '../../../../common/interface/twitch-live-bot-users';
@@ -17,6 +18,7 @@ import {TimespanDiffPipe} from '../../../../common/pipe/timespan-diff-pipe';
   selector: 'app-twitch-stream-carousel',
   imports: [NgOptimizedImage, TimespanDiffPipe],
   templateUrl: './twitch-stream-carousel.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './twitch-stream-carousel.scss'
 })
 export class TwitchStreamCarousel {

@@ -1,9 +1,10 @@
-import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild, ChangeDetectionStrategy} from '@angular/core';
 
 @Component({
   selector: 'app-background-webgl',
   templateUrl: './background-webgl.html',
   styleUrl: './background-webgl.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true
 })
 export class BackgroundWebgl implements OnInit, OnDestroy, AfterViewInit {
