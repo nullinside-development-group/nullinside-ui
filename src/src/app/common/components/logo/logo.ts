@@ -1,9 +1,12 @@
 import {Component, inject, Input} from '@angular/core';
 import {Router} from '@angular/router';
+import {NgOptimizedImage} from '@angular/common';
 
 @Component({
   selector: 'app-logo',
-  imports: [],
+  imports: [
+    NgOptimizedImage
+  ],
   templateUrl: './logo.html',
   styleUrl: './logo.scss',
   standalone: true
