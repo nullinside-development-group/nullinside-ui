@@ -1,16 +1,7 @@
 <div class="outer-content" [style.font-size]="fontSize" [style.height]="height" (click)="sendToIndex()"
      (keyup.enter)="sendToIndex()" tabindex="0">
-  <div class="content">
-    <div class="content__container">
-      <p class="content__container__text">
-        null
-      </p>
-
-      <ul class="content__container__list">
-        @for (word of words; track word) {
-          <li class="content__container__list__item">{{ word }}</li>
-        }
-      </ul>
-    </div>
+  <div class="blackhole">
+    <div class="ring"></div>
+    <img ngSrc="favicon.png" alt="Black Hole" fill>
   </div>
 </div>
