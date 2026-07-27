@@ -12,8 +12,7 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-  animation: pulse 5s ease-in-out infinite,
-  glow 4s ease-in-out infinite;
+  animation: pulse 5s ease-in-out infinite;
 }
 
 /* Slow endless rotation */
@@ -33,15 +32,5 @@
   }
   50% {
     transform: scale(1.08);
-  }
-}
-
-/* Soft cosmic glow */
-@keyframes glow {
-  0%, 100% {
-    filter: drop-shadow(0 0 8px rgba(120, 80, 255, 0.35));
-  }
-  50% {
-    filter: drop-shadow(0 0 20px rgb(99 97 54));
   }
 }
