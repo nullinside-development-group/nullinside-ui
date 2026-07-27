@@ -42,8 +42,7 @@ export const routes: Routes = [
   },
   {
     path: 'twitch/bot/config',
-    loadComponent: () => import('./view/twitch/twitch-bot-config/twitch-bot-config').then(c => c.TwitchBotConfig),
-    canActivate: [authGuard]
+    loadComponent: () => import('./view/twitch/twitch-bot-config/twitch-bot-config').then(c => c.TwitchBotConfig)
   },
   {
     path: 'imdb-search',
