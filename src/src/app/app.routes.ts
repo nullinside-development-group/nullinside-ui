@@ -2,7 +2,6 @@ import {Routes} from '@angular/router';
 import {NotFound} from "./view/not-found/not-found";
 import {LoginLandingWeb} from "./view/login/login-landing-web/login-landing-web.component";
 import {authGuard} from "./middleware/auth-guard";
-import {VmManager} from './view/vm-manager/vm-manager';
 import {LoginIndex} from './view/login/login-index/login-index.component';
 import {TwitchBotIndex} from './view/twitch/twitch-bot-index/twitch-bot-index';
 import {TwitchBotConfig} from './view/twitch/twitch-bot-config/twitch-bot-config';
@@ -21,7 +20,11 @@ export const routes: Routes = [
   {path: 'user/auth', component: LoginIndex},
   {path: 'user/login', component: LoginLandingWeb},
   {path: 'user/login/desktop', component: LoginLandingDesktop},
-  {path: 'vm-admin', component: VmManager, canActivate: [authGuard]},
+  {
+    path: 'vm-admin',
+    loadComponent: () => import('./view/vm-manager/vm-manager').then(c => c.VmManager),
+    canActivate: [authGuard]
+  },
   {path: 'contact-us', component: ContactUsIndex, canActivate: [authGuard]},
   {path: 'contact-us-admin', component: ContactUsAdmin, canActivate: [authGuard]},
   {path: 'contact-us/feedback', component: ContactUsNewFeedback, canActivate: [authGuard]},
