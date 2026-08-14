@@ -49,5 +49,10 @@ export const routes: Routes = [
     loadComponent: () => import('./view/imdb-search/imdb-search').then(c => c.ImdbSearch),
     canActivate: [authGuard]
   },
+  {
+    path: 'twitch/admin',
+    loadComponent: () => import('./view/twitch/twitch-bot-admin/twitch-bot-admin').then(c => c.TwitchBotAdmin),
+    canActivate: [authGuard]
+  },
   {path: '**', component: NotFound},
 ];

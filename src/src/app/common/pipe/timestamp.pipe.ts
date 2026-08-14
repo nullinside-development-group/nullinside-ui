@@ -5,11 +5,11 @@ import {convertForDisplay} from '../constants';
   name: 'timestamp',
 })
 export class TimestampPipe implements PipeTransform {
-  transform(value: Date | null | undefined): string | null {
+  transform(value: Date | null | undefined, showSeconds = false, showDate = true): string | null {
     if (!value) {
       return null;
     }
 
-    return convertForDisplay(value);
+    return convertForDisplay(value, showSeconds, showDate);
   }
 }

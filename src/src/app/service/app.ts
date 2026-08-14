@@ -39,6 +39,13 @@ export class App {
       },
       {
         isDefault: false,
+        displayName: 'Twitch Admin',
+        description: 'Administer the twitch bot',
+        url: 'twitch/admin',
+        highlightedUrls: ['/twitch/admin']
+      },
+      {
+        isDefault: false,
         displayName: 'IMDB Search',
         description: 'Search the public IMDB database using various search techniques',
         url: 'imdb-search',

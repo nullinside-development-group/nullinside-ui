@@ -6,6 +6,7 @@ import {TwitchBotIsModResponse} from "../common/interface/twitch-bot-is-mod-resp
 import {TwitchBotConfig} from "../common/interface/twitch-bot-config";
 import {TwitchLiveBotUsers} from '../common/interface/twitch-live-bot-users';
 import {TwitchRecentBans} from '../common/interface/twitch-recent-bans';
+import {PaginatedTwitchChatLog} from '../common/interface/twitch-chat-log';
 
 @Injectable({
   providedIn: 'root',
@@ -49,6 +50,20 @@ export class NullinsideTwitchBot {
           timestamp: new Date(`${log.timestamp}Z`)
         }))
       })))
+    );
+  }
+
+  getAllChatMessages(): Observable<PaginatedTwitchChatLog> {
+    return this.httpClient.get<PaginatedTwitchChatLog>(`${environment.twitchBotApiUrl}/bot/chat/admin`).pipe(
+      map(response => {
+        return {
+          ...response,
+          data: response.data.map(message => ({
+            ...message,
+            timestamp: new Date(`${message.timestamp}Z`)
+          }))
+        }
+      })
     );
   }
 }
