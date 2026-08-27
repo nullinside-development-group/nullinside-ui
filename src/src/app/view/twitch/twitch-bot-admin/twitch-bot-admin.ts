@@ -21,17 +21,18 @@ import {TimestampPipe} from '../../../common/pipe/timestamp.pipe';
 })
 export class TwitchBotAdmin implements OnInit {
   @ViewChild('chatConsole')
-  chatConsole: ElementRef<HTMLDivElement> | undefined;
+  chatConsole?: ElementRef<HTMLDivElement>;
   private scrollChat = false;
 
-  private poisonPill = inject(DestroyRef);
+  private timer?: number;
+  private timerDestroy = inject(DestroyRef);
+
   protected streams = signal<TwitchLiveBotUsers[]>([]);
   protected loading = signal(true);
   private api: NullinsideTwitchBot = inject(NullinsideTwitchBot);
 
   protected messages = signal<Record<string, TwitchChatMessage>>({});
   protected messagesForDisplay = computed(() => Object.values(this.messages()));
-  private timer?: number;
 
   ngOnInit(): void {
     this.loadData();
@@ -46,7 +47,7 @@ export class TwitchBotAdmin implements OnInit {
       }
     }, 1000);
 
-    this.poisonPill.onDestroy(() => {
+    this.timerDestroy.onDestroy(() => {
       clearInterval(this.timer)
     });
   }

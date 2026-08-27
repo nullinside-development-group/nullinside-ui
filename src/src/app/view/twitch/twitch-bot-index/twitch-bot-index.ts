@@ -1,4 +1,4 @@
-import {Component, computed, inject, OnDestroy, OnInit, signal} from '@angular/core';
+import {Component, computed, DestroyRef, inject, OnInit, signal} from '@angular/core';
 import {TwitchLogin} from '../../../common/components/twitch-login/twitch-login';
 import {TwitchBotFaq} from "../twitch-bot-faq/twitch-bot-faq";
 import {environment} from "../../../../environments/environment";
@@ -8,7 +8,6 @@ import {TwitchLiveBotUsers} from '../../../common/interface/twitch-live-bot-user
 import {LoadingIcon} from '../../../common/components/loading-icon/loading-icon';
 import {NullinsideTwitchBot} from '../../../service/nullinside-twitch-bot';
 import {AnimatedList} from '../../../common/components/animated-list/animated-list.component';
-import {interval, Subscription} from 'rxjs';
 import {AnimateListItem} from '../../../common/interface/animate-list-item';
 
 @Component({
@@ -24,12 +23,13 @@ import {AnimateListItem} from '../../../common/interface/animate-list-item';
   styleUrl: './twitch-bot-index.scss',
   standalone: true
 })
-export class TwitchBotIndex implements OnInit, OnDestroy {
+export class TwitchBotIndex implements OnInit {
   protected readonly environment = environment;
   private metaService: Meta = inject(Meta);
   private titleService: Title = inject(Title);
   private api: NullinsideTwitchBot = inject(NullinsideTwitchBot);
-  private timer: Subscription | null = null;
+  private timer?: number;
+  private timerDestroy = inject(DestroyRef);
 
   protected streams = signal<TwitchLiveBotUsers[]>([]);
   protected loading = signal(true);
@@ -45,25 +45,22 @@ export class TwitchBotIndex implements OnInit, OnDestroy {
     this.titleService.setTitle("nullinside Twitch Bot");
   }
 
-  ngOnDestroy(): void {
-    if (this.timer) {
-      this.timer.unsubscribe();
-    }
-  }
-
   ngOnInit(): void {
     this.api.getAllLiveTwitchBotUsers().subscribe(response => {
       this.streams.set(response);
       this.loading.set(false);
     });
 
-    this.timer = interval(5000).subscribe({
-      next: () => {
-        this.getRecentBotBans()
-      },
-      error: err => {
-        console.error(err)
+    this.timer = setInterval(() => {
+      try {
+        this.getRecentBotBans();
+      } catch (e) {
+        console.error(e)
       }
+    }, 5000);
+
+    this.timerDestroy.onDestroy(() => {
+      clearInterval(this.timer)
     });
 
     this.getRecentBotBans();

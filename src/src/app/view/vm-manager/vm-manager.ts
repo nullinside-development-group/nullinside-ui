@@ -1,8 +1,7 @@
-import {Component, inject, OnDestroy, OnInit, signal, WritableSignal} from '@angular/core';
+import {Component, DestroyRef, inject, OnInit, signal, WritableSignal} from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
-import {interval, Subscription} from 'rxjs';
 import {LoadingIcon} from '../../common/components/loading-icon/loading-icon';
 import {Nullinside} from '../../service/nullinside';
 import {ActionableDockerResource} from '../../common/interface/actionable-docker-resource';
@@ -19,32 +18,31 @@ import {ActionableDockerResource} from '../../common/interface/actionable-docker
   styleUrl: './vm-manager.scss',
   standalone: true
 })
-export class VmManager implements OnInit, OnDestroy {
+export class VmManager implements OnInit {
   private api = inject(Nullinside);
 
   public loading: WritableSignal<boolean> = signal(true);
   public vms: WritableSignal<ActionableDockerResource[]> = signal([]);
   public error: WritableSignal<string | null> = signal(null);
-  private timer: Subscription | null = null;
+
+  private timer?: number;
+  private timerDestroy = inject(DestroyRef);
 
   ngOnInit(): void {
     this.getVms();
 
-    this.timer = interval(5000)
-      .subscribe({
-        next: _ => {
-          this.getVms();
-        },
-        error: _ => {
-          this.error.set("Failed to refresh the list, the server may be down...");
-        }
-      });
-  }
+    this.timer = setInterval(() => {
+      try {
+        this.getVms();
+      } catch (e) {
+        console.error(e);
+        this.error.set("Failed to refresh the list, the server may be down...");
+      }
+    }, 5000);
 
-  ngOnDestroy(): void {
-    if (this.timer) {
-      this.timer.unsubscribe();
-    }
+    this.timerDestroy.onDestroy(() => {
+      clearInterval(this.timer)
+    });
   }
 
   getVms() {

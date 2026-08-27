@@ -31,7 +31,7 @@ describe('TwitchStreamCarousel', () => {
         twitchId: '2'
       }
     ]);
-    fixture.componentRef.setInput('rotationInterval', 1000);
+    fixture.componentRef.setInput('rotateWait', 1000);
     fixture.detectChanges();
   });
 
