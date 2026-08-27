@@ -1,0 +1,31 @@
+@if (loading()) {
+  <app-loading-icon class="center" height="180px" width="80px"></app-loading-icon>
+} @else {
+  <div #chatConsole class="chat-console">
+    @for (chat of messagesForDisplay(); track chat.id) {
+      <div class="chat-message" [matTooltip]="chat.tooltip" matTooltipPosition="below">
+        <time class="timestamp">
+          {{ chat.timestamp | timestamp }}
+        </time>
+
+        <span class="sender">
+          {{ chat.sender }}:
+        </span>
+
+        @if (chat.channel) {
+          <a target="_blank" rel="noopener noreferrer" [href]="`https://www.twitch.tv/${chat.channel}`" class="channel">
+            #{{ chat.channel }}
+          </a>
+        }
+
+        <span class="message">
+          {{ chat.message }}
+        </span>
+      </div>
+    } @empty {
+      <div class="empty-state">
+        No chat messages
+      </div>
+    }
+  </div>
+}

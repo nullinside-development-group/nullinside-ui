@@ -61,10 +61,11 @@ describe('App', () => {
 
     const appNames = service.apps().map(a => a.displayName);
     expect(appNames).toContain('Twitch Bot');
+    expect(appNames).toContain('Twitch Admin');
     expect(appNames).toContain('VM Admin');
     expect(appNames).toContain('Contact Us Admin');
     expect(appNames).toContain('IMDB Search');
-    expect(appNames.length).toBe(4);
+    expect(appNames.length).toBe(5);
   });
 
   it('should not show Twitch Bot if feature toggle is disabled', () => {
