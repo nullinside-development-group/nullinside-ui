@@ -6,6 +6,7 @@ import {ContactUsList} from '../components/contact-us-list/contact-us-list';
 
 @Component({
   selector: 'app-contact-us',
+  standalone: true,
   imports: [
     MatButton,
     ContactUsList
