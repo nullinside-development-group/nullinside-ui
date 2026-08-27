@@ -25,7 +25,7 @@ export class TwitchStreamCarousel {
   streams = input<TwitchLiveBotUsers[]>([]);
   gap = input(20)
   currentIndex = signal(0);
-  rotationInterval = input(5000);
+  rotateWait = input(5000);
   direction = signal(1); // 1 for forward, -1 for backward
   skipCalls = signal(0);
   streamWidth = input(640)
@@ -72,7 +72,7 @@ export class TwitchStreamCarousel {
         }
 
         this.rotate();
-      }, this.rotationInterval());
+      }, this.rotateWait());
 
       onCleanup(() => {
         clearInterval(interval);

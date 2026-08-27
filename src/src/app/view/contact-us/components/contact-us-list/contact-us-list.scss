@@ -22,10 +22,10 @@
   flex-direction: column;
   gap: 4px;
   cursor: pointer;
-}
 
-.feedback-card:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
 }
 
 .feedback-header {
