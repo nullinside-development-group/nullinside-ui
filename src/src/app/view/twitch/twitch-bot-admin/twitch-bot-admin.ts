@@ -70,7 +70,7 @@ export class TwitchBotAdmin implements OnInit {
     return (element.clientHeight + element.scrollTop) >= element.scrollHeight;
   }
 
-  loadData() {
+  private loadData() {
     this.api.getAllLiveTwitchBotUsers().subscribe(response => {
       this.streams.set(response);
       this.loading.set(false);
@@ -123,5 +123,14 @@ export class TwitchBotAdmin implements OnInit {
         this.scrollChat = true;
       }
     });
+  }
+
+  protected isToday(timestamp: Date): boolean {
+    const date = new Date(timestamp);
+    const today = new Date();
+
+    return date.getFullYear() === today.getFullYear() &&
+      date.getMonth() === today.getMonth() &&
+      date.getDate() === today.getDate();
   }
 }
