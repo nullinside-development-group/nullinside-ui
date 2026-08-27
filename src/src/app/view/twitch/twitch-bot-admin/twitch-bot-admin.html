@@ -5,7 +5,7 @@
     @for (chat of messagesForDisplay(); track chat.id) {
       <div class="chat-message" [matTooltip]="chat.tooltip" matTooltipPosition="below">
         <time class="timestamp">
-          {{ chat.timestamp | timestamp }}
+          {{ chat.timestamp | timestamp: true:!isToday(chat.timestamp) }}
         </time>
 
         <span class="sender">
