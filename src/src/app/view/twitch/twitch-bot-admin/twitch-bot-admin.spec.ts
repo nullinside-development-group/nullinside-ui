@@ -1,6 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { TwitchBotAdmin } from './twitch-bot-admin';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {provideHttpClient} from '@angular/common/http';
+import {provideHttpClientTesting} from '@angular/common/http/testing';
+import {TwitchBotAdmin} from './twitch-bot-admin';
 
 describe('TwitchBotAdmin', () => {
   let component: TwitchBotAdmin;
@@ -8,9 +9,10 @@ describe('TwitchBotAdmin', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TwitchBotAdmin]
+      imports: [TwitchBotAdmin],
+      providers: [provideHttpClient(), provideHttpClientTesting()]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(TwitchBotAdmin);
     component = fixture.componentInstance;
