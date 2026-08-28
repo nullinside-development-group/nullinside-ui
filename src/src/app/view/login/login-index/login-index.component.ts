@@ -1,11 +1,11 @@
 import {Component, inject, OnInit, signal} from '@angular/core';
-import {environment} from "../../../../environments/environment";
-import {ActivatedRoute, ParamMap, Router} from "@angular/router";
-import {LoadingIcon} from "../../../common/components/loading-icon/loading-icon";
+import {environment} from '../../../../environments/environment';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {LoadingIcon} from '../../../common/components/loading-icon/loading-icon';
 import {HttpErrorResponse} from '@angular/common/http';
 import {TwitchLogin} from '../../../common/components/twitch-login/twitch-login';
-import {Auth} from "../../../service/auth";
-import {Meta, Title} from "@angular/platform-browser";
+import {Auth} from '../../../service/auth';
+import {Meta, Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -32,7 +32,7 @@ export class LoginIndex implements OnInit {
   constructor() {
     this.loginUrl = `${environment.apiUrl}/user/login`;
     this.metaService.updateTag({name: 'description', content: 'Login for access'});
-    this.titleService.setTitle("Login");
+    this.titleService.setTitle('Login');
   }
 
   ngOnInit(): void {
@@ -62,7 +62,7 @@ export class LoginIndex implements OnInit {
       .subscribe({
         next: tokenIsValid => {
           if (tokenIsValid) {
-            this.router.navigate([null !== this.redirect ? this.redirect : '/home']);
+            void this.router.navigate([this.redirect ?? '/home']);
           }
 
           this.checkingLogin.set(false);

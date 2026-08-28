@@ -1,9 +1,8 @@
 import {inject, Injectable, signal, WritableSignal} from '@angular/core';
-import {WebsiteApp} from "../common/interface/website-app";
-import {Auth} from "./auth";
-import {catchError, forkJoin, Observable, of} from "rxjs";
-import {UserRolesResponse} from "../common/interface/user-roles-response";
-import {toObservable} from "@angular/core/rxjs-interop";
+import {WebsiteApp} from '../common/interface/website-app';
+import {Auth} from './auth';
+import {catchError, forkJoin, of} from 'rxjs';
+import {toObservable} from '@angular/core/rxjs-interop';
 
 @Injectable({
   providedIn: 'root'
@@ -76,7 +75,7 @@ export class App {
     this.loading.set(true);
     forkJoin({
       // We don't care if the roles don't exist. This is only for authed users. So catch the error if there is one.
-      user: this.auth.getUserRoles().pipe(catchError(_ => of({roles: []}))) as Observable<UserRolesResponse>,
+      user: this.auth.getUserRoles().pipe(catchError(_ => of({roles: [] as string[]}))),
       featureToggles: this.auth.getFeatureToggles()
     })
       .subscribe({
@@ -97,7 +96,7 @@ export class App {
           }
 
           const twitchBotFeatureToggle = response.featureToggles.find(f => 'Twitch Bot' === f.feature);
-          if (!twitchBotFeatureToggle || !twitchBotFeatureToggle.isEnabled) {
+          if (!twitchBotFeatureToggle?.isEnabled) {
             this.apps.set(discoveredApps.filter(f => 'Twitch Bot' !== f.displayName));
           } else {
             this.apps.set(discoveredApps);

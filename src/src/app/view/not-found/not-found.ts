@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Logo} from "../../common/components/logo/logo";
+import {Logo} from '../../common/components/logo/logo';
 
 @Component({
   selector: 'app-not-found',

@@ -1,7 +1,7 @@
 import {Component, computed, DestroyRef, inject, OnInit, signal} from '@angular/core';
 import {TwitchLogin} from '../../../common/components/twitch-login/twitch-login';
-import {TwitchBotFaq} from "../twitch-bot-faq/twitch-bot-faq";
-import {environment} from "../../../../environments/environment";
+import {TwitchBotFaq} from '../twitch-bot-faq/twitch-bot-faq';
+import {environment} from '../../../../environments/environment';
 import {Meta, Title} from '@angular/platform-browser';
 import {TwitchStreamCarousel} from '../components/twitch-stream-carousel/twitch-stream-carousel';
 import {TwitchLiveBotUsers} from '../../../common/interface/twitch-live-bot-users';
@@ -42,7 +42,7 @@ export class TwitchBotIndex implements OnInit {
       content: 'Login with your twitch account to get started with the nullinside bot!'
     });
 
-    this.titleService.setTitle("nullinside Twitch Bot");
+    this.titleService.setTitle('nullinside Twitch Bot');
   }
 
   ngOnInit(): void {
@@ -55,12 +55,12 @@ export class TwitchBotIndex implements OnInit {
       try {
         this.getRecentBotBans();
       } catch (e) {
-        console.error(e)
+        console.error(e);
       }
     }, 5000);
 
     this.timerDestroy.onDestroy(() => {
-      clearInterval(this.timer)
+      clearInterval(this.timer);
     });
 
     this.getRecentBotBans();
@@ -89,6 +89,7 @@ export class TwitchBotIndex implements OnInit {
           const existingItem = updatedMap[key];
 
           // Only update if content changed
+          // eslint-disable-next-line @typescript-eslint/prefer-optional-chain
           if (!existingItem || existingItem.text !== newItem.text || existingItem.tooltip !== newItem.tooltip) {
             updatedMap[key] = newItem;
           }

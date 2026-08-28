@@ -20,4 +20,4 @@ export const allEnvironments = {
       'channel:read:subscriptions' // Allows us to use webhooks to read chat
     ]
   ]
-}
+};

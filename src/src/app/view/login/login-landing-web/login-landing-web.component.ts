@@ -1,11 +1,12 @@
 import {Component, inject, OnDestroy, OnInit, signal, WritableSignal} from '@angular/core';
-import {Nullinside} from "../../../service/nullinside";
-import {LoadingIcon} from "../../../common/components/loading-icon/loading-icon";
-import {ActivatedRoute, ParamMap, Router} from "@angular/router";
-import {environment} from "../../../../environments/environment";
-import {HttpErrorResponse} from "@angular/common/http";
-import {Errors} from "./errors";
-import {Auth} from "../../../service/auth";
+import {Nullinside} from '../../../service/nullinside';
+import {LoadingIcon} from '../../../common/components/loading-icon/loading-icon';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {environment} from '../../../../environments/environment';
+import {HttpErrorResponse} from '@angular/common/http';
+import {Errors} from './errors';
+import {Auth} from '../../../service/auth';
+import {OAuth} from '../../../common/interface/oauth';
 
 @Component({
   selector: 'app-login-landing',
@@ -36,13 +37,13 @@ export class LoginLandingWeb implements OnInit, OnDestroy {
       next: (params: ParamMap) => {
         const error = params.get('error');
         if (null !== error) {
-          const errorNum = +error;
+          const errorNum: Errors = +error;
           if (Errors.TWITCH_ACCOUNT_HAS_NO_EMAIL === errorNum) {
-            this.onLoginFailed('Your Twitch account must have a valid e-mail address, please add one and try again', false)
+            this.onLoginFailed('Your Twitch account must have a valid e-mail address, please add one and try again', false);
           } else if (Errors.TWITCH_ERROR_WITH_TOKEN === errorNum) {
-            this.onLoginFailed('Twitch failed to give us a valid token, please try again', false)
+            this.onLoginFailed('Twitch failed to give us a valid token, please try again', false);
           } else {
-            this.onLoginFailed('Sorry we did something wrong trying to log you in, please try again', false)
+            this.onLoginFailed('Sorry we did something wrong trying to log you in, please try again', false);
           }
 
           return;
@@ -54,7 +55,7 @@ export class LoginLandingWeb implements OnInit, OnDestroy {
           return;
         }
 
-        const oauth = JSON.parse(atob(token));
+        const oauth = JSON.parse(atob(token)) as OAuth;
         this.auth.validateToken(oauth.accessToken).subscribe({
           next: tokenIsValid => {
             if (!tokenIsValid) {
@@ -66,7 +67,7 @@ export class LoginLandingWeb implements OnInit, OnDestroy {
 
             const redirect = window.localStorage.getItem('login-redirect');
             window.localStorage.removeItem('login-redirect');
-            this.router.navigate([null !== redirect ? redirect : '/home']);
+            void this.router.navigate([redirect ?? '/home']);
           },
           error: (_: HttpErrorResponse) => {
             this.onLoginFailed();

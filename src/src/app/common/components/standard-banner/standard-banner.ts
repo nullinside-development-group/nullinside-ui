@@ -2,7 +2,7 @@ import {Component, inject, OnInit, signal} from '@angular/core';
 import {Logo} from '../logo/logo';
 import {environment} from '../../../../environments/environment';
 import {MatButton} from '@angular/material/button';
-import {Auth} from "../../../service/auth";
+import {Auth} from '../../../service/auth';
 import {NavigationEnd, Router} from '@angular/router';
 import {App} from '../../../service/app';
 import {WebsiteApp} from '../../interface/website-app';
@@ -52,7 +52,7 @@ export class StandardBanner implements OnInit {
 
   onContactUs(): void {
     if (this.auth.userIsLoggedIn()) {
-      this.router.navigate(['/contact-us']);
+      void this.router.navigate(['/contact-us']);
     } else {
       // Need to use window.location here instead of the router because otherwise the external javascript from Google
       // doesn't reload on the index page, and you can't retry your login until you refresh.
@@ -61,6 +61,6 @@ export class StandardBanner implements OnInit {
   }
 
   onAppClicked(app: WebsiteApp) {
-    this.router.navigate([app.url]);
+    void this.router.navigate([app.url]);
   }
 }

@@ -41,7 +41,7 @@ export class ContactUsList implements OnInit {
     // Re-filter when any input changes
     this.onFilterFeedback();
   });
-  public feedbackList: OutputEmitterRef<ContactUsFeedback[] | null> = output()
+  public feedbackList: OutputEmitterRef<ContactUsFeedback[] | null> = output();
   public feedbackSubmitted: WritableSignal<ContactUsFeedback[] | null> = signal(null);
   public feedbackSubmittedFiltered: WritableSignal<ContactUsFeedback[] | null> = signal(null);
 
@@ -97,7 +97,7 @@ export class ContactUsList implements OnInit {
   }
 
   onFeedbackClicked(id: number) {
-    this.router.navigate(['/contact-us/feedback/' + id]);
+    void this.router.navigate(['/contact-us/feedback/' + id]);
   }
 
   onFilterFeedback() {
@@ -111,7 +111,7 @@ export class ContactUsList implements OnInit {
     }
 
     if (this.filterByStatus()) {
-      filteredFeedback = filteredFeedback.filter(feedback => feedback.status === this.filterByStatus());
+      filteredFeedback = filteredFeedback.filter(feedback => feedback.status === this.filterByStatus() as ContactUsFeedbackStatus);
     }
 
     this.feedbackSubmitted.set(filteredFeedback);
@@ -144,7 +144,7 @@ export class ContactUsList implements OnInit {
       return '';
     }
 
-    return feedback.email ? feedback.email : feedback.userId.toString();
+    return feedback.email ?? feedback.userId.toString();
   }
 
   protected readonly ContactUsFeedbackStatus = ContactUsFeedbackStatus;

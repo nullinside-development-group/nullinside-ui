@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
-import {BackgroundWebgl} from "../background-webgl/background-webgl";
-import {MatButton} from "@angular/material/button";
-import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
-import {OpenGlBackgrounds} from "./backgrounds";
+import {BackgroundWebgl} from '../background-webgl/background-webgl';
+import {MatButton} from '@angular/material/button';
+import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
+import {OpenGlBackgrounds} from './backgrounds';
 
 @Component({
   selector: 'app-background-webgl-example',

@@ -120,19 +120,19 @@ describe('TwitchStreamCarousel', () => {
     expect(component.currentIndex()).toBe(0);
 
     // Click right
-    const nextButton = fixture.nativeElement.querySelector('.next');
-    nextButton.click();
+    const nextButton = (fixture.nativeElement as HTMLElement).querySelector<HTMLElement>('.next');
+    nextButton?.click();
     fixture.detectChanges();
     expect(component.currentIndex()).toBe(1);
 
     // Click right again
-    fixture.nativeElement.querySelector('.next').click();
+    (fixture.nativeElement as HTMLElement).querySelector<HTMLElement>('.next')?.click();
     fixture.detectChanges();
     expect(component.currentIndex()).toBe(2);
 
     // Click left
-    const prevButton = fixture.nativeElement.querySelector('.prev');
-    prevButton.click();
+    const prevButton = (fixture.nativeElement as HTMLElement).querySelector<HTMLElement>('.prev');
+    prevButton?.click();
     fixture.detectChanges();
     expect(component.currentIndex()).toBe(1);
 
@@ -141,7 +141,7 @@ describe('TwitchStreamCarousel', () => {
   });
 
   it('should show the correct number of counters', () => {
-    const counters = fixture.nativeElement.querySelectorAll('.view-count');
+    const counters = (fixture.nativeElement as HTMLElement).querySelectorAll('.view-count');
     expect(counters.length).toBe(2);
     expect(counters[0].textContent).toContain('1');
     expect(counters[1].textContent).toContain('2');

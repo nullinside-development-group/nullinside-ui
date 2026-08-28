@@ -23,13 +23,13 @@ export class TwitchStreamCarousel {
   private container = viewChild<ElementRef<HTMLDivElement>>('container');
   private containerWidth = signal(0);
   streams = input<TwitchLiveBotUsers[]>([]);
-  gap = input(20)
+  gap = input(20);
   currentIndex = signal(0);
   rotateWait = input(5000);
   direction = signal(1); // 1 for forward, -1 for backward
   skipCalls = signal(0);
-  streamWidth = input(640)
-  streamHeight = input(360)
+  streamWidth = input(640);
+  streamHeight = input(360);
 
   maxIndex = computed(() => {
     // The maximum index is actually the number of streams minus the number of streams we can show in a single row.
@@ -82,7 +82,7 @@ export class TwitchStreamCarousel {
 
   @HostListener('window:resize')
   onResize() {
-    const width = this.container()?.nativeElement.clientWidth || 0;
+    const width = this.container()?.nativeElement.clientWidth ?? 0;
     if (width !== this.containerWidth()) {
       this.containerWidth.set(width);
     }

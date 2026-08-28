@@ -20,10 +20,10 @@ export class TwitchLogin {
   @Input() redirectUrl: string | null = null;
 
   twitchLogin(): void {
-    window.location.href = `https://id.twitch.tv/oauth2/authorize?` +
+    window.location.href = 'https://id.twitch.tv/oauth2/authorize?' +
       encodeURI(`client_id=${environment.twitchClientId}&` +
         `redirect_uri=${this.redirectUrl}&` +
-        `response_type=code&` +
+        'response_type=code&' +
         `scope=${environment.twitchScopes[this.twitchScopeIndex].join(' ')}`);
   }
 }

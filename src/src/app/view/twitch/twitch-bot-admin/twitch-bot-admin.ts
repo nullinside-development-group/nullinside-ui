@@ -48,7 +48,7 @@ export class TwitchBotAdmin implements OnInit {
     }, 1000);
 
     this.timerDestroy.onDestroy(() => {
-      clearInterval(this.timer)
+      clearInterval(this.timer);
     });
   }
 
@@ -96,8 +96,8 @@ export class TwitchBotAdmin implements OnInit {
             updatedMap[key] = {
               id: message.id,
               channel: message.channel,
-              sender: message.twitchUsername ?? "Unknown",
-              message: message.message ?? "Unknown",
+              sender: message.twitchUsername ?? 'Unknown',
+              message: message.message ?? 'Unknown',
               timestamp: message.timestamp,
               tooltip: `${message.twitchUsername} - ${message.message} [${convertForDisplay(message.timestamp)}]`
             };

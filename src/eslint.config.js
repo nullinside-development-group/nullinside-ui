@@ -22,6 +22,12 @@ module.exports = defineConfig([
     rules: {
       semi: ["error", "always"],
       quotes: ["error", "single"],
+      '@typescript-eslint/unbound-method': [
+        'error',
+        {
+          ignoreStatic: true,
+        },
+      ],
       "@angular-eslint/directive-selector": [
         "error",
         {

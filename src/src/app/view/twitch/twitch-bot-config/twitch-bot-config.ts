@@ -1,20 +1,21 @@
 import {Component, inject, OnDestroy, OnInit, signal, WritableSignal} from '@angular/core';
 import {MatButton} from '@angular/material/button';
-import {NullinsideTwitchBot} from "../../../service/nullinside-twitch-bot";
-import {ActivatedRoute, ParamMap, Router} from "@angular/router";
-import {Errors} from "../../login/login-landing-web/errors";
-import {HttpErrorResponse} from "@angular/common/http";
-import {Nullinside} from "../../../service/nullinside";
-import {environment} from "../../../../environments/environment";
-import {LoadingIcon} from "../../../common/components/loading-icon/loading-icon";
-import {MatSlideToggle} from "@angular/material/slide-toggle";
-import {MatCheckbox} from "@angular/material/checkbox";
-import {TwitchBotFaq} from "../twitch-bot-faq/twitch-bot-faq";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {FormsModule} from "@angular/forms";
-import {Location} from "@angular/common";
-import {Auth} from "../../../service/auth";
+import {NullinsideTwitchBot} from '../../../service/nullinside-twitch-bot';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {Errors} from '../../login/login-landing-web/errors';
+import {HttpErrorResponse} from '@angular/common/http';
+import {Nullinside} from '../../../service/nullinside';
+import {environment} from '../../../../environments/environment';
+import {LoadingIcon} from '../../../common/components/loading-icon/loading-icon';
+import {MatSlideToggle} from '@angular/material/slide-toggle';
+import {MatCheckbox} from '@angular/material/checkbox';
+import {TwitchBotFaq} from '../twitch-bot-faq/twitch-bot-faq';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {FormsModule} from '@angular/forms';
+import {Location} from '@angular/common';
+import {Auth} from '../../../service/auth';
 import {MatDivider} from '@angular/material/list';
+import {OAuth} from '../../../common/interface/oauth';
 
 @Component({
   selector: 'app-twitch-bot-config',
@@ -63,13 +64,13 @@ export class TwitchBotConfig implements OnInit, OnDestroy {
       next: (params: ParamMap) => {
         const error = params.get('error');
         if (null !== error) {
-          const errorNum = +error;
+          const errorNum: Errors = +error;
           if (Errors.TWITCH_ACCOUNT_HAS_NO_EMAIL === errorNum) {
-            this.onLoginFailed('Your Twitch account must have a valid e-mail address, please add one and try again', false)
+            this.onLoginFailed('Your Twitch account must have a valid e-mail address, please add one and try again', false);
           } else if (Errors.TWITCH_ERROR_WITH_TOKEN === errorNum) {
-            this.onLoginFailed('Twitch failed to log you in successfully, please try again', false)
+            this.onLoginFailed('Twitch failed to log you in successfully, please try again', false);
           } else {
-            this.onLoginFailed('Sorry we did something wrong trying to log you in, please try again', false)
+            this.onLoginFailed('Sorry we did something wrong trying to log you in, please try again', false);
           }
 
           return;
@@ -80,11 +81,11 @@ export class TwitchBotConfig implements OnInit, OnDestroy {
         // request from their tokens.
         const token = params.get('token');
         if (!token) {
-          this.router.navigate(['twitch/bot']);
+          void this.router.navigate(['twitch/bot']);
           return;
         }
 
-        const oauth = JSON.parse(atob(token));
+        const oauth = JSON.parse(atob(token)) as OAuth;
         this.auth.validateToken(oauth.accessToken).subscribe({
           next: tokenIsValid => {
             if (!tokenIsValid) {
