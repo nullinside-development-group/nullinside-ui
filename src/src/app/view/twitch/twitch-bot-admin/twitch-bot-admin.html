@@ -2,7 +2,7 @@
   <app-loading-icon class="center" height="180px" width="80px"></app-loading-icon>
 } @else {
   <div #chatConsole class="chat-console">
-    @for (chat of messagesForDisplay(); track chat.id) {
+    @for (chat of messages(); track chat.id) {
       <div class="chat-message" [matTooltip]="chat.tooltip" matTooltipPosition="below">
         <time class="timestamp">
           {{ chat.timestamp | timestamp: true:!isToday(chat.timestamp) }}
