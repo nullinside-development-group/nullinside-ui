@@ -1,4 +1,4 @@
-import {Component, computed, DestroyRef, inject, OnInit, signal} from '@angular/core';
+import {Component, DestroyRef, inject, OnInit, signal} from '@angular/core';
 import {TwitchLogin} from '../../../common/components/twitch-login/twitch-login';
 import {TwitchBotFaq} from '../twitch-bot-faq/twitch-bot-faq';
 import {environment} from '../../../../environments/environment';
@@ -33,8 +33,7 @@ export class TwitchBotIndex implements OnInit {
 
   protected streams = signal<TwitchLiveBotUsers[]>([]);
   protected loading = signal(true);
-  protected recentlyBanned = signal<Record<string, AnimateListItem>>({});
-  protected recentlyBannedForDisplay = computed(() => Object.values(this.recentlyBanned()));
+  protected recentlyBanned = signal<AnimateListItem[]>([]);
 
   constructor() {
     this.metaService.updateTag({
@@ -68,42 +67,16 @@ export class TwitchBotIndex implements OnInit {
 
   getRecentBotBans(): void {
     this.api.getRecentBotBans().subscribe(bans => {
-      // Sort by timestamp descending
-      const sortedBans = bans.slice().sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
-
-      this.recentlyBanned.update(currentMap => {
-        // Since this is a complex type and TypeScript compares them by reference, we need to check if the array has
-        // actually changed before interacting with the recentlyBanned collection. If we just update the array with the
-        // intended new values, the same exact rows will be considered different (by reference) and force an update
-        // every single cycle.
-        const updatedMap: Record<string, AnimateListItem> = {...currentMap};
-
-        sortedBans.forEach(ban => {
-          const key = ban.twitchUsername;
-          const newItem: AnimateListItem = {
-            title: key,
+      this.recentlyBanned.set(
+        bans
+          .slice()
+          .sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime())
+          .map(ban => ({
+            title: ban.twitchUsername,
             text: ban.chatLogs.length > 0 ? `: ${ban.chatLogs[0].message}` : '',
             tooltip: ban.chatLogs.map(c => c.message).join('\n')
-          };
-
-          const existingItem = updatedMap[key];
-
-          // Only update if content changed
-          // eslint-disable-next-line @typescript-eslint/prefer-optional-chain
-          if (!existingItem || existingItem.text !== newItem.text || existingItem.tooltip !== newItem.tooltip) {
-            updatedMap[key] = newItem;
-          }
-        });
-
-        // Remove keys that are no longer in the latest bans
-        Object.keys(updatedMap).forEach(key => {
-          if (!sortedBans.find(b => b.twitchUsername === key)) {
-            delete updatedMap[key];
-          }
-        });
-
-        return updatedMap;
-      });
+          }))
+      );
     });
   }
 }

@@ -19,9 +19,9 @@
         <app-twitch-bot-faq/>
       </div>
 
-      @if (!loading() && recentlyBannedForDisplay().length > 0) {
+      @if (!loading() && recentlyBanned().length > 0) {
         <div class="list-section">
-          <app-animated-list listTitle="Protect Your Community From These Bots" [list]="recentlyBannedForDisplay()"/>
+          <app-animated-list listTitle="Protect Your Community From These Bots" [list]="recentlyBanned()"/>
         </div>
       } @else {
         <div class="spacer"></div>
