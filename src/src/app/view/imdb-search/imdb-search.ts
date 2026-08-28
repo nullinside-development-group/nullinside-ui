@@ -49,6 +49,6 @@ export class ImdbSearch implements OnDestroy {
           this.rows.set([]);
           this.searching.set(false);
         },
-      })
+      });
   }
 }

@@ -1,8 +1,8 @@
 import {CanActivateFn} from '@angular/router';
-import {environment} from "../../environments/environment";
-import {inject} from "@angular/core";
-import {of, tap} from "rxjs";
-import {Auth} from "../service/auth";
+import {environment} from '../../environments/environment';
+import {inject} from '@angular/core';
+import {of, tap} from 'rxjs';
+import {Auth} from '../service/auth';
 
 export const authGuard: CanActivateFn = (_, __) => {
   const token = inject(Auth).getToken();

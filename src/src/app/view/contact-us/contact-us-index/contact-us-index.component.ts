@@ -29,6 +29,6 @@ export class ContactUsIndex implements OnInit {
   }
 
   onCreateFeedback() {
-    this.router.navigate(['/contact-us/feedback']);
+    void this.router.navigate(['/contact-us/feedback']);
   }
 }

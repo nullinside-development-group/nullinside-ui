@@ -1,7 +1,7 @@
 import {inject, Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {map, Observable} from "rxjs";
-import {environment} from "../../environments/environment";
+import {HttpClient} from '@angular/common/http';
+import {map, Observable} from 'rxjs';
+import {environment} from '../../environments/environment';
 import {DockerResource} from '../common/interface/docker-resource';
 import {ContactUsSubmitFeedback} from '../common/interface/contact-us-submit-feedback';
 import {ContactUsFeedback} from '../common/interface/contact-us-feedback';
@@ -26,10 +26,10 @@ export class Nullinside {
       map(feedback => feedback.map(item => ({
         ...item,
         status: item.status,
-        timestamp: new Date(`${item.timestamp}Z`),
+        timestamp: new Date(`${item.timestamp.toString()}Z`),
         comments: item.comments.map(comment => ({
           ...comment,
-          timestamp: new Date(`${comment.timestamp}Z`)
+          timestamp: new Date(`${comment.timestamp.toString()}Z`)
         }))
       })))
     );
@@ -40,10 +40,10 @@ export class Nullinside {
       map(feedback => feedback.map(item => ({
         ...item,
         status: item.status,
-        timestamp: new Date(`${item.timestamp}Z`),
+        timestamp: new Date(`${item.timestamp.toString()}Z`),
         comments: item.comments.map(comment => ({
           ...comment,
-          timestamp: new Date(`${comment.timestamp}Z`)
+          timestamp: new Date(`${comment.timestamp.toString()}Z`)
         }))
       })))
     );
@@ -54,10 +54,10 @@ export class Nullinside {
       map(feedback => ({
         ...feedback,
         status: feedback.status,
-        timestamp: new Date(`${feedback.timestamp}Z`),
+        timestamp: new Date(`${feedback.timestamp.toString()}Z`),
         comments: feedback.comments.map(comment => ({
           ...comment,
-          timestamp: new Date(`${comment.timestamp}Z`)
+          timestamp: new Date(`${comment.timestamp.toString()}Z`)
         }))
       }))
     );

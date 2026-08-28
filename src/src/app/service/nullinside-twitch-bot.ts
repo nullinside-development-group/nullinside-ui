@@ -1,9 +1,9 @@
 import {inject, Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {map, Observable} from "rxjs";
-import {environment} from "../../environments/environment";
-import {TwitchBotIsModResponse} from "../common/interface/twitch-bot-is-mod-response";
-import {TwitchBotConfig} from "../common/interface/twitch-bot-config";
+import {HttpClient} from '@angular/common/http';
+import {map, Observable} from 'rxjs';
+import {environment} from '../../environments/environment';
+import {TwitchBotIsModResponse} from '../common/interface/twitch-bot-is-mod-response';
+import {TwitchBotConfig} from '../common/interface/twitch-bot-config';
 import {TwitchLiveBotUsers} from '../common/interface/twitch-live-bot-users';
 import {TwitchRecentBans} from '../common/interface/twitch-recent-bans';
 import {PaginatedTwitchChatLog} from '../common/interface/twitch-chat-log';
@@ -35,7 +35,7 @@ export class NullinsideTwitchBot {
     return this.httpClient.get<TwitchLiveBotUsers[]>(`${environment.twitchBotApiUrl}/bot/live`).pipe(
       map(users => users.map(user => ({
         ...user,
-        goneLiveTime: new Date(`${user.goneLiveTime}Z`)
+        goneLiveTime: new Date(`${user.goneLiveTime.toString()}Z`)
       })))
     );
   }
@@ -44,10 +44,10 @@ export class NullinsideTwitchBot {
     return this.httpClient.get<TwitchRecentBans[]>(`${environment.twitchBotApiUrl}/bot/bans`).pipe(
       map(bans => bans.map(ban => ({
         ...ban,
-        timestamp: new Date(`${ban.timestamp}Z`),
+        timestamp: new Date(`${ban.timestamp.toString()}Z`),
         chatLogs: ban.chatLogs.map(log => ({
           ...log,
-          timestamp: new Date(`${log.timestamp}Z`)
+          timestamp: new Date(`${log.timestamp.toString()}Z`)
         }))
       })))
     );
@@ -60,9 +60,9 @@ export class NullinsideTwitchBot {
           ...response,
           data: response.data.map(message => ({
             ...message,
-            timestamp: new Date(`${message.timestamp}Z`)
+            timestamp: new Date(`${message.timestamp.toString()}Z`)
           }))
-        }
+        };
       })
     );
   }

@@ -2,10 +2,10 @@ import {ApplicationConfig, provideBrowserGlobalErrorListeners, Provider} from '@
 import {provideRouter} from '@angular/router';
 
 import {routes} from './app.routes';
-import {provideHttpClient, withInterceptors, withXhr} from "@angular/common/http";
-import {MAT_SNACK_BAR_DEFAULT_OPTIONS} from "@angular/material/snack-bar";
+import {provideHttpClient, withInterceptors, withXhr} from '@angular/common/http';
+import {MAT_SNACK_BAR_DEFAULT_OPTIONS} from '@angular/material/snack-bar';
 import {bearerTokenInterceptor} from './middleware/bearer-token-interceptor';
-import {provideAnimationsAsync} from "@angular/platform-browser/animations/async";
+import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 
 export const materialSnackbarDefaults: Provider =
   {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 5 * 1000}};

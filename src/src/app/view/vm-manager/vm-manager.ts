@@ -36,12 +36,12 @@ export class VmManager implements OnInit {
         this.getVms();
       } catch (e) {
         console.error(e);
-        this.error.set("Failed to refresh the list, the server may be down...");
+        this.error.set('Failed to refresh the list, the server may be down...');
       }
     }, 5000);
 
     this.timerDestroy.onDestroy(() => {
-      clearInterval(this.timer)
+      clearInterval(this.timer);
     });
   }
 
@@ -69,10 +69,10 @@ export class VmManager implements OnInit {
           this.loading.set(false);
         },
         error: _ => {
-          this.error.set("Failed to reach out to get the virtual machines, please try again...");
+          this.error.set('Failed to reach out to get the virtual machines, please try again...');
           this.loading.set(false);
         }
-      })
+      });
   }
 
   onSwitchPower(id: number, turnOn: boolean) {
@@ -88,7 +88,7 @@ export class VmManager implements OnInit {
           existing.isRunning = false;
 
           if (!success) {
-            this.error.set("Failed to start/stop the machine, please try again...");
+            this.error.set('Failed to start/stop the machine, please try again...');
             return;
           }
 
@@ -96,9 +96,9 @@ export class VmManager implements OnInit {
           existing.isOnline = turnOn;
         },
         error: _ => {
-          this.error.set("Failed to start/stop the machine, please try again...");
+          this.error.set('Failed to start/stop the machine, please try again...');
           existing.isRunning = false;
         }
-      })
+      });
   }
 }

@@ -1,9 +1,9 @@
 import {inject} from '@angular/core';
 import {HttpInterceptorFn} from '@angular/common/http';
 
-import {environment} from "../../environments/environment";
-import {Auth} from "../service/auth";
-import {of, switchMap} from "rxjs";
+import {environment} from '../../environments/environment';
+import {Auth} from '../service/auth';
+import {of, switchMap} from 'rxjs';
 
 export const bearerTokenInterceptor: HttpInterceptorFn = (req, next) => {
   const url = req.url.toLowerCase().replace('https://www.', 'https://');
@@ -11,7 +11,7 @@ export const bearerTokenInterceptor: HttpInterceptorFn = (req, next) => {
 
   if (
     // Prevent infinite loop
-    url.endsWith(`/user/token/refresh`) ||
+    url.endsWith('/user/token/refresh') ||
     (
       // Our services, no need to send our bearer tokens to other apis
       !url.startsWith(`${environment.apiUrl}/`) &&
@@ -52,4 +52,4 @@ export const bearerTokenInterceptor: HttpInterceptorFn = (req, next) => {
       return next(request);
     })
   );
-}
+};

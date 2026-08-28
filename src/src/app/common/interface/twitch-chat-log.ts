@@ -8,8 +8,8 @@ export interface TwitchChatLog {
 }
 
 export interface PaginatedTwitchChatLog {
-  data: TwitchChatLog[]
-  totalCount: number
-  page: number
-  pageSize: number
+  data: TwitchChatLog[];
+  totalCount: number;
+  page: number;
+  pageSize: number;
 }

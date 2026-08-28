@@ -128,9 +128,9 @@ export class ContactUsFeedbackDetails implements OnInit {
 
   protected onBackButton() {
     if (this.isAdmin()) {
-      this.router.navigate(['/contact-us-admin']);
+      void this.router.navigate(['/contact-us-admin']);
     } else {
-      this.router.navigate(['/contact-us']);
+      void this.router.navigate(['/contact-us']);
     }
   }
 
@@ -146,7 +146,7 @@ export class ContactUsFeedbackDetails implements OnInit {
         this.error.set('Failed to complete feedback, please try again');
         this.loading.set(false);
       }
-    })
+    });
   }
 
   protected readonly environment = environment;

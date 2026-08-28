@@ -1,10 +1,10 @@
 import {inject, Injectable, signal, WritableSignal} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {finalize, Observable, of, share, switchMap, tap} from "rxjs";
-import {OAuth} from "../common/interface/oauth";
-import {environment} from "../../environments/environment";
-import {UserRolesResponse} from "../common/interface/user-roles-response";
-import {FeatureToggleResponse} from "../common/interface/feature-toggle-response";
+import {HttpClient} from '@angular/common/http';
+import {finalize, Observable, of, share, switchMap, tap} from 'rxjs';
+import {OAuth} from '../common/interface/oauth';
+import {environment} from '../../environments/environment';
+import {UserRolesResponse} from '../common/interface/user-roles-response';
+import {FeatureToggleResponse} from '../common/interface/feature-toggle-response';
 import {CookieService} from 'ngx-cookie-service';
 
 @Injectable({
@@ -20,7 +20,7 @@ export class Auth {
   constructor() {
     const rawCookie = this.cookieService.get('nullinside-token');
     if (rawCookie) {
-      this.oauth = JSON.parse(rawCookie);
+      this.oauth = JSON.parse(rawCookie) as OAuth;
     }
 
     if (!this.oauth?.accessToken) {

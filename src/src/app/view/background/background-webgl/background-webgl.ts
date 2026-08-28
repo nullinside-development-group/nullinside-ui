@@ -7,7 +7,7 @@ import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from
   standalone: true
 })
 export class BackgroundWebgl implements OnInit, OnDestroy, AfterViewInit {
-  @ViewChild("canvas")
+  @ViewChild('canvas')
   canvas: ElementRef<HTMLCanvasElement> | undefined;
   fragmentShaderSource = `#version 300 es
 precision mediump float;
@@ -103,7 +103,7 @@ void main() {
 
     gl.shaderSource(shader, source);
     gl.compileShader(shader);
-    const success = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
+    const success = gl.getShaderParameter(shader, gl.COMPILE_STATUS) as unknown;
     if (success) {
       this.shaders.push(shader);
       return shader;
@@ -117,13 +117,13 @@ void main() {
   createProgram(gl: WebGL2RenderingContext, vertexShader: WebGLShader, fragmentShader: WebGLShader): WebGLProgram | null {
     const program = gl.createProgram();
     if (!program) {
-      return null
+      return null;
     }
 
     gl.attachShader(program, vertexShader);
     gl.attachShader(program, fragmentShader);
     gl.linkProgram(program);
-    const success = gl.getProgramParameter(program, gl.LINK_STATUS);
+    const success = gl.getProgramParameter(program, gl.LINK_STATUS) as unknown;
     if (success) {
       this.programs.push(program);
       return program;
@@ -162,7 +162,7 @@ void main() {
     }
 
     // Save for disposing of resources later
-    this.vertexArrays.push(VAO)
+    this.vertexArrays.push(VAO);
     this.buffers.push(...[VBO, EBO]);
 
     // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
@@ -217,8 +217,8 @@ void main() {
     // draw our first triangle
     gl.useProgram(program);
 
-    const uniformLocation = gl.getUniformLocation(program, "ourColor");
-    gl.uniform4fv(uniformLocation, new Float32Array([0.2, 0.18, 0.18, 1]))
+    const uniformLocation = gl.getUniformLocation(program, 'ourColor');
+    gl.uniform4fv(uniformLocation, new Float32Array([0.2, 0.18, 0.18, 1]));
 
     gl.bindVertexArray(VAO);
     gl.drawElements(gl.TRIANGLES, 6, gl.UNSIGNED_INT, 0);

@@ -1,11 +1,11 @@
 import {Routes} from '@angular/router';
-import {NotFound} from "./view/not-found/not-found";
-import {LoginLandingWeb} from "./view/login/login-landing-web/login-landing-web.component";
-import {authGuard} from "./middleware/auth-guard";
+import {NotFound} from './view/not-found/not-found';
+import {LoginLandingWeb} from './view/login/login-landing-web/login-landing-web.component';
+import {authGuard} from './middleware/auth-guard';
 import {LoginIndex} from './view/login/login-index/login-index.component';
 import {TwitchBotIndex} from './view/twitch/twitch-bot-index/twitch-bot-index';
-import {BackgroundWebglExample} from "./view/background/background-webgl-example/background-webgl-example";
-import {LoginLandingDesktop} from "./view/login/login-landing-desktop/login-landing-desktop";
+import {BackgroundWebglExample} from './view/background/background-webgl-example/background-webgl-example';
+import {LoginLandingDesktop} from './view/login/login-landing-desktop/login-landing-desktop';
 
 export const routes: Routes = [
   {path: '', component: TwitchBotIndex},

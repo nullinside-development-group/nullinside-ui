@@ -51,7 +51,7 @@ export class ContactUsNewFeedback {
     this.api.addNewContactUsFeedback(feedback).subscribe({
       next: success => {
         if (success) {
-          this.router.navigate(['/contact-us'], {queryParams: {'submitted-feedback': true}});
+          void this.router.navigate(['/contact-us'], {queryParams: {'submitted-feedback': true}});
         } else {
           this.error.set('Failed to submit your feedback, please try again');
         }
@@ -66,6 +66,6 @@ export class ContactUsNewFeedback {
   }
 
   protected onBackButton() {
-    this.router.navigate(['/contact-us']);
+    void this.router.navigate(['/contact-us']);
   }
 }

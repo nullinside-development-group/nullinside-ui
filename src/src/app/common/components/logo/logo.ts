@@ -15,10 +15,8 @@ export class Logo {
   private router = inject(Router);
 
   @Input() height = 50;
-  @Input() fontSize = 35;
-  @Input() words: string[] = ['inside ;', 'tests ;', 'inside  ;', 'quality ;'];
 
   sendToIndex() {
-    this.router.navigate(['/']);
+    void this.router.navigate(['/']);
   }
 }

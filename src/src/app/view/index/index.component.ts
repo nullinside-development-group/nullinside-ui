@@ -1,6 +1,6 @@
 import {Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
 import {Router} from '@angular/router';
-import {LoadingIcon} from "../../common/components/loading-icon/loading-icon";
+import {LoadingIcon} from '../../common/components/loading-icon/loading-icon';
 import {TwitchStreamCarousel} from '../twitch/components/twitch-stream-carousel/twitch-stream-carousel';
 import {TwitchLiveBotUsers} from '../../common/interface/twitch-live-bot-users';
 import {App} from '../../service/app';
@@ -34,6 +34,6 @@ export class Index implements OnInit {
       return;
     }
 
-    this.router.navigate([existing.url]);
+    void this.router.navigate([existing.url]);
   }
 }

@@ -1,7 +1,7 @@
 import {Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
-import {ActivatedRoute, ParamMap} from "@angular/router";
-import {Errors} from "./errors";
-import {HttpErrorResponse} from "@angular/common/http";
+import {ActivatedRoute, ParamMap} from '@angular/router';
+import {Errors} from './errors';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-login-landing-desktop',
@@ -20,11 +20,11 @@ export class LoginLandingDesktop implements OnInit {
         // Handle any errors
         const error = params.get('error');
         if (null !== error) {
-          const errorNum = +error;
+          const errorNum: Errors = +error;
           if (Errors.INTERNAL_ERROR === errorNum) {
-            this.onLoginFailed()
+            this.onLoginFailed();
           } else if (Errors.TWITCH_FAILED_TO_GENERATE_TOKEN === errorNum) {
-            this.onLoginFailed('Received error from twitch, it may be down temporarily')
+            this.onLoginFailed('Received error from twitch, it may be down temporarily');
           }
 
           return;

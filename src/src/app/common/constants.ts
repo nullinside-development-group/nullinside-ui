@@ -1,5 +1,5 @@
-export const VM_ADMIN = "VM_ADMIN";
-export const ADMIN = "ADMIN";
+export const VM_ADMIN = 'VM_ADMIN';
+export const ADMIN = 'ADMIN';
 
 export function convertForDisplay(date: Date, showSeconds = false, showDate = true) {
   if (!date) {

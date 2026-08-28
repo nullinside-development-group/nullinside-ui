@@ -1,6 +1,6 @@
 // @ts-check
 const eslint = require("@eslint/js");
-const { defineConfig } = require("eslint/config");
+const {defineConfig} = require("eslint/config");
 const tseslint = require("typescript-eslint");
 const angular = require("angular-eslint");
 
@@ -9,12 +9,25 @@ module.exports = defineConfig([
     files: ["**/*.ts"],
     extends: [
       eslint.configs.recommended,
-      tseslint.configs.recommended,
-      tseslint.configs.stylistic,
+      tseslint.configs.recommendedTypeChecked,
+      tseslint.configs.stylisticTypeChecked,
       angular.configs.tsRecommended,
     ],
+    languageOptions: {
+      parserOptions: {
+        projectService: true,
+      },
+    },
     processor: angular.processInlineTemplates,
     rules: {
+      semi: ["error", "always"],
+      quotes: ["error", "single"],
+      '@typescript-eslint/unbound-method': [
+        'error',
+        {
+          ignoreStatic: true,
+        },
+      ],
       "@angular-eslint/directive-selector": [
         "error",
         {

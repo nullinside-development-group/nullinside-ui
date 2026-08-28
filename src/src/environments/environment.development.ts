@@ -1,4 +1,4 @@
-import {allEnvironments} from "./environments-all";
+import {allEnvironments} from './environments-all';
 
 export const environment = {
   showEmailForAdmins: false,
