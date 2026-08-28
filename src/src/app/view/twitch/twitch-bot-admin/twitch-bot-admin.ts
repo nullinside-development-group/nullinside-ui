@@ -1,4 +1,13 @@
-import {Component, computed, DestroyRef, ElementRef, inject, OnInit, signal, ViewChild} from '@angular/core';
+import {
+  Component,
+  computed,
+  DestroyRef,
+  ElementRef,
+  inject,
+  OnInit,
+  signal,
+  ViewChild
+} from '@angular/core';
 import {TwitchLiveBotUsers} from '../../../common/interface/twitch-live-bot-users';
 import {NullinsideTwitchBot} from '../../../service/nullinside-twitch-bot';
 import {convertForDisplay} from '../../../common/constants';
@@ -36,17 +45,8 @@ export class TwitchBotAdmin implements OnInit {
 
   ngOnInit(): void {
     this.loadData();
-    this.scrollChat = true;
-
-    this.timer = setInterval(() => {
-      this.loadData();
-
-      if (this.scrollChat) {
-        this.scrollToBottomOfChat();
-        this.scrollChat = false;
-      }
-    }, 1000);
-
+    setTimeout(() => this.scrollToBottomOfChat());
+    this.timer = setInterval(() => this.loadData(), 1000);
     this.timerDestroy.onDestroy(() => {
       clearInterval(this.timer);
     });
@@ -58,7 +58,10 @@ export class TwitchBotAdmin implements OnInit {
       return;
     }
 
-    element.scrollTop = element.scrollHeight;
+    element.scrollTo({
+      top: element.scrollHeight,
+      behavior: 'smooth'
+    });
   }
 
   private isAtTheBottomOfChat() {
@@ -120,7 +123,7 @@ export class TwitchBotAdmin implements OnInit {
       // Only scroll to the bottom if we were at the bottom before the collection was modified and the collection was
       // modified.
       if (wasAtBottom && collectionModified) {
-        this.scrollChat = true;
+        setTimeout(() => this.scrollToBottomOfChat());
       }
     });
   }
