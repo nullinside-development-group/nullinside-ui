@@ -77,21 +77,17 @@ export class TwitchBotAdmin implements OnInit {
     });
 
     this.api.getAllChatMessages().subscribe(response => {
-      const sortedMessages = response.data
-        .slice()
-        .sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
-
       const wasAtBottom = this.isAtTheBottomOfChat();
 
       this.messages.set(
-        sortedMessages.map(message => ({
+        response.data.map(message => ({
           id: message.id,
           channel: message.channel,
           sender: message.twitchUsername ?? 'Unknown',
           message: message.message ?? 'Unknown',
           timestamp: message.timestamp,
           tooltip: `${message.twitchUsername} - ${message.message} [${convertForDisplay(message.timestamp)}]`
-        }))
+        })).sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime())
       );
 
       if (wasAtBottom) {
