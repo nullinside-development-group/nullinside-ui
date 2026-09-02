@@ -31,20 +31,20 @@ export class ContactUsNewFeedback {
   private api = inject(Nullinside);
   public formBuilder = inject(FormBuilder);
   public formGroup = this.formBuilder.group({
-    'product': [null, [Validators.required, Validators.maxLength(50)]],
-    'message': [null, [Validators.required, Validators.maxLength(10000)]],
+    product: ['', [Validators.required, Validators.maxLength(50)]],
+    message: ['', [Validators.required, Validators.maxLength(10000)]],
   });
   public error = signal('');
   public loading = signal(false);
 
   protected onSubmit() {
-    if (!this.formGroup.valid) {
+    if (!this.formGroup.valid || !this.formGroup.value.product || !this.formGroup.value.message) {
       return;
     }
 
     const feedback: ContactUsSubmitFeedback = {
-      product: `${this.formGroup.value.product}`,
-      message: `${this.formGroup.value.message}`
+      product: this.formGroup.value.product,
+      message: this.formGroup.value.message
     };
 
     this.loading.set(true);

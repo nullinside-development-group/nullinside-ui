@@ -7,7 +7,7 @@ import {Auth} from '../service/auth';
 export const authGuard: CanActivateFn = (_, __) => {
   const token = inject(Auth).getToken();
   if (!token) {
-    window.location.href = `${environment.siteUrl}`;
+    window.location.href = environment.siteUrl;
     return of(false);
   }
 
@@ -15,13 +15,13 @@ export const authGuard: CanActivateFn = (_, __) => {
     tap({
         next: tokenIsValid => {
           if (!tokenIsValid) {
-            window.location.href = `${environment.siteUrl}`;
+            window.location.href = environment.siteUrl;
           }
 
           return tokenIsValid;
         },
         error: _ => {
-          window.location.href = `${environment.siteUrl}`;
+          window.location.href = environment.siteUrl;
           return false;
         }
       }

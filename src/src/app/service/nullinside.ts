@@ -18,7 +18,7 @@ export class Nullinside {
   }
 
   setVirtualMachinePowerState(id: number, turnOn: boolean): Observable<boolean> {
-    return this.httpClient.post<boolean>(`${environment.apiUrl}/docker/${id}`, {turnOn: turnOn});
+    return this.httpClient.post<boolean>(`${environment.apiUrl}/docker/${id.toString()}`, {turnOn: turnOn});
   }
 
   getAllSubmittedContactUsFeedback(): Observable<ContactUsFeedback[]> {
@@ -50,7 +50,7 @@ export class Nullinside {
   }
 
   getSubmittedContactUsFeedback(id: number): Observable<ContactUsFeedback> {
-    return this.httpClient.get<ContactUsFeedback>(`${environment.apiUrl}/contactus/${id}`).pipe(
+    return this.httpClient.get<ContactUsFeedback>(`${environment.apiUrl}/contactus/${id.toString()}`).pipe(
       map(feedback => ({
         ...feedback,
         status: feedback.status,
@@ -68,18 +68,18 @@ export class Nullinside {
   }
 
   addContactUsFeedbackComment(id: number, comment: string): Observable<boolean> {
-    return this.httpClient.post<boolean>(`${environment.apiUrl}/contactus/${id}/comment`, {comment: comment});
+    return this.httpClient.post<boolean>(`${environment.apiUrl}/contactus/${id.toString()}/comment`, {comment: comment});
   }
 
   updateContactUsFeedbackStatus(id: number, status: ContactUsFeedbackStatus): Observable<boolean> {
-    return this.httpClient.post<boolean>(`${environment.apiUrl}/contactus/${id}/status`, {status: status});
+    return this.httpClient.post<boolean>(`${environment.apiUrl}/contactus/${id.toString()}/status`, {status: status});
   }
 
   readFeedback(id: number): Observable<boolean> {
-    return this.httpClient.post<boolean>(`${environment.apiUrl}/contactus/${id}/read`, {});
+    return this.httpClient.post<boolean>(`${environment.apiUrl}/contactus/${id.toString()}/read`, {});
   }
 
   readFeedbackComment(id: number): Observable<boolean> {
-    return this.httpClient.post<boolean>(`${environment.apiUrl}/contactus/${id}/comment/read`, {});
+    return this.httpClient.post<boolean>(`${environment.apiUrl}/contactus/${id.toString()}/comment/read`, {});
   }
 }

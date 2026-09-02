@@ -113,7 +113,9 @@ export class TwitchBotConfig implements OnInit, OnDestroy {
                 this.banKnownBots.set(response.banKnownBots);
                 this.showOnHomePage.set(response.showOnHomePage);
               },
-              error: err => console.error(err)
+              error: err => {
+                console.error(err);
+              }
             });
           },
           error: (_: HttpErrorResponse) => {
@@ -160,7 +162,9 @@ export class TwitchBotConfig implements OnInit, OnDestroy {
       error: err => {
         console.error(err);
       }
-    }).add(() => this.waitingForModReply.set(false));
+    }).add(() => {
+      this.waitingForModReply.set(false);
+    });
   }
 
   saveConfig() {
@@ -184,6 +188,8 @@ export class TwitchBotConfig implements OnInit, OnDestroy {
           panelClass: ['snackbar-failure']
         });
       }
-    }).add(() => this.waitingForSave.set(false));
+    }).add(() => {
+      this.waitingForSave.set(false);
+    });
   }
 }
