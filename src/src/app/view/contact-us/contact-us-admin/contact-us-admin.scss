@@ -27,3 +27,9 @@
 .filter-wrapper > mat-form-field {
   flex: 1;
 }
+
+@media (max-width: 400px) {
+  .filter-wrapper {
+    display: none;
+  }
+}
