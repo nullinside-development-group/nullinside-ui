@@ -13,23 +13,18 @@ $text-muted: #adadb8;
 }
 
 .chat-console {
-  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
   min-height: 0;
   min-width: 0;
-
-  overflow-y: scroll;
-  overflow-x: hidden;
-
-  // Important for touch scrolling
-  touch-action: pan-y;
-
   padding: 8px 0;
+  overflow-y: auto;
+  overflow-x: hidden;
   background: $background-color;
   color: $font-color;
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   line-height: 1.4;
-
-  display: block;
 }
 
 .chat-message {
