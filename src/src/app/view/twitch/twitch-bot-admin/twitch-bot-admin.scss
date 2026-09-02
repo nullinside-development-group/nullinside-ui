@@ -6,30 +6,39 @@ $text-muted: #adadb8;
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
+
   width: 100%;
   min-width: 0;
   min-height: 0;
+
   overflow: hidden;
 }
 
 .chat-console {
   flex: 1 1 0;
-  min-height: 0;
   min-width: 0;
+  min-height: 0;
 
-  overflow-y: scroll;
+  display: block;
+
+  overflow-y: auto;
   overflow-x: hidden;
 
-  // Important for touch scrolling
   touch-action: pan-y;
 
   padding: 8px 0;
+
   background: $background-color;
   color: $font-color;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  line-height: 1.4;
 
-  display: block;
+  font-family: Inter,
+  system-ui,
+  -apple-system,
+  BlinkMacSystemFont,
+  "Segoe UI",
+  sans-serif;
+
+  line-height: 1.4;
 }
 
 .chat-message {
@@ -37,16 +46,26 @@ $text-muted: #adadb8;
   align-items: baseline;
   flex-wrap: wrap;
   gap: 0 7px;
+
   padding: 4px 12px;
+  min-height: 0;
+
   transition: background-color 80ms ease,
   opacity 80ms ease;
+
   overflow-wrap: anywhere;
 }
 
 .timestamp {
   flex: 0 0 auto;
+
   color: $text-muted;
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+
+  font-family: "SFMono-Regular",
+  Consolas,
+  "Liberation Mono",
+  monospace;
+
   font-size: 11px;
   user-select: none;
 }
@@ -59,10 +78,11 @@ $text-muted: #adadb8;
 
 .channel {
   flex: 0 0 auto;
+
   color: $text-muted;
   font-size: 12px;
-  text-decoration: none;
   font-weight: normal;
+  text-decoration: none;
 
   &:hover {
     text-decoration: underline;
@@ -72,8 +92,10 @@ $text-muted: #adadb8;
 .message {
   flex: 1;
   min-width: 0;
-  color: $font-color;
   width: 100%;
+
+  color: $font-color;
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -82,8 +104,10 @@ $text-muted: #adadb8;
 .empty-state {
   display: grid;
   place-items: center;
+
   flex: 1;
   min-height: 100px;
+
   color: $text-muted;
   font-size: 13px;
 }
