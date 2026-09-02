@@ -36,6 +36,11 @@ app-logo {
 /* Mobile */
 @media (max-width: 1000px) {
   .layout-logo-box {
-    justify-content: flex-start;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .menu-bar {
+    justify-content: center;
   }
 }
