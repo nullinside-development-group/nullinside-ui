@@ -1,12 +1,4 @@
-import {
-  Component,
-  DestroyRef,
-  ElementRef,
-  inject,
-  OnInit,
-  signal,
-  ViewChild
-} from '@angular/core';
+import {Component, DestroyRef, ElementRef, inject, OnInit, signal, ViewChild} from '@angular/core';
 import {TwitchLiveBotUsers} from '../../../common/interface/twitch-live-bot-users';
 import {NullinsideTwitchBot} from '../../../service/nullinside-twitch-bot';
 import {convertForDisplay} from '../../../common/constants';
@@ -42,7 +34,7 @@ export class TwitchBotAdmin implements OnInit {
 
   ngOnInit(): void {
     this.loadData();
-    setTimeout(() => this.scrollToBottomOfChat());
+    setTimeout(() => this.scrollToBottomOfChat(), 500);
     this.timer = setInterval(() => this.loadData(), 1000);
     this.timerDestroy.onDestroy(() => {
       clearInterval(this.timer);
