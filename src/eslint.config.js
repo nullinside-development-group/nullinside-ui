@@ -9,7 +9,7 @@ module.exports = defineConfig([
     files: ["**/*.ts"],
     extends: [
       eslint.configs.recommended,
-      tseslint.configs.recommendedTypeChecked,
+      tseslint.configs.strictTypeChecked,
       tseslint.configs.stylisticTypeChecked,
       angular.configs.tsRecommended,
     ],
