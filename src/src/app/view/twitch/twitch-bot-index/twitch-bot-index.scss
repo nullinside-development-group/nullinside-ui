@@ -73,3 +73,15 @@ app-loading-icon {
   margin-top: 20px;
   margin-bottom: 10px;
 }
+
+/* Mobile */
+@media (max-width: 1000px) {
+  .content-grid {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: stretch;
+  }
+
+  .spacer {
+    display: none;
+  }
+}
