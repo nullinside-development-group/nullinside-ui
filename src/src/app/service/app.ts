@@ -60,7 +60,9 @@ export class App {
   private userLoginHasChanged = toObservable(this.auth.userIsLoggedIn);
 
   constructor() {
-    this.userLoginHasChanged.subscribe(_ => this.checkRoles());
+    this.userLoginHasChanged.subscribe(_ => {
+      this.checkRoles();
+    });
     this.checkRoles();
   }
 
@@ -83,12 +85,12 @@ export class App {
           const roles = response.user.roles;
           const discoveredApps = [...this.publicApps];
 
-          if (roles?.includes('ADMIN')) {
+          if (roles.includes('ADMIN')) {
             for (const role in this.roleToAppPermissions) {
               discoveredApps.push(...this.roleToAppPermissions[role]);
             }
           } else {
-            roles?.forEach(role => {
+            roles.forEach(role => {
               if (role in this.roleToAppPermissions) {
                 discoveredApps.push(...this.roleToAppPermissions[role]);
               }

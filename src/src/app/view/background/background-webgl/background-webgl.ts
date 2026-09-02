@@ -116,13 +116,10 @@ void main() {
 
   createProgram(gl: WebGL2RenderingContext, vertexShader: WebGLShader, fragmentShader: WebGLShader): WebGLProgram | null {
     const program = gl.createProgram();
-    if (!program) {
-      return null;
-    }
-
     gl.attachShader(program, vertexShader);
     gl.attachShader(program, fragmentShader);
     gl.linkProgram(program);
+
     const success = gl.getProgramParameter(program, gl.LINK_STATUS) as unknown;
     if (success) {
       this.programs.push(program);
@@ -157,9 +154,6 @@ void main() {
     const VAO = gl.createVertexArray();
     const VBO = gl.createBuffer();
     const EBO = gl.createBuffer();
-    if (!VAO || !VBO || !EBO) {
-      return null;
-    }
 
     // Save for disposing of resources later
     this.vertexArrays.push(VAO);

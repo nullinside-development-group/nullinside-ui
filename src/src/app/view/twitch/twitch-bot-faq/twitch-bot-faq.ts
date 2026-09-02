@@ -7,6 +7,7 @@ import {Component} from '@angular/core';
   styleUrl: './twitch-bot-faq.scss',
   standalone: true
 })
+// eslint-disable-next-line @typescript-eslint/no-extraneous-class
 export class TwitchBotFaq {
 
 }

@@ -52,7 +52,7 @@ export class VmManager implements OnInit {
           this.error.set(null);
           const actionableVms: ActionableDockerResource[] = [];
           vms.forEach(vms => {
-            const existing = this.vms()?.find(v => v.id === vms.id);
+            const existing = this.vms().find(v => v.id === vms.id);
             if (existing) {
               let running = existing.isRunning;
               if (existing.isRunning && existing.isOnline !== vms.isOnline) {
@@ -76,7 +76,7 @@ export class VmManager implements OnInit {
   }
 
   onSwitchPower(id: number, turnOn: boolean) {
-    const existing = this.vms()?.find(v => v.id === id);
+    const existing = this.vms().find(v => v.id === id);
     if (!existing) {
       return;
     }

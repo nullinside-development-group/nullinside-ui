@@ -97,7 +97,7 @@ export class ContactUsList implements OnInit {
   }
 
   onFeedbackClicked(id: number) {
-    void this.router.navigate(['/contact-us/feedback/' + id]);
+    void this.router.navigate(['/contact-us/feedback/' + id.toString()]);
   }
 
   onFilterFeedback() {
@@ -120,10 +120,6 @@ export class ContactUsList implements OnInit {
   }
 
   getFeedbackClass(feedback: ContactUsFeedback): string {
-    if (!feedback) {
-      return '';
-    }
-
     if (!feedback.isRead || feedback.comments.some(comment => !comment.isRead)) {
       return 'unread';
     }

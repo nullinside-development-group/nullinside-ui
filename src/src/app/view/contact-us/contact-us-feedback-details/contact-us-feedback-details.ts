@@ -69,12 +69,8 @@ export class ContactUsFeedbackDetails implements OnInit {
   private loadFeedback(id: number) {
     this.api.getSubmittedContactUsFeedback(id).subscribe({
       next: feedback => {
-        if (feedback) {
-          feedback.comments.sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime());
-          this.feedback.set(feedback);
-        } else {
-          this.error.set('Feedback not found');
-        }
+        feedback.comments.sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime());
+        this.feedback.set(feedback);
 
         this.sendReadReceipts(feedback);
       },
@@ -101,17 +97,18 @@ export class ContactUsFeedbackDetails implements OnInit {
   }
 
   protected onSubmitComment() {
-    if (!this.commentForm.valid || !this.feedback()) {
+    const feedbackId = this.feedback()?.id;
+    if (!this.commentForm.valid || !feedbackId) {
       return;
     }
 
     this.loading.set(true);
-    const message = this.commentForm.value.message!;
-    this.api.addContactUsFeedbackComment(this.feedback()!.id, message).subscribe({
+    const message = this.commentForm.value.message ?? '';
+    this.api.addContactUsFeedbackComment(feedbackId, message).subscribe({
       next: success => {
         if (success) {
           this.commentFormDirective()?.resetForm();
-          this.loadFeedback(this.feedback()!.id);
+          this.loadFeedback(feedbackId);
         } else {
           this.error.set('Failed to add comment, please try again');
         }

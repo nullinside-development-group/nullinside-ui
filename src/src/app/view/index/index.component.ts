@@ -25,7 +25,9 @@ export class Index implements OnInit {
   protected liveStreams: WritableSignal<TwitchLiveBotUsers[]> = signal([]);
 
   ngOnInit(): void {
-    this.api.getAllLiveTwitchBotUsers().subscribe(response => this.liveStreams.set(response));
+    this.api.getAllLiveTwitchBotUsers().subscribe(response => {
+      this.liveStreams.set(response);
+    });
   }
 
   onAppClicked(displayName: string) {

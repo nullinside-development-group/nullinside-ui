@@ -28,7 +28,9 @@ export class StandardBanner implements OnInit {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd),
       takeUntilDestroyed()
-    ).subscribe(() => this.url.set(this.router.url));
+    ).subscribe(() => {
+      this.url.set(this.router.url);
+    });
   }
 
   ngOnInit(): void {
@@ -41,7 +43,7 @@ export class StandardBanner implements OnInit {
 
     // Need to use window.location here instead of the router because if you're already on the home page and you
     // router.navigate to it, it doesn't refresh the page and update the state.
-    window.location.href = `${environment.siteUrl}`;
+    window.location.href = environment.siteUrl;
   }
 
   onLogin() {

@@ -34,8 +34,12 @@ export class TwitchBotAdmin implements OnInit {
 
   ngOnInit(): void {
     this.loadData();
-    setTimeout(() => this.scrollToBottomOfChat(), 500);
-    this.timer = setInterval(() => this.loadData(), 1000);
+    setTimeout(() => {
+      this.scrollToBottomOfChat();
+    }, 500);
+    this.timer = setInterval(() => {
+      this.loadData();
+    }, 1000);
     this.timerDestroy.onDestroy(() => {
       clearInterval(this.timer);
     });
@@ -78,12 +82,14 @@ export class TwitchBotAdmin implements OnInit {
           sender: message.twitchUsername ?? 'Unknown',
           message: message.message ?? 'Unknown',
           timestamp: message.timestamp,
-          tooltip: `${message.twitchUsername} - ${message.message} [${convertForDisplay(message.timestamp)}]`
+          tooltip: `${message.twitchUsername ?? 'Unknown'} - ${message.message ?? 'Unknown'} [${convertForDisplay(message.timestamp)}]`
         })).sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime())
       );
 
       if (wasAtBottom) {
-        setTimeout(() => this.scrollToBottomOfChat());
+        setTimeout(() => {
+          this.scrollToBottomOfChat();
+        });
       }
     });
   }

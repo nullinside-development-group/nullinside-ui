@@ -8,6 +8,7 @@ import {Logo} from '../../common/components/logo/logo';
   styleUrl: './not-found.scss',
   standalone: true
 })
+// eslint-disable-next-line @typescript-eslint/no-extraneous-class
 export class NotFound {
 
 }

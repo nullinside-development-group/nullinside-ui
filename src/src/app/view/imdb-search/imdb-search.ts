@@ -42,7 +42,7 @@ export class ImdbSearch implements OnDestroy {
     this.quickSubscription = this.api.getImdbSearchQuick(search)
       .subscribe({
         next: value => {
-          this.rows.set(value.items || []);
+          this.rows.set(value.items);
           this.searching.set(false);
         },
         error: _ => {
