@@ -16,5 +16,7 @@ app-loading-icon {
 }
 
 mat-form-field {
-  width: 500px;
+  width: 100%;
+  min-width: 250px;
+  max-width: 500px;
 }
