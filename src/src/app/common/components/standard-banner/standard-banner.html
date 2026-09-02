@@ -5,7 +5,8 @@
     @for (app of appService.apps(); track app.displayName) {
       <button
         [matButton]="app.highlightedUrls?.some(highlightedUrl => url().startsWith(highlightedUrl)) || (url() === '/' && app.isDefault) ? `tonal` : `outlined`"
-        (click)="onAppClicked(app)">
+        (click)="onAppClicked(app)"
+        class="menu-button">
         {{ app.displayName }}
       </button>
     }
