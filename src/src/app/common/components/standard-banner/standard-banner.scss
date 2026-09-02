@@ -32,3 +32,10 @@ app-logo {
 .menu-button {
   min-width: 125px;
 }
+
+/* Mobile */
+@media (max-width: 1000px) {
+  .layout-logo-box {
+    justify-content: flex-start;
+  }
+}
