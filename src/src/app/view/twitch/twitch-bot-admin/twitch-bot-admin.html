@@ -3,7 +3,11 @@
 } @else {
   <div #chatConsole class="chat-console">
     @for (chat of messages(); track chat.id) {
-      <div class="chat-message" [matTooltip]="chat.tooltip" matTooltipPosition="below">
+      <div class="chat-message"
+           [matTooltip]="chat.tooltip"
+           matTooltipPosition="below"
+           animate.enter="chat-enter"
+           animate.leave="chat-leave">
         <time class="timestamp">
           {{ chat.timestamp | timestamp: true:!isToday(chat.timestamp) }}
         </time>
