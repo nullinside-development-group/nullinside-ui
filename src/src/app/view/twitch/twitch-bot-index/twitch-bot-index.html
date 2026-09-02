@@ -5,7 +5,7 @@
     @if (loading()) {
       <app-loading-icon class="center" height="180px" width="80px"></app-loading-icon>
     } @else if (streams().length > 0) {
-      <app-twitch-stream-carousel [streamWidth]="240" [streamHeight]="135" [streams]="streams()"/>
+      <app-twitch-stream-carousel [streamWidth]="192" [streamHeight]="108" [streams]="streams()"/>
     }
   </div>
 
