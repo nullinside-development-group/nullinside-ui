@@ -1,0 +1,6 @@
+@for (channel of channels(); track channel.channel) {
+  <div class="channel-row">
+    <div class="channel-name">{{ channel.channel }}</div>
+    <div class="latest-message">{{ channel.latestMessage | elapsedDatePipe }}</div>
+  </div>
+}

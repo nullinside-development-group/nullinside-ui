@@ -7,6 +7,7 @@ import {TwitchBotConfig} from '../common/interface/twitch-bot-config';
 import {TwitchLiveBotUsers} from '../common/interface/twitch-live-bot-users';
 import {TwitchRecentBans} from '../common/interface/twitch-recent-bans';
 import {PaginatedTwitchChatLog} from '../common/interface/twitch-chat-log';
+import {TimeSinceChat} from '../common/interface/time-since-chat';
 
 @Injectable({
   providedIn: 'root',
@@ -64,6 +65,15 @@ export class NullinsideTwitchBot {
           }))
         };
       })
+    );
+  }
+
+  getTimeSinceMessageForAllTwitchChannels(): Observable<TimeSinceChat[]> {
+    return this.httpClient.get<TimeSinceChat[]>(`${environment.twitchBotApiUrl}/bot/chat/timeSince`).pipe(
+      map(response => response.map(timeSince => ({
+        ...timeSince,
+        latestMessage: new Date(`${timeSince.latestMessage.toString()}Z`)
+      })))
     );
   }
 }
