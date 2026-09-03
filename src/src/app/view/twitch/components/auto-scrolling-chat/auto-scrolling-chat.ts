@@ -1,4 +1,4 @@
-import {Component, DestroyRef, ElementRef, inject, model, OnInit, signal, ViewChild} from '@angular/core';
+import {Component, DestroyRef, ElementRef, HostListener, inject, model, OnInit, signal, ViewChild} from '@angular/core';
 import {TwitchLiveBotUsers} from '../../../../common/interface/twitch-live-bot-users';
 import {NullinsideTwitchBot} from '../../../../service/nullinside-twitch-bot';
 import {TwitchChatMessage} from '../../../../common/interface/twitch-chat-message';
@@ -46,6 +46,13 @@ export class AutoScrollingChat implements OnInit {
     this.timerDestroy.onDestroy(() => {
       clearInterval(this.timer);
     });
+  }
+
+  @HostListener('document:visibilitychange')
+  onVisibilityChange() {
+    if (document.visibilityState === 'visible') {
+      this.scrollToBottomOfChat();
+    }
   }
 
   private scrollToBottomOfChat() {
