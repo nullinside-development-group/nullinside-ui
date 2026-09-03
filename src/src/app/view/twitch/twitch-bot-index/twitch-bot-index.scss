@@ -1,26 +1,28 @@
 .twitch-bot-index-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 20px;
-  padding: 0 20px;
-  width: 100%;
+  align-items: center;
+
   box-sizing: border-box;
+  width: 100%;
+  padding: 0 20px;
 }
 
 app-animated-list {
-  display: block;
-  max-height: 385px;
   overflow: hidden;
+  display: block;
+
+  box-sizing: border-box;
   width: 100%;
   min-width: 0;
-  box-sizing: border-box;
+  max-height: 385px;
 }
 
 .top-section {
+  overflow: hidden;
   width: 100%;
   max-width: 100vw;
-  overflow: hidden;
 }
 
 .bottom-layout {
@@ -40,16 +42,17 @@ app-animated-list {
   display: grid;
   grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
   gap: 10px;
-  width: 100%;
   align-items: flex-start;
   justify-items: start;
+
+  width: 100%;
   min-width: 0;
 }
 
 .faq-section {
   width: fit-content;
-  margin-left: auto;
   min-width: 0;
+  margin-left: auto;
 }
 
 .list-section {
@@ -68,9 +71,9 @@ app-loading-icon {
 }
 
 .title-live {
+  margin-bottom: 10px;
   font-size: 24px;
   font-weight: 900;
-  margin-bottom: 10px;
 }
 
 /* Mobile */

@@ -1,11 +1,11 @@
 @use "../../../common/constants" as *;
 
 .page-container {
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 30px;
-  padding-right: 30px;
   max-width: 700px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 30px;
+  padding-left: 30px;
 }
 
 .page-container > h2 {
@@ -14,12 +14,14 @@
 
 .button-wrapper {
   padding: 10px;
-  background-color: #434239;
-  text-align: right;
-  border-radius: 5px 5px 0 0;
   border-color: $font-color;
-  border-width: 1px;
   border-style: solid;
+  border-width: 1px;
+  border-radius: 5px 5px 0 0;
+
+  text-align: right;
+
+  background-color: #434239;
 }
 
 .button-wrapper > button {
@@ -27,13 +29,13 @@
 }
 
 .info {
-  padding-left: 10px;
   padding-right: 10px;
+  padding-left: 10px;
   text-align: justify;
 }
 
 .success-banner {
-  font-size: 20px;
   margin: 10px 0;
   border-radius: 5px;
+  font-size: 20px;
 }

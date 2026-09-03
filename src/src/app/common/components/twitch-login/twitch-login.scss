@@ -1,19 +1,23 @@
 @use "../../../common/constants" as *;
 
 .twitch-login-button {
-  text-align: center;
+  cursor: pointer;
+
   align-content: center;
-  vertical-align: middle;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 5px;
+
   width: 200px;
   height: 40px;
-  background: rgb(191, 148, 255);
-  color: $background-color;
-  font-weight: 900;
+  margin-top: 5px;
+  margin-right: auto;
+  margin-left: auto;
   border-radius: 3px;
-  cursor: pointer;
+
+  font-weight: 900;
+  color: $background-color;
+  text-align: center;
+  vertical-align: middle;
+
+  background: rgb(191, 148, 255);
 }
 
 .side-by-side {

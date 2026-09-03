@@ -1,19 +1,22 @@
 .list-container {
+  overflow: hidden;
+
+  box-sizing: border-box;
   width: 100%;
   height: 100%;
   padding: 10px;
-  background: rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  overflow: hidden;
-  box-sizing: border-box;
+
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .list-title {
-  font-weight: 900;
   margin-bottom: 10px;
-  text-align: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   padding-bottom: 5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+  font-weight: 900;
+  text-align: center;
 }
 
 .list {
@@ -23,19 +26,22 @@
 }
 
 .item {
-  padding: 8px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 4px;
-  text-align: left;
   overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+
   box-sizing: border-box;
+  padding: 8px;
+  border-radius: 4px;
+
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .enter {
-  animation: enter-animation 300ms ease-out forwards;
   opacity: 0;
+  animation: enter-animation 300ms ease-out forwards;
 }
 
 @for $i from 1 through 10 {
@@ -52,23 +58,23 @@
 
 @keyframes enter-animation {
   from {
-    opacity: 0;
     transform: translateY(-20px);
+    opacity: 0;
   }
   to {
-    opacity: 1;
     transform: translateY(0);
+    opacity: 1;
   }
 }
 
 @keyframes leave-animation {
   from {
-    opacity: 1;
     transform: translateX(0);
+    opacity: 1;
   }
   to {
-    opacity: 0;
     transform: translateX(50px);
+    opacity: 0;
   }
 }
 

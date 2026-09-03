@@ -1,9 +1,10 @@
 .layout-logo-box {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+
   margin: 0 10px 10px 10px;
-  flex-wrap: wrap;
 }
 
 app-logo {
@@ -16,16 +17,18 @@ app-logo {
 .menu-bar {
   display: flex;
   flex-direction: row;
-  gap: 10px;
   flex-wrap: wrap;
+  gap: 10px;
+
   padding-top: 10px;
 }
 
 .right-section {
   display: flex;
-  align-items: center;
-  gap: 10px;
   flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+
   padding-top: 10px;
 }
 
@@ -36,8 +39,8 @@ app-logo {
 /* Mobile */
 @media (max-width: 1000px) {
   .layout-logo-box {
-    justify-content: center;
     flex-direction: column;
+    justify-content: center;
   }
 
   .menu-bar {

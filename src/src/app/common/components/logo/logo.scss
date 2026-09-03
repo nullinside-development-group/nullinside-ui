@@ -1,11 +1,14 @@
 .blackhole {
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   width: 75px;
   height: 75px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
+
   animation: rotate 40s linear infinite;
-  cursor: pointer;
 }
 
 .blackhole img {
