@@ -14,20 +14,26 @@
 }
 
 .nav-button {
-  background: rgba(0, 0, 0, 0.6);
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
   cursor: pointer;
+
   z-index: 10;
+
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.3s ease;
+
+  width: 40px;
+  height: 40px;
   padding: 0;
+  border: none;
+  border-radius: 50%;
+
   color: $font-color;
-  flex-shrink: 0;
+
+  background: rgba(0, 0, 0, 0.6);
+
+  transition: background-color 0.3s ease;
 
   &:hover {
     background: rgba(0, 0, 0, 0.8);
@@ -42,12 +48,13 @@
   }
 
   .arrow-left, .arrow-right {
-    border: solid $font-color;
-    border-width: 0 3px 3px 0;
     display: inline-block;
-    padding: 3px;
+
     width: 8px;
     height: 8px;
+    padding: 3px;
+    border: solid $font-color;
+    border-width: 0 3px 3px 0;
   }
 
   .arrow-left {
@@ -63,26 +70,30 @@
 
 .carousel-track {
   display: flex;
-  transition: transform 1s ease-in-out;
   gap: 20px;
+  transition: transform 1s ease-in-out;
 }
 
 .stream-box {
-  position: relative;
-  flex-shrink: 0;
-  background: #2c2c2e;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   cursor: pointer;
+
+  position: relative;
+
+  overflow: hidden;
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
+
+  border-radius: 8px;
+
+  background: #2c2c2e;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 
   .preview-container {
     position: relative;
     overflow: hidden;
-    width: 100%;
     flex-shrink: 0;
+    width: 100%;
   }
 
   img {
@@ -92,51 +103,65 @@
   }
 
   .view-count {
+    pointer-events: none;
+
     position: absolute;
     bottom: 8px;
     left: 8px;
-    background: rgba(0, 0, 0, 0.5);
-    color: $font-color;
+
     padding: 2px 8px;
     border-radius: 4px;
+
     font-size: 13px;
     font-weight: 900;
-    pointer-events: none;
+    color: $font-color;
+
+    background: rgba(0, 0, 0, 0.5);
   }
 
   .live {
+    pointer-events: none;
+
     position: absolute;
     top: 8px;
     left: 8px;
-    background: red;
-    color: $font-color;
+
     padding: 2px 8px;
     border-radius: 4px;
+
     font-size: 13px;
     font-weight: 900;
-    pointer-events: none;
+    color: $font-color;
+
+    background: red;
   }
 
   .uptime {
+    pointer-events: none;
+
     position: absolute;
     top: 8px;
     right: 8px;
-    background: rgba(0, 0, 0, 0.5);
-    color: $font-color;
+
     padding: 2px 8px;
     border-radius: 4px;
+
     font-size: 13px;
     font-weight: 900;
-    pointer-events: none;
+    color: $font-color;
+
+    background: rgba(0, 0, 0, 0.5);
   }
 
   .stream-info {
-    background: rgba(0, 0, 0, 0.5);
-    padding: 8px;
     display: flex;
+    flex: 1;
     flex-direction: column;
     gap: 4px;
-    flex: 1;
+
+    padding: 8px;
+
+    background: rgba(0, 0, 0, 0.5);
   }
 
   .stream-info > .title {

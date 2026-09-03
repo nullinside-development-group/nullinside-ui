@@ -9,7 +9,8 @@
     "build_prod": "ng build --configuration=production --aot=true --optimization=true --output-hashing=all",
     "test": "ng test",
     "test_automation": "ng test --watch=false",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "stylelint": "stylelint \"src/**/*.scss\""
   },
   "prettier": {
     "printWidth": 100,
@@ -48,6 +49,10 @@
     "angular-eslint": "22.2.0",
     "eslint": "^10.9.1",
     "jsdom": "^30.0.1",
+    "postcss-scss": "^4.0.9",
+    "stylelint": "^17.14.1",
+    "stylelint-config-clean-order": "^10.0.0",
+    "stylelint-config-standard": "^40.0.0",
     "typescript": "~6.0.3",
     "typescript-eslint": "8.69.0",
     "vitest": "^4.1.11"

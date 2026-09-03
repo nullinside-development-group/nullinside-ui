@@ -1,18 +1,18 @@
 :host {
   display: flex;
   flex-direction: column;
+
+  min-width: 0;
   height: 100vh;
   min-height: 0;
-  min-width: 0;
 }
 
 .app-root-container {
   display: flex;
+  flex: 1 1 auto;
   flex-direction: column;
 
-  flex: 1 1 auto;
-  min-height: 0;
-  min-width: 0;
-
   width: 100%;
+  min-width: 0;
+  min-height: 0;
 }

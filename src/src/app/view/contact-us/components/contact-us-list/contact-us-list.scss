@@ -1,27 +1,31 @@
 @use "../../../../common/constants" as *;
 
 .feedback-wrapper {
-  margin-top: -1px;
-  padding: 10px;
-  border-radius: 0 0 5px 5px;
-  border-color: $font-color;
-  border-width: 1px;
-  border-style: solid;
-  min-height: 200px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  min-height: 200px;
+  margin-top: -1px;
+  padding: 10px;
+  border-color: $font-color;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 0 0 5px 5px;
 }
 
 .feedback-card {
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba($font-color, 0.2);
-  border-radius: 4px;
-  padding: 10px;
+  cursor: pointer;
+
   display: flex;
   flex-direction: column;
   gap: 4px;
-  cursor: pointer;
+
+  padding: 10px;
+  border: 1px solid rgba($font-color, 0.2);
+  border-radius: 4px;
+
+  background-color: rgba(255, 255, 255, 0.05);
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.1);
@@ -30,13 +34,15 @@
 
 .feedback-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  font-weight: 900;
-  font-size: 1.1em;
-  color: $font-color;
-  padding: 0;
+  justify-content: space-between;
+
   margin: 0;
+  padding: 0;
+
+  font-size: 1.1em;
+  font-weight: 900;
+  color: $font-color;
 }
 
 .feedback-header > p {
@@ -45,10 +51,10 @@
 }
 
 .feedback-message {
-  white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
   color: rgba($font-color, 0.8);
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .feedback-footer {
@@ -61,10 +67,10 @@
 }
 
 .no-feedback {
-  text-align: center;
-  color: rgba($font-color, 0.6);
-  font-style: italic;
   margin-top: 20px;
+  font-style: italic;
+  color: rgba($font-color, 0.6);
+  text-align: center;
 }
 
 .completed {

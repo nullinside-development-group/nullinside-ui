@@ -23,6 +23,7 @@ html {
     typography: Roboto,
     density: 0,
   ));
+
   height: 100%;
 }
 
@@ -34,23 +35,6 @@ app-root {
 }
 
 body {
-  // Default the application to a light color theme. This can be changed to
-  // `dark` to enable the dark color theme, or to `light dark` to defer to the
-  // user's system settings.
-  color-scheme: dark;
-
-  // Set a default background, font and text colors for the application using
-  // Angular Material's system-level CSS variables. Learn more about these
-  // variables at https://material.angular.dev/guide/system-variables
-  background-color: $background-color;
-  color: $font-color;
-  font: $font-color;
-
-  // Reset the user agent margin.
-  margin: 0;
-
-  // Take up the full height of the viewport.
-  height: 100%;
 
   // The styles when hovering or when certain controls have focus are white, without this.
   --mat-sys-on-surface-variant: $font-color;
@@ -61,6 +45,24 @@ body {
   --mdc-outlined-text-field-input-text-color: $font-color;
   --mdc-outlined-text-field-hover-input-text-color: $font-color;
   --mat-button-tonal-disabled-container-color: #4a4a4a;
+
+  // Take up the full height of the viewport.
+  height: 100%;
+
+  // Reset the user agent margin.
+  margin: 0;
+
+  font: $font-color;
+  color: $font-color;
+  // Default the application to a light color theme. This can be changed to
+  // `dark` to enable the dark color theme, or to `light dark` to defer to the
+  // user's system settings.
+  color-scheme: dark;
+
+  // Set a default background, font and text colors for the application using
+  // Angular Material's system-level CSS variables. Learn more about these
+  // variables at https://material.angular.dev/guide/system-variables
+  background-color: $background-color;
 }
 
 /************************************************************/
@@ -74,8 +76,8 @@ html, body {
 }
 
 a:link {
-  color: $font-color;
   font-weight: 900;
+  color: $font-color;
 }
 
 a:visited {
@@ -95,11 +97,12 @@ b {
 }
 
 h1 {
-  font-size: 24px;
-  letter-spacing: normal;
   margin: 0;
-  font-weight: 900 !important;
   border-bottom: 1px solid $font-color;
+
+  font-size: 24px;
+  font-weight: 900 !important;
+  letter-spacing: normal;
 }
 
 .mdc-form-field {
@@ -112,10 +115,10 @@ h1 {
 .mat-typography .mat-body-2,
 .mat-typography,
 body {
+  height: 100%;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   font-size: 14px;
-  height: 100%;
 }
 
 /************************************************************/
@@ -124,35 +127,41 @@ body {
 /************************************************************/
 
 .error-banner {
-  font-size: 30px;
-  font-weight: 900;
-  text-align: center;
-  background: #5d0000;
   width: 100%;
   padding-top: 10px;
   padding-bottom: 15px;
+
+  font-size: 30px;
+  font-weight: 900;
+  text-align: center;
+
+  background: #5d0000;
 }
 
 .info-banner {
-  font-size: 30px;
-  font-weight: 900;
-  text-align: center;
-  color: $background-color;
-  background: $font-color;
   width: 100%;
   padding-top: 10px;
   padding-bottom: 15px;
+
+  font-size: 30px;
+  font-weight: 900;
+  color: $background-color;
+  text-align: center;
+
+  background: $font-color;
 }
 
 .success-banner {
-  font-size: 30px;
-  font-weight: 900;
-  text-align: center;
-  color: $background-color;
-  background: #72ff72;
   width: 100%;
   padding-top: 10px;
   padding-bottom: 15px;
+
+  font-size: 30px;
+  font-weight: 900;
+  color: $background-color;
+  text-align: center;
+
+  background: #72ff72;
 }
 
 /************************************************************/
@@ -162,25 +171,26 @@ body {
 /************************************************************/
 .centered-box {
   position: absolute;
-  width: 100%;
   top: 50%;
   transform: translateY(-50%);
+  width: 100%;
 }
 
 .centered-box_logo-container {
-  height: 50px;
-  width: 335px;
-  padding-bottom: 10px;
   position: relative;
-  margin-left: auto;
+
+  width: 335px;
+  height: 50px;
   margin-right: auto;
+  margin-left: auto;
+  padding-bottom: 10px;
 }
 
 .centered-box_content-container {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
   width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
 }
 
 /************************************************************/
@@ -192,8 +202,8 @@ body {
 }
 
 .layout-content {
-  left: 5px;
   right: 5px;
+  left: 5px;
   width: 100%;
 }
 
@@ -202,15 +212,15 @@ body {
 /************************************************************/
 // A blinking border for on hover.
 .hover-border-blink {
-  border: 1px $font-color solid;
   cursor: pointer;
+  border: 1px $font-color solid;
 }
 
 .hover-border-blink:hover {
+  cursor: pointer;
   border: 1px $font-color solid;
   animation: blink 1s;
   animation-iteration-count: infinite;
-  cursor: pointer;
 }
 
 @keyframes blink {
@@ -226,19 +236,20 @@ body {
 }
 
 .flex-3-column-even {
-  flex-grow: 1;
   flex-basis: 0;
+  flex-grow: 1;
+
   min-width: 300px;
-  padding: 10px;
   margin: 10px;
+  padding: 10px;
 }
 
 // Center content horizontally
 .center {
   display: block;
-  text-align: center;
-  margin-left: auto;
   margin-right: auto;
+  margin-left: auto;
+  text-align: center;
 }
 
 .no-select {
