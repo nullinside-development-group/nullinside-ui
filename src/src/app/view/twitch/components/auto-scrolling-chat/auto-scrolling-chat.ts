@@ -48,6 +48,13 @@ export class AutoScrollingChat implements OnInit {
     });
   }
 
+  /**
+   * Whenever the control becomes visible again, scroll to the bottom of the chat.
+   *
+   * @remarks
+   * This is required because the browser will not scroll when it is not visible to save on
+   * CPU resources. This will force it to the bottom when it gets visibility again.
+   */
   @HostListener('document:visibilitychange')
   onVisibilityChange() {
     if (document.visibilityState === 'visible') {
