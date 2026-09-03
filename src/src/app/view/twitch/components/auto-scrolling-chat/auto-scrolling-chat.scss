@@ -1,0 +1,152 @@
+@use "../../../../common/constants" as *;
+
+$text-muted: #adadb8;
+
+:host {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+
+  overflow: hidden;
+}
+
+.chat-console-container {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.chat-console {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  min-width: 0;
+  padding: 8px 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: $background-color;
+  color: $font-color;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.4;
+}
+
+.chat-console-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 1;
+}
+
+.chat-console-button-highlight {
+  background: #515045;
+}
+
+.chat-message {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+
+  gap: 0 7px;
+  padding: 4px 12px;
+
+  transition: background-color 80ms ease,
+  opacity 80ms ease;
+
+  overflow-wrap: anywhere;
+}
+
+.chat-enter {
+  animation: chat-in 750ms ease-out;
+}
+
+.chat-leave {
+  animation: chat-out 750ms ease-in;
+}
+
+@keyframes chat-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes chat-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+.timestamp {
+  flex: 0 0 auto;
+  color: $text-muted;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 11px;
+  user-select: none;
+}
+
+.sender {
+  flex: 0 0 auto;
+  color: $font-color;
+  font-weight: 700;
+}
+
+.channel {
+  flex: 0 0 auto;
+  color: $text-muted;
+  font-size: 12px;
+  text-decoration: none;
+  font-weight: normal;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.message {
+  flex: 1;
+
+  min-width: 0;
+  color: $font-color;
+  width: 100%;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wrap {
+  white-space: wrap;
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+.empty-state {
+  display: grid;
+  place-items: center;
+  flex: 1;
+
+  min-height: 100px;
+
+  color: $text-muted;
+  font-size: 13px;
+}

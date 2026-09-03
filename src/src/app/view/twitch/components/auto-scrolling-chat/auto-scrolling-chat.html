@@ -1,0 +1,43 @@
+@if (loading()) {
+  <app-loading-icon class="center" height="180px" width="80px"></app-loading-icon>
+} @else {
+  <div class="chat-console-container">
+    <div #chatConsole class="chat-console">
+      @for (chat of messages(); track chat.id) {
+        <div class="chat-message"
+             [matTooltip]="chat.tooltip"
+             matTooltipPosition="below"
+             animate.enter="chat-enter"
+             animate.leave="chat-leave">
+          <time class="timestamp">
+            {{ chat.timestamp | timestamp: true:!isToday(chat.timestamp) }}
+          </time>
+          <span class="sender">
+            {{ chat.sender }}:
+          </span>
+          @if (chat.channel) {
+            <a target="_blank" rel="noopener noreferrer" [href]="`https://www.twitch.tv/${chat.channel}`"
+               class="channel">
+              #{{ chat.channel }}
+            </a>
+          }
+          <span class="message"
+                [ngClass]="wrappingChat() ? 'wrap' : 'no-wrap'">
+            {{ chat.message }}
+          </span>
+        </div>
+      } @empty {
+        <div class="empty-state">
+          No chat messages
+        </div>
+      }
+    </div>
+
+    <mat-icon
+      class="chat-console-button"
+      aria-hidden="true"
+      fontIcon="wrap_text"
+      [ngClass]="wrappingChat() ? 'chat-console-button-highlight' : ''"
+      (click)="setChatWrap(!wrappingChat())"/>
+  </div>
+}
