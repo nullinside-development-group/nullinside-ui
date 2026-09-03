@@ -1,3 +1,5 @@
+@use '../../../common/constants' as *;
+
 :host {
   overflow: hidden;
   display: flex;
@@ -13,7 +15,7 @@
   display: flex;
   flex: 1 1 auto;
   flex-direction: row;
-  gap: 5px;
+  gap: 20px;
 
   width: 100%;
   min-width: 0;
@@ -46,6 +48,8 @@
 .flex-to-fit {
   overflow: scroll;
   flex: 1 1 auto;
+  padding-top: 5px;
+  border-top: 1px solid $font-color;
 }
 
 .flex-to-fill {
@@ -55,4 +59,7 @@
 
   min-width: 0;
   min-height: 0;
+  margin-right: 10px;
+  padding-top: 5px;
+  border-top: 1px solid $font-color;
 }
