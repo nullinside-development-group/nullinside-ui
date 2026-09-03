@@ -39,7 +39,7 @@ export class TwitchBotAdmin implements OnInit {
     }, 500);
     this.timer = setInterval(() => {
       this.loadData();
-    }, 1000);
+    }, 5000);
     this.timerDestroy.onDestroy(() => {
       clearInterval(this.timer);
     });
@@ -89,7 +89,7 @@ export class TwitchBotAdmin implements OnInit {
       if (wasAtBottom) {
         setTimeout(() => {
           this.scrollToBottomOfChat();
-        });
+        }, 500);
       }
     });
   }
