@@ -92,9 +92,9 @@ export class TwitchBotConfig implements OnInit, OnDestroy {
             this.auth.setToken(oauth);
 
             // Check if the bot account is modded. If it isn't, we can offer to mod it.
-            this.twitchBotApi.getIsMod().subscribe({
+            this.twitchBotApi.getBotIsMod().subscribe({
               next: response => {
-                this.botIsMod.set(response.isMod);
+                this.botIsMod.set(response.role === 'moderator');
               },
               error: err => {
                 this.botIsMod.set(false);

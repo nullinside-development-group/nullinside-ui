@@ -16,25 +16,24 @@ import {TwitchChatBanOutsideOfBot} from '../common/interface/twitch-chat-ban-out
 export class NullinsideTwitchBot {
   private httpClient = inject(HttpClient);
 
-
-  getIsMod(): Observable<TwitchBotIsModResponse> {
-    return this.httpClient.get<TwitchBotIsModResponse>(`${environment.twitchBotApiUrl}/bot/mod`);
+  getBotIsMod(): Observable<TwitchBotIsModResponse> {
+    return this.httpClient.get<TwitchBotIsModResponse>(`${environment.twitchBotApiUrl}/moderators/bot`);
   }
 
   modBot(): Observable<unknown> {
-    return this.httpClient.put<unknown>(`${environment.twitchBotApiUrl}/bot/mod`, {});
+    return this.httpClient.put<unknown>(`${environment.twitchBotApiUrl}/moderators/bot`, {});
   }
 
   getConfig(): Observable<TwitchBotConfig> {
-    return this.httpClient.get<TwitchBotConfig>(`${environment.twitchBotApiUrl}/bot/config`);
+    return this.httpClient.get<TwitchBotConfig>(`${environment.twitchBotApiUrl}/configurations/me`);
   }
 
   setConfig(config: TwitchBotConfig): Observable<TwitchBotConfig> {
-    return this.httpClient.put<TwitchBotConfig>(`${environment.twitchBotApiUrl}/bot/config`, config);
+    return this.httpClient.put<TwitchBotConfig>(`${environment.twitchBotApiUrl}/configurations/me`, config);
   }
 
   getAllLiveTwitchBotUsers(): Observable<TwitchLiveBotUsers[]> {
-    return this.httpClient.get<TwitchLiveBotUsers[]>(`${environment.twitchBotApiUrl}/bot/live`).pipe(
+    return this.httpClient.get<TwitchLiveBotUsers[]>(`${environment.twitchBotApiUrl}/streams`).pipe(
       map(users => users.map(user => ({
         ...user,
         goneLiveTime: new Date(`${user.goneLiveTime.toString()}Z`)
@@ -43,7 +42,7 @@ export class NullinsideTwitchBot {
   }
 
   getRecentBotBans(): Observable<TwitchRecentBans[]> {
-    return this.httpClient.get<TwitchRecentBans[]>(`${environment.twitchBotApiUrl}/bot/bans`).pipe(
+    return this.httpClient.get<TwitchRecentBans[]>(`${environment.twitchBotApiUrl}/bans`).pipe(
       map(bans => bans.map(ban => ({
         ...ban,
         timestamp: new Date(`${ban.timestamp.toString()}Z`),
@@ -56,7 +55,7 @@ export class NullinsideTwitchBot {
   }
 
   getAllChatMessages(channel: string | null = null): Observable<PaginatedTwitchChatLog> {
-    return this.httpClient.get<PaginatedTwitchChatLog>(`${environment.twitchBotApiUrl}/bot/chat/admin${!channel ? '' : '?channel=' + channel}`).pipe(
+    return this.httpClient.get<PaginatedTwitchChatLog>(`${environment.twitchBotApiUrl}/chats${!channel ? '' : '?channel=' + channel}`).pipe(
       map(response => {
         return {
           ...response,
@@ -70,7 +69,7 @@ export class NullinsideTwitchBot {
   }
 
   getBansNotFromBot(): Observable<TwitchChatBanOutsideOfBot[]> {
-    return this.httpClient.get<TwitchChatBanOutsideOfBot[]>(`${environment.twitchBotApiUrl}/bot/bans/audit`).pipe(
+    return this.httpClient.get<TwitchChatBanOutsideOfBot[]>(`${environment.twitchBotApiUrl}/bans/external`).pipe(
       map(response => response.map(message => ({
         ...message,
         timestamp: new Date(`${message.timestamp.toString()}Z`)
@@ -79,7 +78,7 @@ export class NullinsideTwitchBot {
   }
 
   getTimeSinceMessageForAllTwitchChannels(): Observable<TimeSinceChat[]> {
-    return this.httpClient.get<TimeSinceChat[]>(`${environment.twitchBotApiUrl}/bot/chat/timeSince`).pipe(
+    return this.httpClient.get<TimeSinceChat[]>(`${environment.twitchBotApiUrl}/chats/activity`).pipe(
       map(response => response.map(timeSince => ({
         ...timeSince,
         latestMessage: new Date(`${timeSince.latestMessage.toString()}Z`)
