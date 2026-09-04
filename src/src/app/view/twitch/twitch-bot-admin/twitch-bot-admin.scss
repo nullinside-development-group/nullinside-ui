@@ -64,10 +64,18 @@
   border-top: 1px solid $font-color;
 }
 
-@media(max-width: 600px) {
+@media (max-width: 600px) {
+  :host {
+    overflow: visible;
+  }
+
   .container {
-    overflow: scroll;
+    overflow: visible;
     flex-direction: column;
+  }
+
+  .flex-to-fit {
+    overflow: visible;
   }
 
   .flex-to-fill {
