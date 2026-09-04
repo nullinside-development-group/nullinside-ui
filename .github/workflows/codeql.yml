@@ -84,6 +84,28 @@ jobs:
       - name: npm stylelint
         working-directory: ./src
         run: npm run stylelint
+        
+  knip:
+    name: npm run knip
+    runs-on: [ self-hosted ]
+    steps:
+      # Required for our repo to run
+      - name: Install NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/krypton'
+
+      # Checkout the code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Run the ng lint command
+      - name: Install NPM Packages
+        working-directory: ./src
+        run: npm install
+      - name: npm knip
+        working-directory: ./src
+        run: npm run knip
 
   code-ql:
     name: Analyze

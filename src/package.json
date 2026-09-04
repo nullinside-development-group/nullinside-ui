@@ -10,7 +10,8 @@
     "test": "ng test",
     "test_automation": "ng test --watch=false",
     "lint": "ng lint",
-    "stylelint": "stylelint \"src/**/*.scss\""
+    "stylelint": "stylelint \"src/**/*.scss\"",
+    "knip": "knip"
   },
   "prettier": {
     "printWidth": 100,
@@ -49,6 +50,7 @@
     "angular-eslint": "22.2.0",
     "eslint": "^10.9.1",
     "jsdom": "^30.0.1",
+    "knip": "^6.34.0",
     "postcss-scss": "^4.0.9",
     "stylelint": "^17.14.1",
     "stylelint-config-clean-order": "^10.0.0",
