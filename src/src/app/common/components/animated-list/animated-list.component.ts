@@ -9,7 +9,6 @@ import {AnimateListItem} from '../../interface/animate-list-item';
   ],
   templateUrl: './animated-list.component.html',
   styleUrl: './animated-list.component.scss',
-  standalone: true,
 })
 export class AnimatedList {
   list = input<AnimateListItem[]>([]);

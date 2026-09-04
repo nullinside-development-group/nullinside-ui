@@ -4,8 +4,7 @@ import {Component, Input} from '@angular/core';
   selector: 'app-loading-icon',
   imports: [],
   templateUrl: './loading-icon.html',
-  styleUrl: './loading-icon.scss',
-  standalone: true
+  styleUrl: './loading-icon.scss'
 })
 export class LoadingIcon {
   @Input() width = '100%';

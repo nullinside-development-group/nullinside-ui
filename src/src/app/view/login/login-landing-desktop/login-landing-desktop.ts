@@ -6,8 +6,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 @Component({
   selector: 'app-login-landing-desktop',
   templateUrl: './login-landing-desktop.html',
-  styleUrl: './login-landing-desktop.scss',
-  standalone: true
+  styleUrl: './login-landing-desktop.scss'
 })
 export class LoginLandingDesktop implements OnInit {
   private route = inject(ActivatedRoute);

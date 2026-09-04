@@ -29,8 +29,7 @@ import {OAuth} from '../../../common/interface/oauth';
     MatDivider
   ],
   templateUrl: './twitch-bot-config.html',
-  styleUrl: './twitch-bot-config.scss',
-  standalone: true
+  styleUrl: './twitch-bot-config.scss'
 })
 export class TwitchBotConfig implements OnInit, OnDestroy {
   private twitchBotApi = inject(NullinsideTwitchBot);

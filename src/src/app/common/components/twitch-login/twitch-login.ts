@@ -8,8 +8,7 @@ import {NgOptimizedImage} from '@angular/common';
     NgOptimizedImage
   ],
   templateUrl: './twitch-login.html',
-  styleUrl: './twitch-login.scss',
-  standalone: true
+  styleUrl: './twitch-login.scss'
 })
 export class TwitchLogin {
   /**

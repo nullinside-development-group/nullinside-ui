@@ -14,8 +14,7 @@ import {OAuth} from '../../../common/interface/oauth';
     LoadingIcon
   ],
   templateUrl: './login-landing-web.component.html',
-  styleUrl: './login-landing-web.component.scss',
-  standalone: true
+  styleUrl: './login-landing-web.component.scss'
 })
 export class LoginLandingWeb implements OnInit, OnDestroy {
   private auth = inject(Auth);

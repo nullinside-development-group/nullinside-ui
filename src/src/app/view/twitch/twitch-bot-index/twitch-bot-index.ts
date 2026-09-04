@@ -20,8 +20,7 @@ import {AnimateListItem} from '../../../common/interface/animate-list-item';
     AnimatedList
   ],
   templateUrl: './twitch-bot-index.html',
-  styleUrl: './twitch-bot-index.scss',
-  standalone: true
+  styleUrl: './twitch-bot-index.scss'
 })
 export class TwitchBotIndex implements OnInit {
   protected readonly environment = environment;
