@@ -10,6 +10,11 @@ describe('TwitchBotAdmin', () => {
   let fixture: ComponentFixture<TwitchBotAdmin>;
 
   beforeEach(async () => {
+    Object.defineProperty(HTMLElement.prototype, 'scrollTo', {
+      configurable: true,
+      value: vi.fn()
+    });
+
     await TestBed.configureTestingModule({
       imports: [TwitchBotAdmin],
       providers: [provideHttpClient(), provideHttpClientTesting()]

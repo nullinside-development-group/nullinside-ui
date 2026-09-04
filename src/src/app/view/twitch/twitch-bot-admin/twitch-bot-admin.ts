@@ -1,7 +1,9 @@
-import {Component, signal} from '@angular/core';
+import {Component, DestroyRef, effect, inject, OnInit, signal} from '@angular/core';
 import {AutoScrollingChat} from '../components/auto-scrolling-chat/auto-scrolling-chat';
 import {TimeSinceCountdown} from '../components/time-since-countdown/time-since-countdown';
 import {MatTab, MatTabGroup} from '@angular/material/tabs';
+import {NullinsideTwitchBot} from '../../../service/nullinside-twitch-bot';
+import {TwitchChatMessage} from '../../../common/interface/twitch-chat-message';
 
 @Component({
   selector: 'app-twitch-bot-admin',
@@ -14,6 +16,39 @@ import {MatTab, MatTabGroup} from '@angular/material/tabs';
   templateUrl: './twitch-bot-admin.html',
   styleUrl: './twitch-bot-admin.scss',
 })
-export class TwitchBotAdmin {
+export class TwitchBotAdmin implements OnInit {
+  private api: NullinsideTwitchBot = inject(NullinsideTwitchBot);
+
+  private timer?: number;
+  private timerDestroy = inject(DestroyRef);
+
+  protected chatMessages = signal<TwitchChatMessage[]>([]);
   protected filteredChannel = signal<string | null>(null);
+  private onFilteredChannelChanged = effect(() => {
+    this.getChatMessages(this.filteredChannel());
+  });
+
+  ngOnInit(): void {
+    this.getChatMessages();
+    this.timer = setInterval(() => {
+      this.getChatMessages(this.filteredChannel());
+    }, 5000);
+    this.timerDestroy.onDestroy(() => {
+      clearInterval(this.timer);
+    });
+  }
+
+  getChatMessages(channel: string | null = null) {
+    this.api.getAllChatMessages(channel).subscribe(response => {
+      this.chatMessages.set(
+        response.data.map(message => ({
+          id: message.id,
+          channel: message.channel,
+          sender: message.twitchUsername ?? 'Unknown',
+          message: message.message ?? 'Unknown',
+          timestamp: message.timestamp
+        })).sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime())
+      );
+    });
+  }
 }

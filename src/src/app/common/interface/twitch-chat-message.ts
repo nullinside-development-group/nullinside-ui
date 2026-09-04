@@ -4,5 +4,4 @@ export interface TwitchChatMessage {
   sender: string;
   message: string;
   timestamp: Date;
-  tooltip: string;
 }

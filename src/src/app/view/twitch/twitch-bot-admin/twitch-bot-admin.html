@@ -1,4 +1,5 @@
 <mat-tab-group
+  dynamicHeight
   (selectedTabChange)="$event.index === 0 ? chatsChat.scrollToBottomOfChat() : ($event.index === 1 ? missedBansChat.scrollToBottomOfChat() : null)">
   <mat-tab label="Chats">
     <div class="container">
@@ -14,7 +15,7 @@
         <div class="header center">Chats Evaluated By Bot</div>
         <div class="flex-to-fill border-top">
           <app-auto-scrolling-chat #chatsChat
-                                   [chatFilteredToChannel]="filteredChannel()"
+                                   [chatMessages]="this.chatMessages()"
                                    [chatIsWrapping]="false">
           </app-auto-scrolling-chat>
         </div>
@@ -26,7 +27,7 @@
       <div class="section flex-to-fill-section">
         <div class="flex-to-fill">
           <app-auto-scrolling-chat #missedBansChat
-                                   [chatFilteredToChannel]="filteredChannel()"
+                                   [chatMessages]="this.chatMessages()"
                                    [chatIsWrapping]="false">
           </app-auto-scrolling-chat>
         </div>
