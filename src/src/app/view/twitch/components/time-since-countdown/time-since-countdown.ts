@@ -1,11 +1,13 @@
-import {Component, DestroyRef, inject, OnInit, signal, WritableSignal} from '@angular/core';
+import {Component, DestroyRef, inject, OnInit, output, signal, WritableSignal} from '@angular/core';
 import {NullinsideTwitchBot} from '../../../../service/nullinside-twitch-bot';
 import {TimeSinceChat} from '../../../../common/interface/time-since-chat';
 import {ElapsedDatePipePipe} from '../../../../common/pipe/elapsed-date-pipe-pipe';
+import {NgClass} from '@angular/common';
 
 @Component({
   imports: [
-    ElapsedDatePipePipe
+    ElapsedDatePipePipe,
+    NgClass
   ],
   selector: 'app-time-since-countdown',
   styleUrl: './time-since-countdown.scss',
@@ -18,6 +20,9 @@ export class TimeSinceCountdown implements OnInit {
   private timerDestroy = inject(DestroyRef);
 
   protected channels: WritableSignal<TimeSinceChat[]> = signal([]);
+
+  public channelFilterChanged = output<string | null>();
+  protected selectedChannelFilter = signal<string | null>(null);
 
   ngOnInit(): void {
     this.loadData();
@@ -34,5 +39,16 @@ export class TimeSinceCountdown implements OnInit {
       response.sort((a, b) => a.latestMessage.getTime() - b.latestMessage.getTime());
       this.channels.set(response);
     });
+  }
+
+  onChannelToFilterChanged(channel: string): void {
+    if (this.selectedChannelFilter() === channel) {
+      this.selectedChannelFilter.set(null);
+      this.channelFilterChanged.emit(null);
+      return;
+    }
+
+    this.selectedChannelFilter.set(channel);
+    this.channelFilterChanged.emit(channel);
   }
 }

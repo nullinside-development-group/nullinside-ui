@@ -1,4 +1,16 @@
-import {Component, DestroyRef, ElementRef, HostListener, inject, model, OnInit, signal, ViewChild} from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  effect,
+  ElementRef,
+  HostListener,
+  inject,
+  input,
+  model,
+  OnInit,
+  signal,
+  ViewChild
+} from '@angular/core';
 import {TwitchLiveBotUsers} from '../../../../common/interface/twitch-live-bot-users';
 import {NullinsideTwitchBot} from '../../../../service/nullinside-twitch-bot';
 import {TwitchChatMessage} from '../../../../common/interface/twitch-chat-message';
@@ -32,8 +44,16 @@ export class AutoScrollingChat implements OnInit {
   protected loading = signal(true);
   private api: NullinsideTwitchBot = inject(NullinsideTwitchBot);
 
-  protected messages = signal<TwitchChatMessage[]>([]);
-  public wrappingChat = model(true);
+  protected chatMessages = signal<TwitchChatMessage[]>([]);
+  public chatIsWrapping = model(true);
+  public chatFilteredToChannel = input<string | null>(null);
+  private onChatFilteredToChannel = effect(() => {
+    this.loadData(this.chatFilteredToChannel());
+
+    setTimeout(() => {
+      this.scrollToBottomOfChat();
+    }, 500);
+  });
 
   ngOnInit(): void {
     this.loadData();
@@ -41,7 +61,7 @@ export class AutoScrollingChat implements OnInit {
       this.scrollToBottomOfChat();
     }, 500);
     this.timer = setInterval(() => {
-      this.loadData();
+      this.loadData(this.chatFilteredToChannel());
     }, 5000);
     this.timerDestroy.onDestroy(() => {
       clearInterval(this.timer);
@@ -85,16 +105,11 @@ export class AutoScrollingChat implements OnInit {
     return distanceFromBottom <= epsilon;
   }
 
-  private loadData() {
-    this.api.getAllLiveTwitchBotUsers().subscribe(response => {
-      this.streams.set(response);
-      this.loading.set(false);
-    });
-
-    this.api.getAllChatMessages().subscribe(response => {
+  private loadData(channel: string | null = null) {
+    this.api.getAllChatMessages(channel).subscribe(response => {
       const wasAtBottom = this.isAtTheBottomOfChat();
 
-      this.messages.set(
+      this.chatMessages.set(
         response.data.map(message => ({
           id: message.id,
           channel: message.channel,
@@ -110,6 +125,8 @@ export class AutoScrollingChat implements OnInit {
           this.scrollToBottomOfChat();
         }, 500);
       }
+
+      this.loading.set(false);
     });
   }
 
@@ -124,7 +141,7 @@ export class AutoScrollingChat implements OnInit {
 
   protected setChatWrap(wrap: boolean) {
     const isAtBottom = this.isAtTheBottomOfChat();
-    this.wrappingChat.set(wrap);
+    this.chatIsWrapping.set(wrap);
 
     if (isAtBottom) {
       setTimeout(() => {

@@ -1,6 +1,12 @@
 @for (channel of channels(); track channel.channel) {
   <div class="channel-row">
-    <div class="channel-name">{{ channel.channel }}</div>
-    <div class="latest-message">{{ channel.latestMessage | elapsedDatePipe }}</div>
+    <a class="channel-name"
+       [ngClass]="selectedChannelFilter() === channel.channel ? 'channel-selected' : ''"
+       tabindex="0"
+       (click)="onChannelToFilterChanged(channel.channel)"
+       (keyup.enter)="onChannelToFilterChanged(channel.channel)">
+      {{ channel.channel }}
+    </a>
+    <div>{{ channel.latestMessage | elapsedDatePipe }}</div>
   </div>
 }

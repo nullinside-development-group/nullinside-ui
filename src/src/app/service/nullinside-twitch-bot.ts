@@ -54,8 +54,8 @@ export class NullinsideTwitchBot {
     );
   }
 
-  getAllChatMessages(): Observable<PaginatedTwitchChatLog> {
-    return this.httpClient.get<PaginatedTwitchChatLog>(`${environment.twitchBotApiUrl}/bot/chat/admin`).pipe(
+  getAllChatMessages(channel: string | null = null): Observable<PaginatedTwitchChatLog> {
+    return this.httpClient.get<PaginatedTwitchChatLog>(`${environment.twitchBotApiUrl}/bot/chat/admin${!channel ? '' : '?channel=' + channel}`).pipe(
       map(response => {
         return {
           ...response,

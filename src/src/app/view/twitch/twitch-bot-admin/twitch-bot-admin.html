@@ -2,14 +2,16 @@
   <div class="section flex-to-fit-section">
     <div class="header center">Time Since Chat</div>
     <div class="flex-to-fit">
-      <app-time-since-countdown></app-time-since-countdown>
+      <app-time-since-countdown (channelFilterChanged)="this.filteredChannel.set($event)"></app-time-since-countdown>
     </div>
   </div>
 
   <div class="section flex-to-fill-section">
     <div class="header center">Chats Evaluated By Bot</div>
     <div class="flex-to-fill">
-      <app-auto-scrolling-chat [wrappingChat]="false"></app-auto-scrolling-chat>
+      <app-auto-scrolling-chat [chatFilteredToChannel]="filteredChannel()"
+                               [chatIsWrapping]="false">
+      </app-auto-scrolling-chat>
     </div>
   </div>
 </div>
