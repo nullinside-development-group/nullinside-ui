@@ -47,6 +47,7 @@ export class TwitchBotAdmin implements OnInit {
           timestamp: message.timestamp
         }))
           .sort((a, b) =>
+            a.message.localeCompare(b.message) ||
             a.sender.localeCompare(b.sender) ||
             a.channel.localeCompare(b.channel) ||
             b.timestamp.getTime() - a.timestamp.getTime()
