@@ -1,6 +1,7 @@
 <mat-tab-group
   dynamicHeight
-  (selectedTabChange)="$event.index === 0 ? chatsChat.scrollToBottomOfChat() : ($event.index === 1 ? missedBansChat.scrollToBottomOfChat() : null)">
+  [selectedIndex]="this.selectedTabIndex()"
+  (selectedTabChange)="this.onTabChanged($event, chatsChat, missedBansChat)">
   <mat-tab label="Chats">
     <div class="container">
       <div class="section flex-to-fit-section">
@@ -34,5 +35,4 @@
       </div>
     </div>
   </mat-tab>
-  <mat-tab label="Bans"></mat-tab>
 </mat-tab-group>
