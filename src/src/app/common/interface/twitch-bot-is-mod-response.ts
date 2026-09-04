@@ -1,3 +1,5 @@
 export interface TwitchBotIsModResponse {
-  isMod: boolean;
+  twitchUserId: string;
+  twitchUsername: string;
+  role: string;
 }
