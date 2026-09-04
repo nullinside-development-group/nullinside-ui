@@ -18,7 +18,6 @@ import {convertForDisplay} from '../../../../common/constants';
 import {MatIcon} from '@angular/material/icon';
 import {TimestampPipe} from '../../../../common/pipe/timestamp.pipe';
 import {LoadingIcon} from '../../../../common/components/loading-icon/loading-icon';
-import {MatTooltip} from '@angular/material/tooltip';
 import {NgClass} from '@angular/common';
 
 @Component({
@@ -26,7 +25,6 @@ import {NgClass} from '@angular/common';
     MatIcon,
     TimestampPipe,
     LoadingIcon,
-    MatTooltip,
     NgClass
   ],
   selector: 'app-auto-scrolling-chat',
