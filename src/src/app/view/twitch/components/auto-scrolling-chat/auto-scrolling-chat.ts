@@ -47,17 +47,12 @@ export class AutoScrollingChat implements OnInit {
   public chatFilteredToChannel = input<string | null>(null);
   private onChatFilteredToChannel = effect(() => {
     this.loadData(this.chatFilteredToChannel());
-
-    setTimeout(() => {
-      this.scrollToBottomOfChat();
-    }, 500);
+    this.scrollToBottomOfChat();
   });
 
   ngOnInit(): void {
     this.loadData();
-    setTimeout(() => {
-      this.scrollToBottomOfChat();
-    }, 500);
+    this.scrollToBottomOfChat();
     this.timer = setInterval(() => {
       this.loadData(this.chatFilteredToChannel());
     }, 5000);
@@ -80,16 +75,18 @@ export class AutoScrollingChat implements OnInit {
     }
   }
 
-  private scrollToBottomOfChat() {
-    const element = this.chatConsole?.nativeElement;
-    if (!element) {
-      return;
-    }
+  public scrollToBottomOfChat() {
+    setTimeout(() => {
+      const element = this.chatConsole?.nativeElement;
+      if (!element) {
+        return;
+      }
 
-    element.scrollTo({
-      top: element.scrollHeight,
-      behavior: 'smooth'
-    });
+      element.scrollTo({
+        top: element.scrollHeight,
+        behavior: 'smooth'
+      });
+    }, 200);
   }
 
   private isAtTheBottomOfChat() {
@@ -119,9 +116,7 @@ export class AutoScrollingChat implements OnInit {
       );
 
       if (wasAtBottom) {
-        setTimeout(() => {
-          this.scrollToBottomOfChat();
-        }, 500);
+        this.scrollToBottomOfChat();
       }
 
       this.loading.set(false);
@@ -142,9 +137,7 @@ export class AutoScrollingChat implements OnInit {
     this.chatIsWrapping.set(wrap);
 
     if (isAtBottom) {
-      setTimeout(() => {
-        this.scrollToBottomOfChat();
-      }, 500);
+      this.scrollToBottomOfChat();
     }
   }
 }

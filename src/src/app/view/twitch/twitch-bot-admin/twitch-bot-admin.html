@@ -1,17 +1,37 @@
-<div class="container">
-  <div class="section flex-to-fit-section">
-    <div class="header center">Time Since Chat</div>
-    <div class="flex-to-fit">
-      <app-time-since-countdown (channelFilterChanged)="this.filteredChannel.set($event)"></app-time-since-countdown>
-    </div>
-  </div>
+<mat-tab-group
+  (selectedTabChange)="$event.index === 0 ? chatsChat.scrollToBottomOfChat() : ($event.index === 1 ? missedBansChat.scrollToBottomOfChat() : null)">
+  <mat-tab label="Chats">
+    <div class="container">
+      <div class="section flex-to-fit-section">
+        <div class="header center">Time Since Chat</div>
+        <div class="flex-to-fit border-top">
+          <app-time-since-countdown (channelFilterChanged)="this.filteredChannel.set($event)">
+          </app-time-since-countdown>
+        </div>
+      </div>
 
-  <div class="section flex-to-fill-section">
-    <div class="header center">Chats Evaluated By Bot</div>
-    <div class="flex-to-fill">
-      <app-auto-scrolling-chat [chatFilteredToChannel]="filteredChannel()"
-                               [chatIsWrapping]="false">
-      </app-auto-scrolling-chat>
+      <div class="section flex-to-fill-section">
+        <div class="header center">Chats Evaluated By Bot</div>
+        <div class="flex-to-fill border-top">
+          <app-auto-scrolling-chat #chatsChat
+                                   [chatFilteredToChannel]="filteredChannel()"
+                                   [chatIsWrapping]="false">
+          </app-auto-scrolling-chat>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+  </mat-tab>
+  <mat-tab label="Missed Bans">
+    <div class="container">
+      <div class="section flex-to-fill-section">
+        <div class="flex-to-fill">
+          <app-auto-scrolling-chat #missedBansChat
+                                   [chatFilteredToChannel]="filteredChannel()"
+                                   [chatIsWrapping]="false">
+          </app-auto-scrolling-chat>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Bans"></mat-tab>
+</mat-tab-group>
