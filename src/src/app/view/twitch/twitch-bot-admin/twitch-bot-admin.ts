@@ -22,6 +22,7 @@ export class TwitchBotAdmin implements OnInit {
   private timer?: number;
   private timerDestroy = inject(DestroyRef);
 
+  protected bansNotFromBot = signal<TwitchChatMessage[]>([]);
   protected chatMessages = signal<TwitchChatMessage[]>([]);
   protected filteredChannel = signal<string | null>(null);
   private onFilteredChannelChanged = effect(() => {
@@ -35,6 +36,22 @@ export class TwitchBotAdmin implements OnInit {
     }, 5000);
     this.timerDestroy.onDestroy(() => {
       clearInterval(this.timer);
+    });
+
+    this.api.getBansNotFromBot().subscribe(response => {
+      this.bansNotFromBot.set(response.map(message => ({
+          id: message.id,
+          channel: message.channel,
+          sender: message.twitchUsername,
+          message: message.message,
+          timestamp: message.timestamp
+        }))
+          .sort((a, b) =>
+            a.sender.localeCompare(b.sender) ||
+            a.channel.localeCompare(b.channel) ||
+            b.timestamp.getTime() - a.timestamp.getTime()
+          )
+      );
     });
   }
 

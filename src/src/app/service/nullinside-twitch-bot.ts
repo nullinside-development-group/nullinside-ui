@@ -8,6 +8,7 @@ import {TwitchLiveBotUsers} from '../common/interface/twitch-live-bot-users';
 import {TwitchRecentBans} from '../common/interface/twitch-recent-bans';
 import {PaginatedTwitchChatLog} from '../common/interface/twitch-chat-log';
 import {TimeSinceChat} from '../common/interface/time-since-chat';
+import {TwitchChatBanOutsideOfBot} from '../common/interface/twitch-chat-ban-outside-of-bot';
 
 @Injectable({
   providedIn: 'root',
@@ -65,6 +66,15 @@ export class NullinsideTwitchBot {
           }))
         };
       })
+    );
+  }
+
+  getBansNotFromBot(): Observable<TwitchChatBanOutsideOfBot[]> {
+    return this.httpClient.get<TwitchChatBanOutsideOfBot[]>(`${environment.twitchBotApiUrl}/bot/bans/audit`).pipe(
+      map(response => response.map(message => ({
+        ...message,
+        timestamp: new Date(`${message.timestamp.toString()}Z`)
+      })))
     );
   }
 

@@ -27,7 +27,7 @@
       <div class="section flex-to-fill-section">
         <div class="flex-to-fill">
           <app-auto-scrolling-chat #missedBansChat
-                                   [chatMessages]="this.chatMessages()"
+                                   [chatMessages]="this.bansNotFromBot()"
                                    [chatIsWrapping]="false">
           </app-auto-scrolling-chat>
         </div>
