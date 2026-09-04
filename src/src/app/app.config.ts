@@ -6,7 +6,7 @@ import {provideHttpClient, withInterceptors, withXhr} from '@angular/common/http
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS} from '@angular/material/snack-bar';
 import {bearerTokenInterceptor} from './middleware/bearer-token-interceptor';
 
-export const materialSnackbarDefaults: Provider =
+const materialSnackbarDefaults: Provider =
   {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 5 * 1000}};
 export const appConfig: ApplicationConfig = {
   providers: [

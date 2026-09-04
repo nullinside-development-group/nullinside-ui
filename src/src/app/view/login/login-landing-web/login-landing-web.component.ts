@@ -1,5 +1,4 @@
 import {Component, inject, OnDestroy, OnInit, signal, WritableSignal} from '@angular/core';
-import {Nullinside} from '../../../service/nullinside';
 import {LoadingIcon} from '../../../common/components/loading-icon/loading-icon';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {environment} from '../../../../environments/environment';
@@ -18,7 +17,6 @@ import {OAuth} from '../../../common/interface/oauth';
 })
 export class LoginLandingWeb implements OnInit, OnDestroy {
   private auth = inject(Auth);
-  private api = inject(Nullinside);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
 

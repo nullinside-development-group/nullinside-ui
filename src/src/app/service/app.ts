@@ -3,6 +3,7 @@ import {WebsiteApp} from '../common/interface/website-app';
 import {Auth} from './auth';
 import {catchError, forkJoin, of} from 'rxjs';
 import {toObservable} from '@angular/core/rxjs-interop';
+import * as constants from '../common/constants';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class App {
   ];
 
   private roleToAppPermissions: Record<string, WebsiteApp[]> = {
-    'VM_ADMIN': [
+    [constants.VM_ADMIN]: [
       {
         isDefault: false,
         displayName: 'VM Admin',
@@ -28,7 +29,7 @@ export class App {
         highlightedUrls: ['/vm-admin']
       }
     ],
-    'ADMIN': [
+    [constants.ADMIN]: [
       {
         isDefault: false,
         displayName: 'Contact Us Admin',
