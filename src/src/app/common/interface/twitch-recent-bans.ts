@@ -1,10 +1,10 @@
 export interface TwitchRecentBans {
   twitchUsername: string;
   timestamp: Date;
-  chatLogs: TwitchChatLog[];
+  chatLogs: TwitchRecentBanChatLog[];
 }
 
-export interface TwitchChatLog {
+export interface TwitchRecentBanChatLog {
   message: string;
   timestamp: Date;
   twitchId: string;

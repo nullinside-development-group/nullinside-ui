@@ -1,7 +1,6 @@
 import {Component, inject, OnInit, signal} from '@angular/core';
 import {MatButton} from '@angular/material/button';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Nullinside} from '../../../service/nullinside';
 import {ContactUsList} from '../components/contact-us-list/contact-us-list';
 
 @Component({
@@ -14,7 +13,6 @@ import {ContactUsList} from '../components/contact-us-list/contact-us-list';
   styleUrl: './contact-us-index.component.scss',
 })
 export class ContactUsIndex implements OnInit {
-  private api = inject(Nullinside);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   public submittedFeedback = signal(false);

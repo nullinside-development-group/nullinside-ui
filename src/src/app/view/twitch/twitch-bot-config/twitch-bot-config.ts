@@ -4,7 +4,6 @@ import {NullinsideTwitchBot} from '../../../service/nullinside-twitch-bot';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {Errors} from '../../login/login-landing-web/errors';
 import {HttpErrorResponse} from '@angular/common/http';
-import {Nullinside} from '../../../service/nullinside';
 import {environment} from '../../../../environments/environment';
 import {LoadingIcon} from '../../../common/components/loading-icon/loading-icon';
 import {MatSlideToggle} from '@angular/material/slide-toggle';
@@ -34,7 +33,6 @@ import {OAuth} from '../../../common/interface/oauth';
 export class TwitchBotConfig implements OnInit, OnDestroy {
   private twitchBotApi = inject(NullinsideTwitchBot);
   private auth = inject(Auth);
-  private api = inject(Nullinside);
   private snackBar = inject(MatSnackBar);
   private location = inject(Location);
   private router = inject(Router);
@@ -155,10 +153,11 @@ export class TwitchBotConfig implements OnInit, OnDestroy {
   modBot() {
     this.waitingForModReply.set(true);
     this.twitchBotApi.modBot().subscribe({
-      next: success => {
-        this.botIsMod.set(success);
+      next: _ => {
+        this.botIsMod.set(true);
       },
       error: err => {
+        this.botIsMod.set(false);
         console.error(err);
       }
     }).add(() => {

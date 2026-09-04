@@ -21,8 +21,8 @@ export class NullinsideTwitchBot {
     return this.httpClient.get<TwitchBotIsModResponse>(`${environment.twitchBotApiUrl}/bot/mod`);
   }
 
-  modBot(): Observable<boolean> {
-    return this.httpClient.post<boolean>(`${environment.twitchBotApiUrl}/bot/mod`, {});
+  modBot(): Observable<unknown> {
+    return this.httpClient.put<unknown>(`${environment.twitchBotApiUrl}/bot/mod`, {});
   }
 
   getConfig(): Observable<TwitchBotConfig> {
@@ -30,7 +30,7 @@ export class NullinsideTwitchBot {
   }
 
   setConfig(config: TwitchBotConfig): Observable<TwitchBotConfig> {
-    return this.httpClient.post<TwitchBotConfig>(`${environment.twitchBotApiUrl}/bot/config`, config);
+    return this.httpClient.put<TwitchBotConfig>(`${environment.twitchBotApiUrl}/bot/config`, config);
   }
 
   getAllLiveTwitchBotUsers(): Observable<TwitchLiveBotUsers[]> {
