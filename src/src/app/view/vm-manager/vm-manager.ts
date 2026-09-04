@@ -15,8 +15,7 @@ import {ActionableDockerResource} from '../../common/interface/actionable-docker
     LoadingIcon
   ],
   templateUrl: './vm-manager.html',
-  styleUrl: './vm-manager.scss',
-  standalone: true
+  styleUrl: './vm-manager.scss'
 })
 export class VmManager implements OnInit {
   private api = inject(Nullinside);

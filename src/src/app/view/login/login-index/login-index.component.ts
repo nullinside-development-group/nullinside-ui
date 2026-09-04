@@ -14,8 +14,7 @@ import {Meta, Title} from '@angular/platform-browser';
     TwitchLogin
   ],
   templateUrl: './login-index.component.html',
-  styleUrl: './login-index.component.scss',
-  standalone: true
+  styleUrl: './login-index.component.scss'
 })
 export class LoginIndex implements OnInit {
   private auth = inject(Auth);

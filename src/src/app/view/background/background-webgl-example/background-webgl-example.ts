@@ -14,8 +14,7 @@ import {OpenGlBackgrounds} from './backgrounds';
     MatMenuTrigger
   ],
   templateUrl: './background-webgl-example.html',
-  styleUrl: './background-webgl-example.scss',
-  standalone: true
+  styleUrl: './background-webgl-example.scss'
 })
 export class BackgroundWebglExample {
   public enum: OpenGlBackgrounds = OpenGlBackgrounds.BOX;

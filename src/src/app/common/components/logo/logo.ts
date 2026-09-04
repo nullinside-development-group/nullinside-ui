@@ -8,8 +8,7 @@ import {NgOptimizedImage} from '@angular/common';
     NgOptimizedImage
   ],
   templateUrl: './logo.html',
-  styleUrl: './logo.scss',
-  standalone: true
+  styleUrl: './logo.scss'
 })
 export class Logo {
   private router = inject(Router);

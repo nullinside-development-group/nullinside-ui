@@ -16,8 +16,7 @@ import {ImdbSearchItems} from '../../common/interface/imdb-search';
     LoadingIcon
   ],
   templateUrl: './imdb-search.html',
-  styleUrl: './imdb-search.scss',
-  standalone: true
+  styleUrl: './imdb-search.scss'
 })
 export class ImdbSearch implements OnDestroy {
   private api = inject(NullinsideNull);

@@ -3,8 +3,7 @@ import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from
 @Component({
   selector: 'app-background-webgl',
   templateUrl: './background-webgl.html',
-  styleUrl: './background-webgl.scss',
-  standalone: true
+  styleUrl: './background-webgl.scss'
 })
 export class BackgroundWebgl implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('canvas')
