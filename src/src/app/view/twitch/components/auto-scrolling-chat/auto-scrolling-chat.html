@@ -3,7 +3,7 @@
 } @else {
   <div class="chat-console-container">
     <div #chatConsole class="chat-console">
-      @for (chat of messages(); track chat.id) {
+      @for (chat of chatMessages(); track chat.id) {
         <div class="chat-message"
              [matTooltip]="chat.tooltip"
              matTooltipPosition="below"
@@ -22,7 +22,7 @@
             </a>
           }
           <span class="message"
-                [ngClass]="wrappingChat() ? 'wrap' : 'no-wrap'">
+                [ngClass]="chatIsWrapping() ? 'wrap' : 'no-wrap'">
             {{ chat.message }}
           </span>
         </div>
@@ -37,7 +37,7 @@
       class="chat-console-button"
       aria-hidden="true"
       fontIcon="wrap_text"
-      [ngClass]="wrappingChat() ? 'chat-console-button-highlight' : ''"
-      (click)="setChatWrap(!wrappingChat())"/>
+      [ngClass]="chatIsWrapping() ? 'chat-console-button-highlight' : ''"
+      (click)="setChatWrap(!chatIsWrapping())"/>
   </div>
 }

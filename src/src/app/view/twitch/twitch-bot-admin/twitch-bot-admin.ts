@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, signal} from '@angular/core';
 import {AutoScrollingChat} from '../components/auto-scrolling-chat/auto-scrolling-chat';
 import {TimeSinceCountdown} from '../components/time-since-countdown/time-since-countdown';
 
@@ -11,7 +11,6 @@ import {TimeSinceCountdown} from '../components/time-since-countdown/time-since-
   templateUrl: './twitch-bot-admin.html',
   styleUrl: './twitch-bot-admin.scss',
 })
-// eslint-disable-next-line @typescript-eslint/no-extraneous-class
 export class TwitchBotAdmin {
-
+  protected filteredChannel = signal<string | null>(null);
 }

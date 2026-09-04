@@ -3,3 +3,16 @@
   grid-template-columns: 1fr 1fr;
   gap: 5px;
 }
+
+.channel-name {
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.channel-selected {
+  color: #eae5c8;
+  text-decoration: underline;
+}
